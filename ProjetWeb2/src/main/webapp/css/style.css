@@ -310,6 +310,12 @@ hr {
     margin: 0 auto;
 }
 
+.horizontal-tab-container-friends {
+    display: flex;
+    align-items: center;
+}
+
+
 #vertical-nav-favorites li:hover {
     background-color: #dedede;
 }
@@ -337,18 +343,20 @@ hr {
     font-family: 'CustomFont1', sans serif;
     color: black;
     font-size: 1rem;
+    margin-top: 1.2rem;
 }
 
 #right-section-friends-list li{
-    margin: 0 0 0.2rem 0;
+    display: inline-block;
+    width: 100%;
+    height: auto;
     list-style-type: none;
-    padding: 0.5rem;
     border-radius: 2rem;
     transition: background-color 0.5s ease;
 }
 
 #friends-list img{
-    width: 2.5rem;
+    width: 2rem;
     height: auto;
     margin-right: 1rem;
 }
@@ -585,7 +593,7 @@ hr {
     margin: 2% 0 0 10%;
 }
 
-.grid-item {
+.grid-item, .grid-item-languages {
     position: relative;
     overflow: hidden;
     border: 1px solid #ddd;
@@ -596,7 +604,8 @@ hr {
     transition: box-shadow 0.5s ease;
 }
 
-.grid-item:hover{
+.grid-item:hover, 
+.grid-item-languages:hover {
     box-shadow: 0.3rem 0.4rem 1.2rem rgba(0, 0, 0, 0.25);
 }
 
@@ -607,7 +616,17 @@ hr {
     transition: transform 0.3s ease-in-out;
 }
 
-.grid-item:hover img {
+.grid-item-languages img {
+    position: absolute;
+    bottom: 6%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid-item:hover img,
+.grid-item-languages:hover img{
     transform: scale(1.1);
 }
 
