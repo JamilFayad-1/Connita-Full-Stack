@@ -3,6 +3,11 @@
   src: url('../fonts/Cabolafe.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'CustomFontCalligraphy';
+  src: url('../fonts/Birds of paradise.otf') format('opentype');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -10,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: white;
+    overflow: hidden;
 }
 
 header {
@@ -89,6 +95,11 @@ main {
 
 #left-section, #right-section {
     flex-grow: 1;
+    width: 15%;
+}
+
+#left-section-home-page {
+    left: 0;
     width: 15%;
 }
 
@@ -647,4 +658,162 @@ hr {
     font-family: 'CustomFont1', sans serif;
     font-size: 1rem;
     color: #4d4d4d;
+}
+
+/* ----------------------------------------------------------- */
+/* Page des pays */
+/* ----------------------------------------------------------- */
+
+#main-section-home-page {
+    display: block;
+    flex-grow: 3;
+    width: 85%;
+    overflow-y: scroll;
+}
+
+#main-section-home-page h1{
+    font-family: 'CustomFont1', sans serif;
+    font-size: 4vw;
+    color: #4d4d4d;
+    margin: 5% 0 0 5%;
+    text-align: initial;
+}
+
+#main-section-first-info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#main-section-first-info img{
+    width: 45%;
+    height: auto;
+    padding-right: 2%;
+    margin: 2% 0 0 0;
+}
+
+
+@keyframes colorChange2 {
+      0%, 100% { background-position: 0% 50%; }
+      25% { background-position: 25% 50%; }
+      50% { background-position: 50% 50%; }
+      75% { background-position: 75% 50%; }
+    }
+
+#main-section-first-info h2{
+    width: 30%;
+    height: auto;
+    padding: 8% 5% 0 0;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #2FA7E6, #07549C);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 500% 100%;
+    animation: colorChange2 5s infinite;
+} 
+
+#bubble-thoughts1{
+    display: block;
+    position: relative;
+    width: 40%;
+    height: 40vh;
+    margin: 0 auto;    
+}
+
+#bubble-thoughts1 img{
+    display: block;
+    width: 1vw;
+    height: auto;
+}
+
+#bubble-thoughts1 img:nth-child(1){
+    margin: 4vh 0 0 10vw;
+}
+
+#bubble-thoughts1 img:nth-child(2){
+    margin: 8vh 0 0 9vw;
+}
+
+#bubble-thoughts1 img:nth-child(3){
+    margin: 8vh 0 0 8vw;
+}
+
+#bubble-thoughts1 img:nth-child(4){
+    margin: 8vh 0 0 7.5vw;
+}
+
+#bubble-thoughts1 img:nth-child(5){
+    margin: 8vh 0 0 8vw;
+}
+
+#bubble-thoughts1 img:nth-child(6){
+    margin: 8vh 0 0 9vw;
+}
+    
+#main-section-second-info {
+    width: 100%;
+    position: relative;
+    margin-top: 10vw;
+}
+
+#main-section-second-info img{
+    position: absolute;
+    width: 4vw;
+    height: auto;
+    display: none;
+}
+
+#main-section-second-info h2{
+    text-align: center;
+    margin-left: 10vw;
+    padding: 2vw 0 2vw 0;
+    width: 50vw;
+    height: auto;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 4rem;
+    background: linear-gradient(to right, #2FA7E6, #07549C);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 500% 100%;
+    animation: colorChange2 8s infinite;
+}
+
+#bubble-thoughts2{
+    display: block;
+    position: relative;
+    width: 40%;
+    height: 40vh;
+    margin: 0 auto;    
+}
+
+#bubble-thoughts2 img{
+    display: block;
+    width: 1vw;
+    height: auto;
+}
+
+#bubble-thoughts2 img:nth-child(1){
+    margin: 4vh 0 0 9.5vw;
+}
+
+#bubble-thoughts2 img:nth-child(2){
+    margin: 8vh 0 0 10vw;
+}
+
+#bubble-thoughts2 img:nth-child(3){
+    margin: 8vh 0 0 11vw;
+}
+
+#bubble-thoughts2 img:nth-child(4){
+    margin: 8vh 0 0 11.5vw;
+}
+
+#bubble-thoughts2 img:nth-child(5){
+    margin: 8vh 0 0 11vw;
+}
+
+#bubble-thoughts2 img:nth-child(6){
+    margin: 8vh 0 0 10vw;
 }
