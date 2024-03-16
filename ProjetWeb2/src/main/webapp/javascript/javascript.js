@@ -1,13 +1,22 @@
-function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        var inputElement = document.getElementById('searchQuery').value.trim();
+document.addEventListener('DOMContentLoaded', function () {
+    var loginFormDisplay = document.getElementById('logInForm');
+    var btnLogin = document.getElementById('btnLogin');
+    var closeLoginForm = document.getElementById('closeLoginForm');
+    
+    btnLogin.addEventListener('click', function () {
+        loginFormDisplay.style.display = 'flex';
+        setTimeout(function () {
+            loginFormDisplay.classList.add('active-form');
+        }, 10);
+    });
 
-        if (inputElement === '') {
-            alert("We can't search for nothing unfortunately..");
-        } else {
-            alert("You pressed Enter with the value: " + inputElement);
-        }
-
+    closeLoginForm.addEventListener('click', function () {
         event.preventDefault();
-    }
-}
+        
+        loginFormDisplay.classList.remove('active-form');
+
+        setTimeout(function () {
+            loginFormDisplay.style.display = 'none';
+        }, 1500);
+    });
+});

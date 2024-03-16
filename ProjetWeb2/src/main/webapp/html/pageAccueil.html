@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Page d'accueil</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css"/>
+    </head>
+    <body>
+
+        <header>
+            <div id="logo-container">
+                <a>
+                    <img src="../images/My first design.png" alt="Company logo"/>
+                </a>
+            </div>
+            <nav id="horizontal-nav">
+                <div>
+                    <button id="btnSignup" type="button">Start learning</button>
+                    <button id="btnLogin" type="button">Login</button>
+                </div>
+            </nav>
+        </header>
+        <h1 class="counter">0</h1>
+        <div class="overlay">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div id="logInForm" class="log-in-form">
+            <div class="ring">
+                <i style="--clr:#ccf2ff;"></i>
+                <i style="--clr:#4dd2ff;"></i>
+                <i style="--clr:#0099cc;"></i>
+                <div class="login">
+                    <h2>Login</h2>
+                    <div class="inputBx">
+                        <input type="text" placeholder="Username">
+                    </div>
+                    <div class="inputBx">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Sign in">
+                    </div>
+                    <div class="links">
+                        <a id="closeLoginForm" href="">Close</a>
+                        <a href="#">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--ring div ends here-->
+        
+        <main>       
+            <!-- Left section -->
+            <div id="left-section-home-page">
+                <div id="left-section-nav-bar">
+                        <ul>
+                            <li><a href="#">Feed</a></li>
+                            <li><a href="#">Learning mates</a></li>
+                            <li><a href="#">Languages</a></li>
+                            <li><a href="#">Countries</a></li>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Challenges</a></li>
+                        </ul>
+                </div>
+            </div>
+            <div id="main-section-home-page">
+                <h1>
+                    <span id="invisible">.</span>
+                    <span class="text"></span>
+                </h1>
+                <div id="main-section-first-info">
+                    <img id="first-image-animate" src="../images/web-3120321_1920.png" alt="alt"/>
+                    <h2>Connect with experts and learners worldwide to enhance your language and cultural understanding!</h2>
+                </div>
+                <div id="bubble-thoughts1">
+                    <img class="footprints" id="circle1" src="../images/footprint-left.png" alt="alt"/>
+                    <img class="footprints" id="circle2" src="../images/footprint-right.png" alt="alt"/>
+                    <img class="footprints" id="circle3" src="../images/footprint-left.png" alt="alt"/>
+                    <img class="footprints" id="circle4" src="../images/footprint-right.png" alt="alt"/>
+                    <img class="footprints" id="circle5" src="../images/footprint-left.png" alt="alt"/>
+                    <img class="footprints" id="circle6" src="../images/footprint-right.png" alt="alt"/>
+                </div>
+                <div id="main-section-second-info">
+                    <img src="../images/icons8-plane-64.png" alt="alt"/>
+                    <h2>Discover new places straight from the locals!</h2>
+                </div>
+                <div id="bubble-thoughts2">
+                    <img id="circle7" src="../images/footprint-right.png" alt="alt"/>
+                    <img id="circle8" src="../images/footprint-left.png" alt="alt"/>
+                    <img id="circle9" src="../images/footprint-right.png" alt="alt"/>
+                    <img id="circle10" src="../images/footprint-left.png" alt="alt"/>
+                    <img id="circle11" src="../images/footprint-right.png" alt="alt"/>
+                    <img id="circle12" src="../images/footprint-left.png" alt="alt"/>
+                </div>
+                <div id="main-section-third-info">
+                    <h2>Open your eyes to the world and learn about different cultures!</h2>
+                    <img src="../images/kP4DK6APAlkuNxqzn3HzJ-transformed-min.png" alt="alt"/>
+                </div>
+                
+            </div>
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/EasePack.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script> 
+        <script src="../javascript/javascript.js"></script>
+        <script>
+            const word = ["Learning with fun."];            
+            let masterTl = gsap.timeline({delay: 5});
+            
+            word.forEach(word => {
+                let tl = gsap.timeline();
+                tl.to('.text', {duration: 3, text: word});
+                masterTl.add(tl);
+            });
+            
+            function startLoader() {
+
+                let counterElement = document.querySelector(".counter");
+                let currentValue = 0;
+                
+                function updateCounter() {
+                    if(currentValue === 100){
+                        return;
+                    }
+                
+                    currentValue += Math.floor(Math.random() * 11) + 1;
+                
+                    if(currentValue > 100) {
+                        currentValue = 100;
+                    }
+                
+                    counterElement.textContent = currentValue;
+                
+                    let delay = Math.floor(Math.random() * 200) + 50;
+                    setTimeout(updateCounter, delay);
+                }
+                updateCounter();
+            }
+            
+            startLoader();
+            
+            gsap.to(".counter", {
+                duration: 0.25,
+                delay: 3.5,
+                opacity: 0,
+                onComplete: function() {
+                    gsap.set(".counter", { display: "none" });
+                }
+            });
+
+            gsap.to(".bar", {
+                duration: 1.5,
+                delay: 3.5,
+                height: 0,
+                stagger: {
+                    amount: 0.5
+                },
+                ease: "power4.inOut"
+            });
+            
+            gsap.to(".overlay", {
+                duration: 1.5,
+                delay: 3.5,
+                onComplete: function() {
+                    gsap.set(".overlay", { display: "none"});
+                }
+            });
+            
+            gsap.from("#main-section-first-info img", 1.5, {
+                delay: 4,
+                y: 700,
+                ease: "power4.intOut"
+            });
+            
+            gsap.from("#main-section-first-info h2", 1, {
+                delay: 5,
+                y: 400,
+                ease: "power4.intOut"
+            });
+            
+            let tlFootprint = gsap.timeline({
+                delay: 5,
+                repeat: -1
+            });
+
+            tlFootprint.to('#circle1', { opacity: 1, duration: 1})
+                 .to('#circle1', { opacity: 0, duration: 2});
+         
+            tlFootprint.to('#circle2', { opacity: 1, duration: 1}, "-=2.5")
+                 .to('#circle2', { opacity: 0, duration: 2});
+            
+            tlFootprint.to('#circle3', { opacity: 1, duration: 1}, "-=4")
+                 .to('#circle3', { opacity: 0, duration: 2});
+
+            tlFootprint.to('#circle4', { opacity: 1, duration: 1}, "-=5.5")
+                 .to('#circle4', { opacity: 0, duration: 2});
+         
+            tlFootprint.to('#circle5', { opacity: 1, duration: 1}, "-=7")
+                 .to('#circle5', { opacity: 0, duration: 2});
+            
+            tlFootprint.to('#circle6', { opacity: 1, duration: 1}, "-=8.5")
+                 .to('#circle6', { opacity: 0, duration: 2});
+         
+         
+            let tlFootprint2 = gsap.timeline({
+                delay: 8,
+                repeat: -1
+            });
+
+            tlFootprint2.to('#circle7', { opacity: 1, duration: 1})
+                 .to('#circle7', { opacity: 0, duration: 2});
+         
+            tlFootprint2.to('#circle8', { opacity: 1, duration: 1}, "-=2.5")
+                 .to('#circle8', { opacity: 0, duration: 2});
+            
+            tlFootprint2.to('#circle9', { opacity: 1, duration: 1}, "-=4")
+                 .to('#circle9', { opacity: 0, duration: 2});
+
+            tlFootprint2.to('#circle10', { opacity: 1, duration: 1}, "-=5.5")
+                 .to('#circle10', { opacity: 0, duration: 2});
+         
+            tlFootprint2.to('#circle11', { opacity: 1, duration: 1}, "-=7")
+                 .to('#circle11', { opacity: 0, duration: 2});
+            
+            tlFootprint2.to('#circle12', { opacity: 1, duration: 1}, "-=8.5")
+                 .to('#circle12', { opacity: 0, duration: 2});
+            
+            tlFootprint2.play();
+            tlFootprint.play();
+            
+        </script>
+    </body>
+</html>
