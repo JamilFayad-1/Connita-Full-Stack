@@ -20,8 +20,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <nav id="horizontal-nav">
                 <div>
-                    <button id="btnSignup" type="button">Start learning</button>
-                    <button id="btnLogin" type="button">Login</button>
+                    <button class="btnSignup" type="button">Start learning</button>
+                    <button class="btnLogin" type="button">Login</button>
                 </div>
             </nav>
         </header>
@@ -56,12 +56,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     </div>
                     <div class="links">
                         <a id="closeLoginForm" href="">Close</a>
-                        <a href="#">Sign up</a>
+                        <a href="#" class="btnSignup">Sign up</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!--ring div ends here-->
+        <div id="signUpForm" class="log-in-form">
+            <div class="ring">
+                <i style="--clr:#ccf2ff;"></i>
+                <i style="--clr:#4dd2ff;"></i>
+                <i style="--clr:#0099cc;"></i>
+                <div class="login">
+                    <h2>Sign up</h2>
+                    <div class="inputBx">
+                        <input type="text" placeholder="Email">
+                    </div>
+                    <div class="inputBx">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Sign up">
+                    </div>
+                    <div class="links">
+                        <a id="closeSignupForm" href="">Close</a>
+                        <a href="#" class="btnLogin">Sign in!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <main>       
             <!-- Left section -->
