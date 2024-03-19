@@ -433,13 +433,15 @@ hr {
     height: 10%;
 }
 
-#middle-section-search-bar form{
+#middle-section-search-bar .formSearchBar{
     position: relative;
     width: 100%;
     height: 100%;
+    margin: auto 0;
+    max-width: 100vw;
 }
 
-#middle-section-search-bar div{
+#middle-section-search-bar > .formSearchBar > div{
     position: inherit;
     width: 40%;
     height: 50%;
@@ -448,13 +450,13 @@ hr {
     align-items: center;
 }
 
-#middle-section-search-bar div img{
+#middle-section-search-bar > .formSearchBar > div > img{
     width: 1.5rem;
     height: 1.5rem;
     transform: translateX(-150%);
 }
 
-#middle-section-search-bar input{
+#middle-section-search-bar > .formSearchBar > div > input{
     position: inherit;
     width: 100%;
     height: 100%;
@@ -757,43 +759,31 @@ hr {
 }
 
 #bubble-thoughts1 img:nth-child(1){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 4vh 0 0 10vw;
     transform: rotate(180deg);
 }
 
 #bubble-thoughts1 img:nth-child(2){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 8vw;
     transform: rotate(190deg);
 }
 
 #bubble-thoughts1 img:nth-child(3){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 9vw;
     transform: rotate(160deg);
 }
 
 #bubble-thoughts1 img:nth-child(4){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 8.5vw;
     transform: rotate(180deg);
 }
 
 #bubble-thoughts1 img:nth-child(5){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 10vw;
     transform: rotate(150deg);
 }
 
 #bubble-thoughts1 img:nth-child(6){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 11vw;
     transform: rotate(160deg);
 }
@@ -837,43 +827,31 @@ hr {
 }
 
 #bubble-thoughts2 img:nth-child(1){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 4vh 0 0 14vw;
     transform: rotate(210deg);
 }
 
 #bubble-thoughts2 img:nth-child(2){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 13vw;
     transform: rotate(190deg);
 }
 
 #bubble-thoughts2 img:nth-child(3){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 11vw;
     transform: rotate(200deg);
 }
 
 #bubble-thoughts2 img:nth-child(4){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 11.5vw;
     transform: rotate(180deg);
 }
 
 #bubble-thoughts2 img:nth-child(5){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 10vw;
     transform: rotate(180deg);
 }
 
 #bubble-thoughts2 img:nth-child(6){
-    opacity: 0;
-    transition: opacity 0.5s ease;
     margin: 6vh 0 0 11vw;
     transform: rotate(170deg);
 }
@@ -904,190 +882,340 @@ hr {
     color: #4d4d4d;
 }
 
-/* ----------------------------------------------------------- */
-/* Css des Login et SignUp Container */
-/* ----------------------------------------------------------- */
-
-@keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOutAnimation {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.4;
-    }
-}
-
-.log-in-form {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    letter-spacing: 0.1vw;
-    background: radial-gradient(circle, #000000 0%, #ffffff 30%, transparent 100%);
-    width: 100vw;
-    z-index: 998;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.active-form{
-    opacity: 1;
-}
-
-.ring {
-  position: relative;
-  width: 28vw;
-  height: 28vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.ring i {
-  position: absolute;
-  inset: 0;
-  border: 2px solid #fff;
-  transition: 0.5s;
-}
-.ring i:nth-child(1) {
-  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-  animation: animate 6s linear infinite;
-}
-.ring i:nth-child(2) {
-  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-  animation: animate 4s linear infinite;
-}
-.ring i:nth-child(3) {
-  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
-  animation: animate2 10s linear infinite;
-}
-.ring:hover i {
-  border: 4px solid var(--clr);
-  filter: drop-shadow(0 0 20px var(--clr));
-}
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes animate2 {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-.login {
-  position: relative;
-  width: 15vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1vh;
-}
-.login h2 {
-  font-family: 'CustomFont1', sans-serif;
-  font-size: 2em;
-  color: #fff;
-}
-.login .inputBx {
-    width: 15vw;
-    margin-left: -2.2vw;
-}
-
-.login .inputBx input {
-  position: relative;
-  width: 100%;
-  padding: 12px 20px;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 40px;
-  font-family: 'CustomFont1', sans-serif;
-  font-size: 1.2em;
-  color: #fff;
-  box-shadow: none;
-  outline: none;
-}
-.login .inputBx input[type="submit"] {
-  width: 100%;
-  background-color: #4dd2ff;
-  border: none;
-  cursor: pointer;
-  margin-left: 1vw;
-  transition: background-color 0.2s ease-in;
-}
-
-.login .inputBx input[type="submit"]:hover {
-    background-color: #0099cc;
-}
-
-.login .inputBx input::placeholder {
-  font-family: 'CustomFont1', sans-serif; 
-  color: rgba(255, 255, 255, 0.75);
-}
-.login .links {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  font-family: 'CustomFont1', sans-serif;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.login .links a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.1s ease-in;
-}
-
-.login .links a:hover {
-    color: rgba(128, 0, 0, 0.6);
-}
-
-.overlay {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    display: flex;
-}
-
-.bar {
-    width: 10vw;
-    height: 100vh;
-    background: #1a1a1a;
-}
-
-.counter {
-    margin: 0;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    z-index: 10000;
-    color: #cccccc;
-    font-family: 'CustomFont1', sans-serif;
-    font-size: 15vw;
-    margin-left: 70vw;
-}
-
 #main-section-home-page h1 #invisible {
     opacity: 0;
+}
+
+/* ----------------------------------------------------------- */
+/* Form Login et Sign up */
+/* ----------------------------------------------------------- */
+
+.main-box {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.main-box-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    height: 640px;
+    background-color: #fff;
+    border-radius: 3.3rem;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+}
+
+form{
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 75px;
+    height: auto;
+    margin-right: 0.3rem;
+}
+
+.logo h4 {
+    font-family: 'CustomFont1';
+    font-size: 1.1rem;
+    margin-top: 2vh;
+    letter-spacing: -0.2px;
+    color: #151111;
+}
+
+.heading h2 {
+    font-family: 'CustomFont1';
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: #151111;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.heading h6 {
+    font-family: 'CustomFont1';
+    color: #bababa;
+    font-weight: 400;
+    font-size: 0.75rem;
+    display: inline;
+}
+
+.toggle {
+    color: #151111;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.toggle:hover {
+    color: #3399ff;
+}
+
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field.active {
+    border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+    font-size: 0.75rem;
+    top: -2px;
+}
+
+.sign-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #151111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.sign-btn:hover {
+    background-color: #3399ff;
+}
+
+.text-form-footer {
+    color: #bbb;
+    font-size: 0.7rem;
+}
+
+.text-form-footer a {
+    color: #bbb;
+    transition: 0.3s;
+}
+
+.text-form-footer a:hover {
+    color: #3399ff;
+}
+
+main.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+main.sign-up-mode .carousel {
+    left: 0%;
+}
+
+.carousel {
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    background-color: #e0e0e2;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding-bottom: 2rem;
+    overflow: hidden;
+    transition: 0.8s ease-in-out;
+}
+
+.images-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.image {
+    width: 100%;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.5s;
+}
+
+.img-1 {
+    transform: translate(0, -50px);
+}
+
+.img-2 {
+    transform: scale(0.4, 0.5);
+}
+
+.img-3 {
+    transform: scale(0.3) rotate(-20deg);
+}
+
+.image.show {
+    opacity: 1;
+    transform: none;
+}
+
+.text-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-wrap {
+    max-height: 2.5rem;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+}
+
+.text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(0);
+    transition: 0.5s;
+}
+
+.text-group h2 {
+    font-family: 'CustomFont1';
+    line-height: 2.2rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-top: 0px;
+}
+
+.bullets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bullets span {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #aaa;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bullets span.active {
+    width: 1.1rem;
+    background-color: #151111;
+    border-radius: 1rem;
+}
+
+.close-form-join {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: white;
+    float: right;
+}
+
+.close-icon-container {
+    width: 100%;
+    height: 100%;
+    background-image: url("https://img.icons8.com/ios-glyphs/40/delete-sign.png");
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
+}
+
+.close-icon-container:hover {
+    background-image: url("https://img.icons8.com/ios-glyphs/40/E66A1C/delete-sign.png");
+    transform: scale(1.15);
+    cursor: pointer;
 }

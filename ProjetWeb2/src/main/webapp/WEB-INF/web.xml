@@ -8,4 +8,28 @@
             30
         </session-timeout>
     </session-config>
+    
+    <servlet>
+        <servlet-name>MembreController</servlet-name>
+        <servlet-class>com.connita.controller.MembreController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MembreController</servlet-name>
+        <url-pattern>/MembreController</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ConnexionController</servlet-name>
+        <servlet-class>com.connita.controller.ConnexionController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ConnexionController</servlet-name>
+        <url-pattern>/ConnexionController</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
