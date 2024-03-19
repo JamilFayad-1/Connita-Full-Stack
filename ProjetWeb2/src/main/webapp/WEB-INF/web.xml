@@ -9,27 +9,37 @@
         </session-timeout>
     </session-config>
     
-    <servlet>
-        <servlet-name>MembreController</servlet-name>
-        <servlet-class>com.connita.controller.MembreController</servlet-class>
-    </servlet>
-
     <servlet-mapping>
-        <servlet-name>MembreController</servlet-name>
-        <url-pattern>/MembreController</url-pattern>
+        <servlet-name>InscriptionController</servlet-name>
+        <url-pattern>/InscriptionController</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>ConnexionController</servlet-name>
-        <servlet-class>com.connita.controller.ConnexionController</servlet-class>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>ConnexionController</servlet-name>
         <url-pattern>/ConnexionController</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>DeconnexionController</servlet-name>
+        <url-pattern>/DeconnexionController</url-pattern>
+    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>InscriptionController</servlet-name>
+        <servlet-class>com.connita.controller.InscriptionController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ConnexionController</servlet-name>
+        <servlet-class>com.connita.controller.ConnexionController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>DeconnexionController</servlet-name>
+        <servlet-class>com.connita.controller.DeconnexionController</servlet-class>
+    </servlet>
 </web-app>

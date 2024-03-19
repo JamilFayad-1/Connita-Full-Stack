@@ -18,11 +18,12 @@ public class MembreImplDao implements MembreDao {
     private static final String SQL_CONNEXION_PAR_EMAIL_AND_PASSWORD = "SELECT nom, prenom FROM membre WHERE email = ? AND password = ?";
 
     @Override
-    public void ajouterMembre(Membre membre) {
-        int nbLigne = 0;
+    public boolean ajouterMembre(Membre membre) {
+        boolean validation = false;
         PreparedStatement ps = null;
-        
+
         try {
+            
             ps = ConnexionDB.getConnection().prepareStatement(SQL_AJOUTER_MEMBRE);
 
             ps.setString(1, membre.getNom());
@@ -30,26 +31,22 @@ public class MembreImplDao implements MembreDao {
             ps.setString(3, membre.getEmail());
             ps.setString(4, membre.getPassword());
 
-            nbLigne = ps.executeUpdate();
+            int nbLigne = ps.executeUpdate();
+            validation = nbLigne > 0;
 
         } catch (SQLException e) {
-            // En cas d'erreur lors de l'exécution de la requête SQL, une exception est attrapée
-            // Un message d'erreur est enregistré dans les logs avec une indication du problème
             Logger.getLogger(MembreImplDao.class.getName()).log(Level.SEVERE, "Une erreur est survenue lors de la création de l'utilisateur", e);
         } finally {
-            // Ferme la connexion après l'exécution de la requête
             ConnexionDB.closeConnection();
-            // Ferme la déclaration de requête pour libérer les ressources
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
-                    // En cas d'erreur lors de la fermeture de la déclaration de requête, une exception est attrapée
-                    // Un message d'erreur est enregistré dans les logs avec une indication du problème
                     Logger.getLogger(MembreImplDao.class.getName()).log(Level.SEVERE, "Erreur lors de la fermeture de la déclaration de requête", e);
                 }
             }
         }
+        return validation;
     }
     
     
@@ -75,19 +72,13 @@ public class MembreImplDao implements MembreDao {
             }
             
         } catch (SQLException e) {
-            // En cas d'erreur lors de l'exécution de la requête SQL, une exception est attrapée
-            // Un message d'erreur est enregistré dans les logs avec une indication du problème
             Logger.getLogger(MembreImplDao.class.getName()).log(Level.SEVERE, "Une erreur est survenue lors de la création de l'utilisateur", e);
         } finally {
-            // Ferme la connexion après l'exécution de la requête
             ConnexionDB.closeConnection();
-            // Ferme la déclaration de requête pour libérer les ressources
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException e) {
-                    // En cas d'erreur lors de la fermeture de la déclaration de requête, une exception est attrapée
-                    // Un message d'erreur est enregistré dans les logs avec une indication du problème
                     Logger.getLogger(MembreImplDao.class.getName()).log(Level.SEVERE, "Erreur lors de la fermeture de la déclaration de requête", e);
                 }
             }

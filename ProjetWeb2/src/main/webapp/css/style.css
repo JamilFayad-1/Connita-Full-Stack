@@ -146,6 +146,7 @@ main {
     background-color: white;
     margin-right: 1vw;
     transition: box-shadow 0.5s ease;
+    cursor: pointer;
 }
 
 #recent-work-container div:hover, #recent-post-container div:hover {
@@ -177,6 +178,7 @@ main {
     background-color: white;
     margin-right: 2%;
     transition: box-shadow 0.5s ease;
+    cursor: pointer;
 }
 
 #middle-section-achievements {
@@ -1219,3 +1221,117 @@ main.sign-up-mode .carousel {
     transform: scale(1.15);
     cursor: pointer;
 }
+
+/* ----------------------------------------------------------- */
+/* Message de validation - Inscription */
+/* ----------------------------------------------------------- */
+
+.messageInscription {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    animation: SlideInSlideOut 6s 1;
+    opacity: 0;
+}
+
+@keyframes SlideInSlideOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    30% {
+        opacity: 0.8;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.8;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.messageTextReussie {
+    font-family: 'CustomFont1';
+    font-size: 1rem;
+    background-color: rgb(240, 240, 240);
+    color: green;
+    border-radius: 2rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    text-align: center;
+}
+
+.messageTextEchoue {
+    font-family: 'CustomFont1';
+    font-size: 1rem;
+    background-color: rgb(240, 240, 240);
+    color: red;
+    border-radius: 2rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    text-align: center;
+}
+
+/* ----------------------------------------------------------- */
+/* Dropdown pour l'icon compte
+/* ----------------------------------------------------------- */
+
+.dropdown-menu {
+    display: none;
+    background-color: white;
+    position: relative;
+    margin-left: -4vw;
+    margin-top: 5vh;
+    height: 7.6vh;
+    z-index: 10;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: -7px 8px 10px -9px rgba(0,0,0,0.42); 
+    justify-content: center;
+    padding: 0;
+}
+
+#horizontal-nav .dropdown-menu a {
+    width: 4vw;
+    height: 2vh;
+    position: relative;
+    display: block;
+    font-family: 'CustomFont1';
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem;
+    margin: 0;
+    text-align: start;
+    transition: background-color 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+#horizontal-nav .dropdown-menu a:nth-child(1){
+    border-top-right-radius: 0.4rem;
+    border-top-left-radius: 0.4rem;
+}
+
+#horizontal-nav .dropdown-menu a:nth-child(2){
+    border-bottom-right-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+}
+
+#horizontal-nav .dropdown-menu a:nth-child(1):hover {
+    background-color: #e0e0e0;
+}
+
+#horizontal-nav .dropdown-menu a:nth-child(2):hover {
+    background-color: rgb(156, 72, 77);
+    color: white;
+}
+

@@ -10,8 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class MembreController extends HttpServlet {
+public class InscriptionController extends HttpServlet {
     private MembreDao membreDao;
+    private String messageInscrReussite;
+    private String messageInscrEchoue;
+    
 
     @Override
     public void init() throws ServletException {
@@ -31,10 +34,15 @@ public class MembreController extends HttpServlet {
         membre.setPrenom(lastName);
         membre.setEmail(email);
         membre.setPassword(password);
-
-        membreDao.ajouterMembre(membre);
-        
-        response.sendRedirect("index.jsp");
+        boolean valider = membreDao.ajouterMembre(membre);
+        if(valider) {
+            messageInscrReussite = "Inscription réussite!";
+            request.setAttribute("messageInscrReussite", messageInscrReussite);
+        } else {
+            messageInscrEchoue = "Inscription echoué, réessayer plus tard..";
+            request.setAttribute("messageInscrEchoue", messageInscrEchoue);
+        }
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }
 

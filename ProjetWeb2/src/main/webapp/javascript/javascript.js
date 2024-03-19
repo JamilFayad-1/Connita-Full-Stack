@@ -2,14 +2,13 @@ const btnStartLearning = document.querySelector(".btnSignup");
 const mainBox = document.querySelector(".main-box");
 const closeForm = document.querySelector(".close-icon-container");
 
-btnStartLearning.addEventListener("click", function(){
+btnStartLearning.addEventListener("click", function () {
     mainBox.classList.add("main-box-visible");
 });
 
-closeForm.addEventListener("click", function(){
-   mainBox.classList.remove("main-box-visible"); 
+closeForm.addEventListener("click", function () {
+    mainBox.classList.remove("main-box-visible");
 });
-
 
 const inputs = document.querySelectorAll(".input-field");
 const toggle_btn = document.querySelectorAll(".toggle");
@@ -78,5 +77,5 @@ function startSliderAutoChange() {
 document.addEventListener("DOMContentLoaded", () => {
   handleBulletClick();
   startSliderAutoChange();
-  
+    
 });

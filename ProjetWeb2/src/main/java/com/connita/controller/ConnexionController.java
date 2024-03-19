@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -19,6 +20,8 @@ import java.io.IOException;
  */
 public class ConnexionController extends HttpServlet {
     private MembreDao membreDao;
+    private String message;
+    private HttpSession session;
 
     @Override
     public void init() throws ServletException {
@@ -37,15 +40,13 @@ public class ConnexionController extends HttpServlet {
         Membre membre = membreDao.existsByEmailAndPassword(email, password);
 
         if (membre != null) {
-            // User exists, set session attributes and redirect to home page
-            request.getSession().setAttribute("loggedInUser", membre);
+            session = request.getSession(true);
+            session.setAttribute("user", email);
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
-            // User does not exist or invalid credentials, display error message
-            response.setContentType("text/html");
-            response.getWriter().println("<html><body>");
-            response.getWriter().println("<h2>Login Failed. Invalid username or password.</h2>");
-            response.getWriter().println("</body></html>");
+            message = "L'email ou le mot de passe est invalide.";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 }
