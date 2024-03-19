@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+   String messageInscrReussite = (String)request.getAttribute("messageInscrReussite");
+   String messageInscrEchoue = (String)request.getAttribute("messageInscrEchoue");
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,6 +33,14 @@
                 </div>
             </nav>
         </header>
+        
+        <div class="messageInscription">
+            <% if(request.getAttribute("messageInscrReussite")!=null){ %>
+                <p class="messageTextReussie"><%= messageInscrReussite%></p>
+            <%} else if(request.getAttribute("messageInscrEchoue")!=null) {%>
+                <p class="messageTextEchoue"><%= messageInscrEchoue%></p>
+            <%}%>
+        </div>
       
         <main class="main-box">
             <div class="box">
@@ -80,7 +94,7 @@
                                 </p>
                             </div>
                         </form>
-                        <form action="MembreController" autocomplete="off" class="sign-up-form" method="post">
+                        <form action="InscriptionController" autocomplete="off" class="sign-up-form" method="post">
                             <div class="logo">
                                 <img src="images/My first design.png" alt="Connita" />
                                 <h4>Connita</h4>
@@ -180,18 +194,7 @@
         
         <main>       
             <!-- Left section -->
-            <div id="left-section-home-page">
-                <div id="left-section-nav-bar">
-                        <ul>
-                            <li><a href="#">Feed</a></li>
-                            <li><a href="#">Learning mates</a></li>
-                            <li><a href="#">Languages</a></li>
-                            <li><a href="#">Countries</a></li>
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Challenges</a></li>
-                        </ul>
-                </div>
-            </div>
+            <jsp:include page="navbarGauche.jsp"/>
             <div id="main-section-home-page">
                 <h1>Learning made fun!</h1>
                 <div id="main-section-first-info">
@@ -225,11 +228,6 @@
                 
             </div>
         </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/EasePack.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-        <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script> 
         <script src="javascript/javascript.js"></script>
     </body>
 </html>
