@@ -17,7 +17,7 @@
             <c:when test="${not empty sessionScope.user}">
                 <header>
                     <div id="logo-container">
-                        <a>
+                        <a href="pageAccueilUtilisateur.jsp">
                             <img src="images/My first design.png" alt="Company logo"/>
                         </a>
                     </div>
@@ -30,7 +30,7 @@
                                 <a><img src="https://img.icons8.com/ios-glyphs/30/test-account.png" alt="test-account"/></a>
                                 <div class="dropdown-menu" id="dropdownMenu">
                                     <a href="pageUtilisateur.jsp" class="dropdown-link">Settings</a>
-                                    <a href="DeconnexionController" class="dropdown-link">Sign Out</a>
+                                    <a href="DeconnexionController" class="dropdown-link">Sign out</a>
                                 </div>
                             </li>
                         </ul>  
@@ -40,7 +40,7 @@
             <c:otherwise>
                 <header>
                     <div id="logo-container">
-                        <a>
+                        <a href="index.jsp">
                             <img src="images/My first design.png" alt="Company logo"/>
                         </a>
                     </div>
