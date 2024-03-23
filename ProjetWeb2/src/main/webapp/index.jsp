@@ -21,18 +21,7 @@
     </head>
     <body>
 
-        <header>
-            <div id="logo-container">
-                <a>
-                    <img src="images/My first design.png" alt="Company logo"/>
-                </a>
-            </div>
-            <nav id="horizontal-nav">
-                <div>
-                    <button class="btnSignup" type="button">Start learning</button>
-                </div>
-            </nav>
-        </header>
+        <jsp:include page="menu.jsp"/>
         
         <div class="messageInscription">
             <% if(request.getAttribute("messageInscrReussite")!=null){ %>
