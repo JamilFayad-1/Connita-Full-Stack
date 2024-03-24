@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,9 +15,45 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"/>
-        <jsp:include page="navbarGauche.jsp"/>
+        <div class="reglage-nav-wrapper">
+            <div class="reglage-nav-container">
+                <ul>
+                    <li><a href="pageAccueilUtilisateur.jsp">Feed</a></li>
+                    <li><a href="#" onclick="showForm('general')">General</a></li>
+                    <li><a href="#" onclick="showForm('security')">Security</a></li>
+                    <li><a href="#" onclick="showForm('languages')">Languages</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="utilisateur-reglage-wrapper">
-            <div class="utilisateur-reglage-container">
+            <div class="utilisateur-reglage-container"  id="form-container">
+                
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                showForm('general');
+            });
+
+            function stretchImage() {
+                var container = document.querySelector('.photo-profil');
+
+                var containerWidth = container.offsetWidth;
+                var containerHeight = container.offsetHeight;
+
+                var minDimension = Math.min(containerWidth, containerHeight);
+
+                image.style.width = minDimension + 'px';
+                image.style.height = minDimension + 'px';
+            }
+            
+            function showForm(formType) {
+    var formContainer = document.getElementById('form-container');
+    var formHTML = '';
+
+    switch(formType) {
+        case 'general':
+            formHTML = `
                 <form method="post">
                     <div class="utilisateur-header">
                         <div class="photo-profil">
@@ -48,14 +85,104 @@
                             <input type="submit" value="Apply">
                         </div>
                     </div>
-                </form>
-                <div class="utilisateur-footer">
-                    
-                </div>
-            </div>
-        </div>
-        <script>
-            var fileInput = document.getElementById('photo-profil-up');
+                </form>`;
+            break;
+        case 'security':
+            formHTML = `
+                <form method="post">
+                    <div class="utilisateur-header">
+                        <div class="photo-profil">
+                            <input type="file" id="photo-profil-up">
+                            <label for="photo-profil-up">
+                                <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                <span class="tooltip">Choose Picture</span>
+                            </label>
+                        </div>
+                        <div class="utilisateur-username">
+                            <h1>Jamil Fayad</h1>
+                            <p>@Gwuliano</p>
+                        </div>
+                    </div>
+                    <div class="utilisateur-body">
+                        <div class="reglage-form-row">
+                            <label for="passwordOld">Old password</label>
+                            <input type="password" id="passwordOld" name="passwordOld" placeholder="Enter your old password">
+                        </div>
+                        <div class="reglage-form-row">
+                            <label for="passwordNew">New password</label>
+                            <input type="password" id="passwordNew" name="passwordNew" placeholder="Enter your new password">
+                        </div>
+                        <div class="reglage-form-button">
+                            <input type="submit" value="Apply">
+                        </div>
+                    </div>
+                </form>`;
+            break;
+        case 'languages':
+            formHTML = `
+                <form method="post">
+                    <div class="utilisateur-header">
+                        <div class="photo-profil">
+                            <input type="file" id="photo-profil-up">
+                            <label for="photo-profil-up">
+                                <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                <span class="tooltip">Choose Picture</span>
+                            </label>
+                        </div>
+                        <div class="utilisateur-username">
+                            <h1>Jamil Fayad</h1>
+                            <p>@Gwuliano</p>
+                        </div>
+                    </div>
+                    <div class="utilisateur-body">
+                        <div class="reglage-form-row">
+                            <label for="languages">Languages spoken</label>
+                            <div class="rectangle-container">
+                                <div class="rectangle">
+                                    <input type="checkbox" id="japonais" name="languages" value="Japanese">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="japonais"><img src="images/japan.png" alt="Japanese Flag"></label>
+                                </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="indien" name="languages" value="Indian">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="indien"><img src="images/india.png" alt="Indian Flag"></label>
+                                </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="francais" name="languages" value="French">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="francais"><img src="images/france.png" alt="French Flag"></label>
+                                </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="russe" name="languages" value="Russian">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="russe"><img src="images/russia.png" alt="Russian Flag"></label>
+                                </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="chinois" name="languages" value="Chinese">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="chinois"><img src="images/china.png" alt="Chinese Flag"></label>
+                                </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="espagnol" name="languages" value="Spanish">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="espagnol"><img src="images/spain.png" alt="Spanish Flag"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reglage-form-button">
+                            <input type="submit" value="Apply">
+                        </div>
+                    </div>
+                </form>`;
+            break;
+        default:
+            formHTML = '';
+    }
+
+    formContainer.innerHTML = formHTML;
+    
+    var fileInput = document.getElementById('photo-profil-up');
 
             var image = document.querySelector('.photo-profil img');
 
@@ -86,18 +213,7 @@
                     event.target.form.reset();
                 }
             });
-
-            function stretchImage() {
-                var container = document.querySelector('.photo-profil');
-
-                var containerWidth = container.offsetWidth;
-                var containerHeight = container.offsetHeight;
-
-                var minDimension = Math.min(containerWidth, containerHeight);
-
-                image.style.width = minDimension + 'px';
-                image.style.height = minDimension + 'px';
-            }
+}
         </script>
     </body>
 </html>

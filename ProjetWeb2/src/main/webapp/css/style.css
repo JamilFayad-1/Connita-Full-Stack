@@ -1523,3 +1523,97 @@ main.sign-up-mode .carousel {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.reglage-nav-wrapper {
+    position: absolute;
+    display: flex;
+    width: 35vw;
+    height: 90vh;
+    top: 10vh;
+    justify-content: end;
+    align-items: center;
+    z-index: 15;
+}
+
+.reglage-nav-container {
+    margin-top: -18vh;
+    width: 10vw;
+    height: 15vh;
+}
+
+.reglage-nav-container ul{
+    padding-top: 20%;
+    padding-left: 10%;
+}
+
+.reglage-nav-container li{
+    margin: 0 0 0.2rem 0;
+    list-style-type: none;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    transition: background-color 0.5s ease;
+}
+
+.reglage-nav-container a,
+.reglage-nav-container li{
+    text-decoration: none;
+    font-family: 'CustomFont1', sans serif;
+    color: black;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: -0.2rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.reglage-nav-container li:hover,
+.reglage-nav-container li:hover a{
+    color: #5c99dd;
+    cursor: pointer;    
+}
+
+.reglage-form-row .rectangle-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.rectangle {
+    width: 80%;
+    position: relative;
+    display: inline-block;
+}
+
+.rectangle-container input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    height: calc(100% - 5%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.rectangle-container input[type="checkbox"]:checked + img{
+    opacity: 1;
+}
+
+.rectangle-container label img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+.rectangle .imgChecked{
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    opacity: 0;
+    z-index: 1;
+    width: 25px;
+    height: 25px;
+}
