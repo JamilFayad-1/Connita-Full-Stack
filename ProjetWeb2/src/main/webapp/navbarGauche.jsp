@@ -15,21 +15,40 @@
     <body>
         <div id="left-section">
             <div id="left-section-nav-bar">
-                <ul>
-                    <c:choose>
-                        <c:when test="${not empty sessionScope.user}">
-                            <li><a href="pageAccueilUtilisateur.jsp">Feed</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="index.jsp">Home page</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                    <li><a href="#">Learning mates</a></li>
-                    <li><a href="#">Languages</a></li>
-                    <li><a href="#">Countries</a></li>
-                    <li><a href="#">Travel</a></li>
-                    <li><a href="challenges.jsp">Challenges</a></li>
-                </ul>
+                <c:choose>
+                    <c:when test="${pageName eq 'pageUtilisateur.jsp'}">
+                        <ul>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user}">
+                                    <li><a href="pageAccueilUtilisateur.jsp">Feed</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <li><a href="index.jsp">Home page</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            <li><a href="#">General</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Languages</a></li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <ul>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user}">
+                                    <li><a href="pageAccueilUtilisateur.jsp">Feed</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <li><a href="index.jsp">Home page</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            <li><a href="#">Learning mates</a></li>
+                            <li><a href="#">Languages</a></li>
+                            <li><a href="#">Countries</a></li>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="challenges.jsp">Challenges</a></li>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </body>

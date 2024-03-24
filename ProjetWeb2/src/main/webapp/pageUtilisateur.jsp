@@ -14,7 +14,7 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"/>
-        
+        <jsp:include page="navbarGauche.jsp"/>
         <div class="utilisateur-reglage-wrapper">
             <div class="utilisateur-reglage-container">
                 <form method="post">
