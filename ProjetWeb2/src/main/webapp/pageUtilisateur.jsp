@@ -48,171 +48,172 @@
             }
             
             function showForm(formType) {
-                var formContainer = document.getElementById('form-container');
-                var formHTML = '';
+    var formContainer = document.getElementById('form-container');
+    var formHTML = '';
 
-                switch(formType) {
-                    case 'general':
-                        formHTML = `
-                            <form action="ModifierUtilisateurController" autocomplete="off" method="post">
-                                <div class="utilisateur-header">
-                                    <div class="photo-profil">
-                                        <input type="file" id="photo-profil-up" name="profilPic">
-                                        <label for="photo-profil-up">
-                                            <img src="images/Default-profile-pic.png" alt="Profile Picture">
-                                            <span class="tooltip">Choose Picture</span>
-                                        </label>
-                                    </div>
-                                    <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
-                                    </div>
+    switch(formType) {
+        case 'general':
+            formHTML = `
+                <form method="post">
+                    <div class="utilisateur-header">
+                        <div class="photo-profil">
+                            <input type="file" id="photo-profil-up">
+                            <label for="photo-profil-up">
+                                <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                <span class="tooltip">Choose Picture</span>
+                            </label>
+                        </div>
+                        <div class="utilisateur-username">
+                            <h1>Jamil Fayad</h1>
+                            <p>@Gwuliano</p>
+                        </div>
+                    </div>
+                    <div class="utilisateur-body">
+                        <div class="reglage-form-row">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username">
+                        </div>
+                        <div class="reglage-form-row">
+                            <label for="bio">Bio</label>
+                            <textarea type="text" id="bio" row="4" name="bio" placeholder="Enter something interesting about you!"></textarea>
+                        </div>
+                        <div class="reglage-form-row">
+                            <label for="region">Country</label>
+                            <input type="text" id="region" name="region" placeholder="Enter your country">
+                        </div>
+                        <div class="reglage-form-button">
+                            <input type="submit" value="Apply">
+                        </div>
+                    </div>
+                </form>`;
+            break;
+        case 'security':
+            formHTML = `
+                <form method="post">
+                    <div class="utilisateur-header">
+                        <div class="photo-profil">
+                            <input type="file" id="photo-profil-up">
+                            <label for="photo-profil-up">
+                                <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                <span class="tooltip">Choose Picture</span>
+                            </label>
+                        </div>
+                        <div class="utilisateur-username">
+                            <h1>Jamil Fayad</h1>
+                            <p>@Gwuliano</p>
+                        </div>
+                    </div>
+                    <div class="utilisateur-body">
+                        <div class="reglage-form-row">
+                            <label for="passwordOld">Old password</label>
+                            <input type="password" id="passwordOld" name="passwordOld" placeholder="Enter your old password">
+                        </div>
+                        <div class="reglage-form-row">
+                            <label for="passwordNew">New password</label>
+                            <input type="password" id="passwordNew" name="passwordNew" placeholder="Enter your new password">
+                        </div>
+                        <div class="reglage-form-button">
+                            <input type="submit" value="Apply">
+                        </div>
+                    </div>
+                </form>`;
+            break;
+        case 'languages':
+            formHTML = `
+                <form method="post">
+                    <div class="utilisateur-header">
+                        <div class="photo-profil">
+                            <input type="file" id="photo-profil-up">
+                            <label for="photo-profil-up">
+                                <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                <span class="tooltip">Choose Picture</span>
+                            </label>
+                        </div>
+                        <div class="utilisateur-username">
+                            <h1>Jamil Fayad</h1>
+                            <p>@Gwuliano</p>
+                        </div>
+                    </div>
+                    <div class="utilisateur-body">
+                        <div class="reglage-form-row">
+                            <label for="languages">Languages spoken</label>
+                            <div class="rectangle-container">
+                                <div class="rectangle">
+                                    <input type="checkbox" id="japonais" name="languages" value="Japanese">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="japonais"><img src="images/japan.png" alt="Japanese Flag"></label>
                                 </div>
-                                <div class="utilisateur-body">
-                                    <div class="reglage-form-row">
-                                        <label for="username">Username</label>
-                                        <input type="text" id="username" name="username" placeholder="Enter your username">
-                                    </div>
-                                    <div class="reglage-form-row">
-                                        <label for="bio">Bio</label>
-                                        <textarea type="text" id="bio" row="4" name="bio" placeholder="Enter something interesting about you!"></textarea>
-                                    </div>
-                                    <div class="reglage-form-row">
-                                        <label for="region">Country</label>
-                                        <input type="text" id="region" name="region" placeholder="Enter your country">
-                                    </div>
-                                    <div class="reglage-form-button">
-                                        <input type="submit" value="Apply">
-                                    </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="indien" name="languages" value="Indian">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="indien"><img src="images/india.png" alt="Indian Flag"></label>
                                 </div>
-                            </form>`;
-                        break;
-                    case 'security':
-                        formHTML = `
-                            <form method="post">
-                                <div class="utilisateur-header">
-                                    <div class="photo-profil">
-                                        <input type="file" id="photo-profil-up" name="profilPic">
-                                        <label for="photo-profil-up">
-                                            <img src="images/Default-profile-pic.png" alt="Profile Picture">
-                                            <span class="tooltip">Choose Picture</span>
-                                        </label>
-                                    </div>
-                                    <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
-                                    </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="francais" name="languages" value="French">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="francais"><img src="images/france.png" alt="French Flag"></label>
                                 </div>
-                                <div class="utilisateur-body">
-                                    <div class="reglage-form-row">
-                                        <label for="passwordOld">Old password</label>
-                                        <input type="password" id="passwordOld" name="passwordOld" placeholder="Enter your old password">
-                                    </div>
-                                    <div class="reglage-form-row">
-                                        <label for="passwordNew">New password</label>
-                                        <input type="password" id="passwordNew" name="passwordNew" placeholder="Enter your new password">
-                                    </div>
-                                    <div class="reglage-form-button">
-                                        <input type="submit" value="Apply">
-                                    </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="russe" name="languages" value="Russian">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="russe"><img src="images/russia.png" alt="Russian Flag"></label>
                                 </div>
-                            </form>`;
-                        break;
-                    case 'languages':
-                        formHTML = `
-                            <form method="post">
-                                <div class="utilisateur-header">
-                                    <div class="photo-profil">
-                                        <input type="file" id="photo-profil-up" name="profilPic">
-                                        <label for="photo-profil-up">
-                                            <img src="images/Default-profile-pic.png" alt="Profile Picture">
-                                            <span class="tooltip">Choose Picture</span>
-                                        </label>
-                                    </div>
-                                    <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
-                                    </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="chinois" name="languages" value="Chinese">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="chinois"><img src="images/china.png" alt="Chinese Flag"></label>
                                 </div>
-                                <div class="utilisateur-body">
-                                    <div class="reglage-form-row">
-                                        <label for="languages">Languages spoken</label>
-                                        <div class="rectangle-container">
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="japonais" name="languages" value="Japanese">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="japonais"><img src="images/japan.png" alt="Japanese Flag"></label>
-                                            </div>
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="indien" name="languages" value="Indian">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="indien"><img src="images/india.png" alt="Indian Flag"></label>
-                                            </div>
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="francais" name="languages" value="French">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="francais"><img src="images/france.png" alt="French Flag"></label>
-                                            </div>
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="russe" name="languages" value="Russian">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="russe"><img src="images/russia.png" alt="Russian Flag"></label>
-                                            </div>
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="chinois" name="languages" value="Chinese">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="chinois"><img src="images/china.png" alt="Chinese Flag"></label>
-                                            </div>
-                                            <div class="rectangle">
-                                                <input type="checkbox" id="espagnol" name="languages" value="Spanish">
-                                                <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
-                                                <label for="espagnol"><img src="images/spain.png" alt="Spanish Flag"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="reglage-form-button">
-                                        <input type="submit" value="Apply">
-                                    </div>
+                                <div class="rectangle">
+                                    <input type="checkbox" id="espagnol" name="languages" value="Spanish">
+                                    <img class="imgChecked" width="50" height="50" src="https://img.icons8.com/ios-filled/50/checked--v1.png" alt="checked--v1"/>
+                                    <label for="espagnol"><img src="images/spain.png" alt="Spanish Flag"></label>
                                 </div>
-                            </form>`;
-                        break;
-                    default:
-                        formHTML = '';
-                }
+                            </div>
+                        </div>
+                        <div class="reglage-form-button">
+                            <input type="submit" value="Apply">
+                        </div>
+                    </div>
+                </form>`;
+            break;
+        default:
+            formHTML = '';
+    }
 
-                formContainer.innerHTML = formHTML;
+    formContainer.innerHTML = formHTML;
+    
+    var fileInput = document.getElementById('photo-profil-up');
 
-                var fileInput = document.getElementById('photo-profil-up');
-                var image = document.querySelector('.photo-profil img');
+            var image = document.querySelector('.photo-profil img');
 
-                fileInput.addEventListener('change', function(event) {
-                    var file = event.target.files[0];
+            fileInput.addEventListener('change', function(event) {
+                var file = event.target.files[0];
 
-                    if (file) {
-                        var reader = new FileReader();
+                if (file) {
+                    var reader = new FileReader();
 
-                        reader.onload = function() {
-                            var tempImage = new Image();
+                    reader.onload = function() {
+                        var tempImage = new Image();
 
-                            tempImage.src = reader.result;
+                        tempImage.src = reader.result;
 
-                            tempImage.onload = function() {
-                                if (tempImage.width === tempImage.height) {
-                                    image.src = reader.result;
-                                    stretchImage();
-                                } else {
-                                    alert('Please select a square image.\n\A minimum of 150px by 150px is recommended');
-                                    event.target.value = '';
-                                }
-                            };
+                        tempImage.onload = function() {
+                            if (tempImage.width === tempImage.height) {
+                                image.src = reader.result;
+                                stretchImage();
+                            } else {
+                                alert('Please select a square image.\n\A minimum of 150px by 150px is recommended');
+                                event.target.value = '';
+                            }
                         };
+                    };
 
-                        reader.readAsDataURL(file);
-                        event.target.value = '';
-                        event.target.form.reset();
-                    }
-                });
-            }
+                    reader.readAsDataURL(file);
+                    event.target.value = '';
+                    event.target.form.reset();
+                }
+            });
+}
         </script>
     </body>
 </html>
