@@ -1482,6 +1482,10 @@ main.sign-up-mode .carousel {
     transition: 0.2s ease;
 }
 
+.reglage-form-row input:focus + label {
+    color: red;
+}
+
 .reglage-form-row textarea {
     height: 10vh;
     border-radius: 0.8rem;
