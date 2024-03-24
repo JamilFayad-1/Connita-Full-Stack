@@ -11,10 +11,11 @@ public class Membre {
     private String langue;
     private String photoProfil;
     private String bio;
+    private String username;
     private int privilege;
 
     // Constructeur
-    public Membre(int idMembre, String nom, String prenom, String email, String password, String region, String langue, String photoProfil, String bio, int privilege) {
+    public Membre(int idMembre, String nom, String prenom, String email, String password, String region, String langue, String photoProfil, String bio, String username, int privilege) {
         this.idMembre = idMembre;
         this.nom = nom;
         this.prenom = prenom;
@@ -24,6 +25,7 @@ public class Membre {
         this.langue = langue;
         this.photoProfil = photoProfil;
         this.bio = bio;
+        this.username = username;
         this.privilege = privilege;
     }
 
@@ -36,6 +38,7 @@ public class Membre {
         this.langue = null;
         this.photoProfil = null;
         this.bio = null;
+        this.username = null;
         this.privilege = 0;
     }
 
@@ -48,6 +51,7 @@ public class Membre {
         this.langue = null;
         this.photoProfil = null;
         this.bio = null;
+        this.username = null;
         this.privilege = 0;
     }
 
@@ -122,6 +126,14 @@ public class Membre {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getPrivilege() {
