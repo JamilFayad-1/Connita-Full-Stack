@@ -6,5 +6,6 @@ public interface MembreDao {
     
     boolean ajouterMembre(Membre membre);
     Membre existsByEmailAndPassword(String email, String motDePasse);
+    boolean updateProfile(Membre membre);
     
 }
