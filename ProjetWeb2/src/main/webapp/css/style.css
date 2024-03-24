@@ -1493,11 +1493,6 @@ main.sign-up-mode .carousel {
     transition: 0.2s ease;
 }
 
-.reglage-form-row input:focus,
-.reglage-form-row textarea:focus {
-    color: #5c99dd;
-    font-size: 1.1rem;
-}
 
 .reglage-form-row input::placeholder {
     font-family: 'montreal', sans-serif;
