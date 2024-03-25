@@ -42,6 +42,12 @@ public class ConnexionController extends HttpServlet {
         if (membre != null) {
             session = request.getSession(true);
             session.setAttribute("user", email);
+            session.setAttribute("firstName", membre.getPrenom());
+            session.setAttribute("lastName", membre.getNom());
+            session.setAttribute("username", membre.getUsername());
+            session.setAttribute("bio", membre.getBio());
+            session.setAttribute("region", membre.getRegion());
+            
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
             message = "L'email ou le mot de passe est invalide.";

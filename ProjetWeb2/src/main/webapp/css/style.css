@@ -1452,6 +1452,12 @@ main.sign-up-mode .carousel {
     font-family: 'montreal', sans-serif;
 }
 
+.utilisateur-username .text-bio {
+    color: #5c99dd;
+    font-size: 0.8rem;
+    padding-top: 2vh;
+}
+
 .utilisateur-body {
     position: relative;
     width: 22vw;

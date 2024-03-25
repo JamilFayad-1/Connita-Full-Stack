@@ -63,11 +63,6 @@ public class ModifierUtilisateurController extends HttpServlet{
         }
         
         userEmail = (String) session.getAttribute("user"); 
-        
-        logger.log(Level.INFO, "Received request to update profile for user with email: {0}", userEmail);
-        logger.log(Level.INFO, "Received username: {0}", username);
-        logger.log(Level.INFO, "Received bio: {0}", bio);
-        logger.log(Level.INFO, "Received region: {0}", region);
 
         Membre membre = new Membre();
         membre.setUsername(username);
@@ -77,18 +72,25 @@ public class ModifierUtilisateurController extends HttpServlet{
         boolean valider = membreDao.updateProfile(membre);
         if(valider) {
             messageInscrReussite = "Modifier avec succés!";
+            
+            if (!"".equals(request.getParameter("username"))) {
+                session.setAttribute("username", membre.getUsername());
+            }
+            if (!"".equals(request.getParameter("bio"))) {
+                session.setAttribute("bio", membre.getBio());
+            }
+            if (!"".equals(request.getParameter("region"))) {
+                session.setAttribute("region", membre.getRegion());
+            }
+            
             request.setAttribute("messageInscrReussite", messageInscrReussite);
-            request.getRequestDispatcher("pageUtilisateur.jsp").forward(request, response);
+            //logger.log(Level.INFO, "Received username: {0}", membre.getUsername());
+            //logger.log(Level.INFO, "Received bio: {0}", membre.getBio());
+            //logger.log(Level.INFO, "Received region: {0}", membre.getRegion());
+            response.sendRedirect("pageUtilisateur.jsp");
         } else {
             messageInscrEchoue = "Erreur, réessayer plus tard..";
             request.setAttribute("messageInscrEchoue", messageInscrEchoue);
         }
-        
-        if (valider) {
-            logger.log(Level.INFO, "Profile update successful for user with email: {0}", userEmail);
-        } else {
-            logger.log(Level.WARNING, "Profile update failed for user with email: {0}", userEmail);
-        }
-        
     }
 }

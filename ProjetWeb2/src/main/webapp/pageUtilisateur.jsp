@@ -33,7 +33,19 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 showForm('general');
+                updateProfileInfo();
             });
+                
+            function updateProfileInfo() {
+                var firstNameDis = "${sessionScope.firstName}";
+                var lastNameDis = "${sessionScope.lastName}";
+                var usernameDis = "${sessionScope.username}";
+                var bioDis = "${sessionScope.bio}";
+
+                document.getElementById('firstNameDis').textContent = firstNameDis + " " + lastNameDis;
+                document.getElementById('usernameDis').textContent = "@" + usernameDis;
+                document.getElementById('bioDis').textContent = bioDis;
+            }
 
             function stretchImage() {
                 var container = document.querySelector('.photo-profil');
@@ -64,8 +76,9 @@
                                         </label>
                                     </div>
                                     <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
+                                        <h1 id="firstNameDis"></h1>
+                                        <p id="usernameDis"></p>
+                                        <p class="text-bio" id="bioDis"></p>
                                     </div>
                                 </div>
                                 <div class="utilisateur-body">
@@ -99,8 +112,9 @@
                                         </label>
                                     </div>
                                     <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
+                                        <h1 id="firstNameDis"></h1>
+                                        <p id="usernameDis"></p>
+                                        <p id="bioDis"></p>
                                     </div>
                                 </div>
                                 <div class="utilisateur-body">
@@ -130,8 +144,9 @@
                                         </label>
                                     </div>
                                     <div class="utilisateur-username">
-                                        <h1>Jamil Fayad</h1>
-                                        <p>@Gwuliano</p>
+                                        <h1 id="firstNameDis"></h1>
+                                        <p id="usernameDis"></p>
+                                        <p id="bioDis"></p>
                                     </div>
                                 </div>
                                 <div class="utilisateur-body">
