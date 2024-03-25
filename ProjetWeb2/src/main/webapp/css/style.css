@@ -23,6 +23,33 @@ body {
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #c4c4c4;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle when dragging */
+::-webkit-scrollbar-thumb:active {
+    background: #808080;
+}
+
 header {
     width: 100%;
     height: 10%;
@@ -39,10 +66,17 @@ header {
 }
 
 #logo-container img{
-    width: 40%;
-    min-width: 80px;
+    width: 15%;
+    min-width: 60px;
+    margin-top: 4vh;
+    margin-left: 12vh;
     height: auto;
-    margin-left: 20%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#logo-container a:hover > img {
+    transform: scale(0.95);
 }
 
 #horizontal-nav {
@@ -117,6 +151,7 @@ main {
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
 }
     
 #middle-section h1{
@@ -1626,4 +1661,56 @@ main.sign-up-mode .carousel {
     z-index: 1;
     width: 25px;
     height: 25px;
+}
+
+/* ----------------------------------------------------------- */
+/* Page de challenges pour s'éxercer
+/* ----------------------------------------------------------- */
+
+.challenge-Wrapper {
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    top: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.challenge-container {
+    background: #c7c7c7;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px 0 auto;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.challenge-container h1 {
+    font-family: 'CustomFont1', sans-serif;
+    color: #2d2d2d;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+}
+
+.quiz {
+    padding-top: 5px;
+}
+
+.quiz h2 {
+    font-family: 'montreal', sans-serif;
+    color: #646464;
+    
+}
+
+.btnAnswer {
+    background: #fff;
+    color: #222;
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
 }

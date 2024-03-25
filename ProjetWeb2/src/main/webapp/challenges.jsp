@@ -37,7 +37,7 @@
                     <div id="middle-section-challenges-container">
                         <div id="middle-section-challenges-element">
                             <div class="circle-container">
-                                <div class="fraction">3/7</div>
+                                <div class="fraction">1/3</div>
                             </div>
                             <div id="subject-challenge-container">
                                 <div id="subject-challenge">
@@ -45,21 +45,6 @@
                                     <h3>Italian</h3>
                                 </div>
                                 <p>Italian Renaissance: Advanced Language and Cultural Immersion!</p>
-                            </div>
-                            <div id="challenge-complete">
-                                <h3>Complete</h3>
-                            </div>
-                        </div>
-                        <div id="middle-section-challenges-element">
-                            <div class="circle-container">
-                                <div class="fraction">5/7</div>
-                            </div>
-                            <div id="subject-challenge-container">
-                                <div id="subject-challenge">
-                                    <img src="https://img.icons8.com/dusk/64/spain.png" alt="spain"/>
-                                    <h3>Spanish</h3>
-                                </div>
-                                <p>Spanish Mastery: Exploring Advanced Language Proficiency!</p>
                             </div>
                             <div id="challenge-complete">
                                 <h3>Complete</h3>
