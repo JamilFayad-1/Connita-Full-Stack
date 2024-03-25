@@ -19,9 +19,9 @@
             <div class="reglage-nav-container">
                 <ul>
                     <li><a href="pageAccueilUtilisateur.jsp">Feed</a></li>
-                    <li><a href="#" onclick="showForm('general')">General</a></li>
-                    <li><a href="#" onclick="showForm('security')">Security</a></li>
-                    <li><a href="#" onclick="showForm('languages')">Languages</a></li>
+                    <li><a onclick="showForm('general')">General</a></li>
+                    <li><a onclick="showForm('security')">Security</a></li>
+                    <li><a onclick="showForm('languages')">Languages</a></li>
                 </ul>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 switch(formType) {
                     case 'general':
                         formHTML = `
-                            <form action="ModifierUtilisateurController" autocomplete="off" method="post">
+                            <form action="ModifierUtilisateurController" autocomplete="off" method="post" enctype="multipart/form-data">
                                 <div class="utilisateur-header">
                                     <div class="photo-profil">
                                         <input type="file" id="photo-profil-up" name="profilPic">
@@ -114,7 +114,7 @@
                                     <div class="utilisateur-username">
                                         <h1 id="firstNameDis"></h1>
                                         <p id="usernameDis"></p>
-                                        <p id="bioDis"></p>
+                                        <p class="text-bio" id="bioDis"></p>
                                     </div>
                                 </div>
                                 <div class="utilisateur-body">
@@ -146,7 +146,7 @@
                                     <div class="utilisateur-username">
                                         <h1 id="firstNameDis"></h1>
                                         <p id="usernameDis"></p>
-                                        <p id="bioDis"></p>
+                                        <p class="text-bio" id="bioDis"></p>
                                     </div>
                                 </div>
                                 <div class="utilisateur-body">
@@ -196,6 +196,7 @@
                 }
 
                 formContainer.innerHTML = formHTML;
+                updateProfileInfo();
 
                 var fileInput = document.getElementById('photo-profil-up');
                 var image = document.querySelector('.photo-profil img');

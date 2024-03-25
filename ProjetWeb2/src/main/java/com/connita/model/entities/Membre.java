@@ -9,7 +9,7 @@ public class Membre {
     private String password;
     private String region;
     private String langue;
-    private String photoProfil;
+    private String photoProfilPath;
     private String bio;
     private String username;
     private int privilege;
@@ -23,7 +23,7 @@ public class Membre {
         this.password = password;
         this.region = region;
         this.langue = langue;
-        this.photoProfil = photoProfil;
+        this.photoProfilPath = photoProfil;
         this.bio = bio;
         this.username = username;
         this.privilege = privilege;
@@ -36,7 +36,7 @@ public class Membre {
         this.password = "";
         this.region = null;
         this.langue = null;
-        this.photoProfil = null;
+        this.photoProfilPath = null;
         this.bio = null;
         this.username = null;
         this.privilege = 0;
@@ -49,7 +49,7 @@ public class Membre {
         this.password = password;
         this.region = null;
         this.langue = null;
-        this.photoProfil = null;
+        this.photoProfilPath = null;
         this.bio = null;
         this.username = null;
         this.privilege = 0;
@@ -112,12 +112,12 @@ public class Membre {
         this.langue = langue;
     }
 
-    public String getPhotoProfil() {
-        return photoProfil;
+    public String getPhotoProfilPath() {
+        return photoProfilPath;
     }
 
-    public void setPhotoProfil(String photoProfil) {
-        this.photoProfil = photoProfil;
+    public void setPhotoProfilPath(String photoProfilPath) {
+        this.photoProfilPath = photoProfilPath;
     }
 
     public String getBio() {

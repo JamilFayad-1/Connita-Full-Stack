@@ -8,21 +8,22 @@ import com.connita.model.dao.MembreDao;
 import com.connita.model.dao.MembreImplDao;
 import com.connita.model.entities.Membre;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 
 /**
  *
  * @author Gwuliano
  */
+@MultipartConfig
 public class ModifierUtilisateurController extends HttpServlet{
-    private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
+    //private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
     private MembreDao membreDao;
     private String messageInscrReussite;
     private String messageInscrEchoue;
@@ -42,7 +43,7 @@ public class ModifierUtilisateurController extends HttpServlet{
         String username;
         String bio;
         String region;
-        String userEmail; 
+        String userEmail;
         
         if ("".equals(request.getParameter("username"))) {
             username = " ";
