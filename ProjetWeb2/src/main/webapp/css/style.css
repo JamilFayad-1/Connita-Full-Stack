@@ -1452,12 +1452,6 @@ main.sign-up-mode .carousel {
     font-family: 'montreal', sans-serif;
 }
 
-.utilisateur-username .text-bio {
-    color: #5c99dd;
-    font-size: 0.8rem;
-    padding-top: 2vh;
-}
-
 .utilisateur-body {
     position: relative;
     width: 22vw;
@@ -1486,10 +1480,6 @@ main.sign-up-mode .carousel {
     padding-left: 1.5vh;
     font-family: 'montreal', sans-serif;
     transition: 0.2s ease;
-}
-
-.reglage-form-row input:focus + label {
-    color: red;
 }
 
 .reglage-form-row textarea {

@@ -33,12 +33,16 @@
                 
                 <div id="middle-section-recent-posts">
                     <h1>Recent posts</h1>
-                    <div id="recent-post-container">
+                
+                     <c:forEach var="publication" items="${requestScope.publications}">
+                         <div id="recent-post-container">
                         <div>
-
+                            <div class="titre-container-pub">${publication.getTitre()}</div>
+                            <image class="image-container-pub" src="images/${publication.getImage()}">
                         </div>
                     </div>
                 </div>
+                
                 
                 <div id="middle-section-achievements">
                     <h1>Achievement badges</h1>
