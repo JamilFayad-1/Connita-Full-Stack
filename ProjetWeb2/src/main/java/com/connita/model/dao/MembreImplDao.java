@@ -2,7 +2,9 @@ package com.connita.model.dao;
 
 import com.connita.model.entities.Membre;
 import com.connita.model.singleton.ConnexionDB;
+import static com.mysql.cj.conf.PropertyKey.logger;
 import com.mysql.cj.xdevapi.Result;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,6 +72,8 @@ public class MembreImplDao implements MembreDao {
                 membre.setUsername(result.getString("username"));
                 membre.setBio(result.getString("bio"));
                 membre.setRegion(result.getString("region"));
+                membre.setPhotoProfil(result.getBinaryStream("photoProfil"));
+
             }
             
         } catch (SQLException e) {
@@ -107,6 +111,13 @@ public class MembreImplDao implements MembreDao {
             SQL_UPDATE_PROFILE.append("bio=?");
             isFirstField = false;
         }
+        if (membre.getPhotoProfil() != null) {
+            if (!isFirstField) {
+                SQL_UPDATE_PROFILE.append(", ");
+            }
+            SQL_UPDATE_PROFILE.append("photoProfil=?");
+            isFirstField = false;
+        }
         if (!" ".equals(membre.getRegion())) {
             if (!isFirstField) {
                 SQL_UPDATE_PROFILE.append(", ");
@@ -125,6 +136,9 @@ public class MembreImplDao implements MembreDao {
             }
             if(!" ".equals(membre.getBio())){
                 ps.setString(index++, membre.getBio());
+            }
+            if(membre.getPhotoProfil() != null){
+                ps.setBinaryStream(index++, membre.getPhotoProfil());
             }
             if(!" ".equals(membre.getRegion())){
                 ps.setString(index++, membre.getRegion());
@@ -148,4 +162,5 @@ public class MembreImplDao implements MembreDao {
         }
         return validation;
     }
+    
 }

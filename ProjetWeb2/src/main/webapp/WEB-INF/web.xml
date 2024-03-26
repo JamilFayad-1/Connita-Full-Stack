@@ -17,12 +17,10 @@
         <servlet-name>DeconnexionController</servlet-name>
         <url-pattern>/DeconnexionController</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <url-pattern>/ModifierUtilisateurController</url-pattern>
     </servlet-mapping>
-    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -38,7 +36,6 @@
         <servlet-name>DeconnexionController</servlet-name>
         <servlet-class>com.connita.controller.DeconnexionController</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <servlet-class>com.connita.controller.ModifierUtilisateurController</servlet-class>

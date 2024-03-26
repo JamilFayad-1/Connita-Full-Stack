@@ -35,7 +35,6 @@
                 showForm('general');
                 updateProfileInfo();
             });
-                
             function updateProfileInfo() {
                 var firstNameDis = "${sessionScope.firstName}";
                 var lastNameDis = "${sessionScope.lastName}";
@@ -71,7 +70,7 @@
                                     <div class="photo-profil">
                                         <input type="file" id="photo-profil-up" name="profilPic">
                                         <label for="photo-profil-up">
-                                            <img src="images/Default-profile-pic.png" alt="Profile Picture">
+                                            <img id="photoProfilDis" src="" alt="Profile Picture">
                                             <span class="tooltip">Choose Picture</span>
                                         </label>
                                     </div>
@@ -229,6 +228,7 @@
                     }
                 });
             }
+            
         </script>
     </body>
 </html>

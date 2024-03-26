@@ -13,8 +13,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import java.io.IOException;
-//import java.util.logging.Logger;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -23,7 +26,7 @@ import java.io.IOException;
  */
 @MultipartConfig
 public class ModifierUtilisateurController extends HttpServlet{
-    //private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
+    private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
     private MembreDao membreDao;
     private String messageInscrReussite;
     private String messageInscrEchoue;
@@ -40,10 +43,25 @@ public class ModifierUtilisateurController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);
         
+        InputStream inputStream = null;
+        Part filePart = request.getPart("profilPic");
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();
+            logger.log(Level.INFO, "Received InputStream: {0}", inputStream);
+        }
+        
         String username;
         String bio;
         String region;
         String userEmail;
+        InputStream photoProfil = null;
+        
+        if (inputStream != null) {
+            photoProfil = inputStream;
+            logger.log(Level.INFO, "Received photoProfil: {0}", photoProfil);
+        } else {
+            logger.log(Level.INFO, "No file uploaded, photoProfil will remain null.");
+        }
         
         if ("".equals(request.getParameter("username"))) {
             username = " ";
@@ -66,6 +84,7 @@ public class ModifierUtilisateurController extends HttpServlet{
         userEmail = (String) session.getAttribute("user"); 
 
         Membre membre = new Membre();
+        membre.setPhotoProfil(photoProfil);
         membre.setUsername(username);
         membre.setBio(bio);
         membre.setRegion(region);
@@ -74,6 +93,9 @@ public class ModifierUtilisateurController extends HttpServlet{
         if(valider) {
             messageInscrReussite = "Modifier avec succés!";
             
+            if (!"".equals(request.getParameter("photoProfil"))) {
+                logger.log(Level.INFO, "Received sessionAttribute: {0}", membre.getPhotoProfil());
+            }
             if (!"".equals(request.getParameter("username"))) {
                 session.setAttribute("username", membre.getUsername());
             }
@@ -94,4 +116,6 @@ public class ModifierUtilisateurController extends HttpServlet{
             request.setAttribute("messageInscrEchoue", messageInscrEchoue);
         }
     }
+    
 }
+
