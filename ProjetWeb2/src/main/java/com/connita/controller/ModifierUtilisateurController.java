@@ -14,8 +14,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,6 +34,7 @@ public class ModifierUtilisateurController extends HttpServlet{
     private String messageInscrReussite;
     private String messageInscrEchoue;
     HttpSession session;
+    private static final String UPLOAD_DIR = "imageUtilisateur";
     
 
     @Override
@@ -43,25 +47,10 @@ public class ModifierUtilisateurController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);
         
-        InputStream inputStream = null;
-        Part filePart = request.getPart("profilPic");
-        if (filePart != null) {
-            inputStream = filePart.getInputStream();
-            logger.log(Level.INFO, "Received InputStream: {0}", inputStream);
-        }
-        
         String username;
         String bio;
         String region;
-        String userEmail;
-        InputStream photoProfil = null;
-        
-        if (inputStream != null) {
-            photoProfil = inputStream;
-            logger.log(Level.INFO, "Received photoProfil: {0}", photoProfil);
-        } else {
-            logger.log(Level.INFO, "No file uploaded, photoProfil will remain null.");
-        }
+        String userEmail;   
         
         if ("".equals(request.getParameter("username"))) {
             username = " ";
@@ -84,18 +73,28 @@ public class ModifierUtilisateurController extends HttpServlet{
         userEmail = (String) session.getAttribute("user"); 
 
         Membre membre = new Membre();
-        membre.setPhotoProfil(photoProfil);
         membre.setUsername(username);
         membre.setBio(bio);
         membre.setRegion(region);
         membre.setEmail(userEmail);
+        
+        Part filePart = request.getPart("profilPic");
+        if (filePart != null) {
+            String fileName = getFileName(filePart);
+
+            if (fileName != null && !fileName.isEmpty()) {
+                InputStream fileContent = filePart.getInputStream();
+                logger.log(Level.INFO, "Received fileContent: {0}", fileContent);
+                saveFile(fileContent, fileName);
+                // Assuming the file is saved successfully, set the profile picture path in the member object
+                membre.setPhotoProfil("../imageUtilisateur/" + fileName);
+            }
+        }
+        
         boolean valider = membreDao.updateProfile(membre);
         if(valider) {
             messageInscrReussite = "Modifier avec succés!";
             
-            if (!"".equals(request.getParameter("photoProfil"))) {
-                logger.log(Level.INFO, "Received sessionAttribute: {0}", membre.getPhotoProfil());
-            }
             if (!"".equals(request.getParameter("username"))) {
                 session.setAttribute("username", membre.getUsername());
             }
@@ -116,6 +115,35 @@ public class ModifierUtilisateurController extends HttpServlet{
             request.setAttribute("messageInscrEchoue", messageInscrEchoue);
         }
     }
+    
+    private String getFileName(final Part part) {
+    final String partHeader = part.getHeader("content-disposition");
+    logger.log(Level.INFO, "Received header: {0}", part.getHeader("content-disposition"));
+    for (String content : partHeader.split(";")) {
+        if (content.trim().startsWith("filename")) {
+            // Extract and return the file name
+            return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+        }
+    }
+    return null;
+}
+
+    // Method to save file
+    private void saveFile(InputStream fileContent, String fileName) throws IOException {
+    String uploadPath = getServletContext().getRealPath("../" + UPLOAD_DIR); // Corrected path
+    File uploadDir = new File(uploadPath);
+    if (!uploadDir.exists()) {
+        uploadDir.mkdirs(); // Use mkdirs() to create parent directories if necessary
+    }
+    String savePath = uploadPath + File.separator + fileName;
+    try (OutputStream out = new FileOutputStream(new File(savePath))) {
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fileContent.read(buffer)) != -1) {
+            out.write(buffer, 0, bytesRead);
+        }
+    }
+}
     
 }
 

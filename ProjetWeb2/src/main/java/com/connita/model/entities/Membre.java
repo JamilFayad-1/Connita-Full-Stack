@@ -1,7 +1,5 @@
 package com.connita.model.entities;
 
-import java.io.InputStream;
-
 
 public class Membre {
     private int idMembre;
@@ -11,13 +9,13 @@ public class Membre {
     private String password;
     private String region;
     private String langue;
-    private InputStream photoProfil;
+    private String photoProfilPath;
     private String bio;
     private String username;
     private int privilege;
 
     // Constructeur
-    public Membre(int idMembre, String nom, String prenom, String email, String password, String region, String langue, InputStream photoProfil, String bio, String username, int privilege) {
+    public Membre(int idMembre, String nom, String prenom, String email, String password, String region, String langue, String photoProfil, String bio, String username, int privilege) {
         this.idMembre = idMembre;
         this.nom = nom;
         this.prenom = prenom;
@@ -25,7 +23,7 @@ public class Membre {
         this.password = password;
         this.region = region;
         this.langue = langue;
-        this.photoProfil = photoProfil;
+        this.photoProfilPath = photoProfil;
         this.bio = bio;
         this.username = username;
         this.privilege = privilege;
@@ -38,7 +36,7 @@ public class Membre {
         this.password = "";
         this.region = null;
         this.langue = null;
-        this.photoProfil = null;
+        this.photoProfilPath = null;
         this.bio = null;
         this.username = null;
         this.privilege = 0;
@@ -51,7 +49,7 @@ public class Membre {
         this.password = password;
         this.region = null;
         this.langue = null;
-        this.photoProfil = null;
+        this.photoProfilPath = null;
         this.bio = null;
         this.username = null;
         this.privilege = 0;
@@ -114,12 +112,12 @@ public class Membre {
         this.langue = langue;
     }
 
-    public InputStream getPhotoProfil() {
-        return photoProfil;
+    public String getPhotoProfil() {
+        return photoProfilPath;
     }
 
-    public void setPhotoProfil(InputStream photoProfil) {
-        this.photoProfil = photoProfil;
+    public void setPhotoProfil(String photoProfil) {
+        this.photoProfilPath = photoProfil;
     }
 
     public String getBio() {

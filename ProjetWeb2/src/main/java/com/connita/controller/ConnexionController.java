@@ -47,8 +47,6 @@ public class ConnexionController extends HttpServlet {
             session.setAttribute("username", membre.getUsername());
             session.setAttribute("bio", membre.getBio());
             session.setAttribute("region", membre.getRegion());
-            // Retrieve image InputStream from the member object and set it in session
-            session.setAttribute("userImage", membre.getPhotoProfil());
             
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
