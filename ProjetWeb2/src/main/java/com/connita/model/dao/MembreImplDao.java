@@ -102,18 +102,18 @@ public class MembreImplDao implements MembreDao {
             SQL_UPDATE_PROFILE.append("username=?");
             isFirstField = false;
         }
-        if (!" ".equals(membre.getBio())) {
-            if (!isFirstField) {
-                SQL_UPDATE_PROFILE.append(", ");
-            }
-            SQL_UPDATE_PROFILE.append("bio=?");
-            isFirstField = false;
-        }
         if (!" ".equals(membre.getPhotoProfil())) {
             if (!isFirstField) {
                 SQL_UPDATE_PROFILE.append(", ");
             }
             SQL_UPDATE_PROFILE.append("photoProfilPath=?");
+            isFirstField = false;
+        }
+        if (!" ".equals(membre.getBio())) {
+            if (!isFirstField) {
+                SQL_UPDATE_PROFILE.append(", ");
+            }
+            SQL_UPDATE_PROFILE.append("bio=?");
             isFirstField = false;
         }
         if (!" ".equals(membre.getRegion())) {
@@ -132,11 +132,11 @@ public class MembreImplDao implements MembreDao {
             if(!" ".equals(membre.getUsername())){
                 ps.setString(index++, membre.getUsername());
             }
-            if(!" ".equals(membre.getBio())){
-                ps.setString(index++, membre.getBio());
-            }
             if(!" ".equals(membre.getPhotoProfil())){
                 ps.setString(index++, membre.getPhotoProfil());
+            }
+            if(!" ".equals(membre.getBio())){
+                ps.setString(index++, membre.getBio());
             }
             if(!" ".equals(membre.getRegion())){
                 ps.setString(index++, membre.getRegion());

@@ -33,9 +33,7 @@ public class ModifierUtilisateurController extends HttpServlet{
     private MembreDao membreDao;
     private String messageInscrReussite;
     private String messageInscrEchoue;
-    HttpSession session;
-    private static final String UPLOAD_DIR = "imageUtilisateur";
-    
+    HttpSession session;    
 
     @Override
     public void init() throws ServletException {
@@ -47,10 +45,36 @@ public class ModifierUtilisateurController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);
         
+        Part filePart = request.getPart("profilPic");
+        logger.log(Level.INFO, "Part received:", filePart);
+        // Obtenir le nom de fichier
+        String fileName = getFileName(filePart);
+        // Spécifier le répertoire où tu veux enregistrer le fichier
+        String saveDirectory = "/imageUtilisateur";
+        String savePath = saveDirectory + File.separator + fileName;
+        // Enregistrer le fichier dans le répertoire spécifié
+        File file = new File(savePath);
+        try (InputStream input = filePart.getInputStream(); OutputStream output = new FileOutputStream(file)) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = input.read(buffer)) != -1) {
+                output.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         String username;
         String bio;
         String region;
-        String userEmail;   
+        String userEmail;  
+        String photoProfilPath;
+        
+        if ("".equals(request.getPart("profilPic"))) {
+            photoProfilPath = " ";
+        }else {
+            photoProfilPath = fileName;
+        }
         
         if ("".equals(request.getParameter("username"))) {
             username = " ";
@@ -73,28 +97,19 @@ public class ModifierUtilisateurController extends HttpServlet{
         userEmail = (String) session.getAttribute("user"); 
 
         Membre membre = new Membre();
+        membre.setPhotoProfil(fileName);
         membre.setUsername(username);
         membre.setBio(bio);
         membre.setRegion(region);
         membre.setEmail(userEmail);
         
-        Part filePart = request.getPart("profilPic");
-        if (filePart != null) {
-            String fileName = getFileName(filePart);
-
-            if (fileName != null && !fileName.isEmpty()) {
-                InputStream fileContent = filePart.getInputStream();
-                logger.log(Level.INFO, "Received fileContent: {0}", fileContent);
-                saveFile(fileContent, fileName);
-                // Assuming the file is saved successfully, set the profile picture path in the member object
-                membre.setPhotoProfil("../imageUtilisateur/" + fileName);
-            }
-        }
-        
         boolean valider = membreDao.updateProfile(membre);
         if(valider) {
             messageInscrReussite = "Modifier avec succés!";
             
+            if (!"".equals(request.getPart("profilPic"))) {
+                session.setAttribute("photoProfil", membre.getPhotoProfil());
+            }
             if (!"".equals(request.getParameter("username"))) {
                 session.setAttribute("username", membre.getUsername());
             }
@@ -116,34 +131,18 @@ public class ModifierUtilisateurController extends HttpServlet{
         }
     }
     
-    private String getFileName(final Part part) {
-    final String partHeader = part.getHeader("content-disposition");
-    logger.log(Level.INFO, "Received header: {0}", part.getHeader("content-disposition"));
-    for (String content : partHeader.split(";")) {
-        if (content.trim().startsWith("filename")) {
-            // Extract and return the file name
-            return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-        }
-    }
-    return null;
-}
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
 
-    // Method to save file
-    private void saveFile(InputStream fileContent, String fileName) throws IOException {
-    String uploadPath = getServletContext().getRealPath("../" + UPLOAD_DIR); // Corrected path
-    File uploadDir = new File(uploadPath);
-    if (!uploadDir.exists()) {
-        uploadDir.mkdirs(); // Use mkdirs() to create parent directories if necessary
-    }
-    String savePath = uploadPath + File.separator + fileName;
-    try (OutputStream out = new FileOutputStream(new File(savePath))) {
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = fileContent.read(buffer)) != -1) {
-            out.write(buffer, 0, bytesRead);
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                String fileName = token.substring(token.indexOf("=") + 2, token.length() - 1);
+
+                return fileName;
+            }
         }
+        return "";
     }
-}
-    
 }
 
