@@ -21,6 +21,10 @@
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <url-pattern>/ModifierUtilisateurController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangementMotDePasseController</servlet-name>
+        <url-pattern>/ChangementMotDePasseController</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -39,5 +43,9 @@
     <servlet>
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <servlet-class>com.connita.controller.ModifierUtilisateurController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangementMotDePasseController</servlet-name>
+        <servlet-class>com.connita.controller.ChangementMotDePasseController</servlet-class>
     </servlet>
 </web-app>

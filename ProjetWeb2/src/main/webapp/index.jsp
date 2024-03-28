@@ -9,6 +9,7 @@
 <%
    String messageInscrReussite = (String)request.getAttribute("messageInscrReussite");
    String messageInscrEchoue = (String)request.getAttribute("messageInscrEchoue");
+   String messageConnEchoue = (String)request.getAttribute("messageConnEchoue");
 %>
 
 <!DOCTYPE html>
@@ -23,11 +24,13 @@
 
         <jsp:include page="menu.jsp"/>
         
-        <div class="messageInscription">
+        <div class="messagePopUps">
             <% if(request.getAttribute("messageInscrReussite")!=null){ %>
                 <p class="messageTextReussie"><%= messageInscrReussite%></p>
             <%} else if(request.getAttribute("messageInscrEchoue")!=null) {%>
                 <p class="messageTextEchoue"><%= messageInscrEchoue%></p>
+            <%} else if(request.getAttribute("messageConnEchoue") != null) {%>
+                <p class="messageTextEchoue"><%= messageConnEchoue%></p>
             <%}%>
         </div>
       

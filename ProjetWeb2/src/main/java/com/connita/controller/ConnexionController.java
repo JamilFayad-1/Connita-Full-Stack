@@ -42,6 +42,11 @@ public class ConnexionController extends HttpServlet {
         if (membre != null) {
             session = request.getSession(true);
             session.setAttribute("user", email);
+            if ("".equals(membre.getPhotoProfil())){
+                session.setAttribute("photoProfil", "Default-profile-pic.png");
+            }else {
+                session.setAttribute("photoProfil", membre.getPhotoProfil());
+            }
             session.setAttribute("firstName", membre.getPrenom());
             session.setAttribute("lastName", membre.getNom());
             session.setAttribute("username", membre.getUsername());
@@ -50,8 +55,8 @@ public class ConnexionController extends HttpServlet {
             
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
-            message = "L'email ou le mot de passe est invalide.";
-            request.setAttribute("message", message);
+            message = "Password or email are invalid..";
+            request.setAttribute("messageConnEchoue", message);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

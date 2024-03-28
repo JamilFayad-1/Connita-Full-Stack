@@ -31,11 +31,9 @@ import java.util.logging.Logger;
 public class ModifierUtilisateurController extends HttpServlet{
     private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
     private MembreDao membreDao;
-    private String messageInscrReussite;
-    private String messageInscrEchoue;
-    HttpSession session;
-    private static final String UPLOAD_DIR = "imageUtilisateur";
-    
+    private String messageModifieReussite;
+    private String messageModifieEchoue;
+    HttpSession session;    
 
     @Override
     public void init() throws ServletException {
@@ -51,8 +49,44 @@ public class ModifierUtilisateurController extends HttpServlet{
         String bio;
         String region;
         String userEmail;  
-        Part filePart;
+        String photoProfilPath;
+        Part filePart = request.getPart("profilPic");
         
+        if (filePart == null || filePart.getSize() == 0) {
+            // No input for profile picture, set default path
+            photoProfilPath = "NADA";
+            logger.log(Level.INFO, "No input received for profile picture, using default path: {0}", photoProfilPath);
+        } else {
+            // There's input for profile picture, proceed with handling the file
+            // Obtain the file name
+            String fileName = getFileName(filePart);
+            // Specify the directory to save the file
+            String saveDirectory = "C:/Users/Jamil/OneDrive/Documents/NetBeansProjects/projetweb2/ProjetWeb2/src/main/webapp/imageUtilisateur";
+            String savePath = saveDirectory + File.separator + fileName;
+            // Create a File object to represent the file
+            File file = new File(savePath);
+            if (file.exists()) {
+                // File already exists, handle accordingly (e.g., show an error message)
+                // You can choose to overwrite the existing file, rename the new file, or take other actions as needed
+                System.out.println("File already exists in the directory.");
+            } else {
+                // File does not exist, proceed with copying
+                try (InputStream input = filePart.getInputStream(); OutputStream output = new FileOutputStream(file)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = input.read(buffer)) != -1) {
+                        output.write(buffer, 0, bytesRead);
+                    }
+                    System.out.println("File copied successfully.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Handle IOException (e.g., log error, show error message)
+                }
+            }
+            // Set the profile picture path to the file name
+            photoProfilPath = fileName;
+        }
+
         if ("".equals(request.getParameter("username"))) {
             username = " ";
         }else {
@@ -63,12 +97,6 @@ public class ModifierUtilisateurController extends HttpServlet{
             bio = " ";
         }else {
             bio = request.getParameter("bio");
-        }
-        
-        if (request.getPart("profilPic") == null) {
-            filePart = null;
-        }else {
-            filePart = request.getPart("profilPic");
         }
         
         if ("".equals(request.getParameter("region"))) {
@@ -82,16 +110,19 @@ public class ModifierUtilisateurController extends HttpServlet{
         
 
         Membre membre = new Membre();
+        membre.setPhotoProfil(photoProfilPath);
+        logger.log(Level.INFO, "photo profile should be NADA: {0}", photoProfilPath);
         membre.setUsername(username);
         membre.setBio(bio);
         membre.setRegion(region);
         membre.setEmail(userEmail);
-
         
         boolean valider = membreDao.updateProfile(membre);
         if(valider) {
-            messageInscrReussite = "Modifier avec succés!";
-            
+            if (!"NADA".equals(photoProfilPath)) {
+                session.setAttribute("photoProfil", membre.getPhotoProfil());
+                logger.log(Level.INFO, "SI CA AFFICHE CEST UNE ERREUR3");
+            }
             if (!"".equals(request.getParameter("username"))) {
                 session.setAttribute("username", membre.getUsername());
             }
@@ -102,16 +133,27 @@ public class ModifierUtilisateurController extends HttpServlet{
                 session.setAttribute("region", membre.getRegion());
             }
             
-            request.setAttribute("messageInscrReussite", messageInscrReussite);
-            //logger.log(Level.INFO, "Received username: {0}", membre.getUsername());
-            //logger.log(Level.INFO, "Received bio: {0}", membre.getBio());
-            //logger.log(Level.INFO, "Received region: {0}", membre.getRegion());
-            response.sendRedirect("pageUtilisateur.jsp");
+            messageModifieReussite = "Changes saved!";
+            request.setAttribute("messageModifieReussite", messageModifieReussite);
         } else {
-            messageInscrEchoue = "Erreur, réessayer plus tard..";
-            request.setAttribute("messageInscrEchoue", messageInscrEchoue);
+            messageModifieEchoue = "Something went wrong, changes not saved..";
+            request.setAttribute("messageModifieEchoue", messageModifieEchoue);
         }
+        request.getRequestDispatcher("pageUtilisateur.jsp").forward(request, response);
     }
     
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+
+        String[] tokens = contentDisp.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                String fileName = token.substring(token.indexOf("=") + 2, token.length() - 1);
+
+                return fileName;
+            }
+        }
+        return "";
+    }
 }
 

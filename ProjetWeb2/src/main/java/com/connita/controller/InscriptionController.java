@@ -36,10 +36,10 @@ public class InscriptionController extends HttpServlet {
         membre.setPassword(password);
         boolean valider = membreDao.ajouterMembre(membre);
         if(valider) {
-            messageInscrReussite = "Inscription réussite!";
+            messageInscrReussite = "Successful registration!";
             request.setAttribute("messageInscrReussite", messageInscrReussite);
         } else {
-            messageInscrEchoue = "Inscription echoué, réessayer plus tard..";
+            messageInscrEchoue = "Something went wrong, try again ..";
             request.setAttribute("messageInscrEchoue", messageInscrEchoue);
         }
         request.getRequestDispatcher("index.jsp").forward(request, response);

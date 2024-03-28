@@ -27,7 +27,7 @@
                             <li><a href=""><img src="https://img.icons8.com/ios-glyphs/30/speech-bubble-with-dots.png" alt="speech-bubble-with-dots"/></a></li>
                             <li><a href=""><img src="https://img.icons8.com/ios-glyphs/30/filled-appointment-reminders.png" alt="filled-appointment-reminders"/></a></li>
                             <li id="dropdown-toggle">
-                                <a><img src="https://img.icons8.com/ios-glyphs/30/test-account.png" alt="test-account"/></a>
+                                <a><img id="profilePicMenu" src="imageUtilisateur/${sessionScope.photoProfil}" alt="test-account"/></a>
                                 <div class="dropdown-menu" id="dropdownMenu">
                                     <a href="pageUtilisateur.jsp" class="dropdown-link">Settings</a>
                                     <a href="DeconnexionController" class="dropdown-link">Sign out</a>
@@ -70,6 +70,13 @@
                     dropdownMenu.style.display = 'none';
                 }
             });
+            
+            function updateProfileInfo() {
+                var photoProfilDis = "${sessionScope.photoProfil}";
+
+                document.getElementById('profilePicMenu').src = "imageUtilisateur/" + photoProfilDis;
+                
+            }
         </script>
     </body>
 </html>

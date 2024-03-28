@@ -94,6 +94,7 @@ header {
 #horizontal-nav ul{
     display: flex;
     float: right;
+    align-items: center;
 }
 
 #horizontal-nav li{
@@ -116,6 +117,12 @@ header {
 #horizontal-nav img{
     width: inherit;
     height: inherit;
+    border-radius: 50%;
+}
+
+#horizontal-nav li:last-of-type{
+    width: 2.4rem;
+    height: 2.4rem;
 }
 
 
@@ -389,10 +396,10 @@ hr {
 
 #right-section-friends-list {
     position: relative;
-    top: 4%;
+    top: 10%;
     left: 0;
     width: 80%;
-    height: 90%;
+    height: 80%;
 }
 
 #right-section-friends-list h2{
@@ -1266,7 +1273,7 @@ main.sign-up-mode .carousel {
 /* Message de validation - Inscription */
 /* ----------------------------------------------------------- */
 
-.messageInscription {
+.messagePopUps {
     display: flex;
     position: absolute;
     top: 0;
@@ -1300,24 +1307,22 @@ main.sign-up-mode .carousel {
     }
 }
 
-.messageTextReussie {
-    font-family: 'CustomFont1';
+.messagePopUps p{
+    font-family: 'montreal';
     font-size: 1rem;
     background-color: rgb(240, 240, 240);
-    color: green;
     border-radius: 2rem;
     padding: 0.4rem 1rem 0.4rem 1rem;
     text-align: center;
+    z-index: 100;
+}
+
+.messageTextReussie {
+    color: green;
 }
 
 .messageTextEchoue {
-    font-family: 'CustomFont1';
-    font-size: 1rem;
-    background-color: rgb(240, 240, 240);
     color: red;
-    border-radius: 2rem;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    text-align: center;
 }
 
 /* ----------------------------------------------------------- */
@@ -1329,7 +1334,7 @@ main.sign-up-mode .carousel {
     background-color: white;
     position: relative;
     margin-left: -7.5vw;
-    margin-top: 5vh;
+    margin-top: 6.5vh;
     height: 9.6vh;
     z-index: 10;
     border-radius: 0.4rem;
@@ -1357,6 +1362,7 @@ main.sign-up-mode .carousel {
     letter-spacing: 0.5px;
 }
 
+
 #horizontal-nav .dropdown-menu a:nth-child(1){
     border-top-right-radius: 0.4rem;
     border-top-left-radius: 0.4rem;
@@ -1381,7 +1387,7 @@ main.sign-up-mode .carousel {
 /* ----------------------------------------------------------- */
 
 .utilisateur-reglage-wrapper {
-    display: flex;
+    display: none;
     position: absolute;
     top: 10vh;
     width: 100vw;
@@ -1428,6 +1434,10 @@ main.sign-up-mode .carousel {
     width: 100%;
     height: 100%;
     object-fit: fill;
+}
+
+.photo-profil label {
+    transform: translateY(-49%);
 }
 
 /* Styling for the file input, make it hidden */
