@@ -19,11 +19,22 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Membre` (
   `password` VARCHAR(15) NOT NULL,
   `region` VARCHAR(25) NULL DEFAULT NULL,
   `langue` VARCHAR(25) NULL DEFAULT NULL,
-  `photoProfil` LONGBLOB NULL DEFAULT NULL,
+  `photoProfilPath` VARCHAR(255) NULL DEFAULT NULL,
   `bio` LONGTEXT NULL DEFAULT NULL,
   `username` VARCHAR(45) NULL DEFAULT NULL,
   `privilege` TINYINT(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idMembre`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Challenges` (
+  `idChallenge` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMembre` INT(11) NOT NULL,
+  `firstSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  `secondSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  `thirdSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idChallenge`),
+  FOREIGN KEY (`idMembre`) REFERENCES `Membre`(`idMembre`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

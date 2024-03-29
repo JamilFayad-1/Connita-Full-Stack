@@ -23,6 +23,33 @@ body {
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #c4c4c4;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle when dragging */
+::-webkit-scrollbar-thumb:active {
+    background: #808080;
+}
+
 header {
     width: 100%;
     height: 10%;
@@ -39,10 +66,17 @@ header {
 }
 
 #logo-container img{
-    width: 40%;
-    min-width: 80px;
+    width: 15%;
+    min-width: 60px;
+    margin-top: 4vh;
+    margin-left: 12vh;
     height: auto;
-    margin-left: 20%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#logo-container a:hover > img {
+    transform: scale(0.95);
 }
 
 #horizontal-nav {
@@ -60,6 +94,7 @@ header {
 #horizontal-nav ul{
     display: flex;
     float: right;
+    align-items: center;
 }
 
 #horizontal-nav li{
@@ -82,6 +117,12 @@ header {
 #horizontal-nav img{
     width: inherit;
     height: inherit;
+    border-radius: 50%;
+}
+
+#horizontal-nav li:last-of-type{
+    width: 2.4rem;
+    height: 2.4rem;
 }
 
 
@@ -117,6 +158,7 @@ main {
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
 }
     
 #middle-section h1{
@@ -354,10 +396,10 @@ hr {
 
 #right-section-friends-list {
     position: relative;
-    top: 4%;
+    top: 10%;
     left: 0;
     width: 80%;
-    height: 90%;
+    height: 80%;
 }
 
 #right-section-friends-list h2{
@@ -512,14 +554,30 @@ hr {
     border-radius: 3rem;
     border: 1px solid #C6C6C6; 
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.5s ease;
-    transition: background-color 1s ease;
+    transition: all 1s ease;
+}
+
+.logged-in:hover {
+    box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
+    background-color: #E8AE8F;
     cursor: pointer;
 }
 
-#middle-section-challenges-element:hover{
+.logged-out:hover{
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     background-color: #E8AE8F;
+    cursor: no-drop;
+}
+
+#middle-section-challenges-element.logged-out:hover #challenge-complete h3 {
+    color: transparent;
+}
+
+#middle-section-challenges-element.logged-out:hover #challenge-complete::before {
+    position: absolute;
+    margin-left: 35%;
+    transform: translateX(-50%);
+    content: url('../images/lock.png');
 }
 
 .circle-container {
@@ -1231,7 +1289,7 @@ main.sign-up-mode .carousel {
 /* Message de validation - Inscription */
 /* ----------------------------------------------------------- */
 
-.messageInscription {
+.messagePopUps {
     display: flex;
     position: absolute;
     top: 0;
@@ -1265,24 +1323,22 @@ main.sign-up-mode .carousel {
     }
 }
 
-.messageTextReussie {
-    font-family: 'CustomFont1';
+.messagePopUps p{
+    font-family: 'montreal';
     font-size: 1rem;
     background-color: rgb(240, 240, 240);
-    color: green;
     border-radius: 2rem;
     padding: 0.4rem 1rem 0.4rem 1rem;
     text-align: center;
+    z-index: 100;
+}
+
+.messageTextReussie {
+    color: green;
 }
 
 .messageTextEchoue {
-    font-family: 'CustomFont1';
-    font-size: 1rem;
-    background-color: rgb(240, 240, 240);
     color: red;
-    border-radius: 2rem;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    text-align: center;
 }
 
 /* ----------------------------------------------------------- */
@@ -1294,7 +1350,7 @@ main.sign-up-mode .carousel {
     background-color: white;
     position: relative;
     margin-left: -7.5vw;
-    margin-top: 5vh;
+    margin-top: 6.5vh;
     height: 9.6vh;
     z-index: 10;
     border-radius: 0.4rem;
@@ -1322,6 +1378,7 @@ main.sign-up-mode .carousel {
     letter-spacing: 0.5px;
 }
 
+
 #horizontal-nav .dropdown-menu a:nth-child(1){
     border-top-right-radius: 0.4rem;
     border-top-left-radius: 0.4rem;
@@ -1346,7 +1403,7 @@ main.sign-up-mode .carousel {
 /* ----------------------------------------------------------- */
 
 .utilisateur-reglage-wrapper {
-    display: flex;
+    display: none;
     position: absolute;
     top: 10vh;
     width: 100vw;
@@ -1393,6 +1450,10 @@ main.sign-up-mode .carousel {
     width: 100%;
     height: 100%;
     object-fit: fill;
+}
+
+.photo-profil label {
+    transform: translateY(-49%);
 }
 
 /* Styling for the file input, make it hidden */
@@ -1486,10 +1547,6 @@ main.sign-up-mode .carousel {
     padding-left: 1.5vh;
     font-family: 'montreal', sans-serif;
     transition: 0.2s ease;
-}
-
-.reglage-form-row input:focus + label {
-    color: red;
 }
 
 .reglage-form-row textarea {
@@ -1626,4 +1683,131 @@ main.sign-up-mode .carousel {
     z-index: 1;
     width: 25px;
     height: 25px;
+}
+
+/* ----------------------------------------------------------- */
+/* Page de challenges pour s'éxercer
+/* ----------------------------------------------------------- */
+
+.challenge-set-nav-wrapper {
+    width: 100vw;
+    height: 8vh;
+    position: absolute;
+    top: 15vh;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.challenge-set-nav-container{
+    width: 100%;
+    max-width: 600px;
+}
+
+#challenge-set-nav-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    list-style: none;
+}
+
+.btnSet{
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    background-image: linear-gradient(to left, #ff9966,#ff5e62,#ff9966);
+    color: white;
+    padding: 1vh;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-size: 200%;
+    transition: all 0.6s;
+}
+
+.btnSet:hover{
+    background-position: right;
+}
+
+.challenge-Wrapper {
+    width: 100vw;
+    height: 80vh;
+    position: absolute;
+    top: 12vh;
+    display: flex;
+    justify-content: center;
+}
+
+.challenge-container {
+    background: #e5e5e5;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px 0 auto;
+    border: 1px solid #ff5e62;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.challenge-container h1 {
+    font-family: 'montreal', sans-serif;
+    color: #2d2d2d;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+}
+
+.quiz {
+    padding-top: 5px;
+}
+
+.quiz h2 {
+    margin-top: 0;
+    font-family: 'montreal', sans-serif;
+    color: #646464;
+    
+}
+
+.btnAnswer {
+    background: #fff;
+    color: #223;
+    font-family: 'montreal', sans-serif;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btnAnswer:hover:not([disabled]) {
+    background: #222;
+    color: #fff;
+}
+
+.btnAnswer:disabled{
+    cursor: no-drop;
+}
+
+#btnNext{
+    background: #e27c44;
+    color: #fff;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: auto;
+    min-width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+
+.correct{
+    background: #9aeabc;
+}
+
+.incorrect{
+    background: #ff9393;
 }

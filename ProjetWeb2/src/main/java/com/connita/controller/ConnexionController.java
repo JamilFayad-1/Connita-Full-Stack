@@ -13,12 +13,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Gwuliano
  */
 public class ConnexionController extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(ChallengeController.class.getName());
     private MembreDao membreDao;
     private String message;
     private HttpSession session;
@@ -41,7 +44,13 @@ public class ConnexionController extends HttpServlet {
 
         if (membre != null) {
             session = request.getSession(true);
+            session.setAttribute("userId", membre.getIdMembre());
             session.setAttribute("user", email);
+            if ("".equals(membre.getPhotoProfil())){
+                session.setAttribute("photoProfil", "Default-profile-pic.png");
+            }else {
+                session.setAttribute("photoProfil", membre.getPhotoProfil());
+            }
             session.setAttribute("firstName", membre.getPrenom());
             session.setAttribute("lastName", membre.getNom());
             session.setAttribute("username", membre.getUsername());
@@ -50,8 +59,8 @@ public class ConnexionController extends HttpServlet {
             
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
-            message = "L'email ou le mot de passe est invalide.";
-            request.setAttribute("message", message);
+            message = "Password or email are invalid..";
+            request.setAttribute("messageConnEchoue", message);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
