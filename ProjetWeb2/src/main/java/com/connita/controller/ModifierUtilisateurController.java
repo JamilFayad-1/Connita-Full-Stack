@@ -19,8 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -29,7 +27,6 @@ import java.util.logging.Logger;
  */
 @MultipartConfig
 public class ModifierUtilisateurController extends HttpServlet{
-    private static final Logger logger = Logger.getLogger(ModifierUtilisateurController.class.getName());
     private MembreDao membreDao;
     private String messageModifieReussite;
     private String messageModifieEchoue;
@@ -55,7 +52,6 @@ public class ModifierUtilisateurController extends HttpServlet{
         if (filePart == null || filePart.getSize() == 0) {
             // No input for profile picture, set default path
             photoProfilPath = "NADA";
-            logger.log(Level.INFO, "No input received for profile picture, using default path: {0}", photoProfilPath);
         } else {
             // There's input for profile picture, proceed with handling the file
             // Obtain the file name
@@ -111,7 +107,6 @@ public class ModifierUtilisateurController extends HttpServlet{
 
         Membre membre = new Membre();
         membre.setPhotoProfil(photoProfilPath);
-        logger.log(Level.INFO, "photo profile should be NADA: {0}", photoProfilPath);
         membre.setUsername(username);
         membre.setBio(bio);
         membre.setRegion(region);
@@ -121,7 +116,6 @@ public class ModifierUtilisateurController extends HttpServlet{
         if(valider) {
             if (!"NADA".equals(photoProfilPath)) {
                 session.setAttribute("photoProfil", membre.getPhotoProfil());
-                logger.log(Level.INFO, "SI CA AFFICHE CEST UNE ERREUR3");
             }
             if (!"".equals(request.getParameter("username"))) {
                 session.setAttribute("username", membre.getUsername());

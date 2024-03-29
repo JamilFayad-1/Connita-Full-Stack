@@ -27,6 +27,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Membre` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE IF NOT EXISTS `mydb`.`Challenges` (
+  `idChallenge` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMembre` INT(11) NOT NULL,
+  `firstSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  `secondSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  `thirdSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idChallenge`),
+  FOREIGN KEY (`idMembre`) REFERENCES `Membre`(`idMembre`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`Forum` (
   `idForum` INT(11) NOT NULL,
   `nomForum` VARCHAR(45) NULL DEFAULT NULL,

@@ -10,6 +10,8 @@
 <%
    String messageModifieReussite = (String)request.getAttribute("messageModifieReussite");
    String messageModifieEchoue = (String)request.getAttribute("messageModifieEchoue");
+   String messageChangePasswordReussi = (String)request.getAttribute("messageChangePasswordReussi");
+   String messageChangePasswordEchoue = (String)request.getAttribute("messageChangePasswordEchoue");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +28,10 @@
                 <p class="messageTextReussie"><%= messageModifieReussite %></p>
             <% } else if (request.getAttribute("messageModifieEchoue") != null) { %>
                 <p class="messageTextEchoue"><%= messageModifieEchoue %></p>
+            <% } else if (request.getAttribute("messageChangePasswordReussi") != null) { %>
+                <p class="messageTextReussie"><%= messageChangePasswordReussi %></p>
+            <% } else if (request.getAttribute("messageChangePasswordEchoue") != null) { %>
+                <p class="messageTextEchoue"><%= messageChangePasswordEchoue %></p>
             <% } %>
         </div>
         

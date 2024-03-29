@@ -554,14 +554,30 @@ hr {
     border-radius: 3rem;
     border: 1px solid #C6C6C6; 
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.5s ease;
-    transition: background-color 1s ease;
+    transition: all 1s ease;
+}
+
+.logged-in:hover {
+    box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
+    background-color: #E8AE8F;
     cursor: pointer;
 }
 
-#middle-section-challenges-element:hover{
+.logged-out:hover{
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     background-color: #E8AE8F;
+    cursor: no-drop;
+}
+
+#middle-section-challenges-element.logged-out:hover #challenge-complete h3 {
+    color: transparent;
+}
+
+#middle-section-challenges-element.logged-out:hover #challenge-complete::before {
+    position: absolute;
+    margin-left: 35%;
+    transform: translateX(-50%);
+    content: url('../images/lock.png');
 }
 
 .circle-container {
@@ -1673,26 +1689,66 @@ main.sign-up-mode .carousel {
 /* Page de challenges pour s'éxercer
 /* ----------------------------------------------------------- */
 
+.challenge-set-nav-wrapper {
+    width: 100vw;
+    height: 8vh;
+    position: absolute;
+    top: 15vh;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.challenge-set-nav-container{
+    width: 100%;
+    max-width: 600px;
+}
+
+#challenge-set-nav-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    list-style: none;
+}
+
+.btnSet{
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    background-image: linear-gradient(to left, #ff9966,#ff5e62,#ff9966);
+    color: white;
+    padding: 1vh;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-size: 200%;
+    transition: all 0.6s;
+}
+
+.btnSet:hover{
+    background-position: right;
+}
+
 .challenge-Wrapper {
     width: 100vw;
-    height: 90vh;
+    height: 80vh;
     position: absolute;
-    top: 10vh;
+    top: 12vh;
     display: flex;
     justify-content: center;
 }
 
 .challenge-container {
-    background: #c7c7c7;
+    background: #e5e5e5;
     width: 90%;
     max-width: 600px;
     margin: 100px 0 auto;
+    border: 1px solid #ff5e62;
     border-radius: 10px;
     padding: 30px;
 }
 
 .challenge-container h1 {
-    font-family: 'CustomFont1', sans-serif;
+    font-family: 'montreal', sans-serif;
     color: #2d2d2d;
     border-bottom: 1px solid #333;
     padding-bottom: 30px;
@@ -1703,6 +1759,7 @@ main.sign-up-mode .carousel {
 }
 
 .quiz h2 {
+    margin-top: 0;
     font-family: 'montreal', sans-serif;
     color: #646464;
     
@@ -1710,8 +1767,8 @@ main.sign-up-mode .carousel {
 
 .btnAnswer {
     background: #fff;
-    color: #222;
-    font-weight: 500;
+    color: #223;
+    font-family: 'montreal', sans-serif;
     width: 100%;
     border: 1px solid #222;
     padding: 10px;
@@ -1719,4 +1776,38 @@ main.sign-up-mode .carousel {
     text-align: left;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btnAnswer:hover:not([disabled]) {
+    background: #222;
+    color: #fff;
+}
+
+.btnAnswer:disabled{
+    cursor: no-drop;
+}
+
+#btnNext{
+    background: #e27c44;
+    color: #fff;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: auto;
+    min-width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+
+.correct{
+    background: #9aeabc;
+}
+
+.incorrect{
+    background: #ff9393;
 }

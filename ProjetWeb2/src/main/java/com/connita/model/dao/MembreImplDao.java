@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,18 +16,20 @@ import java.util.logging.Logger;
 public class MembreImplDao implements MembreDao {
     // Requêtes SQL
     private static final String SQL_AJOUTER_MEMBRE = "INSERT INTO membre (nom, prenom, email, password) VALUES (?, ?, ?, ?)";
-    private static final String SQL_CONNEXION_PAR_EMAIL_AND_PASSWORD = "SELECT photoProfilPath, nom, prenom, username, bio, region FROM membre WHERE email = ? AND password = ?";
+    private static final String SQL_AJOUTER_CHALLENGE = "INSERT INTO Challenges (idMembre, firstSetComplete, secondSetComplete, thirdSetComplete) VALUES (?, ?, ?, ?)";
+    private static final String SQL_CONNEXION_PAR_EMAIL_AND_PASSWORD = "SELECT idMembre, photoProfilPath, nom, prenom, username, bio, region FROM membre WHERE email = ? AND password = ?";
     private static final String SQL_VERIFIER_MOT_DE_PASSE = "SELECT password FROM membre WHERE email = ? AND password = ?";
-    private static final String SQL_CHANGER_MOT_DE_PASSE = "UPDATE membre SET password = ? WHERE email = ?, password = ?";
+    private static final String SQL_CHANGER_MOT_DE_PASSE = "UPDATE membre SET password = ? WHERE email = ? AND password = ?";
     
     @Override
     public boolean ajouterMembre(Membre membre) {
         boolean validation = false;
         PreparedStatement ps = null;
+        PreparedStatement psChallenges = null;
 
         try {
             
-            ps = ConnexionDB.getConnection().prepareStatement(SQL_AJOUTER_MEMBRE);
+            ps = ConnexionDB.getConnection().prepareStatement(SQL_AJOUTER_MEMBRE, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, membre.getNom());
             ps.setString(2, membre.getPrenom());
@@ -34,7 +37,26 @@ public class MembreImplDao implements MembreDao {
             ps.setString(4, membre.getPassword());
 
             int nbLigne = ps.executeUpdate();
-            validation = nbLigne > 0;
+            if (nbLigne > 0) {
+            // If the member was added successfully, proceed to create a row in the Challenges table
+
+            // Get the auto-generated ID of the newly added member
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            int memberId = -1;
+            if (generatedKeys.next()) {
+                memberId = generatedKeys.getInt(1);
+            }
+
+            psChallenges = ConnexionDB.getConnection().prepareStatement(SQL_AJOUTER_CHALLENGE);
+            psChallenges.setInt(1, memberId);
+
+            psChallenges.setInt(2, 0);
+            psChallenges.setInt(3, 0);
+            psChallenges.setInt(4, 0);
+
+            int nbLigneChallenges = psChallenges.executeUpdate();
+            validation = nbLigneChallenges > 0;
+        }
 
         } catch (SQLException e) {
             Logger.getLogger(MembreImplDao.class.getName()).log(Level.SEVERE, "Une erreur est survenue lors de la création de l'utilisateur", e);
@@ -69,6 +91,7 @@ public class MembreImplDao implements MembreDao {
             while(result.next()){
                 membre = new Membre();
                 
+                membre.setIdMembre(result.getInt("idMembre"));
                 membre.setPhotoProfil(result.getString("photoProfilPath"));
                 membre.setPrenom(result.getString("prenom"));
                 membre.setNom(result.getString("nom"));

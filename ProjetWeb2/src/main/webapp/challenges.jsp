@@ -35,7 +35,7 @@
                         </form>
                     </div>
                     <div id="middle-section-challenges-container">
-                        <div id="middle-section-challenges-element">
+                        <div id="middle-section-challenges-element" class="<%= session.getAttribute("user") != null ? "logged-in" : "logged-out" %>">
                             <div class="circle-container">
                                 <div class="fraction">1/3</div>
                             </div>
@@ -59,6 +59,16 @@
             </c:if>
         </main>
         
-        <script src="javascript.js" defer></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var challengeElement = document.getElementById('middle-section-challenges-element');
+
+                    challengeElement.addEventListener('click', function() {
+                        if (!challengeElement.classList.contains('logged-out')) {
+                            window.location.href = 'challengesJouer.jsp';
+                        }
+                    });
+                });
+            </script>
     </body>
 </html>
