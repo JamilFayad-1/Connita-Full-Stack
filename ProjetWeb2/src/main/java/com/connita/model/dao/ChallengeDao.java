@@ -4,11 +4,16 @@
  */
 package com.connita.model.dao;
 
+import com.connita.model.entities.Challenge;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author Jamil
  */
 public interface ChallengeDao {
     boolean updateChallenge(int idMembre, String columnName);
-    boolean isChallengeCompleted(int idMembre, int setNumber);
+    List<Challenge> getChallengesFromDatabase();
+    Map<String, Boolean> getStatus(int userId);
 }

@@ -13,15 +13,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 /**
  *
  * @author Jamil
  */
 public class ChallengeController extends HttpServlet{
-    private static final Logger logger = Logger.getLogger(ChallengeController.class.getName());
     private ChallengeDao challengeDao;
     HttpSession session;    
     boolean success = false;
@@ -38,6 +36,8 @@ public class ChallengeController extends HttpServlet{
         int memberId = (int) session.getAttribute("userId");
         String columnName = request.getParameter("columnName");
         
+        Map<String, Boolean> challengeCompletionStatus = challengeDao.getStatus(memberId);
+        request.setAttribute("challengeCompletionStatus", challengeCompletionStatus);
         success = challengeDao.updateChallenge(memberId, columnName);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

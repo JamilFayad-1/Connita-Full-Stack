@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.connita.model.entities.Challenge" %>
+<%@ page import="com.connita.model.dao.ChallengeImplDao" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,23 +37,32 @@
                             </div>
                         </form>
                     </div>
-                    <div id="middle-section-challenges-container">
+                    <%
+                        ChallengeImplDao challengeDao = new ChallengeImplDao();
+                        // Assuming you have a method to retrieve challenge data from the database
+                        List<Challenge> challenges = challengeDao.getChallengesFromDatabase();
+
+                        // Loop through the list of challenges and display each one
+                        for (Challenge challenge : challenges) {
+                    %>
                         <div id="middle-section-challenges-element" class="<%= session.getAttribute("user") != null ? "logged-in" : "logged-out" %>">
                             <div class="circle-container">
                                 <div class="fraction">1/3</div>
                             </div>
                             <div id="subject-challenge-container">
                                 <div id="subject-challenge">
-                                    <img src="https://img.icons8.com/dusk/64/italy.png" alt="italy"/>
-                                    <h3>Italian</h3>
+                                    <img src="<%= challenge.getChallengeImageUrl() %>" alt="<%= challenge.getChallengeName() %>"/>
+                                    <h3><%= challenge.getChallengeName() %></h3>
                                 </div>
-                                <p>Italian Renaissance: Advanced Language and Cultural Immersion!</p>
+                                <p><%= challenge.getChallengeDescription() %></p>
                             </div>
                             <div id="challenge-complete">
-                                <h3>Complete</h3>
+                                    <h3>Complete</h3>
                             </div>
                         </div>
-                    </div>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
             <!-- Right section -->
@@ -61,12 +73,14 @@
         
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    var challengeElement = document.getElementById('middle-section-challenges-element');
+                    var challengeElements = document.querySelectorAll('#middle-section-challenges-element');
 
-                    challengeElement.addEventListener('click', function() {
-                        if (!challengeElement.classList.contains('logged-out')) {
-                            window.location.href = 'challengesJouer.jsp';
-                        }
+                    challengeElements.forEach(function(challengeElement) {
+                        challengeElement.addEventListener('click', function() {
+                            if (!challengeElement.classList.contains('logged-out')) {
+                                window.location.href = 'challengesJouer.jsp';
+                            }
+                        });
                     });
                 });
             </script>

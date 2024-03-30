@@ -4,6 +4,8 @@
  */
 package com.connita.controller;
 
+import com.connita.model.dao.ChallengeDao;
+import com.connita.model.dao.ChallengeImplDao;
 import com.connita.model.dao.MembreDao;
 import com.connita.model.dao.MembreImplDao;
 import com.connita.model.entities.Membre;
@@ -13,16 +15,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 /**
  *
  * @author Gwuliano
  */
 public class ConnexionController extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(ChallengeController.class.getName());
+    //private static final Logger logger = Logger.getLogger(ChallengeController.class.getName());
     private MembreDao membreDao;
+    private ChallengeDao challengeDao;
     private String message;
     private HttpSession session;
 
@@ -30,6 +34,7 @@ public class ConnexionController extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         membreDao = new MembreImplDao();
+        challengeDao = new ChallengeImplDao();
     }
 
     @Override
@@ -41,6 +46,7 @@ public class ConnexionController extends HttpServlet {
 
         // Check if the user exists in the database
         Membre membre = membreDao.existsByEmailAndPassword(email, password);
+        Map<String, Boolean> challengeCompletionStatus = challengeDao.getStatus(membre.getIdMembre());
 
         if (membre != null) {
             session = request.getSession(true);
@@ -57,6 +63,7 @@ public class ConnexionController extends HttpServlet {
             session.setAttribute("bio", membre.getBio());
             session.setAttribute("region", membre.getRegion());
             
+            request.setAttribute("challengeCompletionStatus", challengeCompletionStatus);
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
             message = "Password or email are invalid..";
