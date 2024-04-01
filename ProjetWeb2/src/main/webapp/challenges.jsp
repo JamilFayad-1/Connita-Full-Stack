@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css"/>
         <title>Challenges</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
 
@@ -78,10 +79,31 @@
                     challengeElements.forEach(function(challengeElement) {
                         challengeElement.addEventListener('click', function() {
                             if (!challengeElement.classList.contains('logged-out')) {
-                                window.location.href = 'challengesJouer.jsp';
+                                
+                                var challengeName = challengeElement.querySelector('h3').textContent;               
+                                var url = 'challengesJouer.jsp?challengeName=' + encodeURIComponent(challengeName);
+                
+                                window.location.href = url;
+                                
+                                var userId = '<%= session.getAttribute("userId") %>';
+                                createTableRow(userId, challengeName);
                             }
                         });
                     });
+                    
+                    function createTableRow(userId, challengeName) {
+                        $.ajax({
+                            url: 'CreateChallengeRowController',
+                            method: 'POST',
+                            data: { userId: userId, challengeName: challengeName },
+                            success: function(response) {
+                                console.log('Row created successfully');
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error creating row:', xhr.responseText);
+                            }
+                        });
+                    }
                 });
             </script>
     </body>

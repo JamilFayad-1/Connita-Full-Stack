@@ -21,21 +21,23 @@
             Integer userId = (Integer) session.getAttribute("userId");
 
             ChallengeImplDao challengeDao = new ChallengeImplDao();
-            Map<String, Boolean> challengeCompletionStatus = challengeDao.getStatus(userId);
+            Map<String, Map<String, Boolean>> challengeCompletionStatus = challengeDao.getStatus(userId);
+            
+            String challengeName = request.getParameter("challengeName");
         %>
         <div class="challenge-set-nav-wrapper">
             <div class="challenge-set-nav-container">
                 <ul id="challenge-set-nav-list">
-                    <button class="btnSet" onclick="loadChallengeSet(questions1); setTableNameIndex(1)" <%= challengeCompletionStatus.get("firstSetComplete") ? "" : "disabled" %>>Challenge 1</button>
-                    <button class="btnSet" onclick="loadChallengeSet(questions2); setTableNameIndex(2)" <%= challengeCompletionStatus.get("secondSetComplete") ? "" : "disabled" %>>Challenge 2</button>
-                    <button class="btnSet" onclick="loadChallengeSet(questions3); setTableNameIndex(3)" <%= challengeCompletionStatus.get("thirdSetComplete") ? "" : "disabled" %>>Challenge 3</button>
+                    <button class="btnSet" onclick="loadChallengeSet(<%= challengeName %>1); setTableNameIndex(1)"><%= challengeName%> 1</button>
+                    <button class="btnSet" onclick="loadChallengeSet(<%= challengeName %>2); setTableNameIndex(2)" <%= challengeCompletionStatus.get(challengeName).get("firstSetComplete") ? "" : "disabled" %>><%= challengeName%> 2</button>
+                    <button class="btnSet" onclick="loadChallengeSet(<%= challengeName %>3); setTableNameIndex(3)" <%= challengeCompletionStatus.get(challengeName).get("secondSetComplete") ? "" : "disabled" %>><%= challengeName%> 3</button>
                 </ul>
             </div>
         </div>
-        
+
         <div class="challenge-Wrapper">
             <div class="challenge-container">
-                <h1>Introduction to Italian</h1>
+                <h1>Introduction to <%= challengeName %></h1>
                 <div class="quiz">
                     <h2 id="question">Question goes here</h2>
                     <div id="answer-buttons">
@@ -49,5 +51,24 @@
             </div>
         </div>
         <script src="javascript/javascriptChallenges.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Function to get URL parameters by name
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, '\\$&');
+                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                }
+
+                var challengeName = getParameterByName('challengeName');
+            });
+            
+            var firstButton = document.querySelector(".btnSet");
+            firstButton.click();
+        </script>
     </body>
 </html>

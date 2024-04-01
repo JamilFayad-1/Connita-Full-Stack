@@ -46,10 +46,10 @@ public class ConnexionController extends HttpServlet {
 
         // Check if the user exists in the database
         Membre membre = membreDao.existsByEmailAndPassword(email, password);
-        Map<String, Boolean> challengeCompletionStatus = challengeDao.getStatus(membre.getIdMembre());
 
         if (membre != null) {
             session = request.getSession(true);
+            Map<String, Map<String, Boolean>> challengeCompletionStatus = challengeDao.getStatus(membre.getIdMembre());
             session.setAttribute("userId", membre.getIdMembre());
             session.setAttribute("user", email);
             if ("".equals(membre.getPhotoProfil())){

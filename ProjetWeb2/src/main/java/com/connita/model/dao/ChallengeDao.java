@@ -13,7 +13,9 @@ import java.util.Map;
  * @author Jamil
  */
 public interface ChallengeDao {
-    boolean updateChallenge(int idMembre, String columnName);
+    boolean updateChallenge(int idMembre, String columnName, String challengeName);
     List<Challenge> getChallengesFromDatabase();
-    Map<String, Boolean> getStatus(int userId);
+    Map<String, Map<String, Boolean>> getStatus(int idMembre);
+    boolean createChallengeRow(int memberId, String challengeName);
+    boolean verifyChallengeRowExists(int memberId, String challengeName);
 }

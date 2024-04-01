@@ -30,6 +30,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`Challenges` (
   `idChallenge` INT(11) NOT NULL AUTO_INCREMENT,
   `idMembre` INT(11) NOT NULL,
+  `challenge_name` VARCHAR(100) NOT NULL,
   `firstSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
   `secondSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
   `thirdSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
@@ -39,10 +40,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`ChallengesElement` (
-    challenge_id INT(11)NOT NULL AUTO_INCREMENT,
-    challenge_name VARCHAR(100) NOT NULL,
-    challenge_description VARCHAR(100) NOT NULL,
-    challenge_image_url VARCHAR(255) NOT NULL,
+    `challenge_id` INT(11)NOT NULL AUTO_INCREMENT,
+    `challenge_name` VARCHAR(100) NOT NULL,
+    `challenge_description` VARCHAR(100) NOT NULL,
+    `challenge_image_url` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`challenge_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
