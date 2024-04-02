@@ -49,6 +49,7 @@ public class ModifierUtilisateurController extends HttpServlet{
         String photoProfilPath;
         Part filePart = request.getPart("profilPic");
         
+        
         if (filePart == null || filePart.getSize() == 0) {
             // No input for profile picture, set default path
             photoProfilPath = "NADA";

@@ -30,6 +30,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`Challenges` (
   `idChallenge` INT(11) NOT NULL AUTO_INCREMENT,
   `idMembre` INT(11) NOT NULL,
+  `challenge_name` VARCHAR(100) NOT NULL,
   `firstSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
   `secondSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
   `thirdSetComplete` TINYINT(1) NOT NULL DEFAULT 0,
@@ -37,6 +38,27 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Challenges` (
   FOREIGN KEY (`idMembre`) REFERENCES `Membre`(`idMembre`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`ChallengesElement` (
+    `challenge_id` INT(11)NOT NULL AUTO_INCREMENT,
+    `challenge_name` VARCHAR(100) NOT NULL,
+    `challenge_description` VARCHAR(100) NOT NULL,
+    `challenge_image_url` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`challenge_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+INSERT INTO mydb.ChallengesElement (challenge_name, challenge_description, challenge_image_url)
+VALUES ('Italian', 'Introduction to Italian', 'https://img.icons8.com/dusk/64/italy.png');
+
+INSERT INTO mydb.ChallengesElement (challenge_name, challenge_description, challenge_image_url)
+VALUES ('French', 'Introduction to French', 'https://img.icons8.com/dusk/64/france.png');
+
+INSERT INTO mydb.ChallengesElement (challenge_name, challenge_description, challenge_image_url)
+VALUES ('Spanish', 'Introduction to Spanish', 'https://img.icons8.com/dusk/64/spain.png');
+
+INSERT INTO mydb.ChallengesElement (challenge_name, challenge_description, challenge_image_url)
+VALUES ('German', 'Introduction to German', 'https://img.icons8.com/dusk/64/germany.png');
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Forum` (
   `idForum` INT(11) NOT NULL,

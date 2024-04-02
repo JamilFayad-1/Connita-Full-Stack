@@ -1728,6 +1728,13 @@ main.sign-up-mode .carousel {
     background-position: right;
 }
 
+.btnSet:disabled{
+    background: #650c0c;
+    filter: blur(1.5px);
+    cursor: no-drop;
+    transition: all 0.6s;
+}
+
 .challenge-Wrapper {
     width: 100vw;
     height: 80vh;

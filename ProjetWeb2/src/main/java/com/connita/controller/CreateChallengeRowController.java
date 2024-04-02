@@ -12,14 +12,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
 
 /**
  *
  * @author Jamil
  */
-public class ChallengeController extends HttpServlet{
+public class CreateChallengeRowController extends HttpServlet{
     private ChallengeDao challengeDao;
     HttpSession session;    
     boolean success = false;
@@ -33,16 +31,20 @@ public class ChallengeController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session = request.getSession(false);
-        int memberId = (int) session.getAttribute("userId");
-        String columnName = request.getParameter("columnName");
-        String challengeName = request.getParameter("challenge_name");
-        success = challengeDao.updateChallenge(memberId, columnName, challengeName);
-        Map<String, Map<String, Boolean>> challengeCompletionStatus = challengeDao.getStatus(memberId);
-        request.setAttribute("challengeCompletionStatus", challengeCompletionStatus);
+        int userId = (int) session.getAttribute("userId");
+        String challengeName = request.getParameter("challengeName");
+        
+        boolean verifyRow = challengeDao.verifyChallengeRowExists(userId, challengeName);
+
+        if(verifyRow){
+            success = true;
+        }else{
+            success = challengeDao.createChallengeRow(userId, challengeName);
+        }
+
+        // Set response content type and send success status
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        out.print("{ \"success\": " + success + " }");
-        out.flush();
+        response.getWriter().write("{ \"success\": " + success + " }");
     }
 }

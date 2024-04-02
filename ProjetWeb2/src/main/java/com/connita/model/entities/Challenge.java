@@ -9,58 +9,69 @@ package com.connita.model.entities;
  * @author Jamil
  */
 public class Challenge {
-    private int idChallenge;
-    private int idMembre;
-    private boolean firstSetComplete;
-    private boolean secondSetComplete;
-    private boolean thirdSetComplete;
+    private int challengeId;
+    private String challengeName;
+    private String challengeDescription;
+    private String challengeImageUrl;
 
-    // Constructor
-    public Challenge(int idMembre, boolean firstSetComplete, boolean secondSetComplete, boolean thirdSetComplete) {
-        this.idMembre = idMembre;
-        this.firstSetComplete = firstSetComplete;
-        this.secondSetComplete = secondSetComplete;
-        this.thirdSetComplete = thirdSetComplete;
+    // Constructors
+    public Challenge() {
+    }
+
+    public Challenge(int challengeId, String challengeName, String challengeDescription, String challengeImageUrl) {
+        this.challengeId = challengeId;
+        this.challengeName = challengeName;
+        this.challengeDescription = challengeDescription;
+        this.challengeImageUrl = challengeImageUrl;
+    }
+    
+    public Challenge(String challengeName, String challengeDescription, String challengeImageUrl) {
+        this.challengeName = challengeName;
+        this.challengeDescription = challengeDescription;
+        this.challengeImageUrl = challengeImageUrl;
     }
 
     // Getters and setters
-    public int getIdChallenge() {
-        return idChallenge;
+    public int getChallengeId() {
+        return challengeId;
     }
 
-    public void setIdChallenge(int idChallenge) {
-        this.idChallenge = idChallenge;
+    public void setChallengeId(int challengeId) {
+        this.challengeId = challengeId;
     }
 
-    public int getIdMembre() {
-        return idMembre;
+    public String getChallengeName() {
+        return challengeName;
     }
 
-    public void setIdMembre(int idMembre) {
-        this.idMembre = idMembre;
+    public void setChallengeName(String challengeName) {
+        this.challengeName = challengeName;
     }
 
-    public boolean isFirstSetComplete() {
-        return firstSetComplete;
+    public String getChallengeDescription() {
+        return challengeDescription;
     }
 
-    public void setFirstSetComplete(boolean firstSetComplete) {
-        this.firstSetComplete = firstSetComplete;
+    public void setChallengeDescription(String challengeDescription) {
+        this.challengeDescription = challengeDescription;
     }
 
-    public boolean isSecondSetComplete() {
-        return secondSetComplete;
+    public String getChallengeImageUrl() {
+        return challengeImageUrl;
     }
 
-    public void setSecondSetComplete(boolean secondSetComplete) {
-        this.secondSetComplete = secondSetComplete;
+    public void setChallengeImageUrl(String challengeImageUrl) {
+        this.challengeImageUrl = challengeImageUrl;
     }
 
-    public boolean isThirdSetComplete() {
-        return thirdSetComplete;
-    }
-
-    public void setThirdSetComplete(boolean thirdSetComplete) {
-        this.thirdSetComplete = thirdSetComplete;
+    // Override toString method for debugging or logging purposes
+    @Override
+    public String toString() {
+        return "Challenge{" +
+                "challengeId=" + challengeId +
+                ", challengeName='" + challengeName + '\'' +
+                ", challengeDescription='" + challengeDescription + '\'' +
+                ", challengeImageUrl='" + challengeImageUrl + '\'' +
+                '}';
     }
 }
