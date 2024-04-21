@@ -26,13 +26,13 @@
                 </form>
             </div>
             <div id="middle-section-friends-list-container">
-                <div class="middle-section-friends-list-element" id="userElementDisplayed">
+                <div th:each="utilisateur : ${listeUtilisateur}" class="middle-section-friends-list-element" id="userElementDisplayed">
                     <div class="friends-list-element-picture">
-                        <img src="images/spain.png" alt="User-Profile-Pic">
+                        <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
                     </div>
                     <div class="friends-list-element-name-region">
-                        <h2>Jamil Fayad</h2>
-                        <h3>Canada</h3>
+                        <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>
+                        <h3 th:text="${utilisateur.region}"></h3>
                     </div>
                     <div class="friends-list-element-add-button">
                         <button type="button" id="addButton">
@@ -49,13 +49,20 @@
     /*<![CDATA[*/
 
     document.addEventListener("DOMContentLoaded", function() {
-        var addButton = document.getElementById('addButton');
-        var addImage = document.getElementById('addImage');
-        var elementAdded = document.getElementById('userElementDisplayed');
+        var addButton = document.querySelectorAll('#addButton');
 
-        addButton.addEventListener('click', function() {
-            addImage.src = "images/Screenshot 2024-04-21 013229.png";
-            elementAdded.classList.add("added-user");
+        addButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var addImage = this.querySelector('img');
+                var elementAdded = this.closest('.middle-section-friends-list-element');
+
+                // Update image source
+                var currentSrc = addImage.getAttribute('src');
+                addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+
+                // Add a class to the parent element
+                elementAdded.classList.add("added-user");
+            });
         });
     });
 

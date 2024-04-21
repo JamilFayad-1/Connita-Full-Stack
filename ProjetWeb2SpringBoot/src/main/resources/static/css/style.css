@@ -1916,7 +1916,7 @@ main.sign-up-mode .carousel {
 }
 
 .friends-list-element-name-region{
-    width: 30%;
+    width: 50%;
     display: block;
     font-family: 'CustomFont1', sans-serif;
 }
@@ -1934,7 +1934,7 @@ main.sign-up-mode .carousel {
 }
 
 .friends-list-element-add-button{
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: end;
     align-items: center;

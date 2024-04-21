@@ -41,6 +41,7 @@ public class MembreService {
             membre.setNom(lastName);
             membre.setEmail(email);
             membre.setPassword(password);
+            membre.setPhotoProfilPath("images/Default-profile-pic.png");
             membreRepository.save(membre);
             return membre;
         } catch (Exception e) {

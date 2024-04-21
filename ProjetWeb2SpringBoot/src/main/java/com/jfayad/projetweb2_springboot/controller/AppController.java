@@ -27,7 +27,4 @@ public class AppController {
     @GetMapping("/challengesJouer")
     public String getPageChallengesJouer() {  return "challengesJouer"; }
 
-    @GetMapping("/pageAjoutUtilisateur")
-    public String getPageAjoutUtilisateur() { return "pageAjoutUtilisateur"; }
-
 }
