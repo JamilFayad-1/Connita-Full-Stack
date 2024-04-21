@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nav bar</title>
+</head>
+<body>
+<div id="left-section" th:fragment="leftNavFragment">
+    <div id="left-section-nav-bar">
+        <ul>
+            <li th:if="${session.loggedInUser != null}">
+                <a th:href="@{/pageAccueilUtilisateur}">Feed</a>
+            </li>
+            <li th:unless="${session.loggedInUser != null}">
+                <a th:href="@{/index}">Home page</a>
+            </li>
+            <li><a href="#">Learning mates</a></li>
+            <li><a href="#">Languages</a></li>
+            <li><a href="#">Countries</a></li>
+            <li><a href="#">Travel</a></li>
+            <li><a th:href="@{/challenges}">Challenges</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

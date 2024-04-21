@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'accueil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>Challenges</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Include menu -->
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+        <div id="middle-section-challenges-layout">
+            <h1>Challenges</h1>
+            <div id="middle-section-search-bar">
+                <form class="formSearchBar">
+                    <div>
+                        <input type="text" id="searchQuery" name="challengeName" placeholder="Find a specific challenge" oninput="filterChallenges()" required>
+                        <img src="https://img.icons8.com/pastel-glyph/64/search--v1.png" id="searchIcon" alt="search--v1"/>
+                    </div>
+                </form>
+            </div>
+            <!-- Loop through challenges -->
+            <div th:each="challenge : ${session.challenges}" id="middle-section-challenges-element"
+                 th:class="${session.loggedInUser != null ? 'logged-in' : 'logged-out'}">
+                <div class="circle-container">
+                    <div class="fraction" th:text="${challenge.challengeId}"></div>
+                </div>
+                <div id="subject-challenge-container">
+                    <div id="subject-challenge">
+                        <img th:src="${challenge.challengeImageUrl}" th:alt="${challenge.challengeName}"/>
+                        <h3 th:text="${challenge.challengeName}"></h3>
+                        <h2 th:if="${session != null and session.loggedInUser != null}" th:text="${session.loggedInUser.idMembre}" style="display: none"></h2>
+                    </div>
+                    <p th:text="${challenge.challengeDescription}"></p>
+                </div>
+                <div id="challenge-complete">
+                    <h3>Complete</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:if="${session.loggedInUser != null}" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var challengeElements = document.querySelectorAll('#middle-section-challenges-element');
+
+        challengeElements.forEach(function(challengeElement) {
+            challengeElement.addEventListener('click', function() {
+                if (!challengeElement.classList.contains('logged-out')) {
+                    var challengeName = challengeElement.querySelector('h3').textContent;
+                    var userId = challengeElement.querySelector('h2').textContent;
+                    var url = 'challengesJouer?challengeName=' + encodeURIComponent(challengeName);
+                    createTableRow(userId, challengeName);
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+
+    function createTableRow(memberId, challengeName) {
+        $.ajax({
+            url: '/createChallengeRow',
+            method: 'GET',
+            data: { userId: memberId, challengeName: challengeName },
+            success: function(response) {
+                console.log('Row created successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error creating row:', xhr.responseText);
+            }
+        });
+    }
+
+
+    function filterChallenges(event) {
+        var input, filter, challenges, challengeNames, i;
+        input = document.getElementById("searchQuery");
+        filter = input.value.toUpperCase();
+        challenges = document.getElementsByClassName("fraction");
+        searchIconButton = document.getElementById("searchIcon");
+
+        // Check if Enter key is pressed
+        searchIconButton.addEventListener('click', function() {
+                for (i = 0; i < challenges.length; i++) {
+                    challengeNames = challenges[i].parentNode.nextElementSibling.querySelector("h3").textContent || challenges[i].parentNode.nextElementSibling.querySelector("h3").innerText;
+                    if (challengeNames.toUpperCase().indexOf(filter) > -1) {
+                        challenges[i].parentNode.parentNode.style.display = "";
+                    } else {
+                        challenges[i].parentNode.parentNode.style.display = "none";
+                    }
+                }
+        });
+    }
+
+</script>
+</body>
+</html>

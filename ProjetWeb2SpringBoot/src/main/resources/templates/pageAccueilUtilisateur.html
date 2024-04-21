@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'accueil utilisateur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+        <div id="middle-section-recent-work">
+            <h1>Challenges</h1>
+            <div id="recent-work-container">
+                <div th:each="challenge : ${session.challenges}">
+                    <section id="recent-work-container-title">
+                        <img th:src="${challenge.challengeImageUrlIndex}" th:alt="${challenge.challengeName}"/>
+                        <h3 th:text="${challenge.challengeName}"></h3>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="middle-section-recent-posts">
+            <h1>Recent posts</h1>
+            <div id="recent-post-container">
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="middle-section-achievements">
+            <h1>Achievement badges</h1>
+            <div id="achievements-container">
+                <ul>
+                    <li><img src="https://img.icons8.com/dusk/64/army-star.png" alt="army-star"/></li>
+                    <li><img src="https://img.icons8.com/dusk/64/world-map.png" alt="world-map"/></li>
+                    <li><img src="https://img.icons8.com/dusk/64/saving-book.png" alt="saving-book"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="/javascript/script.js"></script>
+</body>
+</html>
