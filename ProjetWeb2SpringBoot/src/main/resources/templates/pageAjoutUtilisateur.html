@@ -15,27 +15,49 @@
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
     <div id="middle-section">
-<!--        <div th:each="user : ${session.listeCompleteMembres}">-->
-<!--            <h1 th:text="${user.email}"></h1>-->
-<!--        </div>-->
+        <div id="middle-section-friends-list">
+            <h1>Add new friends</h1>
+            <div id="middle-section-search-bar">
+                <form class="formSearchBar">
+                    <div>
+                        <input type="text" id="searchQuery" name="challengeName" placeholder="Look a specific friend" required>
+                        <img src="https://img.icons8.com/pastel-glyph/64/search--v1.png" id="searchIcon" alt="search--v1"/>
+                    </div>
+                </form>
+            </div>
+            <div id="middle-section-friends-list-container">
+                <div class="middle-section-friends-list-element" id="userElementDisplayed">
+                    <div class="friends-list-element-picture">
+                        <img src="images/spain.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friends-list-element-name-region">
+                        <h2>Jamil Fayad</h2>
+                        <h3>Canada</h3>
+                    </div>
+                    <div class="friends-list-element-add-button">
+                        <button type="button" id="addButton">
+                            <img src="https://img.icons8.com/ios-glyphs/60/plus--v1.png" alt="plus--v1" id="addImage"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <script src="/javascript/script.js"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-    // $.ajax({
-    //     url: '/allUsers',
-    //     method: 'GET',
-    //     success: function(users) {
-    //         users.forEach(function(user) {
-    //             $('#userList').append('<li>' + user.name + ' - ' + user.email + '</li>');
-    //         });
-    //     },
-    //     error: function() {
-    //         console.error('Error displaying users:');
-    //     }
-    // });
+    document.addEventListener("DOMContentLoaded", function() {
+        var addButton = document.getElementById('addButton');
+        var addImage = document.getElementById('addImage');
+        var elementAdded = document.getElementById('userElementDisplayed');
+
+        addButton.addEventListener('click', function() {
+            addImage.src = "images/Screenshot 2024-04-21 013229.png";
+            elementAdded.classList.add("added-user");
+        });
+    });
 
     /*]]>*/
 </script>
