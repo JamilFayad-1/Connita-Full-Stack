@@ -1864,6 +1864,24 @@ main.sign-up-mode .carousel {
 /* ----------------------------------------------------------- */
 /* Page ajout d'utilisateur
 /* ----------------------------------------------------------- */
+#middle-section-friends {
+    display: flex;
+    flex-grow: 2;
+    background-color: #f7f7f7;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+}
+
+#middle-section-friends h1{
+    font-family: 'CustomFont1', sans serif;
+    font-size: 2rem;
+    color: #4d4d4d;
+    padding: 1rem 0 0 3rem;
+}
 
 #middle-section-friends-list{
     display: block;
@@ -1956,4 +1974,18 @@ main.sign-up-mode .carousel {
     cursor: pointer;
 }
 
+.friends-list-thats-you{
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
 
+.friends-list-thats-you p{
+    font-family: 'montreal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5c99dd;
+    margin-right: 0.8vw;
+    rotate: 10deg;
+}

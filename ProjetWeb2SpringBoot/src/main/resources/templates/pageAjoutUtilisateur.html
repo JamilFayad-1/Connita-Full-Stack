@@ -14,7 +14,7 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section">
+    <div id="middle-section-friends">
         <div id="middle-section-friends-list">
             <h1>Add new friends</h1>
             <div id="middle-section-search-bar">
@@ -34,12 +34,18 @@
                         <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>
                         <h3 th:text="${utilisateur.region}"></h3>
                     </div>
-                    <div class="friends-list-element-add-button">
-                        <button type="button" id="addButton">
+                    <div class="friends-list-element-add-button" th:if="${utilisateur.idMembre != session.loggedInUser.idMembre}">
+                        <button type="button" id="addButton" th:data-idAmie="${utilisateur.idMembre}" th:data-idMembre="${session.loggedInUser.idMembre}">
                             <img src="https://img.icons8.com/ios-glyphs/60/plus--v1.png" alt="plus--v1" id="addImage"/>
                         </button>
                     </div>
+                    <div th:unless="${utilisateur.idMembre != session.loggedInUser.idMembre}" class="friends-list-thats-you">
+                        <p>It's you!</p>
+                    </div>
                 </div>
+            </div>
+            <div class="demande-amie">
+
             </div>
         </div>
     </div>
@@ -53,19 +59,37 @@
 
         addButton.forEach(function(button) {
             button.addEventListener('click', function() {
-                var addImage = this.querySelector('img');
-                var elementAdded = this.closest('.middle-section-friends-list-element');
+                var idMembre = this.getAttribute('data-idMembre');
+                var idAmie = this.getAttribute('data-idAmie');
 
-                // Update image source
-                var currentSrc = addImage.getAttribute('src');
-                addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+                console.log("IDMEMBRE RECU: " + idMembre);
+                console.log("IDAMIE RECU: " + idAmie);
 
-                // Add a class to the parent element
-                elementAdded.classList.add("added-user");
+                // Construct the URL dynamically
+                var url = "/envoyerDemandeAmie?idMembre=" + idMembre + "&idAmie=" + idAmie;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true); // Use the dynamically constructed URL
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var addImage = button.querySelector('img');
+                            var elementAdded = button.closest('.middle-section-friends-list-element');
+                            var currentSrc = addImage.getAttribute('src');
+                            addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+                            elementAdded.classList.add("added-user");
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
             });
         });
-    });
 
+    });
     /*]]>*/
 </script>
 </body>
