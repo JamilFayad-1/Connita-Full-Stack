@@ -44,9 +44,18 @@
                     </div>
                 </div>
             </div>
-            <div class="demande-amie">
+        </div>
+    </div>
+    <div class="demande-amie-container" id="toggle-demande-amie">
+        <h1>Friend requests</h1>
+        <div class="demande-amie-element">
 
-            </div>
+        </div>
+        <div class="sideTab
+"></div>
+        <div class="demande-amie-tab-button" id="sidetab-button">
+            <i class="tab-button-icon-p1" id="sideTabButtonP1"></i>
+            <i class="tab-button-icon-p2" id="sideTabButtonP2"></i>
         </div>
     </div>
 </main>
@@ -55,6 +64,8 @@
     /*<![CDATA[*/
 
     document.addEventListener("DOMContentLoaded", function() {
+        var sideTabContainer = document.getElementById('toggle-demande-amie');
+        sideTabContainer.style.right = '0px';
         var addButton = document.querySelectorAll('#addButton');
 
         addButton.forEach(function(button) {
@@ -87,6 +98,35 @@
                 };
                 xhr.send();
             });
+        });
+
+        var button = document.getElementById('sidetab-button');
+        var sideTabButtonP1 = document.getElementById('sideTabButtonP1');
+        var sideTabButtonP2 = document.getElementById('sideTabButtonP2');
+
+        button.addEventListener('click', function() {
+            var isOpen = sideTabContainer.style.right === '0px';
+            if(sideTabContainer.style.right === '0px'){
+                sideTabButtonP1.style.transform = 'rotate(16deg)';
+                sideTabButtonP2.style.transform = 'rotate(-16deg)';
+            }
+            sideTabContainer.style.right = isOpen ?  '-220px' : '0px';
+        })
+
+        button.addEventListener('mouseenter', function() {
+            var isOpen = sideTabContainer.style.right === '-220px';
+            if (!isOpen) {
+                sideTabButtonP1.style.transform = 'rotate(-16deg)';
+                sideTabButtonP2.style.transform = 'rotate(16deg)';
+            }
+        });
+
+        button.addEventListener('mouseleave', function() {
+            var isOpen = sideTabContainer.style.right === '-220px';
+            if (!isOpen) {
+                sideTabButtonP1.style.transform = 'rotate(0deg)';
+                sideTabButtonP2.style.transform = 'rotate(0deg)';
+            }
         });
 
     });
