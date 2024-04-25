@@ -1,6 +1,5 @@
 package com.jfayad.projetweb2_springboot.entities;
 
-import com.jfayad.projetweb2_springboot.Status.Status;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,15 +19,14 @@ public class DemandeAmie {
     @JoinColumn(name = "id_recevant")
     private Membre recevant;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private Status status;
+    @Column(name = "status", nullable = false, length = 45)
+    private String status;
 
     // Constructors
     public DemandeAmie() {
     }
 
-    public DemandeAmie(Membre envoyant, Membre recevant, Status status) {
+    public DemandeAmie(Membre envoyant, Membre recevant, String status) {
         this.envoyant = envoyant;
         this.recevant = recevant;
         this.status = status;
@@ -59,11 +57,11 @@ public class DemandeAmie {
         this.recevant = recevant;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

@@ -1,7 +1,6 @@
 package com.jfayad.projetweb2_springboot.entities;
 
 import jakarta.persistence.*;
-import org.hibernate.engine.spi.Status;
 
 @Entity
 @Table(name = "amitier")
@@ -20,15 +19,14 @@ public class Amitier {
     @JoinColumn(name = "id_amie")
     private Membre amie;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private Status status;
+    @Column(name = "status", nullable = false, length = 45)
+    private String status;
 
     // Constructors
     public Amitier() {
     }
 
-    public Amitier(Membre membre, Membre amie, Status status) {
+    public Amitier(Membre membre, Membre amie, String status) {
         this.membre = membre;
         this.amie = amie;
         this.status = status;
@@ -59,11 +57,11 @@ public class Amitier {
         this.amie = amie;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

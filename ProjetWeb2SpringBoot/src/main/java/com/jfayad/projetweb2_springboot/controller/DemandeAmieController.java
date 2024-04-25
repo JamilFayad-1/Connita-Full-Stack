@@ -27,11 +27,8 @@ public class DemandeAmieController {
         }
 
         if (requestFailed) {
-            // Return an appropriate HTTP status code and error message
             return "Friend request failed";
         }
-
-        // Return a success message or status code
         return "Friend request sent successfully";
     }
 
