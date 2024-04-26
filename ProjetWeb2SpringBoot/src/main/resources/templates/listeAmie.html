@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="middle-section-friends-list-container" style="overflow-y: scroll; overflow-x: hidden" th:fragment="friendsListFragment(listeUtilisateur)">
+    <div th:each="utilisateur : ${listeUtilisateur}" class="middle-section-friends-list-element" id="userElementDisplayed">
+        <div class="friends-list-element-picture">
+            <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
+        </div>
+        <div class="friends-list-element-name-region">
+            <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>
+            <h3 th:text="${utilisateur.region}"></h3>
+        </div>
+        <div class="friends-list-element-add-button" th:if="${utilisateur.idMembre != session.loggedInUser.idMembre}">
+            <button type="button" id="addButton" th:data-idAmie="${utilisateur.idMembre}" th:data-idMembre="${session.loggedInUser.idMembre}">
+                <img src="https://img.icons8.com/ios-glyphs/60/plus--v1.png" alt="plus--v1" id="addImage"/>
+            </button>
+        </div>
+        <div th:unless="${utilisateur.idMembre != session.loggedInUser.idMembre}" class="friends-list-thats-you">
+            <p>It's you!</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

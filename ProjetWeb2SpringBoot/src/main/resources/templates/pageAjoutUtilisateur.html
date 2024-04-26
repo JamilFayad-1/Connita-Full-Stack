@@ -25,25 +25,7 @@
                     </div>
                 </form>
             </div>
-            <div id="middle-section-friends-list-container">
-                <div th:each="utilisateur : ${listeUtilisateur}" class="middle-section-friends-list-element" id="userElementDisplayed">
-                    <div class="friends-list-element-picture">
-                        <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
-                    </div>
-                    <div class="friends-list-element-name-region">
-                        <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>
-                        <h3 th:text="${utilisateur.region}"></h3>
-                    </div>
-                    <div class="friends-list-element-add-button" th:if="${utilisateur.idMembre != session.loggedInUser.idMembre}">
-                        <button type="button" id="addButton" th:data-idAmie="${utilisateur.idMembre}" th:data-idMembre="${session.loggedInUser.idMembre}">
-                            <img src="https://img.icons8.com/ios-glyphs/60/plus--v1.png" alt="plus--v1" id="addImage"/>
-                        </button>
-                    </div>
-                    <div th:unless="${utilisateur.idMembre != session.loggedInUser.idMembre}" class="friends-list-thats-you">
-                        <p>It's you!</p>
-                    </div>
-                </div>
-            </div>
+            <div th:replace="listeAmie :: friendsListFragment(${listeUtilisateur})"></div>
         </div>
     </div>
     <div class="demande-amie-container" id="toggle-demande-amie">
@@ -53,7 +35,7 @@
             <h3 th:text="${demande.prenom + ' ' + demande.nom}"></h3>
             <div class="demande-amie-element-choice">
                 <button type="button" name="AcceptRequest" id="AcceptedButton" th:data-idAmieDemande="${demande.idMembre}" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Accept</button>
-                <button type="button" name="DenyRequest" id="DeniedButton">Decline</button>
+                <button type="button" name="DenyRequest" id="DeniedButton" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Decline</button>
             </div>
         </div>
         <div class="side-tab-info" id="sideTabInfo">Close tab</div>
@@ -107,6 +89,58 @@
             });
         });
 
+        function reattachEventListeners() {
+            var addButton = document.querySelectorAll('#middle-section-friends-list-container #addButton');
+            addButton.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var idMembre = this.getAttribute('data-idMembre');
+                    var idAmie = this.getAttribute('data-idAmie');
+
+                    console.log("IDMEMBRE RECU: " + idMembre);
+                    console.log("IDAMIE RECU: " + idAmie);
+
+                    var url = "/envoyerDemandeAmie?idMembre=" + idMembre + "&idAmie=" + idAmie;
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var addImage = button.querySelector('img');
+                                var elementAdded = button.closest('.middle-section-friends-list-element');
+                                var currentSrc = addImage.getAttribute('src');
+                                addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+                                elementAdded.classList.add("added-user");
+                                console.log("Friend request sent successfully!");
+                            } else {
+                                console.error("Error sending friend request:", xhr.statusText);
+                            }
+                        }
+                    };
+                    xhr.send();
+                });
+            });
+        }
+
+        function reloadFriendsList() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            var url = "/reloadFriendsList";
+            xhr.open("POST", url, true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("middle-section-friends-list-container").outerHTML = xhr.responseText;
+                    reattachEventListeners();
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
         var acceptAmieButton = document.querySelectorAll('#AcceptedButton');
         var denyAmieButton = document.querySelectorAll('#DeniedButton');
 
@@ -125,9 +159,34 @@
                         if (xhr.status === 200) {
                             var parentElement = button.closest('.demande-amie-element');
                             parentElement.classList.add('demande-amie-disapear');
+                            reloadFriendsList();
                             console.log("Friend request sent successfully!");
                         } else {
                             console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+
+        denyAmieButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var idMembre = this.getAttribute('data-idMembreDemande');
+
+                var url = "/SupprimerAmitier?idMembre=" + idMembre;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var parentElement = button.closest('.demande-amie-element');
+                            parentElement.classList.add('demande-amie-disapear');
+                            console.log("Friend request declined successfuly!");
+                        } else {
+                            console.error("Error declining friend request:", xhr.statusText);
                         }
                     }
                 };

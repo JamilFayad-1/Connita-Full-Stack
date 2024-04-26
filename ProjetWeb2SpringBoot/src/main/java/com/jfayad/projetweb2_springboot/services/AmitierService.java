@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AmitierService {
 
@@ -25,6 +27,10 @@ public class AmitierService {
         newAmitier.setAmie(idAmie);
         newAmitier.setStatus("accepter");
         amitierRepository.save(newAmitier);
+    }
+
+    public List<Amitier> getAllAmitiers() {
+        return amitierRepository.findAll();
     }
 
 }
