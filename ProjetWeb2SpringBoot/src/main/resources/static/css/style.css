@@ -427,8 +427,12 @@ hr {
     position: relative;
     top: 10%;
     left: 0;
-    width: 80%;
+    width: 95%;
     height: 80%;
+}
+
+#right-section-friends-list ul{
+    padding-left: 20px;
 }
 
 #right-section-friends-list h2{
@@ -440,9 +444,10 @@ hr {
 
 #right-section-friends-list h3{
     font-family: 'CustomFont1', sans serif;
-    color: black;
-    font-size: 1rem;
+    color: #2d2d2d;
+    font-size: 0.9rem;
     margin-top: 1.2rem;
+    padding: 5px;
 }
 
 #right-section-friends-list li{
@@ -457,7 +462,8 @@ hr {
 #friends-list img{
     width: 2rem;
     height: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
 }
 
 #right-section-friends-list li a{
@@ -471,7 +477,7 @@ hr {
 }
 
 #right-section-friends-list li:hover {
-    background-color: #dedede;
+    background-color: #eeeeee;
 }
 
 #right-section-friends-list li:hover h3 {
@@ -1575,6 +1581,16 @@ main.sign-up-mode .carousel {
 .reglage-form-row input {
     height: 4vh;
     border-radius: 0.8rem;
+    border: 2px solid #2d2d2d;
+    padding-left: 1.5vh;
+    font-family: 'montreal', sans-serif;
+    transition: 0.2s ease;
+}
+
+.reglage-form-row select {
+    height: 4vh;
+    border-radius: 0.8rem;
+    border: 2px solid #2d2d2d;
     padding-left: 1.5vh;
     font-family: 'montreal', sans-serif;
     transition: 0.2s ease;
@@ -1900,7 +1916,6 @@ main.sign-up-mode .carousel {
 .middle-section-friends-list-element{
     position: relative;
     display: flex;
-    width: 80%;
     height: 12%;
     margin: 0 0 2% 16%;
     border-radius: 0.5rem;
