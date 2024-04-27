@@ -1,19 +1,24 @@
 package com.jfayad.projetweb2_springboot.controller;
 
+import com.jfayad.projetweb2_springboot.entities.Amitier;
 import com.jfayad.projetweb2_springboot.entities.Challenges;
 import com.jfayad.projetweb2_springboot.entities.Membre;
+import com.jfayad.projetweb2_springboot.services.AmitierService;
 import com.jfayad.projetweb2_springboot.services.ChallengesJouerService;
 import com.jfayad.projetweb2_springboot.services.ChallengesService;
+import com.jfayad.projetweb2_springboot.services.MembreService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +34,43 @@ public class ChallengesController {
     @Autowired
     private ChallengesJouerService challengesJouerService;
 
+    @Autowired
+    private AmitierService amitierService;
+
+    @Autowired
+    private MembreService membreService;
+
     @GetMapping("/challenges")
-    public String getAllChallenges(HttpSession session) {
+    public String getAllChallenges(HttpSession session,
+                                   HttpServletRequest request,
+                                   Model model) {
+        session = request.getSession();
+        Membre MembreTrouver = (Membre) session.getAttribute("loggedInUser");
+        int idMembretrouver = MembreTrouver.getIdMembre();
+
+        List<Amitier> listeIdAmitier = amitierService.getAllAmitiers();
+
+        List<Integer> AmieActuelle = new ArrayList<>();
+
+        for (Amitier amitier : listeIdAmitier) {
+            if (amitier.getMembre().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getAmie().getIdMembre());
+            }
+            if(amitier.getAmie().getIdMembre() == idMembretrouver){
+                AmieActuelle.add(amitier.getMembre().getIdMembre());
+            }
+        }
+
+        List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
+        List<Membre> listeAmitier = new ArrayList<>();
+        for(Membre membre : listeUtilisateur){
+            if(AmieActuelle.contains(membre.getIdMembre())){
+                listeAmitier.add(membre);
+            }
+        }
+
+        model.addAttribute("listeAmitier", listeAmitier);
+
         List<Challenges> challenges = challengesService.findAllChallenges();
         session.setAttribute("challenges", challenges);
         return "challenges";

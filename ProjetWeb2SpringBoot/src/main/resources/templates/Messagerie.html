@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'accueil utilisateur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section" style="overflow-y: hidden; display: flex;">
+        <div class="middle-section-friend-inbox-container">
+            <div class="middle-section-friend-inbox-title">
+                <h1 class="inbox-title">Inbox</h1>
+            </div>
+            <div class="middle-section-friend-inbox-wrapper">
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-section-friend-inbox-overlay"></div>
+        </div>
+        <div class="middle-section-messagerie">
+            <div class="middle-section-messagerie-header-background">
+                <div class="middle-section-messagerie-header">
+                    <div class="messagerie-header-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="messagerie-header-name">
+                        <h2>Jamil</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-section-messagerie-container">
+
+            </div>
+            <div class="middle section-messagerie-input-container">
+
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="/javascript/script.js"></script>
+</body>
+</html>

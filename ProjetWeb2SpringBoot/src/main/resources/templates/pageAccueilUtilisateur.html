@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -18,10 +19,11 @@
         <div id="middle-section-recent-work">
             <h1>Challenges</h1>
             <div id="recent-work-container">
-                <div th:each="challenge : ${session.challenges}">
+                <div th:each="challenge : ${session.challenges}" id="recent-work-elements">
                     <section id="recent-work-container-title">
                         <img th:src="${challenge.challengeImageUrlIndex}" th:alt="${challenge.challengeName}"/>
                         <h3 th:text="${challenge.challengeName}"></h3>
+                        <h2 th:text="${session.loggedInUser.idMembre}" style="display: none"></h2>
                     </section>
                 </div>
             </div>
@@ -51,5 +53,38 @@
     <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 <script src="/javascript/script.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var challengeElements = document.querySelectorAll('#recent-work-elements');
+
+        challengeElements.forEach(function(challengeElement) {
+            challengeElement.addEventListener('click', function() {
+                var challengeName = challengeElement.querySelector('h3').textContent;
+                var userId = challengeElement.querySelector('h2').textContent;
+                var url = 'challengesJouer?challengeName=' + encodeURIComponent(challengeName);
+                createTableRow(userId, challengeName);
+                window.location.href = url;
+            });
+        });
+    });
+
+    function createTableRow(memberId, challengeName) {
+        $.ajax({
+            url: '/createChallengeRow',
+            method: 'GET',
+            data: { userId: memberId, challengeName: challengeName },
+            success: function(response) {
+                console.log('Row created successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error creating row:', xhr.responseText);
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
 </body>
 </html>

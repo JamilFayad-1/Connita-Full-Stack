@@ -30,6 +30,9 @@
     </div>
     <div class="demande-amie-container" id="toggle-demande-amie">
         <h1>Friend requests</h1>
+        <div th:if="${#lists.isEmpty(listeUtilisateurDemandeAmie)}">
+            <p>No friend requests found.</p>
+        </div>
         <div th:each="demande : ${listeUtilisateurDemandeAmie}" class="demande-amie-element">
             <img th:src="${demande.photoProfilPath}" alt="profil picture">
             <h3 th:text="${demande.prenom + ' ' + demande.nom}"></h3>
@@ -51,11 +54,9 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         var sideTabContainer = document.getElementById('toggle-demande-amie');
-        sideTabContainer.style.right = '-220px';
+        sideTabContainer.style.right = '0px';
         var sideTabButtonP1 = document.getElementById('sideTabButtonP1');
         var sideTabButtonP2 = document.getElementById('sideTabButtonP2');
-        sideTabButtonP1.style.transform = 'rotate(16deg)';
-        sideTabButtonP2.style.transform = 'rotate(-16deg)';
         var addButton = document.querySelectorAll('#addButton');
 
         addButton.forEach(function(button) {
@@ -136,13 +137,13 @@
                     reattachEventListeners();
                 }
             };
-
-            // Send the request
             xhr.send();
         }
 
         var acceptAmieButton = document.querySelectorAll('#AcceptedButton');
         var denyAmieButton = document.querySelectorAll('#DeniedButton');
+        var friendRequestElements = document.querySelectorAll('.demande-amie-element');
+        var friendRequestContainer = document.getElementById('toggle-demande-amie');
 
         acceptAmieButton.forEach(function(button) {
             button.addEventListener('click', function() {
@@ -160,6 +161,10 @@
                             var parentElement = button.closest('.demande-amie-element');
                             parentElement.classList.add('demande-amie-disapear');
                             reloadFriendsList();
+                            parentElement.remove();
+                            if(friendRequestElements.length <= 1){
+                                friendRequestContainer.innerHTML = "<h1>Friend requests</h1>\n <p>No friend requests found.</p>";
+                            }
                             console.log("Friend request sent successfully!");
                         } else {
                             console.error("Error sending friend request:", xhr.statusText);
