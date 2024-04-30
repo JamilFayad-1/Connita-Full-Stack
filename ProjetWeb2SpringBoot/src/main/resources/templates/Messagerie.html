@@ -125,17 +125,64 @@
                     </div>
                 </div>
             </div>
-            <div class="middle-section-messagerie-container">
-
+            <div class="middle-section-messagerie-container" id="messagerie-container">
+                <p class="chat-left">
+                    Cool, we'll go over it in a few!
+                </p>
+                <p class="chat-right">
+                    Yeah took me a couple tries but it's done
+                </p>
+                <p class="chat-left">
+                    Hey did you finish the first challenge?
+                </p>
             </div>
-            <div class="middle section-messagerie-input-container">
-
+            <div class="middle-section-messagerie-input-container">
+                <div class="chat-type-area">
+                    <input type="text" id="message-typed" class="message-input" placeholder="Type your message...">
+                </div>
+                <div class="chat-send-button">
+                    <button id="send-button" class="send-button">Send</button>
+                </div>
             </div>
         </div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
-<script src="/javascript/script.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    const inputBox = document.getElementById('message-typed');
+    const sendButton = document.getElementById('send-button');
+    const messagerieContainer = document.getElementById('messagerie-container')
+
+    //function pour lire le bouton 'Send' et afficher le message utilisateur
+    function sendMessage(){
+        //Je lis ce que l'utilisateur a écrit
+        let textRead = inputBox.value;
+        //Je créer ensuite un nouveaux élément <p>
+        const newChat = document.createElement('p');
+        //J'assigne le contenue lue à une nouvelle variable et je la donne le style d'un chat personel
+        newChat.textContent = textRead;
+        newChat.classList.add('chat-right')
+        //J'insére le nouveaux chat comme le premier enfant du conteneur.
+        messagerieContainer.prepend(newChat);
+        //Je réinitialise le input element
+        inputBox.value = "";
+    }
+
+    // Event listener pour le clique sur le bouton 'Send'
+    sendButton.addEventListener("click", sendMessage);
+
+    // Event listener pour la touche enter
+    inputBox.addEventListener("keypress", function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+    /*]]>*/
+</script>
 </body>
 </html>
