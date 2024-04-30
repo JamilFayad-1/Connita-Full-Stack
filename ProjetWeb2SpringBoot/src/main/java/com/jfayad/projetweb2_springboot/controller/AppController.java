@@ -68,4 +68,10 @@ public class AppController {
     @GetMapping("/challengesJouer")
     public String getPageChallengesJouer() {  return "challengesJouer"; }
 
+    @GetMapping("/pageCountries")
+    public String getPageCountries() { return "countries"; }
+
+    @GetMapping("/countryInfo")
+    public String getPageCountryInfo() { return "countryInfo"; }
+
 }
