@@ -39,8 +39,10 @@ public class MembreService {
             Membre membre = new Membre();
             membre.setPrenom(firstName);
             membre.setNom(lastName);
+            membre.setUsername(firstName.toLowerCase() + lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase());
             membre.setEmail(email);
             membre.setPassword(password);
+            membre.setPhotoProfilPath("images/Default-profile-pic.png");
             membreRepository.save(membre);
             return membre;
         } catch (Exception e) {

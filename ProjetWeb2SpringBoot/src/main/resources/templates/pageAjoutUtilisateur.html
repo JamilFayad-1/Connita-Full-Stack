@@ -14,7 +14,7 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section">
+    <div id="middle-section-friends" style="overflow-y: hidden">
         <div id="middle-section-friends-list">
             <h1>Add new friends</h1>
             <div id="middle-section-search-bar">
@@ -25,22 +25,26 @@
                     </div>
                 </form>
             </div>
-            <div id="middle-section-friends-list-container">
-                <div class="middle-section-friends-list-element" id="userElementDisplayed">
-                    <div class="friends-list-element-picture">
-                        <img src="images/spain.png" alt="User-Profile-Pic">
-                    </div>
-                    <div class="friends-list-element-name-region">
-                        <h2>Jamil Fayad</h2>
-                        <h3>Canada</h3>
-                    </div>
-                    <div class="friends-list-element-add-button">
-                        <button type="button" id="addButton">
-                            <img src="https://img.icons8.com/ios-glyphs/60/plus--v1.png" alt="plus--v1" id="addImage"/>
-                        </button>
-                    </div>
-                </div>
+            <div th:replace="listeAmie :: friendsListFragment(${listeUtilisateur})"></div>
+        </div>
+    </div>
+    <div class="demande-amie-container" id="toggle-demande-amie">
+        <h1>Friend requests</h1>
+        <div th:if="${#lists.isEmpty(listeUtilisateurDemandeAmie)}">
+            <p>No friend requests found.</p>
+        </div>
+        <div th:each="demande : ${listeUtilisateurDemandeAmie}" class="demande-amie-element">
+            <img th:src="${demande.photoProfilPath}" alt="profil picture">
+            <h3 th:text="${demande.prenom + ' ' + demande.nom}"></h3>
+            <div class="demande-amie-element-choice">
+                <button type="button" name="AcceptRequest" id="AcceptedButton" th:data-idAmieDemande="${demande.idMembre}" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Accept</button>
+                <button type="button" name="DenyRequest" id="DeniedButton" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Decline</button>
             </div>
+        </div>
+        <div class="side-tab-info" id="sideTabInfo">Close tab</div>
+        <div class="demande-amie-tab-button" id="sidetab-button">
+            <i class="tab-button-icon-p1" id="sideTabButtonP1"></i>
+            <i class="tab-button-icon-p2" id="sideTabButtonP2"></i>
         </div>
     </div>
 </main>
@@ -49,16 +53,187 @@
     /*<![CDATA[*/
 
     document.addEventListener("DOMContentLoaded", function() {
-        var addButton = document.getElementById('addButton');
-        var addImage = document.getElementById('addImage');
-        var elementAdded = document.getElementById('userElementDisplayed');
+        var sideTabContainer = document.getElementById('toggle-demande-amie');
+        sideTabContainer.style.right = '0px';
+        var sideTabButtonP1 = document.getElementById('sideTabButtonP1');
+        var sideTabButtonP2 = document.getElementById('sideTabButtonP2');
+        var addButton = document.querySelectorAll('#addButton');
 
-        addButton.addEventListener('click', function() {
-            addImage.src = "images/Screenshot 2024-04-21 013229.png";
-            elementAdded.classList.add("added-user");
+        addButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var idMembre = this.getAttribute('data-idMembre');
+                var idAmie = this.getAttribute('data-idAmie');
+
+                console.log("IDMEMBRE RECU: " + idMembre);
+                console.log("IDAMIE RECU: " + idAmie);
+
+                var url = "/envoyerDemandeAmie?idMembre=" + idMembre + "&idAmie=" + idAmie;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var addImage = button.querySelector('img');
+                            var elementAdded = button.closest('.middle-section-friends-list-element');
+                            var currentSrc = addImage.getAttribute('src');
+                            addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+                            elementAdded.classList.add("added-user");
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            });
         });
-    });
 
+        function reattachEventListeners() {
+            var addButton = document.querySelectorAll('#middle-section-friends-list-container #addButton');
+            addButton.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var idMembre = this.getAttribute('data-idMembre');
+                    var idAmie = this.getAttribute('data-idAmie');
+
+                    console.log("IDMEMBRE RECU: " + idMembre);
+                    console.log("IDAMIE RECU: " + idAmie);
+
+                    var url = "/envoyerDemandeAmie?idMembre=" + idMembre + "&idAmie=" + idAmie;
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var addImage = button.querySelector('img');
+                                var elementAdded = button.closest('.middle-section-friends-list-element');
+                                var currentSrc = addImage.getAttribute('src');
+                                addImage.setAttribute('src', 'images/Screenshot 2024-04-21 013229.png');
+                                elementAdded.classList.add("added-user");
+                                console.log("Friend request sent successfully!");
+                            } else {
+                                console.error("Error sending friend request:", xhr.statusText);
+                            }
+                        }
+                    };
+                    xhr.send();
+                });
+            });
+        }
+
+        function reloadFriendsList() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            var url = "/reloadFriendsList";
+            xhr.open("POST", url, true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("middle-section-friends-list-container").outerHTML = xhr.responseText;
+                    reattachEventListeners();
+                }
+            };
+            xhr.send();
+        }
+
+        var acceptAmieButton = document.querySelectorAll('#AcceptedButton');
+        var denyAmieButton = document.querySelectorAll('#DeniedButton');
+        var friendRequestElements = document.querySelectorAll('.demande-amie-element');
+        var friendRequestContainer = document.getElementById('toggle-demande-amie');
+
+        acceptAmieButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var idMembre = this.getAttribute('data-idMembreDemande');
+                var idAmie = this.getAttribute('data-idAmieDemande');
+
+                var url = "/AccepterAmitier?idMembre=" + idMembre + "&idAmie=" + idAmie;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var parentElement = button.closest('.demande-amie-element');
+                            parentElement.classList.add('demande-amie-disapear');
+                            reloadFriendsList();
+                            parentElement.remove();
+                            if(friendRequestElements.length <= 1){
+                                friendRequestContainer.innerHTML = "<h1>Friend requests</h1>\n <p>No friend requests found.</p>";
+                            }
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+
+        denyAmieButton.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var idMembre = this.getAttribute('data-idMembreDemande');
+
+                var url = "/SupprimerAmitier?idMembre=" + idMembre;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var parentElement = button.closest('.demande-amie-element');
+                            parentElement.classList.add('demande-amie-disapear');
+                            console.log("Friend request declined successfuly!");
+                        } else {
+                            console.error("Error declining friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+
+
+        var button = document.getElementById('sidetab-button');
+        var sideTabInfo = document.getElementById('sideTabInfo');
+
+        button.addEventListener('click', function() {
+            var isOpen = sideTabContainer.style.right === '0px';
+            if(sideTabContainer.style.right === '0px'){
+                sideTabButtonP1.style.transform = 'rotate(16deg)';
+                sideTabButtonP2.style.transform = 'rotate(-16deg)';
+            }
+            sideTabContainer.style.right = isOpen ?  '-220px' : '0px';
+        })
+
+        button.addEventListener('mouseenter', function() {
+            var isOpen = sideTabContainer.style.right === '-220px';
+            sideTabInfo.style.display = 'flex';
+            if (!isOpen) {
+                sideTabInfo.textContent = 'Close tab';
+                sideTabButtonP1.style.transform = 'rotate(-16deg)';
+                sideTabButtonP2.style.transform = 'rotate(16deg)';
+            }else{
+                sideTabInfo.textContent = 'Open tab';
+            }
+        });
+
+        button.addEventListener('mouseleave', function() {
+            var isOpen = sideTabContainer.style.right === '-220px';
+            sideTabInfo.style.display = 'none';
+            if (!isOpen) {
+                sideTabButtonP1.style.transform = 'rotate(0deg)';
+                sideTabButtonP2.style.transform = 'rotate(0deg)';
+            }
+        });
+
+    });
     /*]]>*/
 </script>
 </body>

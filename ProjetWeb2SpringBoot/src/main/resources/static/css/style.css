@@ -24,7 +24,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 /* Handle */
@@ -102,16 +102,29 @@ header {
     text-decoration: none;
     width: 1.7rem;
     height: 1.7rem;
-    margin-right: 1.5rem;
+    margin-right: 0.8rem;
     padding: 0.5rem;
+}
+
+#horizontal-nav li:nth-child(1){
+    width: auto;
+    height: 1rem;
+    line-height: 1rem;
+    border-radius: 0.3rem;
+}
+
+#horizontal-nav li:nth-child(2){
     border-radius: 50%;
 }
 
 #horizontal-nav a{
+    font-family: 'CustomFont1', sans-serif;
+    color: #2d2d2d;
     width: inherit;
     height: inherit;
     text-decoration: none;
     text-align: center;
+    transition: all 0.1s ease;
 }
 
 #horizontal-nav img{
@@ -126,9 +139,17 @@ header {
 }
 
 
-#horizontal-nav li:hover{
-    background-color: #cecece;
+#horizontal-nav li:nth-child(1):hover{
+    color: #5c99dd;
+}
+
+#horizontal-nav li:nth-child(2):hover{
+    background-color: #e1e1e1;
     cursor: pointer;
+}
+
+#horizontal-nav a:nth-child(1):hover{
+    color: #5c99dd;
 }
 
 main {
@@ -425,10 +446,14 @@ hr {
 
 #right-section-friends-list {
     position: relative;
-    top: 10%;
+    top: 5%;
     left: 0;
-    width: 80%;
+    width: 95%;
     height: 80%;
+}
+
+#right-section-friends-list ul{
+    padding-left: 20px;
 }
 
 #right-section-friends-list h2{
@@ -440,9 +465,10 @@ hr {
 
 #right-section-friends-list h3{
     font-family: 'CustomFont1', sans serif;
-    color: black;
-    font-size: 1rem;
+    color: #2d2d2d;
+    font-size: 0.9rem;
     margin-top: 1.2rem;
+    padding: 5px;
 }
 
 #right-section-friends-list li{
@@ -457,7 +483,8 @@ hr {
 #friends-list img{
     width: 2rem;
     height: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
 }
 
 #right-section-friends-list li a{
@@ -471,7 +498,7 @@ hr {
 }
 
 #right-section-friends-list li:hover {
-    background-color: #dedede;
+    background-color: #eeeeee;
 }
 
 #right-section-friends-list li:hover h3 {
@@ -1380,9 +1407,9 @@ main.sign-up-mode .carousel {
     display: none;
     background-color: white;
     position: relative;
-    margin-left: -7.5vw;
+    margin-left: -6.5vw;
     margin-top: 6.5vh;
-    height: 10vh;
+    height: 14vh;
     z-index: 10;
     border-radius: 0.4rem;
     border: 1px solid rgba(0,0,0,0.4);
@@ -1393,15 +1420,15 @@ main.sign-up-mode .carousel {
 
 #horizontal-nav .dropdown-menu a {
     width: 6vw;
-    height: 3vh;
+    height: 33.3%;
     position: relative;
     display: flex;
-    font-family: 'CustomFont1';
+    font-family: 'CustomFont1', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     text-decoration: none;
     color: #4d4d4d;
-    padding: 0.5rem;
+    padding-left: 0.4rem;
     margin: 0;
     text-align: start;
     align-items: center;
@@ -1415,16 +1442,18 @@ main.sign-up-mode .carousel {
     border-top-left-radius: 0.4rem;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(2){
-    border-bottom-right-radius: 0.4rem;
-    border-bottom-left-radius: 0.4rem;
+#horizontal-nav .dropdown-menu a:nth-child(3){
+    border-bottom-right-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(1):hover {
+#horizontal-nav .dropdown-menu a:nth-child(1):hover,
+#horizontal-nav .dropdown-menu a:nth-child(2):hover{
+    color: #5c99dd;
     background-color: #e0e0e0;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(2):hover {
+#horizontal-nav .dropdown-menu a:nth-child(3):hover {
     background-color: rgb(156, 72, 77);
     color: white;
 }
@@ -1575,6 +1604,16 @@ main.sign-up-mode .carousel {
 .reglage-form-row input {
     height: 4vh;
     border-radius: 0.8rem;
+    border: 2px solid #2d2d2d;
+    padding-left: 1.5vh;
+    font-family: 'montreal', sans-serif;
+    transition: 0.2s ease;
+}
+
+.reglage-form-row select {
+    height: 4vh;
+    border-radius: 0.8rem;
+    border: 2px solid #2d2d2d;
     padding-left: 1.5vh;
     font-family: 'montreal', sans-serif;
     transition: 0.2s ease;
@@ -1864,6 +1903,24 @@ main.sign-up-mode .carousel {
 /* ----------------------------------------------------------- */
 /* Page ajout d'utilisateur
 /* ----------------------------------------------------------- */
+#middle-section-friends {
+    display: flex;
+    flex-grow: 2;
+    background-color: #f7f7f7;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+}
+
+#middle-section-friends h1{
+    font-family: 'CustomFont1', sans serif;
+    font-size: 2rem;
+    color: #4d4d4d;
+    padding: 1rem 0 0 3rem;
+}
 
 #middle-section-friends-list{
     display: block;
@@ -1875,14 +1932,13 @@ main.sign-up-mode .carousel {
 #middle-section-friends-list-container{
     position: relative;
     display: block;
-    width: 30%;
+    width: 40%;
     height: 80%;
 }
 
 .middle-section-friends-list-element{
     position: relative;
     display: flex;
-    width: 100%;
     height: 12%;
     margin: 0 0 2% 16%;
     border-radius: 0.5rem;
@@ -1916,7 +1972,7 @@ main.sign-up-mode .carousel {
 }
 
 .friends-list-element-name-region{
-    width: 30%;
+    width: 50%;
     display: block;
     font-family: 'CustomFont1', sans-serif;
 }
@@ -1934,7 +1990,7 @@ main.sign-up-mode .carousel {
 }
 
 .friends-list-element-add-button{
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -1956,4 +2012,454 @@ main.sign-up-mode .carousel {
     cursor: pointer;
 }
 
+.friends-list-thats-you{
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.friends-list-thats-you p{
+    font-family: 'montreal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5c99dd;
+    margin-right: 0.8vw;
+    rotate: 10deg;
+}
+
+.demande-amie-container{
+    width: 220px;
+    height: 60%;
+    background-color: rgba(189, 189, 189, 0.5);
+    position: fixed;
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    top: 20%;
+    transition: right 0.3s ease;
+}
+
+.demande-amie-container h1{
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 1.3rem;
+    color: #4d4d4d;
+    padding: 0 0 0.2rem 0.8rem;
+    border-bottom: 1px solid rgba(141, 141, 141, 0.6);
+    background: linear-gradient(#4d4d4d, #5c99dd) repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.demande-amie-container p{
+    font-family: 'montreal', sans-serif;
+    font-size: 0.9rem;
+    color: #898A8A;
+    padding: 0 0 0.2rem 1.1rem;
+}
+
+.demande-amie-tab-button{
+    width: 20px;
+    height: 30px;
+    position: absolute;
+    z-index: 10;
+    top: calc(50% - 30px);
+    right: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.demande-amie-tab-button:hover {
+    cursor: pointer;
+}
+
+.demande-amie-tab-button:hover .tab-button-icon-p1,
+.demande-amie-tab-button:hover .tab-button-icon-p2 {
+    background-color: #2d2d2d;
+    cursor: pointer;
+}
+
+.tab-button-icon-p1 {
+    position: absolute;
+    width: 4px;
+    height: 11px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-bottom: 8px;
+    background-color: #898A8A;
+    transform-origin: top right;
+    transition: all 0.2s ease;
+}
+
+.tab-button-icon-p2 {
+    position: absolute;
+    width: 4px;
+    height: 11px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-top: 8px;
+    background-color: #898A8A;
+    transform-origin: bottom right;
+    transition: all 0.2s ease;
+}
+
+.side-tab-info{
+    font-family: 'montreal', sans-serif;
+    letter-spacing: 0.02rem;
+    font-size: 0.8rem;
+    position: absolute;
+    width: 80px;
+    height: 24px;
+    border-radius: 0.3rem;
+    background-color: #4d4d4d;
+    color: #fafff4;
+    top: calc(50% - 27px);
+    right: 250px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.demande-amie-element{
+    position: relative;
+    display: flex;
+    width: 85%;
+    height: 12%;
+    margin: 0 0 0.6rem 0.6rem;
+    background-color: #FAFAFA;
+    border: 1px solid #4d4d4d;
+    border-radius: 0.3rem;
+    align-items: center;
+}
+
+.demande-amie-disapear{
+    animation: disapearingElement 0.4s ease-in-out forwards;
+}
+
+@keyframes disapearingElement {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.demande-amie-element img{
+    padding: 10px 0 10px 10px;
+    width: 2vw;
+    height: 2vw;
+    border-radius: 50%;
+}
+
+.demande-amie-element h3{
+    width: 40%;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 0.75rem;
+    padding: 0 8px 0 5px;
+}
+
+.demande-amie-element-choice{
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 35%;
+    height: 100%;
+    border-left: 1px solid #4d4d4d;
+    align-content: space-evenly;
+}
+
+.demande-amie-element-choice button{
+    font-family: 'montreal', sans-serif;
+    width: 100%;
+    height: 50%;
+    border: none;
+    background-color: transparent;
+}
+
+.demande-amie-element-choice button:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.demande-amie-element-choice button:nth-child(1):hover{
+    background-color: #179b3f;
+}
+
+.demande-amie-element-choice button:nth-child(2):hover{
+    background-color: #bc3541;
+}
+
+/* ----------------------------------------------------------- */
+/* Page Messagerie
+/* ----------------------------------------------------------- */
+
+.middle-section-friend-inbox-container{
+    position: relative;
+    display: block;
+    width: 25%;
+    height: 100%;
+}
+
+.middle-section-friend-inbox-title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    margin: 0;
+    background-color: #3e3e3e;
+    border-bottom-right-radius: 0.4rem;
+}
+
+.inbox-title{
+    margin: 0; !important;
+    padding: 0; !important;
+    font-size: 40px !important;
+    color: #dddddd !important;
+}
+
+.middle-section-friend-inbox-wrapper{
+    position: absolute;
+    display: block;
+    top: 10%;
+    height: 90%;
+    width: 100%;
+    border-top-right-radius: 0.4rem;
+    background: linear-gradient(45deg, #FFDC18, #71bfe4, #e4dad9, #90c5e8, #d5e0e3, #71bfe4, #FFDC18);
+    background-size: 600% 100%;
+    animation: gradient 32s ease-in-out infinite;
+    animation-direction: alternate;
+    overflow-y: scroll;
+}
+
+.middle-section-friend-inbox-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes gradient {
+    0% {background-position: 30%}
+    30% {background-position: 100%}
+    75% {background-position: 0%}
+    100% {background-position: 30%}
+}
+
+.middle-section-friend-inbox-overlay{
+    position: absolute;
+    top: 10%;
+    height: 90%;
+    width: 100%;
+    background: linear-gradient(to bottom, transparent 90%, #FAFAFA 98%);
+    pointer-events: none;
+}
+
+.friend-inbox-element {
+    position: relative;
+    display: flex;
+    width: 95%;
+    height: 12%;
+    margin: 5px auto 5px auto;
+    border-radius: 0.3rem;
+    background-color: #dddddd;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.friend-inbox-element:hover{
+    background: #c8d7e3;
+    cursor: pointer;
+}
+
+.friend-element-profile-pic{
+    width: 20%;
+    padding: 1rem;
+    align-content: center;
+}
+
+.friend-element-profile-pic img{
+    width: 3.5rem;
+}
+
+.friend-element-name-last-message{
+    width: 80%;
+    height: 100%;
+    display: block;
+    padding: 0.5rem;
+}
+
+.friend-element-name-last-message h2{
+    margin: 0;
+    height: 50%;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 1.2em;
+    color: #3e3e3e;
+}
+
+.friend-element-name-last-message h3{
+    margin: 0;
+    height: 50%;
+    font-family: 'montreal', sans-serif;
+    width: 80%;
+    font-style: italic;
+    font-size: 0.9em;
+    color: #5d7273;
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.middle-section-messagerie{
+    position: relative;
+    display: block;
+    width: 75%;
+    height: 100%;
+}
+
+.middle-section-messagerie-header-background{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-bottom-left-radius: 0.4rem;
+    background: linear-gradient(45deg, #FFDC18, #71bfe4, #e4dad9, #90c5e8, #d5e0e3, #71bfe4, #FFDC18);
+    background-size: 600% 100%;
+    animation: gradient 32s ease-in-out infinite;
+    animation-direction: alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle-section-messagerie-header{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 99%;
+    height: 88%;
+    border-top-right-radius: 0.6rem;
+    border-bottom-left-radius: 0.4rem;
+    background-color: #3e3e3e;
+}
+
+.messagerie-header-profile-pic{
+    width: 5%;
+    padding: 1rem;
+    align-content: center;
+}
+
+.messagerie-header-profile-pic img{
+    width: 3.5rem;
+}
+
+.messagerie-header-name {
+    width: 95%;
+    height: 80%;
+    display: flex;
+    align-content: center;
+}
+
+.messagerie-header-name h2{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 2rem;
+    color: #dddddd;
+    padding: 5px 0 0 0.6rem;
+}
+
+.middle-section-messagerie-container{
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 10%;
+    border-top-left-radius: 0.4rem;
+    background-color: #efefef;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1rem;
+}
+
+.middle-section-messagerie-container p{
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    color: #FAFAFA;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.chat-left, .chat-right {
+    max-width: 70%;
+    margin-bottom: 0.5rem !important;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+}
+
+.chat-left {
+    align-self: flex-start;
+    background-color: #2d2d2d;
+    border-bottom-left-radius: 0;
+}
+
+.chat-right {
+    align-self: flex-end;
+    background-color: #2b80d3;
+    border-bottom-right-radius: 0;
+}
+
+.middle-section-messagerie-input-container{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    top: 90%;
+    display: flex;
+}
+
+.chat-type-area{
+    position: relative;
+    width: 80%;
+    height: 100%;
+}
+
+.chat-type-area input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #3e3e3e;
+    color: #FAFAFA;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    padding-left: 1rem;
+}
+
+.chat-type-area input::placeholder{
+    color: #FAFAFA;
+}
+
+.chat-send-button{
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: #3e3e3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-send-button button{
+    width: 4.5rem;
+    height: 2.5rem;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #FAFAFA;
+    color: #3e3e3e;
+}
+
+.chat-send-button button:hover{
+    cursor: pointer;
+}
 

@@ -12,12 +12,11 @@
     </div>
     <nav id="horizontal-nav">
         <ul th:if="${session.loggedInUser != null}">
-            <li><a th:href="@{/pageAjoutUtilisateur}"><img src="https://img.icons8.com/ios-glyphs/30/add-user-group-woman-man.png" alt="add-user-group-woman-man"/></a></li>
-            <li><a href=""><img src="https://img.icons8.com/ios-glyphs/30/speech-bubble-with-dots.png" alt="speech-bubble-with-dots"/></a></li>
-            <li><a href=""><img src="https://img.icons8.com/ios-glyphs/30/filled-appointment-reminders.png" alt="filled-appointment-reminders"/></a></li>
+            <li><a th:href="@{/pageAjoutUtilisateur}">New friends</a></li>
             <li id="dropdown-toggle">
                 <a><img id="profilePicMenu" th:src="${session.loggedInUser.photoProfilPath}" alt="test-account"/></a>
                 <div class="dropdown-menu" id="dropdownMenu">
+                    <a th:href="@{/pageMessagerie}" class="dropdown-link">Messages</a>
                     <a th:href="@{/pageUtilisateurReglage}" class="dropdown-link">Settings</a>
                     <a th:href="@{/logout}" class="dropdown-link">Sign out</a>
                 </div>

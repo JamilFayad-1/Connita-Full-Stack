@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'accueil utilisateur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section" style="overflow-y: hidden; display: flex;">
+        <div class="middle-section-friend-inbox-container">
+            <div class="middle-section-friend-inbox-title">
+                <h1 class="inbox-title">Inbox</h1>
+            </div>
+            <div class="middle-section-friend-inbox-wrapper">
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Jamil</h2>
+                        <h3>Ok, let me know!</h3>
+                    </div>
+                </div>
+                <div class="friend-inbox-element">
+                    <div class="friend-element-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="friend-element-name-last-message">
+                        <h2>Matthew</h2>
+                        <h3>Did you get my email?</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-section-friend-inbox-overlay"></div>
+        </div>
+        <div class="middle-section-messagerie">
+            <div class="middle-section-messagerie-header-background">
+                <div class="middle-section-messagerie-header">
+                    <div class="messagerie-header-profile-pic">
+                        <img src="images/Default-profile-pic.png" alt="User-Profile-Pic">
+                    </div>
+                    <div class="messagerie-header-name">
+                        <h2>Jamil</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-section-messagerie-container" id="messagerie-container">
+                <p class="chat-left">
+                    Cool, we'll go over it in a few!
+                </p>
+                <p class="chat-right">
+                    Yeah took me a couple tries but it's done
+                </p>
+                <p class="chat-left">
+                    Hey did you finish the first challenge?
+                </p>
+            </div>
+            <div class="middle-section-messagerie-input-container">
+                <div class="chat-type-area">
+                    <input type="text" id="message-typed" class="message-input" placeholder="Type your message...">
+                </div>
+                <div class="chat-send-button">
+                    <button id="send-button" class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    const inputBox = document.getElementById('message-typed');
+    const sendButton = document.getElementById('send-button');
+    const messagerieContainer = document.getElementById('messagerie-container')
+
+    //function pour lire le bouton 'Send' et afficher le message utilisateur
+    function sendMessage(){
+        //Je lis ce que l'utilisateur a écrit
+        let textRead = inputBox.value;
+        //Je créer ensuite un nouveaux élément <p>
+        const newChat = document.createElement('p');
+        //J'assigne le contenue lue à une nouvelle variable et je la donne le style d'un chat personel
+        newChat.textContent = textRead;
+        newChat.classList.add('chat-right')
+        //J'insére le nouveaux chat comme le premier enfant du conteneur.
+        messagerieContainer.prepend(newChat);
+        //Je réinitialise le input element
+        inputBox.value = "";
+    }
+
+    // Event listener pour le clique sur le bouton 'Send'
+    sendButton.addEventListener("click", sendMessage);
+
+    // Event listener pour la touche enter
+    inputBox.addEventListener("keypress", function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+    /*]]>*/
+</script>
+</body>
+</html>
