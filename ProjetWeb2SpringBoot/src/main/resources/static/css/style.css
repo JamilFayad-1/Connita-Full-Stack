@@ -1362,27 +1362,27 @@ main.sign-up-mode .carousel {
 @keyframes SlideInSlideOut {
     0% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
     30% {
         opacity: 0.8;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     50% {
         opacity: 1;
     }
     70% {
         opacity: 0.8;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     100% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
 }
 
 .messagePopUps p{
-    font-family: 'montreal';
+    font-family: 'montreal', sans-serif;
     font-size: 1rem;
     background-color: rgb(240, 240, 240);
     border-radius: 2rem;
@@ -2378,8 +2378,9 @@ main.sign-up-mode .carousel {
     border-top-left-radius: 0.4rem;
     background-color: rgba(200, 215, 227, 0.2);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 1rem;
+    overflow-y: scroll;
 }
 
 .middle-section-messagerie-container p{
@@ -2520,4 +2521,274 @@ main.sign-up-mode .carousel {
     width: 80%;
 }
 
+.choicesFyp{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+}
 
+.choicesFyp a{
+    width: 10%;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+.choicesFyp a:hover h3{
+    text-shadow: 0 8px 2px rgba(92, 153, 221, 0.3);
+}
+
+.choicesFyp h3{
+    font-family: 'montreal', sans-serif;
+    color: #2d2d2d;
+    transition: all 0.3s ease-in-out;
+}
+
+.fypMakeAPost{
+    width: 100%;
+    height: 15%;
+    top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.fypMakeAPost-container{
+    position: relative;
+    width: 40%;
+    height: 100%;
+    border-radius: 0.4rem;
+    border: 2px solid rgba(92, 153, 221, 0.3);
+    box-shadow: rgba(92, 153, 221, 0.2) 0 7px 29px 0;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    background-color: white;
+}
+
+.fypMakeAPost-container-image{
+    position: relative;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fypMakeAPost-container-image img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.fypMakeAPost-container-form-container{
+    position: relative;
+    width: 60%;
+    height: 100%;
+    display: block;
+}
+
+.fypMakeAPost-container-form {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.container-form-element{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+}
+
+.container-form-element label {
+    position: relative;
+    height: 100%;
+    left: 0;
+    transform: none !important;
+    flex-basis: auto;
+    margin-right: 10px;
+    color: #4d4d4d;
+    font-family: 'montreal', sans-serif;
+}
+
+.container-form-element input {
+    flex-grow: 1;
+    margin: 0;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: 'montreal', sans-serif;
+    color: #a9a9a9;
+    padding-top: 10px;
+}
+
+.container-form-element input:focus{
+    outline: none;
+}
+
+.container-form-element input::placeholder{
+    position: absolute;
+    font-family: 'montreal', sans-serif;
+    color: #a9a9a9;
+}
+
+.container-form-element i{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4%;
+    width: 20%;
+}
+
+.container-form-element-button{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 10%;
+}
+
+.container-form-element-button button{
+    position: absolute;
+    font-family: 'montreal', sans-serif;
+    color: #FAFAFA;
+    background-color: #4d4d4d;
+    height: 1.5rem;
+    border-radius: 0.4rem;
+    border: 2px solid rgba(92, 153, 221, 0.3);
+    bottom: 0;
+    margin-bottom: 4%;
+    transition: all 0.2s ease;
+}
+
+.container-form-element-button button:hover{
+    cursor: pointer;
+    background-color: #2a2a2a;
+}
+
+.container-form-element i{
+    color: #2d2d2d;
+    transition: all 0.2s ease-in-out;
+}
+
+.container-form-element i:hover{
+    cursor: pointer;
+    color: #5c99dd;
+}
+
+.post-wrapper{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    top: 28%;
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+
+.post-element{
+    position: relative;
+    display: inline-block;
+    width: 40vw;
+    height: auto;
+    border-radius: 0.8rem;
+    border: 2px solid #2d2d2d;
+    background-color: #fdfffc;
+    margin-bottom: 10vh;
+}
+
+.post-image{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+}
+
+.post-image img{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+}
+
+.post-credentials{
+    position: relative;
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+}
+
+.post-profile-pic{
+    flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-profile-pic img{
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.2rem;
+}
+
+.post-name-and-handle{
+    box-sizing: border-box;
+    text-align: start;
+    flex-grow: 1;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-name-and-handle h3{
+    margin-top: 0.2rem;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+}
+
+.username {
+    margin-left: -5px;
+    font-weight: 600;
+    color: #4d4d4d;
+}
+
+.description {
+    font-weight: 300;
+    color: #646464;
+    font-style: italic;
+}
+
+.post-like-button{
+    box-sizing: border-box;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 1rem;
+}
+
+.post-like-button i:hover{
+    cursor: pointer;
+}
+
+.post-like-button h3{
+    font-family: 'montreal', sans-serif;
+    margin-right: 0.4rem;
+    font-size: 1rem;
+    color: rgba(220, 20, 60, 0.75);
+}
+
+.post-like-button h3:hover{
+    cursor: default;
+}

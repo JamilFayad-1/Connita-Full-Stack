@@ -12,6 +12,8 @@
 
 <header th:include="menu :: menuFragment"></header>
 
+<div th:replace="authForm.html :: authForm"></div>
+
 <main>
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
@@ -57,8 +59,19 @@
     <div id="right-section" th:if="${session.loggedInUser != null}" th:include="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 
+<script src="/javascript/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add("fadeInCountry");
+            }, index * 75);
+        });
+    });
+
     Vue.config.devtools = true;
 
     Vue.component('card', {

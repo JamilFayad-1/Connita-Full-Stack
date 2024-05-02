@@ -108,4 +108,8 @@ public class MembreService {
         return membreRepository.findAll();
     }
 
+    public Membre findById(int id){
+        return membreRepository.findById(id).get();
+    }
+
 }

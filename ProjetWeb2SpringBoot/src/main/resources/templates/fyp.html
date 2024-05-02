@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>For you</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+<body>
+<header th:include="menu :: menuFragment"></header>
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+        <div class="choicesFyp">
+            <a th:href="@{/fyp}"><h3>For you</h3></a>
+            <a th:href="@{/yourContent}"><h3>Your work</h3></a>
+        </div>
+        <div class="fypMakeAPost">
+            <div class="fypMakeAPost-container" id="postContainer">
+                <div class="fypMakeAPost-container-image">
+                    <img th:src="${session.loggedInUser.photoProfilPath}" alt="You"/>
+                </div>
+                <div class="fypMakeAPost-container-form-container">
+                    <form class="fypMakeAPost-container-form" th:action="@{/publier}" th:object="${publication}"
+                          method="post" enctype="multipart/form-data">
+                        <div class="container-form-element" style="display: none">
+                            <label for="titreInputPublicationFormulaire">Title:</label>
+                            <input id="titreInputPublicationFormulaire" value="" th:field="*{titre}" type="text"
+                                   name="titre"
+                                   minlength="5" autocomplete="off" placeholder="Enter your title"/>
+                        </div>
+                        <div class="container-form-element">
+                            <label for="descriptionInputPublicationFormulaire">Caption:</label>
+                            <input id="descriptionInputPublicationFormulaire" th:value="${formDescription}"
+                                   th:field="*{description}" type="text"
+                                   name="description" minlength="5" autocomplete="off" required
+                                   placeholder="Enter a caption"/>
+                        </div>
+                        <div class="container-form-element">
+                            <input id="file-input" th:value="${formFile}" type="file" name="file" style="display: none"
+                                   required/>
+                            <i id="file-icon" class="fa-regular fa-image"></i>
+                            <div class="container-form-element-button">
+                                <button type="submit" id="publishButton">Publish</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="post-wrapper">
+            <div th:each="publication : ${publications}" class="post-element">
+                <div class="post-image">
+                    <img id="imagePosted" th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user image">
+                </div>
+                <div class="post-credentials">
+                    <div class="post-profile-pic">
+                        <img th:src="@{${publication.getMembre().getPhotoProfilPath()}}" alt="profile pic">
+                    </div>
+                    <div class="post-name-and-handle">
+                        <h3>
+                            <span class="username" th:text="${'@' + publication.getMembre().getUsername()}"></span>
+                            <span class="description" th:text="${publication.getDescription()}"></span>
+                        </h3>
+                    </div>
+                    <div class="post-like-button">
+                        <h3 id="likeCounter" th:text="${publication.getLikes()}"></h3>
+                        <i id="likeButton" class="fa-regular fa-heart fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('file-input');
+        const icon = document.getElementById('file-icon');
+
+        icon.addEventListener('click', function () {
+            fileInput.click();
+        });
+    });
+
+    const inputContainer = document.getElementById('postContainer');
+    const formButton = document.getElementById('publishButton');
+
+    formButton.addEventListener('mouseover', function () {
+        inputContainer.style.border = "2px solid rgba(92, 153, 221, 0.8)";
+        inputContainer.style.boxShadow = "rgba(92, 153, 221, 0.4) 0 10px 32px 0";
+    });
+
+    formButton.addEventListener('mouseout', function () {
+        inputContainer.style.border = "";
+        inputContainer.style.boxShadow = "";
+    })
+
+    const likeCounter = document.getElementById('likeCounter');
+    const likeButton = document.getElementById('likeButton');
+
+    likeButton.addEventListener('click', function () {
+        let likeNumberCount = parseInt(likeCounter.textContent);
+        likeNumberCount++;
+        likeCounter.textContent = likeNumberCount.toString();
+    })
+
+    // fix for the image container in the posts
+    const containers = document.querySelectorAll('.post-image');
+
+    containers.forEach(function (container) {
+        const image = container.querySelector('img');
+
+        image.addEventListener('load', function () {
+            console.log("IMAGE");
+            var newHeight = image.offsetHeight + 2;
+            container.style.height = newHeight + 'px';
+        });
+    });
+
+
+</script>
+</body>
+</html>
