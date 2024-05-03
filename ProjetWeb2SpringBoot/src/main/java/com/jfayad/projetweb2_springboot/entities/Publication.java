@@ -13,7 +13,7 @@ public class Publication {
     private String titre;
     @Column()
     private String description;
-    @Column
+    @Column(name = "image", length = 255)
     private String image;
     @Column
     private int likes;

@@ -21,8 +21,11 @@
             <a th:href="@{/fyp}"><h3>For you</h3></a>
             <a th:href="@{/yourContent}"><h3>Your work</h3></a>
         </div>
-        <div class="fypMakeAPost">
-            <div class="fypMakeAPost-container" id="postContainer">
+        <div class="container-opener">
+            <button type="button" id="share-button">Share your thoughts</button>
+        </div>
+        <div class="fypMakeAPost" id="postContainer">
+            <div class="fypMakeAPost-container" id="postElementContainer">
                 <div class="fypMakeAPost-container-image">
                     <img th:src="${session.loggedInUser.photoProfilPath}" alt="You"/>
                 </div>
@@ -91,7 +94,7 @@
         });
     });
 
-    const inputContainer = document.getElementById('postContainer');
+    const inputContainer = document.getElementById('postElementContainer');
     const formButton = document.getElementById('publishButton');
 
     formButton.addEventListener('mouseover', function () {
@@ -104,14 +107,20 @@
         inputContainer.style.boxShadow = "";
     })
 
-    const likeCounter = document.getElementById('likeCounter');
-    const likeButton = document.getElementById('likeButton');
+    const likeButtons = document.querySelectorAll('.post-like-button #likeButton');
 
-    likeButton.addEventListener('click', function () {
-        let likeNumberCount = parseInt(likeCounter.textContent);
-        likeNumberCount++;
-        likeCounter.textContent = likeNumberCount.toString();
-    })
+    likeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const post = button.closest('.post-like-button');
+            const likeCounter = post.querySelector('#likeCounter');
+            let likeNumberCount = parseInt(likeCounter.textContent);
+            likeNumberCount++;
+            likeCounter.textContent = likeNumberCount.toString();
+            button.classList.remove('fa-regular');
+            button.classList.add('fa-solid');
+            button.style.color = "red";
+        });
+    });
 
     // fix for the image container in the posts
     const containers = document.querySelectorAll('.post-image');
@@ -120,12 +129,21 @@
         const image = container.querySelector('img');
 
         image.addEventListener('load', function () {
-            console.log("IMAGE");
-            var newHeight = image.offsetHeight + 2;
+            const newHeight = image.offsetHeight + 2;
             container.style.height = newHeight + 'px';
         });
     });
 
+    const shareButton = document.getElementById('share-button');
+    const postContainer = document.getElementById('postContainer');
+
+    shareButton.addEventListener('click', function() {
+        shareButton.classList.add('animatedButton');
+        postContainer.classList.add('animatedForm');
+
+        shareButton.style.pointerEvents = 'none';
+        postContainer.style.pointerEvents = 'all';
+    });
 
 </script>
 </body>
