@@ -15,16 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -45,7 +43,7 @@ public class AuthController {
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
                         HttpSession session,
-                        Model model) {
+                        RedirectAttributes redirectAttributes) {
         // Process login form
         //        logger.info("Attempting to log in with email: {}", email);
         //        logger.info("Attempting to log in with password: {}", password);
@@ -65,12 +63,12 @@ public class AuthController {
             session.setAttribute("isSecondSetComplete", false);
 
             session.setAttribute("loggedInUser", membre);
+            redirectAttributes.addFlashAttribute("messageConnReussite", "Successful login!");
             return "redirect:/pageAccueilUtilisateur";
         }
         else {
-            model.addAttribute("error", "Invalid credentials");
+            redirectAttributes.addFlashAttribute("messageConnEchoue", "Connexion failed. Check your credentials");
             return "redirect:/index";
-
         }
     }
 
@@ -80,7 +78,7 @@ public class AuthController {
                         @RequestParam("email") String email,
                         @RequestParam("password") String password,
                         HttpSession session,
-                        Model model) {
+                        RedirectAttributes redirectAttributes) {
         boolean validation = false;
         // Process login form
         //logger.info("Attempting to sign up with first name: {}", firstName);
@@ -100,19 +98,22 @@ public class AuthController {
         if (membre != null) {
             validation = true;
             session.setAttribute("validation", validation);
+            redirectAttributes.addFlashAttribute("messageInscrReussite", "Successful registration");
             return "redirect:/index";
         } else {
             session.setAttribute("validation", validation);
-            model.addAttribute("error", "Invalid Info");
+            redirectAttributes.addFlashAttribute("messageInscrEchoue", "Failed to register..");
             return "redirect:/index";
 
         }
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session,
+                         RedirectAttributes redirectAttributes) {
         // Process logout
         session.invalidate();
+        redirectAttributes.addFlashAttribute("messageDeconnexion", "Successful logout!");
         return "redirect:/index";
     }
 
@@ -120,7 +121,7 @@ public class AuthController {
     public String updateProfile(@ModelAttribute Membre membre,
                                 @RequestParam("file") MultipartFile file,
                                 HttpSession session,
-                                Model model) {
+                                RedirectAttributes redirectAttributes) {
         logger.info("Membre photo recu par le forme: {}", membre.getPhotoProfilPath());
 
         if (!file.isEmpty()) {
@@ -128,7 +129,7 @@ public class AuthController {
                 // Obtain the file name
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 logger.info("THE FILE NAME: {}", fileName);
-                String saveDirectory = "C:/Users/Jamil/OneDrive/Documents/NetBeansProjects/projetweb2/ProjetWeb2_SpringBoot/src/main/resources/static/imageUtilisateur";
+                String saveDirectory = "imageUtilisateur/";
                 Path directory = Paths.get(saveDirectory);
                 if (!Files.exists(directory)) {
                     Files.createDirectories(directory);
@@ -154,22 +155,20 @@ public class AuthController {
             }
         }
 
-
-
         boolean success = membreService.updateProfile(membre);
         if (success) {
             Membre membre2 = membreService.connexionMembre(membre.getEmail(), membre.getPassword());
             session.setAttribute("loggedInUser", membre2);
-            model.addAttribute("message", "Profile updated successfully.");
+            redirectAttributes.addFlashAttribute("messageModifieReussite", "Account modified with success!");
         } else {
-            model.addAttribute("message", "Failed to update profile.");
+            redirectAttributes.addFlashAttribute("messageModifieEchoue", "Failed to modify account. Try again later..");
         }
-        return "pageUtilisateurReglage";
+        return "redirect:/pageUtilisateurReglage";
     }
 
     @GetMapping("/imageUtilisateur/{fileName}")
     public void telechargerFichier(@PathVariable String fileName, HttpServletResponse response) throws IOException {
-        String directoryPath = "C:/Users/Jamil/OneDrive/Documents/NetBeansProjects/projetweb2/ProjetWeb2_SpringBoot/src/main/resources/static/imageUtilisateur";
+        String directoryPath = "imageUtilisateur/";
         Path filePath = Paths.get(directoryPath, fileName);
 
         if (Files.exists(filePath)) {
@@ -194,7 +193,7 @@ public class AuthController {
                                  @RequestParam("passwordNew") String newPassword,
                                  @RequestParam("email") String email,
                                  HttpSession session,
-                                 Model model){
+                                 RedirectAttributes redirectAttributes){
 
         Membre membre = new Membre();
         membre.setEmail(email);
@@ -210,11 +209,11 @@ public class AuthController {
         if (success) {
             Membre membre2 = membreService.connexionMembre(membre.getEmail(), newPassword);
             session.setAttribute("loggedInUser", membre2);
-            model.addAttribute("message", "Profile updated successfully.");
+            redirectAttributes.addFlashAttribute("messageChangePasswordReussi", "Password changed successfuly");
         } else {
-            model.addAttribute("message", "Failed to update profile.");
+            redirectAttributes.addFlashAttribute("messageChangePasswordEchoue", "Problem occured. Try again later..");
         }
-        return "pageUtilisateurReglage";
+        return "redirect:/pageUtilisateurReglage";
 
     }
 

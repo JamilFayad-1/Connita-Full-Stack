@@ -9,6 +9,13 @@
 
 <header th:include="menu :: menuFragment"></header>
 
+<div class="messagePopUps">
+    <p th:if="${messageModifieReussite != null}" class="messageTextReussie" th:text="${messageModifieReussite}"></p>
+    <p th:if="${messageModifieEchoue != null}" class="messageTextEchoue" th:text="${messageModifieEchoue}"></p>
+    <p th:if="${messageChangePasswordReussi != null}" class="messageTextReussie" th:text="${messageChangePasswordReussi}"></p>
+    <p th:if="${messageChangePasswordEchoue != null}" class="messageTextEchoue" th:text="${messageChangePasswordEchoue}"></p>
+</div>
+
 <div class="reglage-nav-wrapper">
     <div class="reglage-nav-container">
         <ul>

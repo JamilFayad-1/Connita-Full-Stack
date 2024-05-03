@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Page des pays</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<div th:replace="authForm.html :: authForm"></div>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+        <div class="country-bg">
+            <img src="" id="country-bg">
+        </div>
+        <div class="country-header">
+            <h1 id="country-header"></h1>
+        </div>
+        <div class="country-info">
+            <p id="country-info"></p>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:if="${session.loggedInUser != null}" th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="/javascript/script.js"></script>
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        const countryImage = document.getElementById('country-bg');
+        const countryHeader = document.getElementById('country-header');
+        const countryInfo = document.getElementById('country-info');
+
+        const countryName = getParameterByName('header');
+        console.log("THE COUNTRY: " + countryName);
+        let country = "";
+        switch (countryName) {
+            case "Italy":
+                country = Italy;
+                break;
+            case "Japan":
+                country = Japan;
+                break;
+            case "France":
+                country = France;
+                break;
+            case "Brazil":
+                country = Brazil;
+                break;
+            case "Germany":
+                country = Germany;
+                break;
+            case "Argentina":
+                country = Argentina;
+                break;
+            case "Morocco":
+                country = Morocco;
+                break;
+            case "Canada":
+                country = Canada;
+                break;
+            default:
+                country = Italy;
+        }
+
+        countryImage.src = country[0].img.toString();
+        countryHeader.innerText = country[0].countryName.toString();
+        countryInfo.innerText = country[0].info.toString();
+    });
+
+    const Italy = [
+        {
+            img: "images/ItalyCountry.jpg",
+            countryName: "Italy",
+            info: "Italy, the land of pasta, pizza, and passion! Nestled in Southern and Western Europe like a boot kicking into the Mediterranean Sea, Italy is as diverse as it is enchanting. Picture this: majestic Alps standing guard to the north, while islands like Sicily and Sardinia sprinkle a touch of magic along its shores.\n" +
+                "\n" +
+                "But Italy isn't just about its breathtaking landscapes; it's a country with a rich tapestry of history and culture woven into its very fabric. In ancient times, it was a playground for various peoples, but it was the mighty Romans who stole the show, turning their humble city into an empire that ruled the Mediterranean with an iron fist. With the rise of Christianity, Rome became not only the capital of an empire but also the spiritual heart of the Catholic Church.\n" +
+                "\n" +
+                "Fast forward to the Middle Ages, and Italy was like a phoenix rising from the ashes of the fallen Roman Empire. City-states and maritime republics emerged, bringing with them a wave of prosperity fueled by trade and commerce. Ah, the Renaissance! It was Italy's time to shine, with Florence leading the charge into an era of art, culture, and intellectual awakening that swept across Europe like wildfire.\n" +
+                "\n" +
+                "Of course, no story of Italy would be complete without mentioning its intrepid explorers who set sail for distant lands, charting new courses to the Far East and the New World, and ushering in the age of discovery.\n" +
+                "\n" +
+                "But let's not forget the drama! Centuries of rivalry and power struggles between Italian city-states kept the peninsula in a perpetual state of flux until it was finally unified in 1861, giving birth to the modern Kingdom of Italy. Industrialization followed, bringing with it wealth and prosperity, though not without its challenges. World Wars came and went, shaping the course of history and leaving an indelible mark on the Italian psyche.\n" +
+                "\n" +
+                "Today, Italy stands tall as a beacon of culture, innovation, and style. With one of the largest economies in the world and a seat at the table of global diplomacy, Italy continues to leave its mark on the world stage. From its mouthwatering cuisine to its awe-inspiring art and architecture, Italy remains a timeless treasure trove of wonders, beckoning travelers from far and wide to explore its storied streets and bask in its eternal beauty. Truly, la dolce vita awaits!"
+        }
+    ];
+
+    const Japan = [
+        {
+            img: "images/JapanCountry.jpg",
+            countryName: "Japan",
+            info: "Welcome to the Land of the Rising Sun: Japan! Tucked away in the enchanting embrace of East Asia, Japan is a captivating archipelago that dances along the edge of the Pacific Ocean. Picture this: majestic mountains rising like guardians from the earth, while bustling cities like Tokyo, Yokohama, and Osaka pulse with vibrant energy.\n" +
+                "\n" +
+                "But Japan isn't just about its bustling metropolises; it's a country steeped in history and tradition, where ancient customs blend seamlessly with modern innovations. With over 125 million inhabitants squeezed onto its narrow coastal plains, Japan is a bustling hive of activity, where every corner tells a story.\n" +
+                "\n" +
+                "From the snowy peaks of Hokkaido to the lush greenery of Honshu, Japan's landscape is as diverse as its culture. And let's not forget the islands of Shikoku, Kyushu, and Okinawa, each adding their own unique flavor to the Japanese tapestry.\n" +
+                "\n" +
+                "Step back in time to the days of emperors and samurai, when Japan was a land of kingdoms and warrior nobility. Fast forward to the Meiji period, and witness the country's transformation into a modern powerhouse, embracing Western ideals while retaining its rich cultural heritage.\n" +
+                "\n" +
+                "Of course, no discussion of Japan would be complete without a nod to its pop culture phenomenon. From iconic manga and anime to cutting-edge technology and video games, Japan's influence reaches far beyond its shores, captivating hearts and minds around the globe.\n" +
+                "\n" +
+                "Today, Japan stands as a beacon of innovation and tradition, a global leader in everything from automotive engineering to robotics. With its peaceful constitution and commitment to diplomacy, Japan continues to play a vital role on the world stage, shaping the future with its unique blend of ancient wisdom and modern prowess.\n" +
+                "\n" +
+                "So whether you're drawn to the serene beauty of its temples and gardens or the frenetic energy of its urban jungles, one thing's for sure: Japan is a journey you'll never forget. So pack your bags, and let's embark on an adventure through the Land of the Rising Sun!"
+        }
+    ];
+
+    const France = [
+        {
+            img: "images/FranceCountry.jpg",
+            countryName: "France",
+            info: "Ah, France! The land of baguettes, berets, and bon vivants! Nestled in the heart of Western Europe, France is not just a country; it's a way of life. Picture this: rolling vineyards, quaint villages, and bustling cities where every street corner whispers of history and romance.\n" +
+                "\n" +
+                "But France isn't content with just being fabulous on land; oh no, it's got its fingers dipped in every ocean! With territories and regions scattered across the globe, France boasts one of the most enviable exclusive economic zones in the world. From the sun-kissed shores of the French Riviera to the lush rainforests of French Guiana, France's reach knows no bounds.\n" +
+                "\n" +
+                "Let's talk geography! From the verdant valleys of the Rhine to the windswept shores of the Atlantic, France's metropolitan area is a patchwork quilt of stunning landscapes and vibrant cultures. And let's not forget about its overseas territories, from the idyllic islands of the Caribbean to the far-flung reaches of the Indian Ocean.\n" +
+                "\n" +
+                "Now, let's dive into history! From the days of Gauls and Romans to the glory of the Carolingian Empire, France has seen it all. The Hundred Years' War, the French Renaissance, and the rise of Napoleon Bonaparte – each chapter in France's story is more dramatic than the last!\n" +
+                "\n" +
+                "But it's not all about battles and conquests; oh no, France is a country of thinkers and dreamers. The French Revolution gave birth to the Declaration of the Rights of Man, while the Belle Époque was a golden age of culture and innovation.\n" +
+                "\n" +
+                "Today, France continues to dazzle the world as a global powerhouse of art, science, and philosophy. With its wealth of UNESCO World Heritage Sites and status as the world's top tourist destination, France knows how to steal hearts and minds alike.\n" +
+                "\n" +
+                "So whether you're sipping champagne under the Eiffel Tower or exploring the sun-drenched vineyards of Bordeaux, one thing's for sure: France is a feast for the senses, a symphony of sights, sounds, and flavors just waiting to be discovered. Vive la France!"
+        }
+    ];
+
+    const Brazil = [
+        {
+            img: "images/BrazilCountry.jpg",
+            countryName: "Brazil",
+            info: "Welcome to Brazil, where samba rhythms and tropical vibes meet in a colorful carnival of culture and diversity! Situated as the largest and easternmost gem of South America, Brazil is more than just a country; it's a celebration of life itself!\n" +
+                "\n" +
+                "Let's start with the basics: Brazil is BIG! We're talking the fifth-largest country in the world, covering a vast expanse of land that's home to over 200 million people. From the vibrant streets of Brasília, its capital, to the bustling metropolis of São Paulo, there's never a dull moment in this lively federation of 26 states and the Federal District.\n" +
+                "\n" +
+                "And let's not forget about the language – Portuguese reigns supreme here, making Brazil the only Portuguese-speaking country in the Americas. But with over a century of mass immigration from around the globe, Brazil has become a melting pot of cultures, blending flavors, traditions, and languages into a rich tapestry of diversity.\n" +
+                "\n" +
+                "Now, picture this: miles upon miles of stunning coastline kissed by the Atlantic Ocean, where sun-drenched beaches beckon surfers and sunbathers alike. But Brazil isn't just about beaches; oh no, it's also home to the mighty Amazon basin, a treasure trove of biodiversity that's as vast as it is breathtaking.\n" +
+                "\n" +
+                "History buffs, listen up! Before the arrival of Portuguese explorer Pedro Álvares Cabral in 1500, Brazil was inhabited by numerous tribal nations. But once the Portuguese claimed the land, Brazil's destiny was forever changed. From colonial rule to the birth of the Empire of Brazil in 1822, this country has seen it all – including the abolition of slavery in 1888 and a transition to a democratic federal republic in 1988.\n" +
+                "\n" +
+                "But Brazil isn't just about history; it's also a powerhouse on the global stage. With a booming economy, rich natural resources, and a cultural scene that's the envy of the world, Brazil is a force to be reckoned with.\n" +
+                "\n" +
+                "Of course, no discussion of Brazil would be complete without a mention of its iconic exports – from coffee to carnival, this country knows how to leave a lasting impression.\n" +
+                "\n" +
+                "So whether you're sipping caipirinhas on Copacabana Beach or exploring the lush jungles of the Amazon, one thing's for sure: Brazil is a vibrant, pulsating, and utterly unforgettable adventure waiting to be experienced! Obrigado, Brazil!"
+        }
+    ];
+
+    const Germany = [
+        {
+            img: "images/GermanyCountry.jpg",
+            countryName: "Germany",
+            info: "Welcome to Germany, where history, innovation, and a whole lot of Gemütlichkeit come together in a whirlwind of excitement! Tucked away in the heart of Central Europe, Germany is more than just a country; it's a powerhouse of culture, creativity, and camaraderie.\n" +
+                "\n" +
+                "Let's start with the basics: Germany is BIG – not just in population, but in heart and soul. With over 84 million inhabitants spread across 16 dynamic states, this is a land of diversity and unity like no other. From the bustling streets of Berlin, its capital, to the vibrant energy of Frankfurt's financial hub, Germany is a country that never sleeps.\n" +
+                "\n" +
+                "Geographically, Germany is a stunner. Picture this: lush forests, rolling hills, and majestic mountains stretching from the Baltic Sea in the north to the Alps in the south. And let's not forget about its neighbors – from the historic charm of Poland and the Czech Republic to the picturesque beauty of Switzerland and Austria, Germany is at the crossroads of Europe's rich tapestry of cultures.\n" +
+                "\n" +
+                "But let's dive into history! From the ancient Celts to the mighty Germanic tribes, Germany's roots run deep. And who could forget the Holy Roman Empire, where emperors once ruled over vast swaths of land? Fast forward to the modern era, and Germany has seen it all – from the Protestant Reformation to the rise and fall of the German Empire, the Weimar Republic, and the tumultuous years of World War II.\n" +
+                "\n" +
+                "But fear not, because Germany isn't just about its past; it's also a global leader in innovation and technology. With the largest economy in Europe and a reputation for excellence in industrial, scientific, and technological sectors, Germany is a force to be reckoned with on the world stage.\n" +
+                "\n" +
+                "And let's not forget about the perks of living in Germany – from social security to tuition-free university education and a universal healthcare system, this is a country that takes care of its people.\n" +
+                "\n" +
+                "So whether you're exploring fairytale castles along the Rhine, sipping beer at Oktoberfest in Munich, or dancing the night away at a Berlin techno club, one thing's for sure: Germany is a journey you'll never forget, filled with warmth, wonder, and endless possibilities. Willkommen in Deutschland!"
+        }
+    ];
+
+    const Argentina = [
+        {
+            img: "images/ArgentinaCountry.jpg",
+            countryName: "Argentina",
+            info: "Welcome to Argentina, where tango rhythms, gaucho spirit, and a whole lot of passion dance together in a spectacular fiesta of culture and charm! Situated in the southern half of South America, Argentina is not just a country; it's a sprawling playground of adventure and discovery!\n" +
+                "\n" +
+                "Let's start with the basics: Argentina is BIG – we're talking the second-largest country in South America after Brazil, covering an area so vast you could explore for a lifetime and still find hidden treasures! From the majestic Andes Mountains to the sweeping plains of the Pampas, Argentina is a land of contrasts and natural wonders.\n" +
+                "\n" +
+                "But let's talk about the people – Argentinians are a spirited bunch, known for their warmth, hospitality, and love for life. Whether you're sipping mate with gauchos on the ranch or dancing the night away in the vibrant streets of Buenos Aires, you'll feel like part of the family from the moment you arrive.\n" +
+                "\n" +
+                "And speaking of Buenos Aires, let's not forget about the heartbeat of Argentina! This bustling metropolis is not just the federal capital, it's a melting pot of cultures, where European elegance meets Latin American flair in a whirlwind of energy and excitement. From the colorful streets of La Boca to the grandeur of Recoleta Cemetery, Buenos Aires is a city that never fails to impress.\n" +
+                "\n" +
+                "But Argentina isn't just about cities – oh no, it's also a land of history and heritage. From the ancient civilizations of the Paleolithic period to the Spanish colonization and the fight for independence, Argentina's past is as rich and diverse as its landscapes.\n" +
+                "\n" +
+                "Of course, no discussion of Argentina would be complete without a mention of its iconic exports – from world-renowned beef and Malbec wine to the sultry rhythms of the tango, Argentina knows how to leave a lasting impression on the world stage.\n" +
+                "\n" +
+                "So whether you're marveling at the breathtaking beauty of Iguazú Falls, cheering on your favorite team at a soccer match, or indulging in a traditional asado barbecue with friends, one thing's for sure: Argentina is a journey you'll never forget, filled with warmth, wonder, and endless possibilities. ¡Bienvenidos a Argentina!"
+        }
+    ];
+
+    const Morocco = [
+        {
+            img: "images/MoroccoCountry.jpg",
+            countryName: "Morocco",
+            info: "Welcome to the magical kingdom of Morocco, where ancient history, vibrant culture, and breathtaking landscapes come together in a dazzling mosaic of colors and contrasts! Nestled in the enchanting Maghreb region of North Africa, Morocco is a treasure trove of wonders just waiting to be explored.\n" +
+                "\n" +
+                "Picture this: pristine beaches stretching as far as the eye can see, with the Mediterranean Sea to the north and the mighty Atlantic Ocean to the west. Add to that the dramatic backdrop of the Atlas Mountains, where snow-capped peaks glisten against the azure sky, and you've got yourself a postcard-perfect paradise!\n" +
+                "\n" +
+                "But Morocco is more than just stunning scenery – it's a melting pot of cultures and traditions that have been shaped by centuries of history and heritage. From the ancient Berber tribes to the mighty dynasties of the Almoravids and Almohads, Morocco's past is as rich and diverse as its landscapes.\n" +
+                "\n" +
+                "And let's not forget about the cities – oh, the cities! Wander through the labyrinthine streets of the medinas, where the scent of spices fills the air and the sound of artisans at work echoes through the narrow alleyways. Explore the bustling souks of Marrakech, where vibrant colors and exotic treasures await around every corner. And of course, no trip to Morocco would be complete without a visit to the enchanting blue city of Chefchaouen, where every street is a work of art in shades of azure and cobalt.\n" +
+                "\n" +
+                "But Morocco isn't just about history and culture – it's also a land of adventure and discovery. Trek through the majestic Sahara Desert on the back of a camel, as the sun sets in a blaze of orange and gold over the dunes. Dive into the crystal-clear waters of the Mediterranean and discover a world of underwater wonders. Or simply kick back and relax in a traditional riad, sipping mint tea as you watch the world go by.\n" +
+                "\n" +
+                "Of course, no discussion of Morocco would be complete without mentioning its legendary hospitality. From the moment you arrive, you'll be greeted with warmth and kindness, as locals welcome you into their homes and hearts with open arms.\n" +
+                "\n" +
+                "So whether you're exploring ancient ruins, haggling in the souks, or simply soaking up the sun on a pristine beach, one thing's for sure: Morocco is a journey you'll never forget, filled with wonder, adventure, and endless surprises. Welcome to the kingdom of Morocco – where the magic never ends!"
+        }
+    ];
+
+    const Canada = [
+        {
+            img: "images/CanadaCountry.jpg",
+            countryName: "Canada",
+            info: "Canada, a vast tapestry of landscapes stretching from coast to coast, boasts the title of the world's second-largest country. From the rugged shores of the Atlantic to the majestic peaks of the Rocky Mountains, and onward to the tranquil beauty of the Pacific, Canada's diverse geography leaves visitors in awe. And let's not forget the Arctic expanse reaching towards the northern horizon, completing the canvas of this remarkable nation.\n" +
+                "\n" +
+                "But Canada isn't just about breathtaking scenery; it's a mosaic of cultures and peoples, a true melting pot of diversity. With a population of over 40 million, the majority find their homes nestled in vibrant urban centers like Toronto, Montreal, and Vancouver. Yet, the heartbeat of the nation pulses in its capital, Ottawa, where history meets modernity in a seamless blend.\n" +
+                "\n" +
+                "Speaking of history, Canada's story is one of resilience and evolution. Indigenous peoples have called this land home for millennia, their rich heritage woven into the very fabric of Canadian identity. The arrival of European explorers in the 16th century marked the beginning of a new chapter, as British and French settlers ventured across the Atlantic to establish thriving communities along the eastern coast.\n" +
+                "\n" +
+                "Fast forward to 1867, and Canada emerges as a federal dominion, uniting under the banner of Confederation. Over the years, it grew, adding provinces and territories, while gradually asserting its independence from the United Kingdom. With milestones like the Statute of Westminster in 1931 and the Canada Act of 1982, Canada stepped confidently onto the world stage as a sovereign nation.\n" +
+                "\n" +
+                "In the realm of governance, Canada shines as a beacon of democracy and stability. A constitutional monarchy with a parliamentary system, its leaders navigate the political landscape with finesse, guided by principles of transparency and inclusivity. As a Commonwealth realm, Canada proudly embraces bilingualism, with English and French standing as the official languages of the federal jurisdiction.\n" +
+                "\n" +
+                "Economically robust, Canada stands tall among its peers, buoyed by a wealth of natural resources and robust trade networks. Its reputation as a middle power in global affairs is well-earned, as Canada champions multilateral solutions and peacekeeping efforts. Its influence reverberates across international organizations and forums, shaping policies and fostering cooperation on the world stage.\n" +
+                "\n" +
+                "Indeed, Canada's journey is a testament to the spirit of unity, diversity, and progress. As the maple leaf adorns its flag, symbolizing resilience and vitality, Canada stands as a shining example of a nation built on shared values and boundless possibilities."
+        }
+    ];
+
+</script>
+</body>
+</html>

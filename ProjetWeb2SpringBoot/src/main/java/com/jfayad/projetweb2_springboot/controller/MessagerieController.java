@@ -3,9 +3,7 @@ package com.jfayad.projetweb2_springboot.controller;
 
 import com.jfayad.projetweb2_springboot.entities.Amitier;
 import com.jfayad.projetweb2_springboot.entities.Membre;
-import com.jfayad.projetweb2_springboot.repos.MembreRepository;
 import com.jfayad.projetweb2_springboot.services.AmitierService;
-import com.jfayad.projetweb2_springboot.services.DemandeAmieService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +57,6 @@ public class MessagerieController {
 
         return "Messagerie";
     }
+
 
 }

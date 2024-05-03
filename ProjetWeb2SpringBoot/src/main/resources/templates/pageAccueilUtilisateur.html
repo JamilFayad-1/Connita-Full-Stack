@@ -11,6 +11,10 @@
 
 <header th:include="menu :: menuFragment"></header>
 
+<div class="messagePopUps">
+    <p th:if="${messageConnReussite != null}" class="messageTextReussie" th:text="${messageConnReussite}"></p>
+</div>
+
 <main>
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
