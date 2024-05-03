@@ -65,7 +65,7 @@ header {
     height: 100%;
 }
 
-#logo-container img{
+#logo-container img {
     width: 15%;
     min-width: 60px;
     margin-top: 4vh;
@@ -91,13 +91,13 @@ header {
     justify-content: center;
 }
 
-#horizontal-nav ul{
+#horizontal-nav ul {
     display: flex;
     float: right;
     align-items: center;
 }
 
-#horizontal-nav li{
+#horizontal-nav li {
     display: flex;
     text-decoration: none;
     width: 1.7rem;
@@ -106,18 +106,18 @@ header {
     padding: 0.5rem;
 }
 
-#horizontal-nav li:nth-child(1){
+#horizontal-nav li:nth-child(1) {
     width: auto;
     height: 1rem;
     line-height: 1rem;
     border-radius: 0.3rem;
 }
 
-#horizontal-nav li:nth-child(2){
+#horizontal-nav li:nth-child(2) {
     border-radius: 50%;
 }
 
-#horizontal-nav a{
+#horizontal-nav a {
     font-family: 'CustomFont1', sans-serif;
     color: #2d2d2d;
     width: inherit;
@@ -127,28 +127,28 @@ header {
     transition: all 0.1s ease;
 }
 
-#horizontal-nav img{
+#horizontal-nav img {
     width: inherit;
     height: inherit;
     border-radius: 50%;
 }
 
-#horizontal-nav li:last-of-type{
+#horizontal-nav li:last-of-type {
     width: 2.4rem;
     height: 2.4rem;
 }
 
 
-#horizontal-nav li:nth-child(1):hover{
+#horizontal-nav li:nth-child(1):hover {
     color: #5c99dd;
 }
 
-#horizontal-nav li:nth-child(2):hover{
+#horizontal-nav li:nth-child(2):hover {
     background-color: #e1e1e1;
     cursor: pointer;
 }
 
-#horizontal-nav a:nth-child(1):hover{
+#horizontal-nav a:nth-child(1):hover {
     color: #5c99dd;
 }
 
@@ -182,7 +182,7 @@ main {
     overflow-y: scroll;
 }
 
-#middle-section h1{
+#middle-section h1 {
     font-family: 'CustomFont1', sans serif;
     font-size: 2rem;
     color: #4d4d4d;
@@ -204,7 +204,7 @@ main {
     margin: 0 auto;
 }
 
-#recent-work-container div{
+#recent-work-container div {
     position: relative;
     display: grid;
     justify-content: center;
@@ -226,12 +226,12 @@ main {
     align-content: end;
 }
 
-#recent-work-container-title img{
+#recent-work-container-title img {
     margin: 0 auto;
     padding-right: 5px;
 }
 
-#recent-work-container-title h3{
+#recent-work-container-title h3 {
     font-family: 'CustomFont1', sans-serif;
     font-weight: 500;
     position: relative;
@@ -265,7 +265,7 @@ main {
     margin: 0 auto;
 }
 
-#recent-post-container div{
+#recent-post-container div {
     position: relative;
     width: 30%;
     height: 12vw;
@@ -293,7 +293,7 @@ main {
     margin: 0 auto;
 }
 
-#achievements-container ul{
+#achievements-container ul {
     display: flex;
     align-items: center;
     padding: 0;
@@ -313,12 +313,12 @@ main {
     height: 35%;
 }
 
-#left-section-nav-bar ul{
+#left-section-nav-bar ul {
     padding-top: 20%;
     padding-left: 10%;
 }
 
-#left-section-nav-bar li{
+#left-section-nav-bar li {
     margin: 0 0 0.2rem 0;
     list-style-type: none;
     padding: 0.5rem;
@@ -326,7 +326,7 @@ main {
     transition: background-color 0.5s ease;
 }
 
-#left-section-nav-bar a{
+#left-section-nav-bar a {
     text-decoration: none;
     font-family: 'CustomFont1', sans serif;
     color: black;
@@ -360,7 +360,7 @@ hr {
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-#left-section-favorites h2{
+#left-section-favorites h2 {
     font-family: 'CustomFont1', sans serif;
     font-size: 1.6rem;
     color: #4d4d4d;
@@ -384,13 +384,13 @@ hr {
     margin: 0 0 0 25%;
 }
 
-#vertical-nav-favorites ul{
+#vertical-nav-favorites ul {
     width: 100%;
     margin-top: 0;
     padding: 0;
 }
 
-#vertical-nav-favorites li{
+#vertical-nav-favorites li {
     margin: 0 0 0.2rem 0;
     list-style-type: none;
     padding: 0.5rem;
@@ -400,7 +400,7 @@ hr {
     transition: background-color 0.5s ease;
 }
 
-#vertical-nav-favorites li a{
+#vertical-nav-favorites li a {
     text-decoration: none;
     font-family: 'CustomFont1', sans serif;
     color: black;
@@ -411,13 +411,13 @@ hr {
     transition: color 0.2s ease-in-out;
 }
 
-#vertical-nav-favorites li img{
+#vertical-nav-favorites li img {
     width: 3rem;
     height: 2.8rem;
     margin-right: 1rem;
 }
 
-#vertical-nav-favorites li h3{
+#vertical-nav-favorites li h3 {
     font-family: 'CustomFont1', sans serif;
     color: black;
     font-size: 0.9rem;
@@ -452,18 +452,18 @@ hr {
     height: 80%;
 }
 
-#right-section-friends-list ul{
+#right-section-friends-list ul {
     padding-left: 20px;
 }
 
-#right-section-friends-list h2{
+#right-section-friends-list h2 {
     font-family: 'CustomFont1', sans serif;
     font-size: 1.6rem;
     color: #4d4d4d;
     padding-left: 2rem
 }
 
-#right-section-friends-list h3{
+#right-section-friends-list h3 {
     font-family: 'CustomFont1', sans serif;
     color: #2d2d2d;
     font-size: 0.9rem;
@@ -471,7 +471,7 @@ hr {
     padding: 5px;
 }
 
-#right-section-friends-list li{
+#right-section-friends-list li {
     display: inline-block;
     width: 100%;
     height: auto;
@@ -480,14 +480,14 @@ hr {
     transition: background-color 0.5s ease;
 }
 
-#friends-list img{
+#friends-list img {
     width: 2rem;
     height: auto;
     margin-right: 0.5rem;
     border-radius: 50%;
 }
 
-#right-section-friends-list li a{
+#right-section-friends-list li a {
     text-decoration: none;
     color: black;
     padding-left: 1rem;
@@ -510,10 +510,18 @@ hr {
 /* ----------------------------------------------------------- */
 
 @keyframes colorChange {
-    0%, 100% { background-position: 0% 50%; }
-    25% { background-position: 25% 50%; }
-    50% { background-position: 50% 50%; }
-    75% { background-position: 75% 50%; }
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 25% 50%;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    75% {
+        background-position: 75% 50%;
+    }
 }
 
 #middle-section-challenges-layout {
@@ -523,7 +531,7 @@ hr {
     height: 95%;
 }
 
-#middle-section-challenges-layout h1{
+#middle-section-challenges-layout h1 {
     background: linear-gradient(to right, #cb3d47, #f97c39);
     -webkit-background-clip: text;
     color: transparent;
@@ -531,14 +539,14 @@ hr {
     animation: colorChange 10s infinite;
 }
 
-#middle-section-search-bar{
+#middle-section-search-bar {
     position: relative;
     display: flex;
     width: 100%;
     height: 10%;
 }
 
-#middle-section-search-bar .formSearchBar{
+#middle-section-search-bar .formSearchBar {
     position: relative;
     width: 100%;
     height: 100%;
@@ -546,7 +554,7 @@ hr {
     max-width: 100vw;
 }
 
-#middle-section-search-bar > .formSearchBar > div{
+#middle-section-search-bar > .formSearchBar > div {
     position: inherit;
     width: 40%;
     height: 50%;
@@ -555,14 +563,14 @@ hr {
     align-items: center;
 }
 
-#middle-section-search-bar > .formSearchBar > div > img{
+#middle-section-search-bar > .formSearchBar > div > img {
     width: 1.5rem;
     height: 1.5rem;
     transform: translateX(-150%);
     cursor: pointer;
 }
 
-#middle-section-search-bar > .formSearchBar > div > input{
+#middle-section-search-bar > .formSearchBar > div > input {
     position: inherit;
     width: 100%;
     height: 100%;
@@ -579,11 +587,11 @@ hr {
     transition: border-color 0.3s;
 }
 
-#middle-section-search-bar input:hover{
+#middle-section-search-bar input:hover {
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-#middle-section-search-bar input::placeholder{
+#middle-section-search-bar input::placeholder {
     font-family: 'CustomFont1', sans serif;
     font-size: 1rem;
     color: #ABABAB;
@@ -620,7 +628,7 @@ hr {
     cursor: pointer;
 }
 
-.logged-out:hover{
+.logged-out:hover {
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     background-color: #E8AE8F;
     cursor: no-drop;
@@ -668,7 +676,7 @@ hr {
     padding: 2% 0 0 8%;
 }
 
-#subject-challenge-container p{
+#subject-challenge-container p {
     font-family: 'CustomFont1', sans serif;
     font-size: 0.9rem;
     color: black;
@@ -680,13 +688,13 @@ hr {
     padding: 0 0 0 10%;
 }
 
-#subject-challenge h3{
+#subject-challenge h3 {
     font-family: 'CustomFont1', sans serif;
     font-size: 1.2rem;
     color: black;
 }
 
-#subject-challenge img{
+#subject-challenge img {
     width: 4rem;
     height: 4rem;
     margin-right: 1rem;
@@ -701,7 +709,7 @@ hr {
     right: 0;
 }
 
-#challenge-complete h3{
+#challenge-complete h3 {
     font-family: 'CustomFont1', sans serif;
     font-size: 1.2rem;
     color: #f97c39;
@@ -773,7 +781,7 @@ hr {
 }
 
 .grid-item:hover img,
-.grid-item-languages:hover img{
+.grid-item-languages:hover img {
     transform: scale(1.1);
 }
 
@@ -833,7 +841,7 @@ hr {
     overflow-x: hidden;
 }
 
-#main-section-home-page h1{
+#main-section-home-page h1 {
     position: relative;
     font-family: 'CustomFont1', sans serif;
     font-size: 3.5vw;
@@ -843,7 +851,7 @@ hr {
     overflow: hidden;
 }
 
-#main-section-first-info{
+#main-section-first-info {
     width: 100%;
     margin-top: 5vh;
     display: flex;
@@ -851,14 +859,14 @@ hr {
     justify-content: end;
 }
 
-#main-section-first-info img{
+#main-section-first-info img {
     width: 35%;
     height: auto;
     padding-right: 2%;
     margin: 2% 0 0 0;
 }
 
-#main-section-first-info h2{
+#main-section-first-info h2 {
     width: 30%;
     height: auto;
     padding: 8% 10% 0 0;
@@ -867,7 +875,7 @@ hr {
     color: #4d4d4d;
 }
 
-#bubble-thoughts1{
+#bubble-thoughts1 {
     display: block;
     position: relative;
     width: 40%;
@@ -875,38 +883,38 @@ hr {
     margin: 0 auto;
 }
 
-#bubble-thoughts1 img{
+#bubble-thoughts1 img {
     display: block;
     width: 1vw;
     height: auto;
 }
 
-#bubble-thoughts1 img:nth-child(1){
+#bubble-thoughts1 img:nth-child(1) {
     margin: 4vh 0 0 10vw;
     transform: rotate(180deg);
 }
 
-#bubble-thoughts1 img:nth-child(2){
+#bubble-thoughts1 img:nth-child(2) {
     margin: 6vh 0 0 8vw;
     transform: rotate(190deg);
 }
 
-#bubble-thoughts1 img:nth-child(3){
+#bubble-thoughts1 img:nth-child(3) {
     margin: 6vh 0 0 9vw;
     transform: rotate(160deg);
 }
 
-#bubble-thoughts1 img:nth-child(4){
+#bubble-thoughts1 img:nth-child(4) {
     margin: 6vh 0 0 8.5vw;
     transform: rotate(180deg);
 }
 
-#bubble-thoughts1 img:nth-child(5){
+#bubble-thoughts1 img:nth-child(5) {
     margin: 6vh 0 0 10vw;
     transform: rotate(150deg);
 }
 
-#bubble-thoughts1 img:nth-child(6){
+#bubble-thoughts1 img:nth-child(6) {
     margin: 6vh 0 0 11vw;
     transform: rotate(160deg);
 }
@@ -917,14 +925,14 @@ hr {
     margin-top: 10vw;
 }
 
-#main-section-second-info img{
+#main-section-second-info img {
     position: absolute;
     width: 4vw;
     height: auto;
     display: none;
 }
 
-#main-section-second-info h2{
+#main-section-second-info h2 {
     text-align: center;
     margin: 0 auto;
     padding: 1vw 0 2vw 0;
@@ -935,7 +943,7 @@ hr {
     font-size: 4rem;
 }
 
-#bubble-thoughts2{
+#bubble-thoughts2 {
     display: block;
     position: relative;
     width: 40%;
@@ -943,38 +951,38 @@ hr {
     margin: 0 auto;
 }
 
-#bubble-thoughts2 img{
+#bubble-thoughts2 img {
     display: block;
     width: 1vw;
     height: auto;
 }
 
-#bubble-thoughts2 img:nth-child(1){
+#bubble-thoughts2 img:nth-child(1) {
     margin: 4vh 0 0 14vw;
     transform: rotate(210deg);
 }
 
-#bubble-thoughts2 img:nth-child(2){
+#bubble-thoughts2 img:nth-child(2) {
     margin: 6vh 0 0 13vw;
     transform: rotate(190deg);
 }
 
-#bubble-thoughts2 img:nth-child(3){
+#bubble-thoughts2 img:nth-child(3) {
     margin: 6vh 0 0 11vw;
     transform: rotate(200deg);
 }
 
-#bubble-thoughts2 img:nth-child(4){
+#bubble-thoughts2 img:nth-child(4) {
     margin: 6vh 0 0 11.5vw;
     transform: rotate(180deg);
 }
 
-#bubble-thoughts2 img:nth-child(5){
+#bubble-thoughts2 img:nth-child(5) {
     margin: 6vh 0 0 10vw;
     transform: rotate(180deg);
 }
 
-#bubble-thoughts2 img:nth-child(6){
+#bubble-thoughts2 img:nth-child(6) {
     margin: 6vh 0 0 11vw;
     transform: rotate(170deg);
 }
@@ -988,14 +996,14 @@ hr {
     margin-left: 5vw;
 }
 
-#main-section-third-info img{
+#main-section-third-info img {
     width: 35%;
     height: auto;
     padding-left: 2%;
     margin: 2% 0 0 0;
 }
 
-#main-section-third-info h2{
+#main-section-third-info h2 {
     width: 30%;
     margin-left: 5vw;
     height: auto;
@@ -1065,7 +1073,7 @@ hr {
     transition: 0.8s ease-in-out;
 }
 
-form{
+form {
     max-width: 260px;
     width: 100%;
     margin: 0 auto;
@@ -1381,7 +1389,7 @@ main.sign-up-mode .carousel {
     }
 }
 
-.messagePopUps p{
+.messagePopUps p {
     font-family: 'montreal', sans-serif;
     font-size: 1rem;
     background-color: rgb(240, 240, 240);
@@ -1412,8 +1420,8 @@ main.sign-up-mode .carousel {
     height: 14vh;
     z-index: 10;
     border-radius: 0.4rem;
-    border: 1px solid rgba(0,0,0,0.4);
-    box-shadow: -7px 8px 10px -9px rgba(0,0,0,0.42);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: -7px 8px 10px -9px rgba(0, 0, 0, 0.42);
     justify-content: center;
     padding: 0;
 }
@@ -1437,18 +1445,18 @@ main.sign-up-mode .carousel {
 }
 
 
-#horizontal-nav .dropdown-menu a:nth-child(1){
+#horizontal-nav .dropdown-menu a:nth-child(1) {
     border-top-right-radius: 0.4rem;
     border-top-left-radius: 0.4rem;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(3){
+#horizontal-nav .dropdown-menu a:nth-child(3) {
     border-bottom-right-radius: 0.35rem;
     border-bottom-left-radius: 0.35rem;
 }
 
 #horizontal-nav .dropdown-menu a:nth-child(1):hover,
-#horizontal-nav .dropdown-menu a:nth-child(2):hover{
+#horizontal-nav .dropdown-menu a:nth-child(2):hover {
     color: #5c99dd;
     background-color: #e0e0e0;
 }
@@ -1587,7 +1595,7 @@ main.sign-up-mode .carousel {
     margin-top: 3vh;
 }
 
-.reglage-form-row{
+.reglage-form-row {
     display: grid;
     margin-bottom: 4vh;
 }
@@ -1644,7 +1652,7 @@ main.sign-up-mode .carousel {
     justify-content: end;
 }
 
-.reglage-form-button input{
+.reglage-form-button input {
     width: 5vw;
     height: 2vw;
     border: 2px solid black;
@@ -1654,7 +1662,7 @@ main.sign-up-mode .carousel {
     transition: 0.2s ease;
 }
 
-.reglage-form-button input:hover{
+.reglage-form-button input:hover {
     background-color: #ebebeb;
     color: #5c99dd;
     cursor: pointer;
@@ -1678,12 +1686,12 @@ main.sign-up-mode .carousel {
     height: 15vh;
 }
 
-.reglage-nav-container ul{
+.reglage-nav-container ul {
     padding-top: 20%;
     padding-left: 10%;
 }
 
-.reglage-nav-container li{
+.reglage-nav-container li {
     margin: 0 0 0.2rem 0;
     list-style-type: none;
     padding: 0.5rem;
@@ -1692,7 +1700,7 @@ main.sign-up-mode .carousel {
 }
 
 .reglage-nav-container a,
-.reglage-nav-container li{
+.reglage-nav-container li {
     text-decoration: none;
     font-family: 'CustomFont1', sans serif;
     color: black;
@@ -1704,7 +1712,7 @@ main.sign-up-mode .carousel {
 }
 
 .reglage-nav-container li:hover,
-.reglage-nav-container li:hover a{
+.reglage-nav-container li:hover a {
     color: #5c99dd;
     cursor: pointer;
 }
@@ -1733,11 +1741,11 @@ main.sign-up-mode .carousel {
     cursor: pointer;
 }
 
-.rectangle-container input[type="checkbox"]:checked + img{
+.rectangle-container input[type="checkbox"]:checked + img {
     opacity: 1;
 }
 
-.rectangle-container label img{
+.rectangle-container label img {
     width: 100%;
     height: auto;
     object-fit: contain;
@@ -1745,7 +1753,7 @@ main.sign-up-mode .carousel {
     padding: 0;
 }
 
-.rectangle .imgChecked{
+.rectangle .imgChecked {
     position: absolute;
     top: 1vh;
     right: 1vh;
@@ -1769,7 +1777,7 @@ main.sign-up-mode .carousel {
     z-index: 10;
 }
 
-.challenge-set-nav-container{
+.challenge-set-nav-container {
     width: 100%;
     max-width: 600px;
 }
@@ -1781,10 +1789,10 @@ main.sign-up-mode .carousel {
     list-style: none;
 }
 
-.btnSet{
+.btnSet {
     font-family: 'montreal', sans-serif;
     font-size: 1rem;
-    background-image: linear-gradient(to left, #ff9966,#ff5e62,#ff9966);
+    background-image: linear-gradient(to left, #ff9966, #ff5e62, #ff9966);
     color: white;
     padding: 1vh;
     border: none;
@@ -1804,11 +1812,11 @@ main.sign-up-mode .carousel {
     }
 }
 
-.btnSet:hover{
+.btnSet:hover {
     background-position: right;
 }
 
-.btnSet:disabled{
+.btnSet:disabled {
     background: #650c0c;
     filter: blur(1.5px);
     cursor: no-drop;
@@ -1872,11 +1880,11 @@ main.sign-up-mode .carousel {
     color: #fff;
 }
 
-.btnAnswer:disabled{
+.btnAnswer:disabled {
     cursor: no-drop;
 }
 
-#btnNext{
+#btnNext {
     background: #e27c44;
     color: #fff;
     font-family: 'montreal', sans-serif;
@@ -1892,11 +1900,11 @@ main.sign-up-mode .carousel {
     display: none;
 }
 
-.correct{
+.correct {
     background: #9aeabc;
 }
 
-.incorrect{
+.incorrect {
     background: #ff9393;
 }
 
@@ -1915,28 +1923,28 @@ main.sign-up-mode .carousel {
     overflow-y: scroll;
 }
 
-#middle-section-friends h1{
+#middle-section-friends h1 {
     font-family: 'CustomFont1', sans serif;
     font-size: 2rem;
     color: #4d4d4d;
     padding: 1rem 0 0 3rem;
 }
 
-#middle-section-friends-list{
+#middle-section-friends-list {
     display: block;
     position: relative;
     width: 100%;
     height: 95%;
 }
 
-#middle-section-friends-list-container{
+#middle-section-friends-list-container {
     position: relative;
     display: block;
     width: 40%;
     height: 80%;
 }
 
-.middle-section-friends-list-element{
+.middle-section-friends-list-element {
     position: relative;
     display: flex;
     height: 12%;
@@ -1948,78 +1956,78 @@ main.sign-up-mode .carousel {
     transition: all 0.2s ease;
 }
 
-.added-user{
+.added-user {
     border: 5px solid rgba(130, 211, 229, 0.45)
 }
 
-.middle-section-friends-list-element:hover{
+.middle-section-friends-list-element:hover {
     cursor: pointer;
     box-shadow: 0.1rem 0.2rem 1rem rgba(60, 169, 229, 0.45);
 }
 
-.friends-list-element-picture{
+.friends-list-element-picture {
     width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.friends-list-element-picture img{
+.friends-list-element-picture img {
     padding: 10px;
     width: 3vw;
     height: 3vw;
     border-radius: 50%;
 }
 
-.friends-list-element-name-region{
+.friends-list-element-name-region {
     width: 50%;
     display: block;
     font-family: 'CustomFont1', sans-serif;
 }
 
-.friends-list-element-name-region h2{
+.friends-list-element-name-region h2 {
     font-size: 1.2rem;
     color: #2d2d2d;
     margin: 1vh 0 1vh 0;
 }
 
-.friends-list-element-name-region h3{
+.friends-list-element-name-region h3 {
     font-size: 0.9rem;
     color: #4d4d4d;
     margin: 1vh 0 1vh 0;
 }
 
-.friends-list-element-add-button{
+.friends-list-element-add-button {
     width: 30%;
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
-.friends-list-element-add-button button{
+.friends-list-element-add-button button {
     border: none;
     background-color: transparent;
     margin-right: 0.8vw;
 }
 
-.friends-list-element-add-button button img{
+.friends-list-element-add-button button img {
     width: 2.6rem;
     height: 2.6rem;
     transition: all 0.6s ease;
 }
 
-.friends-list-element-add-button button img:hover{
+.friends-list-element-add-button button img:hover {
     cursor: pointer;
 }
 
-.friends-list-thats-you{
+.friends-list-thats-you {
     width: 30%;
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
-.friends-list-thats-you p{
+.friends-list-thats-you p {
     font-family: 'montreal', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
@@ -2028,7 +2036,7 @@ main.sign-up-mode .carousel {
     rotate: 10deg;
 }
 
-.demande-amie-container{
+.demande-amie-container {
     width: 220px;
     height: 60%;
     background-color: rgba(189, 189, 189, 0.5);
@@ -2039,7 +2047,7 @@ main.sign-up-mode .carousel {
     transition: right 0.3s ease;
 }
 
-.demande-amie-container h1{
+.demande-amie-container h1 {
     font-family: 'CustomFont1', sans-serif;
     font-size: 1.3rem;
     color: #4d4d4d;
@@ -2051,14 +2059,14 @@ main.sign-up-mode .carousel {
     -webkit-text-fill-color: transparent;
 }
 
-.demande-amie-container p{
+.demande-amie-container p {
     font-family: 'montreal', sans-serif;
     font-size: 0.9rem;
     color: #898A8A;
     padding: 0 0 0.2rem 1.1rem;
 }
 
-.demande-amie-tab-button{
+.demande-amie-tab-button {
     width: 20px;
     height: 30px;
     position: absolute;
@@ -2104,7 +2112,7 @@ main.sign-up-mode .carousel {
     transition: all 0.2s ease;
 }
 
-.side-tab-info{
+.side-tab-info {
     font-family: 'montreal', sans-serif;
     letter-spacing: 0.02rem;
     font-size: 0.8rem;
@@ -2121,7 +2129,7 @@ main.sign-up-mode .carousel {
     align-items: center;
 }
 
-.demande-amie-element{
+.demande-amie-element {
     position: relative;
     display: flex;
     width: 85%;
@@ -2133,7 +2141,7 @@ main.sign-up-mode .carousel {
     align-items: center;
 }
 
-.demande-amie-disapear{
+.demande-amie-disapear {
     animation: disapearingElement 0.4s ease-in-out forwards;
 }
 
@@ -2147,21 +2155,21 @@ main.sign-up-mode .carousel {
     }
 }
 
-.demande-amie-element img{
+.demande-amie-element img {
     padding: 10px 0 10px 10px;
     width: 2vw;
     height: 2vw;
     border-radius: 50%;
 }
 
-.demande-amie-element h3{
+.demande-amie-element h3 {
     width: 40%;
     font-family: 'CustomFont1', sans-serif;
     font-size: 0.75rem;
     padding: 0 8px 0 5px;
 }
 
-.demande-amie-element-choice{
+.demande-amie-element-choice {
     position: absolute;
     right: 0;
     display: block;
@@ -2171,7 +2179,7 @@ main.sign-up-mode .carousel {
     align-content: space-evenly;
 }
 
-.demande-amie-element-choice button{
+.demande-amie-element-choice button {
     font-family: 'montreal', sans-serif;
     width: 100%;
     height: 50%;
@@ -2179,16 +2187,16 @@ main.sign-up-mode .carousel {
     background-color: transparent;
 }
 
-.demande-amie-element-choice button:hover{
+.demande-amie-element-choice button:hover {
     color: white;
     cursor: pointer;
 }
 
-.demande-amie-element-choice button:nth-child(1):hover{
+.demande-amie-element-choice button:nth-child(1):hover {
     background-color: #179b3f;
 }
 
-.demande-amie-element-choice button:nth-child(2):hover{
+.demande-amie-element-choice button:nth-child(2):hover {
     background-color: #bc3541;
 }
 
@@ -2196,14 +2204,14 @@ main.sign-up-mode .carousel {
 /* Page Messagerie
 /* ----------------------------------------------------------- */
 
-.middle-section-friend-inbox-container{
+.middle-section-friend-inbox-container {
     position: relative;
     display: block;
     width: 25%;
     height: 100%;
 }
 
-.middle-section-friend-inbox-title{
+.middle-section-friend-inbox-title {
     position: absolute;
     top: 0;
     left: 0;
@@ -2214,14 +2222,16 @@ main.sign-up-mode .carousel {
     border-bottom-right-radius: 0.4rem;
 }
 
-.inbox-title{
-    margin: 0; !important;
-    padding: 0; !important;
+.inbox-title {
+    margin: 0;
+!important;
+    padding: 0;
+!important;
     font-size: 40px !important;
     color: #dddddd !important;
 }
 
-.middle-section-friend-inbox-wrapper{
+.middle-section-friend-inbox-wrapper {
     position: absolute;
     display: block;
     top: 10%;
@@ -2240,13 +2250,21 @@ main.sign-up-mode .carousel {
 }
 
 @keyframes gradient {
-    0% {background-position: 30%}
-    30% {background-position: 100%}
-    75% {background-position: 0%}
-    100% {background-position: 30%}
+    0% {
+        background-position: 30%
+    }
+    30% {
+        background-position: 100%
+    }
+    75% {
+        background-position: 0%
+    }
+    100% {
+        background-position: 30%
+    }
 }
 
-.middle-section-friend-inbox-overlay{
+.middle-section-friend-inbox-overlay {
     position: absolute;
     top: 10%;
     height: 90%;
@@ -2266,29 +2284,29 @@ main.sign-up-mode .carousel {
     transition: background-color 0.2s ease-in-out;
 }
 
-.friend-inbox-element:hover{
+.friend-inbox-element:hover {
     background: #c8d7e3;
     cursor: pointer;
 }
 
-.friend-element-profile-pic{
+.friend-element-profile-pic {
     width: 20%;
     padding: 1rem;
     align-content: center;
 }
 
-.friend-element-profile-pic img{
+.friend-element-profile-pic img {
     width: 3.5rem;
 }
 
-.friend-element-name-last-message{
+.friend-element-name-last-message {
     width: 80%;
     height: 100%;
     display: block;
     padding: 0.5rem;
 }
 
-.friend-element-name-last-message h2{
+.friend-element-name-last-message h2 {
     margin: 0;
     height: 50%;
     font-family: 'CustomFont1', sans-serif;
@@ -2296,7 +2314,7 @@ main.sign-up-mode .carousel {
     color: #3e3e3e;
 }
 
-.friend-element-name-last-message h3{
+.friend-element-name-last-message h3 {
     margin: 0;
     height: 50%;
     font-family: 'montreal', sans-serif;
@@ -2310,14 +2328,14 @@ main.sign-up-mode .carousel {
     text-overflow: ellipsis;
 }
 
-.middle-section-messagerie{
+.middle-section-messagerie {
     position: relative;
     display: block;
     width: 75%;
     height: 100%;
 }
 
-.middle-section-messagerie-header-background{
+.middle-section-messagerie-header-background {
     position: absolute;
     width: 100%;
     height: 10%;
@@ -2331,7 +2349,7 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.middle-section-messagerie-header{
+.middle-section-messagerie-header {
     position: absolute;
     display: flex;
     align-items: center;
@@ -2342,13 +2360,13 @@ main.sign-up-mode .carousel {
     background-color: #3e3e3e;
 }
 
-.messagerie-header-profile-pic{
+.messagerie-header-profile-pic {
     width: 5%;
     padding: 1rem;
     align-content: center;
 }
 
-.messagerie-header-profile-pic img{
+.messagerie-header-profile-pic img {
     width: 3.5rem;
 }
 
@@ -2359,7 +2377,7 @@ main.sign-up-mode .carousel {
     align-content: center;
 }
 
-.messagerie-header-name h2{
+.messagerie-header-name h2 {
     display: flex;
     align-items: center;
     margin: 0;
@@ -2369,7 +2387,7 @@ main.sign-up-mode .carousel {
     padding: 5px 0 0 0.6rem;
 }
 
-.middle-section-messagerie-container{
+.middle-section-messagerie-container {
     box-sizing: border-box;
     position: absolute;
     width: 100%;
@@ -2383,7 +2401,7 @@ main.sign-up-mode .carousel {
     overflow-y: scroll;
 }
 
-.middle-section-messagerie-container p{
+.middle-section-messagerie-container p {
     font-family: 'montreal', sans-serif;
     font-size: 1rem;
     color: #FAFAFA;
@@ -2410,7 +2428,7 @@ main.sign-up-mode .carousel {
     border-bottom-right-radius: 0;
 }
 
-.middle-section-messagerie-input-container{
+.middle-section-messagerie-input-container {
     position: absolute;
     width: 100%;
     height: 10%;
@@ -2418,13 +2436,13 @@ main.sign-up-mode .carousel {
     display: flex;
 }
 
-.chat-type-area{
+.chat-type-area {
     position: relative;
     width: 80%;
     height: 100%;
 }
 
-.chat-type-area input{
+.chat-type-area input {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -2435,11 +2453,11 @@ main.sign-up-mode .carousel {
     padding-left: 1rem;
 }
 
-.chat-type-area input::placeholder{
+.chat-type-area input::placeholder {
     color: #FAFAFA;
 }
 
-.chat-send-button{
+.chat-send-button {
     position: relative;
     width: 20%;
     height: 100%;
@@ -2449,7 +2467,7 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.chat-send-button button{
+.chat-send-button button {
     width: 4.5rem;
     height: 2.5rem;
     font-family: 'montreal', sans-serif;
@@ -2461,14 +2479,14 @@ main.sign-up-mode .carousel {
     transition: all 0.2s ease;
 }
 
-.chat-send-button button:hover{
+.chat-send-button button:hover {
     background-color: #c8d7e3;
     cursor: pointer;
 }
 
 /*Page des info d'un pays*/
 
-.country-bg{
+.country-bg {
     position: relative;
     width: 100%;
     height: 50%;
@@ -2478,12 +2496,12 @@ main.sign-up-mode .carousel {
     align-items: center;
 }
 
-.country-bg img{
+.country-bg img {
     width: 100%;
     height: auto;
 }
 
-.country-header{
+.country-header {
     position: relative;
     display: flex;
     width: 100%;
@@ -2493,7 +2511,7 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.country-header h1{
+.country-header h1 {
     text-align: center;
     font-size: 3rem !important;
     margin: 0;
@@ -2506,7 +2524,7 @@ main.sign-up-mode .carousel {
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
 }
 
-.country-info{
+.country-info {
     position: relative;
     box-sizing: border-box;
     padding: 0 2rem 2rem 2rem;
@@ -2514,58 +2532,58 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.country-info p{
+.country-info p {
     font-family: 'montreal', sans-serif;
     color: #2d2d2d;
     font-size: 1.2rem;
     width: 80%;
 }
 
-.choicesFyp{
+.choicesFyp-container {
     width: 100%;
     height: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.choicesFyp a{
-    width: 10%;
+.choicesFyp {
+    width: auto;
+    height: 100%;
+    display: flex;
+}
+
+.choicesFyp a {
+    width: auto;
     text-decoration: none;
     display: flex;
     justify-content: center;
+    padding: 0 0.8rem 0 0.8rem;
 }
 
-.choicesFyp a:hover h3{
+.choicesFyp a:hover h3 {
     text-shadow: 0 8px 2px rgba(92, 153, 221, 0.3);
 }
 
-.choicesFyp h3{
+.choicesFyp h3 {
     font-family: 'montreal', sans-serif;
     color: #2d2d2d;
     transition: all 0.3s ease-in-out;
 }
 
-.fypMakeAPost{
-    width: 100%;
-    height: 15%;
+.fypMakeAPost-container-image {
+    position: relative;
+    width: 40%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -10%;
-    margin-bottom: 5vh;
     opacity: 0;
-    pointer-events: none;
+    animation: fadeInForm 1s ease forwards;
 }
 
-.animatedForm {
-    animation: animatedForm 3s ease forwards;
-}
-
-@keyframes animatedForm {
+@keyframes fadeInForm {
     0% {
-        opacity: 0;
-    }
-    40%{
         opacity: 0;
     }
     100% {
@@ -2573,39 +2591,19 @@ main.sign-up-mode .carousel {
     }
 }
 
-.fypMakeAPost-container{
-    position: relative;
-    width: 40%;
-    height: 100%;
-    border-radius: 0.4rem;
-    border: 2px solid rgba(92, 153, 221, 0.3);
-    box-shadow: rgba(92, 153, 221, 0.2) 0 7px 29px 0;
-    display: flex;
-    transition: all 0.2s ease-in-out;
-    background-color: white;
-}
-
-.fypMakeAPost-container-image{
-    position: relative;
-    width: 40%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fypMakeAPost-container-image img{
+.fypMakeAPost-container-image img {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
     border: 1px solid black;
 }
 
-.fypMakeAPost-container-form-container{
+.fypMakeAPost-container-form-container {
     position: relative;
     width: 60%;
     height: 100%;
     display: block;
+    animation: fadeInForm 1s ease forwards;
 }
 
 .fypMakeAPost-container-form {
@@ -2614,7 +2612,7 @@ main.sign-up-mode .carousel {
     height: 100%
 }
 
-.container-form-element{
+.container-form-element {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -2644,24 +2642,24 @@ main.sign-up-mode .carousel {
     padding-top: 10px;
 }
 
-.container-form-element input:focus{
+.container-form-element input:focus {
     outline: none;
 }
 
-.container-form-element input::placeholder{
+.container-form-element input::placeholder {
     position: absolute;
     font-family: 'montreal', sans-serif;
     color: #a9a9a9;
 }
 
-.container-form-element i{
+.container-form-element i {
     position: absolute;
     bottom: 0;
     margin-bottom: 4%;
     width: 20%;
 }
 
-.container-form-element-button{
+.container-form-element-button {
     width: 100%;
     height: 100%;
     display: flex;
@@ -2669,7 +2667,7 @@ main.sign-up-mode .carousel {
     padding-right: 10%;
 }
 
-.container-form-element-button button{
+.container-form-element-button button {
     position: absolute;
     font-family: 'montreal', sans-serif;
     color: #FAFAFA;
@@ -2682,22 +2680,22 @@ main.sign-up-mode .carousel {
     transition: all 0.2s ease;
 }
 
-.container-form-element-button button:hover{
+.container-form-element-button button:hover {
     cursor: pointer;
     background-color: #2a2a2a;
 }
 
-.container-form-element i{
+.container-form-element i {
     color: #2d2d2d;
     transition: all 0.2s ease-in-out;
 }
 
-.container-form-element i:hover{
+.container-form-element i:hover {
     cursor: pointer;
     color: #5c99dd;
 }
 
-.post-wrapper{
+.post-wrapper {
     box-sizing: border-box;
     width: 100%;
     height: auto;
@@ -2705,9 +2703,10 @@ main.sign-up-mode .carousel {
     display: block;
     padding: 10px;
     text-align: center;
+    transition: all 0.5s ease-in-out;
 }
 
-.post-element{
+.post-element {
     position: relative;
     display: inline-block;
     width: 40vw;
@@ -2718,7 +2717,7 @@ main.sign-up-mode .carousel {
     margin-bottom: 10vh;
 }
 
-.post-image{
+.post-image {
     position: relative;
     width: 100%;
     height: auto;
@@ -2729,7 +2728,7 @@ main.sign-up-mode .carousel {
     border-top-right-radius: 0.6rem;
 }
 
-.post-image img{
+.post-image img {
     box-sizing: border-box;
     width: 100%;
     height: auto;
@@ -2737,7 +2736,7 @@ main.sign-up-mode .carousel {
     border-top-right-radius: 0.6rem;
 }
 
-.post-credentials{
+.post-credentials {
     position: relative;
     width: 100%;
     height: 8%;
@@ -2745,21 +2744,21 @@ main.sign-up-mode .carousel {
     flex-direction: row;
 }
 
-.post-profile-pic{
+.post-profile-pic {
     flex-basis: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.post-profile-pic img{
+.post-profile-pic img {
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
     padding: 0.2rem;
 }
 
-.post-name-and-handle{
+.post-name-and-handle {
     box-sizing: border-box;
     text-align: start;
     flex-grow: 1;
@@ -2769,7 +2768,7 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.post-name-and-handle h3{
+.post-name-and-handle h3 {
     margin-top: 0.2rem;
     font-family: 'montreal', sans-serif;
     font-size: 1rem;
@@ -2788,7 +2787,7 @@ main.sign-up-mode .carousel {
     font-style: italic;
 }
 
-.post-like-button{
+.post-like-button {
     box-sizing: border-box;
     width: 20%;
     display: flex;
@@ -2797,45 +2796,44 @@ main.sign-up-mode .carousel {
     padding-right: 1rem;
 }
 
-.post-like-button i:hover{
+.post-like-button i:hover {
     cursor: pointer;
 }
 
-.post-like-button h3{
+.post-like-button h3 {
     font-family: 'montreal', sans-serif;
     margin-right: 0.4rem;
     font-size: 1rem;
     color: rgba(220, 20, 60, 0.75);
 }
 
-.post-like-button h3:hover{
+.post-like-button h3:hover {
     cursor: default;
 }
 
-.container-opener{
+.fypMakeAPost {
     width: 100%;
     height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5vh;
+    pointer-events: none;
 }
 
-.container-opener button{
-    font-family: 'montreal', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #4d4d4d;
-    height: 3rem;
-    width: 10rem;
+.fypMakeAPost-container {
+    position: relative;
+    width: 40%;
+    height: 100%;
     border-radius: 0.4rem;
-    border: none;
-    background-color: #f5f5f5;
-    box-shadow: rgba(136, 165, 191, 0.48) 2px 2px 16px 0, rgba(255, 255, 255, 0.8) -2px -2px 16px 0;
-    transition: all 0.3s ease-in-out;
-    z-index: 999;
+    border: 2px solid rgba(92, 153, 221, 0.3);
+    box-shadow: rgba(92, 153, 221, 0.2) 0 7px 29px 0;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    background-color: white;
 }
 
-.animatedButton{
+.animateInputContainer {
     animation: buttonAnim 3s ease forwards;
 }
 
@@ -2848,38 +2846,41 @@ main.sign-up-mode .carousel {
     2% {
         padding: 0;
         height: 3rem;
-        color: transparent;
     }
     20% {
         padding: 0;
         height: 3rem;
         width: 2rem;
-        color: transparent;
     }
     30% {
         padding: 0;
         height: 100%;
         width: 2rem;
-        color: transparent;
     }
     66% {
         padding: 0;
         height: 100%;
         width: 40%;
-        color: transparent;
     }
     100% {
         padding: 0;
         height: 100%;
         width: 40%;
-        color: transparent;
-        background-color: transparent;
         box-shadow: none;
     }
 }
 
-.container-opener button:hover{
-    cursor: pointer;
-    box-shadow: rgba(136, 165, 191, 0.72) 2px 2px 22px 0, rgba(255, 255, 255, 0.9) -2px -2px 22px 0;
-    background-color: #ffffff;
+.animateShareThoughts {
+    white-space: nowrap;
+    animation: textAnim 0.2s ease forwards;
+}
+
+@keyframes textAnim {
+    0% {
+        color: #4d4d4d;
+    }
+    100% {
+        transform: translateY(-20px);
+        color: transparent;
+    }
 }

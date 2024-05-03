@@ -17,19 +17,19 @@
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
     <div id="middle-section">
-        <div class="choicesFyp">
-            <a th:href="@{/fyp}"><h3>For you</h3></a>
-            <a th:href="@{/yourContent}"><h3>Your work</h3></a>
+        <div class="choicesFyp-container">
+            <div class="choicesFyp">
+                <a th:href="@{/fyp}"><h3>For you</h3></a>
+                <a th:href="@{/yourContent}"><h3>Your work</h3></a>
+            </div>
         </div>
-        <div class="container-opener">
-            <button type="button" id="share-button">Share your thoughts</button>
-        </div>
-        <div class="fypMakeAPost" id="postContainer">
+        <div class="fypMakeAPost">
             <div class="fypMakeAPost-container" id="postElementContainer">
-                <div class="fypMakeAPost-container-image">
+                <h2 style="font-family: 'montreal', sans-serif" id="shareThoughts">Share your thoughts</h2>
+                <div class="fypMakeAPost-container-image" id="form-part-1">
                     <img th:src="${session.loggedInUser.photoProfilPath}" alt="You"/>
                 </div>
-                <div class="fypMakeAPost-container-form-container">
+                <div class="fypMakeAPost-container-form-container" id="form-part-2">
                     <form class="fypMakeAPost-container-form" th:action="@{/publier}" th:object="${publication}"
                           method="post" enctype="multipart/form-data">
                         <div class="container-form-element" style="display: none">
@@ -109,8 +109,8 @@
 
     const likeButtons = document.querySelectorAll('.post-like-button #likeButton');
 
-    likeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    likeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             const post = button.closest('.post-like-button');
             const likeCounter = post.querySelector('#likeCounter');
             let likeNumberCount = parseInt(likeCounter.textContent);
@@ -134,16 +134,59 @@
         });
     });
 
-    const shareButton = document.getElementById('share-button');
-    const postContainer = document.getElementById('postContainer');
+    const shareButton = document.getElementById('shareThoughts');
+    const part1 = document.getElementById('form-part-1');
+    const part2 = document.getElementById('form-part-2');
 
-    shareButton.addEventListener('click', function() {
-        shareButton.classList.add('animatedButton');
-        postContainer.classList.add('animatedForm');
 
-        shareButton.style.pointerEvents = 'none';
-        postContainer.style.pointerEvents = 'all';
+    shareButton.style.width = '100%';
+    shareButton.style.textAlign = 'center';
+    shareButton.style.margin = '0';
+    shareButton.style.alignContent = 'center';
+    shareButton.style.fontSize = '1rem';
+    shareButton.style.padding = '1rem';
+    shareButton.style.color = '#4d4d4d';
+    part1.style.display = 'none';
+    part2.style.display = 'none';
+    part1.style.pointerEvents = 'none';
+    part2.style.pointerEvents = 'none';
+    inputContainer.style.width = 'auto';
+    inputContainer.style.height = 'auto';
+    inputContainer.style.pointerEvents = 'auto';
+    inputContainer.style.backgroundColor = 'rgb(245, 245, 245)';
+
+
+    let formEnabeled = false;
+
+    shareButton.addEventListener('mouseover', function () {
+        shareButton.style.cursor = 'pointer';
+        inputContainer.style.boxShadow = 'rgba(92, 153, 221, 0.5) 0px 10px 30px';
+        inputContainer.style.backgroundColor = 'white';
     });
+
+    shareButton.addEventListener('mouseout', function () {
+        shareButton.style.cursor = 'default';
+        inputContainer.style.boxShadow = '';
+        inputContainer.style.backgroundColor = 'rgb(245, 245, 245)';
+    });
+
+    inputContainer.addEventListener('click', function () {
+        if (formEnabeled === false) {
+            formEnabeled = true;
+            shareButton.classList.add('animateShareThoughts');
+            setTimeout(() => {
+                inputContainer.classList.add('animateInputContainer');
+            }, 200)
+            setTimeout(() => {
+                shareButton.style.display = 'none';
+                part1.style.display = 'flex';
+                part2.style.display = 'block';
+                part1.style.pointerEvents = 'auto';
+                part2.style.pointerEvents = 'auto';
+            }, 2000)
+        }
+    });
+
 
 </script>
 </body>
