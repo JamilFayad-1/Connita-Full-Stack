@@ -21,8 +21,10 @@
             <div id="middle-section-search-bar">
                 <form class="formSearchBar">
                     <div style="width: 85%; margin-left: 16%">
-                        <input type="text" id="searchQuery" name="challengeName" placeholder="Look a specific friend" oninput="filterChallenges()" required>
-                        <img src="https://img.icons8.com/pastel-glyph/64/search--v1.png" id="searchIcon" alt="search--v1"/>
+                        <input type="text" id="searchQuery" name="challengeName" placeholder="Look a specific friend"
+                               oninput="filterChallenges()" required>
+                        <img src="https://img.icons8.com/pastel-glyph/64/search--v1.png" id="searchIcon"
+                             alt="search--v1"/>
                     </div>
                 </form>
             </div>
@@ -35,9 +37,10 @@
         <!-- 3d card render -->
         <div class="middle-section-user-card-container">
             <div id="app" class="user-card-element">
-                <card data-image="images/cardBackground.gif">
-                    <h1 slot="header">Canada</h1>
-                    <p slot="content">Canada: Where Nature's Grandeur Meets Cultural Diversity</p>
+                <card data-image="images/cardBackgroundVideoFinal.gif">
+                    <img slot="profilePic" src="images/b4a17ea0671b3ba3d4a80b4b4bc079ca.jpg" alt="Profile pic">
+                    <h1 slot="name">Jamil Fayad</h1>
+                    <h3 slot="username">@gwu.co</h3>
                 </card>
             </div>
         </div>
@@ -54,8 +57,13 @@
             <img th:src="${demande.photoProfilPath}" alt="profil picture">
             <h3 th:text="${demande.prenom + ' ' + demande.nom}"></h3>
             <div class="demande-amie-element-choice">
-                <button type="button" name="AcceptRequest" id="AcceptedButton" th:data-idAmieDemande="${demande.idMembre}" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Accept</button>
-                <button type="button" name="DenyRequest" id="DeniedButton" th:data-idMembreDemande="${session.loggedInUser.idMembre}">Decline</button>
+                <button type="button" name="AcceptRequest" id="AcceptedButton"
+                        th:data-idAmieDemande="${demande.idMembre}"
+                        th:data-idMembreDemande="${session.loggedInUser.idMembre}">Accept
+                </button>
+                <button type="button" name="DenyRequest" id="DeniedButton"
+                        th:data-idMembreDemande="${session.loggedInUser.idMembre}">Decline
+                </button>
             </div>
         </div>
         <div class="side-tab-info" id="sideTabInfo">Close tab</div>
@@ -71,15 +79,15 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const sideTabContainer = document.getElementById('toggle-demande-amie');
         sideTabContainer.style.right = '0px';
         const sideTabButtonP1 = document.getElementById('sideTabButtonP1');
         const sideTabButtonP2 = document.getElementById('sideTabButtonP2');
         const addButton = document.querySelectorAll('#addButton');
 
-        addButton.forEach(function(button) {
-            button.addEventListener('click', function() {
+        addButton.forEach(function (button) {
+            button.addEventListener('click', function () {
                 const idMembre = this.getAttribute('data-idMembre');
                 const idAmie = this.getAttribute('data-idAmie');
 
@@ -91,7 +99,7 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             const addImage = button.querySelector('img');
@@ -112,8 +120,8 @@
         function reattachEventListeners() {
             const addButton = document.querySelectorAll('#middle-section-friends-list-container #addButton');
             const friendElements = document.querySelectorAll('#middle-section-friends-list-container #userElementDisplayed');
-            addButton.forEach(function(button) {
-                button.addEventListener('click', function() {
+            addButton.forEach(function (button) {
+                button.addEventListener('click', function () {
                     const idMembre = this.getAttribute('data-idMembre');
                     const idAmie = this.getAttribute('data-idAmie');
 
@@ -125,7 +133,7 @@
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", url, true);
                     xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.onreadystatechange = function() {
+                    xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4) {
                             if (xhr.status === 200) {
                                 const addImage = button.querySelector('img');
@@ -151,7 +159,7 @@
             const url = "/reloadFriendsList";
             xhr.open("POST", url, true);
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     document.getElementById("middle-section-friends-list-container").outerHTML = xhr.responseText;
                     reattachEventListeners();
@@ -165,8 +173,8 @@
         const friendRequestElements = document.querySelectorAll('.demande-amie-element');
         const friendRequestContainer = document.getElementById('toggle-demande-amie');
 
-        acceptAmieButton.forEach(function(button) {
-            button.addEventListener('click', function() {
+        acceptAmieButton.forEach(function (button) {
+            button.addEventListener('click', function () {
                 const idMembre = this.getAttribute('data-idMembreDemande');
                 const idAmie = this.getAttribute('data-idAmieDemande');
 
@@ -175,14 +183,14 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             const parentElement = button.closest('.demande-amie-element');
                             parentElement.classList.add('demande-amie-disapear');
                             reloadFriendsList();
                             parentElement.remove();
-                            if(friendRequestElements.length <= 1){
+                            if (friendRequestElements.length <= 1) {
                                 friendRequestContainer.innerHTML = "<h1>Friend requests</h1>\n <p>No friend requests found.</p>";
                             }
                             console.log("Friend request sent successfully!");
@@ -195,8 +203,8 @@
             });
         });
 
-        denyAmieButton.forEach(function(button) {
-            button.addEventListener('click', function() {
+        denyAmieButton.forEach(function (button) {
+            button.addEventListener('click', function () {
                 const idMembre = this.getAttribute('data-idMembreDemande');
 
                 const url = "/SupprimerAmitier?idMembre=" + idMembre;
@@ -204,7 +212,7 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
                             const parentElement = button.closest('.demande-amie-element');
@@ -223,28 +231,28 @@
         const button = document.getElementById('sidetab-button');
         const sideTabInfo = document.getElementById('sideTabInfo');
 
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             var isOpen = sideTabContainer.style.right === '0px';
-            if(sideTabContainer.style.right === '0px'){
+            if (sideTabContainer.style.right === '0px') {
                 sideTabButtonP1.style.transform = 'rotate(16deg)';
                 sideTabButtonP2.style.transform = 'rotate(-16deg)';
             }
-            sideTabContainer.style.right = isOpen ?  '-220px' : '0px';
+            sideTabContainer.style.right = isOpen ? '-220px' : '0px';
         })
 
-        button.addEventListener('mouseenter', function() {
+        button.addEventListener('mouseenter', function () {
             const isOpen = sideTabContainer.style.right === '-220px';
             sideTabInfo.style.display = 'flex';
             if (!isOpen) {
                 sideTabInfo.textContent = 'Close tab';
                 sideTabButtonP1.style.transform = 'rotate(-16deg)';
                 sideTabButtonP2.style.transform = 'rotate(16deg)';
-            }else{
+            } else {
                 sideTabInfo.textContent = 'Open tab';
             }
         });
 
-        button.addEventListener('mouseleave', function() {
+        button.addEventListener('mouseleave', function () {
             const isOpen = sideTabContainer.style.right === '-220px';
             sideTabInfo.style.display = 'none';
             if (!isOpen) {
@@ -262,7 +270,7 @@
         element = document.getElementsByClassName("idElementFriend");
         const searchIconButton = document.getElementById("searchIcon");
 
-        input.addEventListener("keypress", function(event) {
+        input.addEventListener("keypress", function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
                 searchIconButton.click();
@@ -290,24 +298,26 @@
 
     Vue.component('card', {
         template: `
-                <div class="card-wrap"
-                    @mousemove="handleMouseMove"
-                    @mouseenter="handleMouseEnter"
-                    @mouseleave="handleMouseLeave"
-                    ref="card"
-                    @click="handleCardClick">
-                    <div class="card"
-                        :style="cardStyle">
-                        <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
-                        <div class="card-info">
-                            <slot name="header"></slot>
-                            <slot name="content"></slot>
-                        </div>
-                    </div>
-                </div>`,
+          <div class="card-wrap"
+               ref="card"
+               @click="handleCardClick">
+            <div class="card"
+                 :style="cardStyle">
+              <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
+              <div class="card-profile-pic">
+                <slot name="profilePic"></slot>
+              </div>
+              <div class="card-info">
+                <slot name="name"></slot>
+                <slot name="username"></slot>
+              </div>
+            </div>
+          </div>`,
         mounted() {
             this.width = this.$refs.card.offsetWidth;
             this.height = this.$refs.card.offsetHeight;
+
+            document.addEventListener('mousemove', this.handleMouseMove);
         },
         props: ['dataImage'],
         data() {
@@ -327,15 +337,15 @@
                 return this.mouseY / this.height;
             },
             cardStyle() {
-                const rX = this.mousePX * 30;
-                const rY = this.mousePY * -30;
+                const rX = this.mousePX * 12;
+                const rY = this.mousePY * -10;
                 return {
                     transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
                 };
             },
             cardBgTransform() {
-                const tX = this.mousePX * -40;
-                const tY = this.mousePY * -40;
+                const tX = this.mousePX * -5;
+                const tY = this.mousePY * -5;
                 return {
                     transform: `translateX(${tX}px) translateY(${tY}px)`
                 };
@@ -355,20 +365,18 @@
                 const cardX = cardRect.left + cardRect.width / 2;
                 const cardY = cardRect.top + cardRect.height / 2;
 
-                const relativeMouseX = mouseX - cardX;
-                const relativeMouseY = mouseY - cardY;
+                let relativeMouseX = mouseX - cardX;
+                let relativeMouseY = mouseY - cardY;
 
+                if(relativeMouseX > 3000){
+                    relativeMouseX = 3000;
+                }
+
+                if(relativeMouseY > 150){
+                    relativeMouseY = 150;
+                }
                 this.mouseX = relativeMouseX;
                 this.mouseY = relativeMouseY;
-            },
-            handleMouseEnter() {
-                clearTimeout(this.mouseLeaveDelay);
-            },
-            handleMouseLeave() {
-                this.mouseLeaveDelay = setTimeout(() => {
-                    this.mouseX = 0;
-                    this.mouseY = 0;
-                }, 1000);
             },
             handleCardClick() {
 
