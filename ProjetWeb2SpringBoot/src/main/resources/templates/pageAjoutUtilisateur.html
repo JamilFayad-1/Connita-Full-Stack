@@ -38,9 +38,9 @@
         <div class="middle-section-user-card-container">
             <div id="app" class="user-card-element">
                 <card data-image="images/cardBackgroundVideoFinal.gif">
-                    <img slot="profilePic" src="images/b4a17ea0671b3ba3d4a80b4b4bc079ca.jpg" alt="Profile pic">
-                    <h1 slot="name">Jamil Fayad</h1>
-                    <h3 slot="username">@gwu.co</h3>
+                    <img slot="profilePic" alt="Profile pic" id="profilePicCard">
+                    <h1 slot="name" id="nameCard"></h1>
+                    <h3 slot="username" id="usernameCard"></h3>
                 </card>
             </div>
         </div>
@@ -289,6 +289,27 @@
             }
         });
     }
+
+    const userElementClicked = document.querySelectorAll('#userElementDisplayed');
+
+    userElementClicked.forEach(function(userElement) {
+        userElement.addEventListener('click', function () {
+            const profilePic = userElement.querySelector('.friends-list-element-picture img').getAttribute('src');
+            const fullName = userElement.querySelector('.friends-list-element-name-region h2').textContent;
+            const username = userElement.querySelector('.friends-list-element-name-region h3').textContent;
+
+            const userImageSlot = document.getElementById('profilePicCard');
+            const userFullNameSlot = document.getElementById('nameCard');
+            const usernameSlot = document.getElementById('usernameCard');
+
+            userImageSlot.src = profilePic;
+            userFullNameSlot.textContent = fullName;
+            usernameSlot.textContent = username;
+            console.log(profilePic);
+            console.log(fullName);
+            console.log(username);
+        });
+    });
 
     /*]]>*/
 </script>
