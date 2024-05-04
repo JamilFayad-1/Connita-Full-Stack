@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        .animate__animated.animate__bounce {
+            transition: all 1s ease-in-out;
+            --animate-duration: 0.8s;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -56,6 +65,19 @@
     </div>
 </main>
 <script src="/javascript/script.js"></script>
+<script th:inline="javascript">
+    const shakeyButton = document.getElementById('shakeyList');
+    const shakeyElement = document.getElementById('shakeyButton');
+    shakeyButton.addEventListener('click', function() {
+        shakeyElement.classList.add('animate__animated');
+        shakeyElement.classList.add('animate__swing');
+
+        setTimeout(() => {
+            shakeyElement.classList.remove('animate__animated');
+            shakeyElement.classList.remove('animate__swing');
+        }, 1000);
+    });
+</script>
 </body>
 </html>
 

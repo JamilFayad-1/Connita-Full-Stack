@@ -1,13 +1,25 @@
-const btnStartLearning = document.querySelector(".btnSignup");
+const btnStartLearning = document.querySelectorAll(".btnSignup");
 const mainBox = document.querySelector(".main-box");
-const closeForm = document.querySelector(".close-icon-container");
+const closeForm = document.querySelectorAll(".close-icon-container");
 
-btnStartLearning.addEventListener("click", function () {
+// Function to open the main box
+function openMainBox() {
     mainBox.classList.add("main-box-visible");
+}
+
+// Function to close the main box
+function closeMainBox() {
+    mainBox.classList.remove("main-box-visible");
+}
+
+// Attach event listener to each "Start Learning" button
+btnStartLearning.forEach((element) => {
+    element.addEventListener("click", openMainBox);
 });
 
-closeForm.addEventListener("click", function () {
-    mainBox.classList.remove("main-box-visible");
+// Attach event listener to each close button
+closeForm.forEach((element) => {
+    element.addEventListener("click", closeMainBox);
 });
 
 const inputs = document.querySelectorAll(".input-field");

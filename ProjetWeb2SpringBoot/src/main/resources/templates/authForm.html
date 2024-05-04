@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Page form login</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <main class="main-box" th:fragment="authForm">
-    <div class="box">
+    <div class="box" id="shakeyButton">
         <div class="close-form-join">
             <div class="close-icon-container"></div>
         </div>
@@ -23,7 +23,7 @@
                     <div class="heading">
                         <h2>Welcome Back</h2>
                         <h6>Not registered yet?</h6>
-                        <a href="#" class="toggle">Sign up</a>
+                        <a style="font-family: 'montreal', sans-serif" href="#" class="toggle">Sign up</a>
                     </div>
 
                     <div class="actual-form">
@@ -69,7 +69,7 @@
                     <div class="heading">
                         <h2>Get Started</h2>
                         <h6>Already have an account?</h6>
-                        <a href="#" class="toggle">Sign in</a>
+                        <a style="font-family: 'montreal', sans-serif" href="#" class="toggle">Sign in</a>
                     </div>
 
                     <div class="actual-form">
