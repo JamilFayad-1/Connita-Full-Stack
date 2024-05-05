@@ -321,17 +321,17 @@
 
         document.getElementById('general-link').addEventListener('click', function(event) {
             showForm('general');
-            event.preventDefault(); // Prevent default anchor behavior
+            event.preventDefault();
         });
 
         document.getElementById('security-link').addEventListener('click', function(event) {
             showForm('security');
-            event.preventDefault(); // Prevent default anchor behavior
+            event.preventDefault();
         });
 
         document.getElementById('languages-link').addEventListener('click', function(event) {
             showForm('languages');
-            event.preventDefault(); // Prevent default anchor behavior
+            event.preventDefault();
         });
 
         function showForm(formName) {
@@ -350,7 +350,7 @@
 
 
     function stretchImage(container) {
-        var image = container.querySelector('img'); // Get the <img> element inside the container
+        var image = container.querySelector('img');
 
         if (image) { // Check if the image element exists
             var containerWidth = container.offsetWidth;
@@ -387,7 +387,7 @@
                         });
                     } else {
                         alert('Please select a square image.\nA minimum of 150px by 150px is recommended');
-                        event.target.value = ''; // Clear the selected file
+                        event.target.value = '';
                     }
                 };
 

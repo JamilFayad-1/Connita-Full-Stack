@@ -40,13 +40,13 @@
                         </div>
                         <div class="container-form-element">
                             <label for="descriptionInputPublicationFormulaire">Caption:</label>
-                            <input id="descriptionInputPublicationFormulaire" th:value="${formDescription}"
+                            <input id="descriptionInputPublicationFormulaire"
                                    th:field="*{description}" type="text"
                                    name="description" minlength="5" autocomplete="off" required
                                    placeholder="Enter a caption"/>
                         </div>
                         <div class="container-form-element">
-                            <input id="file-input" th:value="${formFile}" type="file" name="file" style="display: none"
+                            <input id="file-input" type="file" name="file" style="display: none"
                                    required/>
                             <i id="file-icon" class="fa-regular fa-image"></i>
                             <div class="container-form-element-button">
@@ -91,6 +91,21 @@
 
         icon.addEventListener('click', function () {
             fileInput.click();
+        });
+
+        const form = document.querySelector('.fypMakeAPost-container-form');
+
+        form.addEventListener('submit', function(event) {
+            // Delay the reset operation by a short duration (e.g., 100 milliseconds)
+            setTimeout(function() {
+                // Reset description input by clearing the associated model attribute
+                const descriptionField = document.getElementById('descriptionInputPublicationFormulaire');
+                descriptionField.value = '';  // Clear the input field
+
+                // Reset file input (if needed)
+                const fileInput = document.getElementById('file-input');
+                fileInput.value = '';
+            }, 100);
         });
     });
 

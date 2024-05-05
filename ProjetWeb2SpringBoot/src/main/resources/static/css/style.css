@@ -241,9 +241,9 @@ main {
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     align-content: center;
-    background-color: black;
+    background-color: #2d2d2d;
     padding-left: 10px;
-    color: white;
+    color: #dddddd;
 }
 
 #recent-work-container div:hover, #recent-post-container div:hover {
@@ -1851,7 +1851,10 @@ main.sign-up-mode .carousel {
 #middle-section-friends h1 {
     font-family: 'CustomFont1', sans serif;
     font-size: 2rem;
-    color: #4d4d4d;
+    background: linear-gradient(#393939, #5c99dd) repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     padding: 1rem 0 0 3rem;
 }
 
@@ -2230,6 +2233,7 @@ main.sign-up-mode .carousel {
 }
 
 .friend-element-profile-pic img {
+    background-color: #dddddd;
     width: 3.5rem;
 }
 
@@ -2255,7 +2259,7 @@ main.sign-up-mode .carousel {
     width: 80%;
     font-style: italic;
     font-size: 0.9em;
-    color: #5d7273;
+    color: #898A8A;
     padding-left: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
@@ -2301,6 +2305,7 @@ main.sign-up-mode .carousel {
 }
 
 .messagerie-header-profile-pic img {
+    background-color: #dddddd;
     width: 3.5rem;
 }
 
