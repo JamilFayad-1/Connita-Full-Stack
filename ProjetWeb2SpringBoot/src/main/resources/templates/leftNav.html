@@ -23,9 +23,8 @@
             <li th:unless="${session.loggedInUser != null}" style="cursor: pointer" id="shakeyList">
                 <a class="btnSignup">For you</a>
             </li>
-            <li><a th:href="@{/pageLanguages}">Languages</a></li>
             <li><a th:href="@{/pageCountries}">Countries</a></li>
-            <li><a href="#">Travel</a></li>
+            <li><a th:href="@{/pageTravel}">Travel</a></li>
             <li><a th:href="@{/challenges}">Challenges</a></li>
         </ul>
     </div>

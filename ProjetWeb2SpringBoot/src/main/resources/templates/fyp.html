@@ -74,7 +74,7 @@
                     </div>
                     <div class="post-like-button">
                         <h3 id="likeCounter" th:text="${publication.getLikes()}"></h3>
-                        <i id="likeButton" class="fa-regular fa-heart fa-xl"></i>
+                        <i id="likeButton" class="fa-regular fa-heart fa-xl" th:data-idPost="${publication.getId_publication()}"></i>
                     </div>
                 </div>
             </div>
@@ -129,11 +129,59 @@
             const post = button.closest('.post-like-button');
             const likeCounter = post.querySelector('#likeCounter');
             let likeNumberCount = parseInt(likeCounter.textContent);
-            likeNumberCount++;
-            likeCounter.textContent = likeNumberCount.toString();
-            button.classList.remove('fa-regular');
-            button.classList.add('fa-solid');
-            button.style.color = "red";
+            if(button.classList.contains('fa-regular')){
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/likePost?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount++;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-regular');
+                            button.classList.add('fa-solid');
+                            button.style.color = "red";
+                            likeCounter.style.color = 'red';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }else {
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/removeLike?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount--;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-solid');
+                            button.classList.add('fa-regular');
+                            button.style.color = "#2d2d2d";
+                            likeCounter.style.color = '#2d2d2d';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }
         });
     });
 

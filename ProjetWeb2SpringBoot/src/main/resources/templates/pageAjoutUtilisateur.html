@@ -17,7 +17,7 @@
     <!-- Middle section -->
     <div id="middle-section-friends" style="overflow: hidden">
         <div id="middle-section-friends-list">
-            <h1>Add new friends</h1>
+            <h1 style="background: linear-gradient(#393939, #5c99dd) repeat-y; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Add new friends</h1>
             <div id="middle-section-search-bar">
                 <form class="formSearchBar">
                     <div style="width: 85%; margin-left: 16%">
@@ -87,7 +87,9 @@
         const addButton = document.querySelectorAll('#addButton');
 
         addButton.forEach(function (button) {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
+
                 const idMembre = this.getAttribute('data-idMembre');
                 const idAmie = this.getAttribute('data-idAmie');
 
@@ -263,19 +265,21 @@
 
         const userElementClicked = document.querySelectorAll('#userElementDisplayed');
         const userCardElement = document.getElementById('app');
+        const middleSection = document.getElementById('middle-section-friends');
 
-        userElementClicked.forEach(function(userElement) {
+        userElementClicked.forEach(function (userElement) {
             userElement.addEventListener('click', function () {
                 const profilePic = userElement.querySelector('.friends-list-element-picture img').getAttribute('src');
                 const fullName = userElement.querySelector('.friends-list-element-name-region h2').textContent;
                 const username = userElement.querySelector('.friends-list-element-name-region h3').textContent;
+                middleSection.classList.add('middle-section-card-displayed');
 
                 const userImageSlot = document.getElementById('profilePicCard');
                 const userFullNameSlot = document.getElementById('nameCard');
                 const usernameSlot = document.getElementById('usernameCard');
 
 
-                if(userCardElement.classList.contains('animateIn')){
+                if (userCardElement.classList.contains('animateIn')) {
                     userCardElement.classList.add('animateOut');
                     setTimeout(() => {
                         userCardElement.classList.remove('animateIn');
@@ -285,7 +289,7 @@
                         usernameSlot.textContent = username;
                         userCardElement.classList.add('animateIn');
                     }, 1000);
-                }else{
+                } else {
                     userImageSlot.src = profilePic;
                     userFullNameSlot.textContent = fullName;
                     usernameSlot.textContent = username;
@@ -402,11 +406,11 @@
                 let relativeMouseX = mouseX - cardX;
                 let relativeMouseY = mouseY - cardY;
 
-                if(relativeMouseX > 3000){
+                if (relativeMouseX > 3000) {
                     relativeMouseX = 3000;
                 }
 
-                if(relativeMouseY > 150){
+                if (relativeMouseY > 150) {
                     relativeMouseY = 150;
                 }
                 this.mouseX = relativeMouseX;

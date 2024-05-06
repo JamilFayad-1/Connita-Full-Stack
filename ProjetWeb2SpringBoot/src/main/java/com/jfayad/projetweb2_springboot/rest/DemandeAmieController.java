@@ -1,8 +1,7 @@
-package com.jfayad.projetweb2_springboot.controller;
+package com.jfayad.projetweb2_springboot.rest;
 
 import com.jfayad.projetweb2_springboot.services.DemandeAmieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

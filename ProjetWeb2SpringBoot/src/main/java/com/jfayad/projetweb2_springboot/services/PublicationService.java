@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PublicationService {
@@ -35,5 +36,23 @@ public class PublicationService {
 
     public List<Publication> findAll() {
         return repo.findAll();
+    }
+
+    public void addLike(int id) {
+        Optional<Publication> optionalPublication = repo.findById(id);
+        if (optionalPublication.isPresent()) {
+            Publication publication = optionalPublication.get();
+            publication.setLikes(publication.getLikes() + 1);
+            repo.save(publication);
+        }
+    }
+
+    public void removeLike(int id) {
+        Optional<Publication> optionalPublication = repo.findById(id);
+        if (optionalPublication.isPresent()) {
+            Publication publication = optionalPublication.get();
+            publication.setLikes(publication.getLikes() - 1);
+            repo.save(publication);
+        }
     }
 }

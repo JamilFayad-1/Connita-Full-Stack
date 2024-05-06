@@ -1350,7 +1350,7 @@ main.sign-up-mode .carousel {
 
 #horizontal-nav .dropdown-menu a {
     width: 6vw;
-    height: 33.3%;
+    height: 33.33%;
     position: relative;
     display: flex;
     font-family: 'CustomFont1', sans-serif;
@@ -1846,15 +1846,16 @@ main.sign-up-mode .carousel {
     border-top-right-radius: 0.8rem;
     box-shadow: 0.1rem 0.2rem 1rem rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
+    transition: all 1s ease-in;
+}
+
+.middle-section-card-displayed {
+    background-color: rgba(200, 215, 227, 0.5) !important;
 }
 
 #middle-section-friends h1 {
     font-family: 'CustomFont1', sans serif;
     font-size: 2rem;
-    background: linear-gradient(#393939, #5c99dd) repeat-y;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
     padding: 1rem 0 0 3rem;
 }
 
@@ -1918,13 +1919,16 @@ main.sign-up-mode .carousel {
 }
 
 .friends-list-element-name-region {
-    width: 50%;
+    width: 80%;
     display: block;
     font-family: 'CustomFont1', sans-serif;
 }
 
 .friends-list-element-name-region h2 {
-    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
     color: #2d2d2d;
     margin: 1vh 0 1vh 0;
 }
@@ -2743,7 +2747,7 @@ main.sign-up-mode .carousel {
     font-family: 'montreal', sans-serif;
     margin-right: 0.4rem;
     font-size: 1rem;
-    color: rgba(220, 20, 60, 0.75);
+    color: #2d2d2d;
 }
 
 .post-like-button h3:hover {

@@ -77,4 +77,7 @@ public class AppController {
     @GetMapping("/pageLanguages")
     public String getPageLanguages() { return "languages"; }
 
+    @GetMapping("/pageTravel")
+    public String getPageTravel() { return "travel"; }
+
 }
