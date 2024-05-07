@@ -88,13 +88,13 @@
     const landingPageCompanyNameContainer = document.querySelector('.animated-company-name');
 
     document.addEventListener('scroll', () => {
-        var scrollPosition = window.scrollY;
-        var windowHeight = window.innerHeight;
-        var imageOffsetTop = landingPageVideo.offsetTop;
-        var imageHeight = landingPageVideo.offsetHeight;
-        var distanceFromTop = imageOffsetTop - scrollPosition + imageHeight;
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const imageOffsetTop = landingPageVideo.offsetTop;
+        const imageHeight = landingPageVideo.offsetHeight;
+        const distanceFromTop = imageOffsetTop - scrollPosition + imageHeight;
 
-        var opacity = distanceFromTop / windowHeight;
+        let opacity = distanceFromTop / windowHeight;
         opacity = Math.max(0, Math.min(1, opacity));
 
         landingPageVideo.style.opacity = opacity;
@@ -104,7 +104,6 @@
             landingPageCompanyNameContainer.classList.remove('textLandingPageContainerAnimation');
             landingPageCompanyName.classList.remove('animateTextLandingPageText');
         } else {
-            console.log("WHERE DONE");
             landingPageCompanyNameContainer.classList.add('textLandingPageContainerAnimation');
             landingPageCompanyName.classList.add('animateTextLandingPageText');
         }
