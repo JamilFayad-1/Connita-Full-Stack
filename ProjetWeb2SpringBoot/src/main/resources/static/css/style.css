@@ -782,7 +782,7 @@ hr {
 }
 
 .animateTextLandingPageText {
-    filter: brightness(5);
+    filter: brightness(10);
 }
 
 .main-gif-landing-page {
@@ -797,7 +797,8 @@ hr {
 
 .main-gif-landing-page video {
     width: 100%;
-    height: auto;
+    height: 115%;
+
 }
 
 .first-section-home-page {
@@ -811,7 +812,9 @@ hr {
     object-fit: contain;
 }
 
-.first-section-home-page img{
+.first-section-home-page img,
+.second-section-home-page img
+{
     position: relative;
     width: 100%;
     height: auto;
@@ -830,6 +833,69 @@ hr {
     font-size: 1.2rem;
     margin: 0.2rem 0 0 0;
     font-style: italic;
+}
+
+.second-section-home-page {
+    box-sizing: border-box;
+    position: absolute;
+    width: 60%;
+    height: 100vh;
+    right: 0;
+    top: 95vh;
+    padding: 5vh;
+    display: block;
+    object-fit: contain;
+}
+
+.third-section-home-page {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 196vh;
+    padding: 5vh;
+    display: block;
+    object-fit: contain;
+}
+
+.third-section-home-page img {
+    width: 100%;
+    height: auto;
+    max-height: 100% !important;
+}
+
+.third-section-home-page p {
+    max-width: 50%;
+}
+
+.svg-overlay {
+    position: absolute;
+    top: 320vh;
+    width: 100vw;
+    height: 100vh;
+    z-index: 6;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 90%);
+    pointer-events: none;
+}
+
+svg {
+    position: absolute;
+    top: 320vh;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+}
+
+.imageDistortedLandingPage {
+    transition: all 1s ease;
+    cursor: pointer;
+}
+
+.imageDistortedLandingPage:hover {
+    transition: all 1s ease;
+    filter: none;
+    z-index: 100;
 }
 
 /* ----------------------------------------------------------- */
