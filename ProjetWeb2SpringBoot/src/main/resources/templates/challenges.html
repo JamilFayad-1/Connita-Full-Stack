@@ -44,16 +44,16 @@
             <div th:each="challenge : ${session.challenges}" id="middle-section-challenges-element"
                  th:class="${session.loggedInUser != null ? 'logged-in' : 'logged-out'}">
                 <div class="circle-container">
-                    <div class="fraction" th:text="${challenge.challengeId}"></div>
+                    <div class="circle-wrap">
+                        <div class="fraction" th:text="${challenge.challengeId}"></div>
+                    </div>
                 </div>
                 <div id="subject-challenge-container">
                     <div id="subject-challenge">
-                        <img th:src="${challenge.challengeImageUrl}" th:alt="${challenge.challengeName}"/>
-                        <h3 th:text="${challenge.challengeName}"></h3>
+                        <h3 th:text="${challenge.challengeName}" id="challenge-name"></h3>
                         <h2 th:if="${session != null and session.loggedInUser != null}"
                             th:text="${session.loggedInUser.idMembre}" style="display: none"></h2>
                     </div>
-                    <p th:text="${challenge.challengeDescription}"></p>
                 </div>
                 <div id="challenge-complete">
                     <h3>Complete</h3>
@@ -81,6 +81,32 @@
                 }
             });
         });
+
+        const searchIcon = document.getElementById("searchIcon");
+        const searchQuery = document.getElementById("searchQuery");
+
+        function filterChallenges() {
+            let filter = searchQuery.value.toUpperCase();
+            let challenges = document.querySelectorAll("#middle-section-challenges-element");
+
+            challenges.forEach(challenge => {
+                let challengeNames = challenge.querySelector("#challenge-name").textContent || challenge.querySelector("#challenge-name").innerText;
+                if (challengeNames.toUpperCase().includes(filter)) {
+                    challenge.style.display = "";
+                } else {
+                    challenge.style.display = "none";
+                }
+            });
+        }
+
+        searchIcon.addEventListener("click", filterChallenges);
+
+        searchQuery.addEventListener("keypress", function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                filterChallenges();
+            }
+        });
     });
 
     function createTableRow(memberId, challengeName) {
@@ -97,44 +123,16 @@
         });
     }
 
-
-    function filterChallenges(event) {
-        let input, filter, challenges, challengeNames, i;
-        input = document.getElementById("searchQuery");
-        filter = input.value.toUpperCase();
-        challenges = document.getElementsByClassName("fraction");
-        const searchIconButton = document.getElementById("searchIcon");
-
-        input.addEventListener("keypress", function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                searchIconButton.click();
-            }
-        });
-
-        // Check if Enter key is pressed
-        searchIconButton.addEventListener('click', function () {
-            for (i = 0; i < challenges.length; i++) {
-                challengeNames = challenges[i].parentNode.nextElementSibling.querySelector("h3").textContent || challenges[i].parentNode.nextElementSibling.querySelector("h3").innerText;
-                if (challengeNames.toUpperCase().indexOf(filter) > -1) {
-                    challenges[i].parentNode.parentNode.style.display = "";
-                } else {
-                    challenges[i].parentNode.parentNode.style.display = "none";
-                }
-            }
-        });
-    }
-
-        const shakeyButton = document.getElementById('shakeyList');
-        const shakeyElement = document.getElementById('shakeyButton');
-        shakeyButton.addEventListener('click', function() {
+    const shakeyButton = document.getElementById('shakeyList');
+    const shakeyElement = document.getElementById('shakeyButton');
+    shakeyButton.addEventListener('click', function () {
         shakeyElement.classList.add('animate__animated');
         shakeyElement.classList.add('animate__swing');
 
         setTimeout(() => {
-        shakeyElement.classList.remove('animate__animated');
-        shakeyElement.classList.remove('animate__swing');
-    }, 1000);
+            shakeyElement.classList.remove('animate__animated');
+            shakeyElement.classList.remove('animate__swing');
+        }, 1000);
     });
 </script>
 </body>

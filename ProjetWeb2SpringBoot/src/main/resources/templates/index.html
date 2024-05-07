@@ -15,9 +15,9 @@
     </style>
 
 </head>
-<body>
+<body style="overflow-y: scroll">
 
-<header th:include="menu :: menuFragment"></header>
+<header th:include="menu :: menuFragment" style="background-color: transparent; position: fixed"></header>
 
 <div class="messagePopUps">
     <p th:if="${messageInscrReussite != null}" class="messageTextReussie" th:text="${messageInscrReussite}"></p>
@@ -30,45 +30,50 @@
 
 <main>
     <!-- Left section -->
-    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <div id="left-section" th:include="leftNav :: leftNavFragment" style="display: none"></div>
+
     <div id="main-section-home-page">
-        <h1>Learning made fun!</h1>
-        <div id="main-section-first-info">
-            <img id="first-image-animate" src="images/web-3120321_1920.png" alt="alt"/>
-            <h2>Connect with experts and learners worldwide to enhance your language and cultural understanding!</h2>
+
+        <div class="main-gif-landing-page" id="landingPageVideo">
+            <video loop="" muted="" playsinline="" autoplay="" poster="">
+                <source src="images/landingPageVideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-        <div id="bubble-thoughts1">
-            <img class="footprints" id="circle1" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle2" src="images/footprint-right.png" alt="alt"/>
-            <img class="footprints" id="circle3" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle4" src="images/footprint-right.png" alt="alt"/>
-            <img class="footprints" id="circle5" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle6" src="images/footprint-right.png" alt="alt"/>
+
+        <div class="animated-company-name">
+            <h1 id="companyName">CONNITA</h1>
         </div>
-        <div id="main-section-second-info">
-            <img src="images/icons8-plane-64.png" alt="alt"/>
-            <h2>Discover new places straight from the locals!</h2>
+
+        <div class="first-section-home-page">
+            <img src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?q=80&w=2011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="italy landscape">
+            <h2 class="home-page-section-title">To new adventures</h2>
+            <p class="home-page-section-desc">Discover the hidden gems of far-off destinations, uncover the best-kept
+                secrets of seasoned travelers, and connect with like-minded explorers who share your insatiable thirst
+                for adventure.</p>
         </div>
-        <div id="bubble-thoughts2">
-            <img id="circle7" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle8" src="images/footprint-left.png" alt="alt"/>
-            <img id="circle9" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle10" src="images/footprint-left.png" alt="alt"/>
-            <img id="circle11" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle12" src="images/footprint-left.png" alt="alt"/>
+
+        <div class="second-section-home-page">
+
         </div>
-        <div id="main-section-third-info">
-            <h2>Open your eyes to the world and learn about different cultures!</h2>
-            <img src="images/kP4DK6APAlkuNxqzn3HzJ-transformed-min.png" alt="alt"/>
+
+        <div class="third-section-home-page">
+
+        </div>
+
+        <div class="fourth-section-home-page">
+
         </div>
 
     </div>
 </main>
 <script src="/javascript/script.js"></script>
 <script th:inline="javascript">
+
     const shakeyButton = document.getElementById('shakeyList');
     const shakeyElement = document.getElementById('shakeyButton');
-    shakeyButton.addEventListener('click', function() {
+    shakeyButton.addEventListener('click', function () {
         shakeyElement.classList.add('animate__animated');
         shakeyElement.classList.add('animate__swing');
 
@@ -77,6 +82,35 @@
             shakeyElement.classList.remove('animate__swing');
         }, 1000);
     });
+
+    const landingPageVideo = document.getElementById('landingPageVideo');
+    const landingPageCompanyName = document.getElementById('companyName');
+    const landingPageCompanyNameContainer = document.querySelector('.animated-company-name');
+
+    document.addEventListener('scroll', () => {
+        var scrollPosition = window.scrollY;
+        var windowHeight = window.innerHeight;
+        var imageOffsetTop = landingPageVideo.offsetTop;
+        var imageHeight = landingPageVideo.offsetHeight;
+        var distanceFromTop = imageOffsetTop - scrollPosition + imageHeight;
+
+        var opacity = distanceFromTop / windowHeight;
+        opacity = Math.max(0, Math.min(1, opacity));
+
+        landingPageVideo.style.opacity = opacity;
+
+        if (!(opacity < 0.16)) {
+            landingPageCompanyName.style.transform = "scale(" + opacity + ")";
+            landingPageCompanyNameContainer.classList.remove('textLandingPageContainerAnimation');
+            landingPageCompanyName.classList.remove('animateTextLandingPageText');
+        } else {
+            console.log("WHERE DONE");
+            landingPageCompanyNameContainer.classList.add('textLandingPageContainerAnimation');
+            landingPageCompanyName.classList.add('animateTextLandingPageText');
+        }
+    })
+
+
 </script>
 </body>
 </html>
