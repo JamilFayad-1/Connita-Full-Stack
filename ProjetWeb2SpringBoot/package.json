@@ -12,6 +12,8 @@
   },
   "private": true,
   "dependencies": {
-    "@splinetool/runtime": "^1.2.6"
+    "@splinetool/runtime": "^1.2.6",
+    "@studio-freight/lenis": "^1.0.42",
+    "lenis": "^1.0.45"
   }
 }

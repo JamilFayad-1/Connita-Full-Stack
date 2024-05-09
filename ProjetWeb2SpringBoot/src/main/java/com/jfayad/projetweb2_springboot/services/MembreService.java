@@ -104,6 +104,18 @@ public class MembreService {
         return false;
     }
 
+    public boolean updateLanguages(Membre membre, String newLanguages) {
+        Optional<Membre> membreRecuOptionnel = membreRepository.findByEmail(membre.getEmail());
+
+
+        if(membreRecuOptionnel.isPresent()){
+            Membre membreRecu = membreRecuOptionnel.get();
+            membreRecu.setLangue(newLanguages);
+            return true;
+        }
+        return false;
+    }
+
     public List<Membre> getAllUtilisateurs(){
         return membreRepository.findAll();
     }

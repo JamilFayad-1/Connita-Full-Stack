@@ -5,11 +5,18 @@ const closeForm = document.querySelectorAll(".close-icon-container");
 // Function to open the main box
 function openMainBox() {
     mainBox.classList.add("main-box-visible");
+    centerForm();
 }
 
 // Function to close the main box
 function closeMainBox() {
     mainBox.classList.remove("main-box-visible");
+}
+
+function centerForm() {
+    let scrollTop = window.scrollY;
+    scrollTop = scrollTop / 10000;
+    mainBox.style.top = scrollTop + "px";
 }
 
 // Attach event listener to each "Start Learning" button
