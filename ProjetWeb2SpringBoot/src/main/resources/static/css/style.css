@@ -772,6 +772,7 @@ hr {
     bottom: 0;
     justify-content: center;
     z-index: 9;
+    pointer-events: none;
 }
 
 .textLandingPageContainerAnimation {
@@ -785,6 +786,7 @@ hr {
     font-family: 'CustomFont1', sans-serif;
     color: #131313;
     transform-origin: center bottom;
+    pointer-events: none;
 }
 
 .animateTextLandingPageText {
@@ -884,26 +886,21 @@ hr {
     text-align: center;
 }
 
-.fourth-section-home-page h1{
-    font-family: 'CustomFont1', sans-serif;
-    font-size: 2rem;
-}
-
 .svg-overlay {
     position: absolute;
     top: 320vh;
     width: 100vw;
-    height: 105vh;
+    height: 100vh;
     z-index: 6;
     background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 78%);
     pointer-events: none;
 }
 
 svg {
     position: relative;
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    height: 95%;
     z-index: 5;
     overflow-y: hidden;
 }
@@ -911,12 +908,30 @@ svg {
 .imageDistortedLandingPage {
     transition: all 1s ease;
     cursor: pointer;
+    transform-origin: center;
 }
 
-.imageDistortedLandingPage:hover {
-    transition: all 1s ease;
-    filter: none;
-    z-index: 100;
+.one,
+.four,
+.seven{
+    position: relative;
+    width: 30%;
+    height: auto;
+}
+
+.two,
+.five,
+.eight{
+    position: relative;
+    width: 40%;
+    height: auto;
+}
+
+.three,
+.six{
+    position: relative;
+    width: 20%;
+    height: auto;
 }
 
 .fifth-section-home-page {
@@ -925,7 +940,100 @@ svg {
     width: 100%;
     height: 100vh;
     top: 420vh;
-    padding: 5vh;
+    display: block;
+    object-fit: contain;
+}
+
+.horizontal-scroll-container {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    left: 0;
+}
+
+.horizontal-scroll-container-sections {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d2d2d;
+    color: #dddddd;
+}
+
+.sections-horizontal-scroll-element {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sections-horizontal-scroll-element h1 {
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 3rem;
+    padding: 0;
+    margin: 0;
+}
+
+.animated-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animated-section h1{
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 8%;
+}
+
+.animated-section p{
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 1.5rem;
+    margin-left: -30%;
+}
+
+.animated-section img{
+    width: 30%;
+    height: auto;
+}
+
+#sectionImage1 {
+    width: 18%;
+    border-radius: 1rem;
+    transform: rotate(-10deg);
+    margin-top: 2%;
+    box-shadow: -5px 10px 5px rgba(0, 0, 0, 0.6);
+}
+
+#sectionImage2 {
+    width: 18%;
+    border-radius: 1rem;
+    transform: rotate(10deg);
+    margin-left: -10%;
+    margin-right: 5%;
+    box-shadow: -5px 10px 5px rgba(0, 0, 0, 0.6);
+}
+
+.overlay-horizontal-scroll {
+    box-sizing: border-box;
+    position: absolute;
+    top: 420vh;
+    width: 100vw;
+    height: 100vh;
+    z-index: 8;
+    border: 15vh solid white;
+}
+
+.sixth-section-home-page {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 840vh;
     display: block;
     object-fit: contain;
 }

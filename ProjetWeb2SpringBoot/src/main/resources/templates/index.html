@@ -9,7 +9,9 @@
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script th:inline="javascript">
 
-    const lenis = new Lenis({});
+    const lenis = new Lenis({
+        duration: 2
+    });
 
     function raf(time) {
         lenis.raf(time);
@@ -76,42 +78,88 @@
         <section class="svg-overlay"></section>
 
         <div class="fourth-section-home-page">
-            <h1>See what our users have shared</h1>
             <svg viewBox="0 0 500 500" xmlns='http://www.w3.org/2000/svg'>
 
-                <filter id='noise' x='0%' y='0%' width='100%' height='100%'>
-                    <feTurbulence baseFrequency="0.02 0.6" result="NOISE" numOctaves="2" />
-                    <feDisplacementMap in="SourceGraphic" in2="NOISE" scale="20" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
-                </filter>
-
-                <image class="imageDistortedLandingPage one" id="img" xlink:href="https://images.unsplash.com/photo-1568849676085-51415703900f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="-60" y="0" width="300px" height="300px" filter="url(#noise)"></image>
-
-                <image class="imageDistortedLandingPage two" id="img" xlink:href="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="450" y="0" width="300px" height="300px" filter="url(#noise)"></image>
-                <image class="imageDistortedLandingPage three" id="img" xlink:href="https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="180" y="240" width="300px" height="300px" filter="url(#noise)">
+                <image class="imageDistortedLandingPage one" id="img1" x="-220" y="40"
+                       xlink:href="https://images.unsplash.com/photo-1568849676085-51415703900f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
 
-                <image class="imageDistortedLandingPage five" id="img" xlink:href="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="470" y="260" width="300px" height="300px" filter="url(#noise)">
+                <image class="imageDistortedLandingPage two" id="img2" x="0" y="20"
+                       xlink:href="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
 
-                <image class="imageDistortedLandingPage six" id="img" xlink:href="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="-300" y="-30" width="300px" height="260px" filter="url(#noise)">
+                <image class="imageDistortedLandingPage three" id="img3" x="235" y="80"
+                       xlink:href="https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
 
-                <image class="imageDistortedLandingPage seven" id="img" xlink:href="https://plus.unsplash.com/premium_photo-1699566451013-973f830f8f7d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="190" y="-30" width="300px" height="260px" filter="url(#noise)">
+                <image class="imageDistortedLandingPage five" id="img4" x="420" y="10"
+                       xlink:href="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
-                <image class="imageDistortedLandingPage four" id="img" xlink:href="https://images.unsplash.com/photo-1553342385-111fd6bc6ab3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="-300" y="240" width="300px" height="300px" filter="url(#noise)">
+
+                <image class="imageDistortedLandingPage six" id="img5" x="-140" y="340"
+                       xlink:href="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
-                <image class="imageDistortedLandingPage eight" id="img" xlink:href="https://images.unsplash.com/photo-1554357475-accb8a88a330?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" x="-40" y="320" width="200px" height="260px" filter="url(#noise)">
+
+                <image class="imageDistortedLandingPage seven" id="img6" x="80" y="280"
+                       xlink:href="https://plus.unsplash.com/premium_photo-1699566451013-973f830f8f7d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
                 </image>
+
+                <image class="imageDistortedLandingPage four" id="img7" x="360" y="340"
+                       xlink:href="https://images.unsplash.com/photo-1553342385-111fd6bc6ab3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage eight" id="img8" x="650" y="220"
+                       xlink:href="https://images.unsplash.com/photo-1554357475-accb8a88a330?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
             </svg>
         </div>
 
+        <section class="overlay-horizontal-scroll"></section>
         <div class="fifth-section-home-page">
+            <div class="horizontal-scroll-container">
+                <div class="horizontal-scroll-container-sections">
+                    <section class="sections-horizontal-scroll-element">
+                        <h1>Why learn a language with connita?</h1>
+                    </section>
+
+                    <section class="sections-horizontal-scroll-element">
+                        <section class="animated-section">
+                            <h1 class="anim">Learn more together</h1>
+                            <p class="anim">Go beyond the textbook and exchange with learners worldwide.</p>
+                            <img src="gif/animatedWorldwideSection.gif" alt="individuals learning" class="anim">
+                        </section>
+                    </section>
+
+                    <section class="sections-horizontal-scroll-element">
+                        <section class="animated-section">
+                            <img src="images/challengeExemple1.png" alt="challenge exemple 1" class="anim" id="sectionImage1">
+                            <img src="images/challengeExemple2.png" alt="challenge exemple 2" class="anim" id="sectionImage2">
+                            <h1 class="anim">Learn with confidence</h1>
+                            <p class="anim">Make real improvements, get real results.</p>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="sixth-section-home-page">
 
         </div>
 
     </div>
 </main>
 <script src="/javascript/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 <script th:inline="javascript">
 
     const landingPageVideo = document.getElementById('landingPageVideo');
@@ -138,7 +186,135 @@
             landingPageCompanyNameContainer.classList.add('textLandingPageContainerAnimation');
             landingPageCompanyName.classList.add('animateTextLandingPageText');
         }
-    })
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const distortedImages = document.querySelectorAll('.imageDistortedLandingPage');
+
+        function createFilter(image) {
+            const filterId = 'noise-' + image.id;
+
+            const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+            filter.setAttribute('id', filterId);
+            filter.setAttribute('x', '0%');
+            filter.setAttribute('y', '0%');
+            filter.setAttribute('width', '100%');
+            filter.setAttribute('height', '100%');
+
+            const feTurbulence = document.createElementNS('http://www.w3.org/2000/svg', 'feTurbulence');
+            feTurbulence.setAttribute('baseFrequency', '4 0.6');
+            feTurbulence.setAttribute('result', 'NOISE');
+            feTurbulence.setAttribute('numOctaves', '5');
+            filter.appendChild(feTurbulence);
+
+            const feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
+            feDisplacementMap.setAttribute('in', 'SourceGraphic');
+            feDisplacementMap.setAttribute('in2', 'NOISE');
+            feDisplacementMap.setAttribute('scale', '20');
+            feDisplacementMap.setAttribute('xChannelSelector', 'R');
+            feDisplacementMap.setAttribute('yChannelSelector', 'R');
+            filter.appendChild(feDisplacementMap);
+
+            const svg = document.querySelector('svg');
+            svg.appendChild(filter);
+
+            image.style.filter = `url(#${filterId})`;
+        }
+
+        distortedImages.forEach(function(image) {
+            createFilter(image);
+        });
+
+
+        distortedImages.forEach(function(image) {
+            createFilter(image);
+
+            const filterId = 'noise-' + image.id;
+            const filter = document.getElementById(filterId);
+
+            let scale = parseInt(filter.querySelector('feDisplacementMap').getAttribute('scale'));
+
+            function runInfinitely() {
+                if (scale > 0) {
+                    filter.querySelector('feDisplacementMap').setAttribute('scale', scale);
+                }
+                setTimeout(runInfinitely, 30);
+            }
+
+            runInfinitely();
+
+            let isHovering = false;
+
+            image.addEventListener('mouseover', function() {
+                isHovering = true;
+            });
+
+            image.addEventListener('mouseout', function() {
+                isHovering = false;
+            });
+
+            setInterval(function() {
+                if (isHovering) {
+                    if (scale >= 0) {
+                        scale--;
+                    }
+                } else {
+                    if (scale <= 20) {
+                        scale++;
+                    }
+                }
+            }, 30);
+        });
+    });
+
+</script>
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const sections = gsap.utils.toArray('.sections-horizontal-scroll-element');
+        const container = document.querySelector('.horizontal-scroll-container');
+
+        let scrollTween = gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                end: "+=2500",
+                scrub: 1,
+                pin: true
+            }
+        });
+
+        sections.forEach(section => {
+            let element = section.querySelectorAll('.anim');
+
+            gsap.from(element, {
+                y: 80,
+                opacity: 0,
+                duration: 2,
+                ease: "elastic",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: section,
+                    containerAnimation: scrollTween,
+                    start: "left center"
+                }
+            })
+        })
+
+        gsap.to('.overlay-horizontal-scroll', {
+            scrollTrigger: {
+                trigger: '.overlay-horizontal-scroll',
+                start: "top top",
+                end: "top -2500",
+                scrub: 1,
+                pin: true,
+            }
+        })
+
+    });
 
 </script>
 </body>
