@@ -5,14 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<div id="middle-section-friends-list-container" style="overflow-y: scroll; overflow-x: hidden" th:fragment="friendsListFragment(listeUtilisateur)">
+<div id="middle-section-friends-list-container" style="overflow-y: scroll; overflow-x: hidden; " th:fragment="friendsListFragment(listeUtilisateur)">
     <div th:each="utilisateur : ${listeUtilisateur}" class="middle-section-friends-list-element" id="userElementDisplayed">
         <div class="friends-list-element-picture">
+            <div class="idElementFriend" th:text="${utilisateur.idMembre}" style="display: none"></div>
             <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
         </div>
         <div class="friends-list-element-name-region">
             <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>
-            <h3 th:text="${utilisateur.region}"></h3>
+            <h3 th:text=" '@' + ${utilisateur.username}"></h3>
         </div>
         <div class="friends-list-element-add-button" th:if="${utilisateur.idMembre != session.loggedInUser.idMembre}">
             <button type="button" id="addButton" th:data-idAmie="${utilisateur.idMembre}" th:data-idMembre="${session.loggedInUser.idMembre}">

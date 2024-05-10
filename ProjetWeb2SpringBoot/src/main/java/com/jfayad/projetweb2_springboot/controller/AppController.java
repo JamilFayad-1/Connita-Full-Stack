@@ -74,4 +74,10 @@ public class AppController {
     @GetMapping("/countryInfo")
     public String getPageCountryInfo() { return "countryInfo"; }
 
+    @GetMapping("/pageLanguages")
+    public String getPageLanguages() { return "languages"; }
+
+    @GetMapping("/pageTravel")
+    public String getPageTravel() { return "travel"; }
+
 }

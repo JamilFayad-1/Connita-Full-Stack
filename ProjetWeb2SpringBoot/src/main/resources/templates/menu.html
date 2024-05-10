@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Menu Page</title>
+    <title>Menu</title>
 </head>
 <body th:fragment="menuFragment">
     <div id="logo-container">
@@ -23,11 +23,10 @@
             </li>
         </ul>
         <div th:unless="${session.loggedInUser != null}">
-            <button class="btnSignup" type="button">Start learning</button>
+            <button class="btnSignup" type="button" style="background-color: white">Start learning</button>
         </div>
     </nav>
 
 <script src="/javascript/menuScript.js"></script>
-
 </body>
 </html>

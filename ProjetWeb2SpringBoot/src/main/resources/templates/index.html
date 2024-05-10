@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script th:inline="javascript">
 
-<header th:include="menu :: menuFragment"></header>
+    const lenis = new Lenis({
+        duration: 2
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+</script>
+<body style="overflow-y: scroll">
+
+<header th:include="menu :: menuFragment" style="background-color: transparent; position: fixed"></header>
 
 <div class="messagePopUps">
     <p th:if="${messageInscrReussite != null}" class="messageTextReussie" th:text="${messageInscrReussite}"></p>
@@ -21,41 +35,288 @@
 
 <main>
     <!-- Left section -->
-    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <div id="left-section" th:include="leftNav :: leftNavFragment" style="display: none"></div>
+
     <div id="main-section-home-page">
-        <h1>Learning made fun!</h1>
-        <div id="main-section-first-info">
-            <img id="first-image-animate" src="images/web-3120321_1920.png" alt="alt"/>
-            <h2>Connect with experts and learners worldwide to enhance your language and cultural understanding!</h2>
+
+        <div class="main-gif-landing-page" id="landingPageVideo">
+            <video loop="" muted="" playsinline="" autoplay="" poster="">
+                <source src="images/landingPageVideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-        <div id="bubble-thoughts1">
-            <img class="footprints" id="circle1" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle2" src="images/footprint-right.png" alt="alt"/>
-            <img class="footprints" id="circle3" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle4" src="images/footprint-right.png" alt="alt"/>
-            <img class="footprints" id="circle5" src="images/footprint-left.png" alt="alt"/>
-            <img class="footprints" id="circle6" src="images/footprint-right.png" alt="alt"/>
+
+        <div class="animated-company-name">
+            <h1 id="companyName">CONNITA</h1>
         </div>
-        <div id="main-section-second-info">
-            <img src="images/icons8-plane-64.png" alt="alt"/>
-            <h2>Discover new places straight from the locals!</h2>
+
+        <div class="first-section-home-page">
+            <img src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?q=80&w=2011&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="italy landscape">
+            <h2 class="home-page-section-title">To new adventures</h2>
+            <p class="home-page-section-desc">Discover the hidden gems of far-off destinations, uncover the best-kept
+                secrets of seasoned travelers, and connect with like-minded explorers who share your insatiable thirst
+                for adventure.</p>
         </div>
-        <div id="bubble-thoughts2">
-            <img id="circle7" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle8" src="images/footprint-left.png" alt="alt"/>
-            <img id="circle9" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle10" src="images/footprint-left.png" alt="alt"/>
-            <img id="circle11" src="images/footprint-right.png" alt="alt"/>
-            <img id="circle12" src="images/footprint-left.png" alt="alt"/>
+
+        <div class="second-section-home-page">
+            <img src="https://images.unsplash.com/photo-1450609283058-0ec52fa7eac4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="italy landscape">
+            <h2 class="home-page-section-title">Around the planet</h2>
+            <p class="home-page-section-desc">Dive into Culture: where every dive is a lesson in adventure, and every
+                cultural encounter is an invitation to connect.</p>
         </div>
-        <div id="main-section-third-info">
-            <h2>Open your eyes to the world and learn about different cultures!</h2>
-            <img src="images/kP4DK6APAlkuNxqzn3HzJ-transformed-min.png" alt="alt"/>
+
+        <div class="third-section-home-page">
+            <img src="https://images.unsplash.com/photo-1545251142-f32339076e6d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="italy landscape">
+            <h2 class="home-page-section-title">Discover new locations</h2>
+            <p class="home-page-section-desc">Whether you're drawn to the allure of history, the tranquility of nature,
+                the serenity of beaches, or anything in between, there's an adventure waiting for you.</p>
+        </div>
+
+        <section class="svg-overlay"></section>
+
+        <div class="fourth-section-home-page">
+            <svg viewBox="0 0 500 500" xmlns='http://www.w3.org/2000/svg'>
+
+                <image class="imageDistortedLandingPage one" id="img1" x="-220" y="40"
+                       xlink:href="https://images.unsplash.com/photo-1568849676085-51415703900f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage two" id="img2" x="0" y="20"
+                       xlink:href="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage three" id="img3" x="235" y="80"
+                       xlink:href="https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage five" id="img4" x="420" y="10"
+                       xlink:href="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage six" id="img5" x="-140" y="340"
+                       xlink:href="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage seven" id="img6" x="80" y="280"
+                       xlink:href="https://plus.unsplash.com/premium_photo-1699566451013-973f830f8f7d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage four" id="img7" x="360" y="340"
+                       xlink:href="https://images.unsplash.com/photo-1553342385-111fd6bc6ab3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+                <image class="imageDistortedLandingPage eight" id="img8" x="650" y="220"
+                       xlink:href="https://images.unsplash.com/photo-1554357475-accb8a88a330?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       filter="url(#noise)">
+                </image>
+
+            </svg>
+        </div>
+
+        <section class="overlay-horizontal-scroll"></section>
+        <div class="fifth-section-home-page">
+            <div class="horizontal-scroll-container">
+                <div class="horizontal-scroll-container-sections">
+                    <section class="sections-horizontal-scroll-element">
+                        <h1>Why learn a language with connita?</h1>
+                    </section>
+
+                    <section class="sections-horizontal-scroll-element">
+                        <section class="animated-section">
+                            <h1 class="anim">Learn more together</h1>
+                            <p class="anim">Go beyond the textbook and exchange with learners worldwide.</p>
+                            <img src="gif/animatedWorldwideSection.gif" alt="individuals learning" class="anim">
+                        </section>
+                    </section>
+
+                    <section class="sections-horizontal-scroll-element">
+                        <section class="animated-section">
+                            <img src="images/challengeExemple1.png" alt="challenge exemple 1" class="anim" id="sectionImage1">
+                            <img src="images/challengeExemple2.png" alt="challenge exemple 2" class="anim" id="sectionImage2">
+                            <h1 class="anim">Learn with confidence</h1>
+                            <p class="anim">Make real improvements, get real results.</p>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="sixth-section-home-page">
+
         </div>
 
     </div>
 </main>
 <script src="/javascript/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<script th:inline="javascript">
+
+    const landingPageVideo = document.getElementById('landingPageVideo');
+    const landingPageCompanyName = document.getElementById('companyName');
+    const landingPageCompanyNameContainer = document.querySelector('.animated-company-name');
+
+    document.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const imageOffsetTop = landingPageVideo.offsetTop;
+        const imageHeight = landingPageVideo.offsetHeight;
+        const distanceFromTop = imageOffsetTop - scrollPosition + imageHeight;
+
+        let opacity = distanceFromTop / windowHeight;
+        opacity = Math.max(0, Math.min(1, opacity));
+
+        landingPageVideo.style.opacity = opacity;
+
+        if (!(opacity < 0.12)) {
+            landingPageCompanyName.style.transform = "scale(" + opacity + ")";
+            landingPageCompanyNameContainer.classList.remove('textLandingPageContainerAnimation');
+            landingPageCompanyName.classList.remove('animateTextLandingPageText');
+        } else {
+            landingPageCompanyNameContainer.classList.add('textLandingPageContainerAnimation');
+            landingPageCompanyName.classList.add('animateTextLandingPageText');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const distortedImages = document.querySelectorAll('.imageDistortedLandingPage');
+
+        function createFilter(image) {
+            const filterId = 'noise-' + image.id;
+
+            const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+            filter.setAttribute('id', filterId);
+            filter.setAttribute('x', '0%');
+            filter.setAttribute('y', '0%');
+            filter.setAttribute('width', '100%');
+            filter.setAttribute('height', '100%');
+
+            const feTurbulence = document.createElementNS('http://www.w3.org/2000/svg', 'feTurbulence');
+            feTurbulence.setAttribute('baseFrequency', '4 0.6');
+            feTurbulence.setAttribute('result', 'NOISE');
+            feTurbulence.setAttribute('numOctaves', '5');
+            filter.appendChild(feTurbulence);
+
+            const feDisplacementMap = document.createElementNS('http://www.w3.org/2000/svg', 'feDisplacementMap');
+            feDisplacementMap.setAttribute('in', 'SourceGraphic');
+            feDisplacementMap.setAttribute('in2', 'NOISE');
+            feDisplacementMap.setAttribute('scale', '20');
+            feDisplacementMap.setAttribute('xChannelSelector', 'R');
+            feDisplacementMap.setAttribute('yChannelSelector', 'R');
+            filter.appendChild(feDisplacementMap);
+
+            const svg = document.querySelector('svg');
+            svg.appendChild(filter);
+
+            image.style.filter = `url(#${filterId})`;
+        }
+
+        distortedImages.forEach(function(image) {
+            createFilter(image);
+        });
+
+
+        distortedImages.forEach(function(image) {
+            createFilter(image);
+
+            const filterId = 'noise-' + image.id;
+            const filter = document.getElementById(filterId);
+
+            let scale = parseInt(filter.querySelector('feDisplacementMap').getAttribute('scale'));
+
+            function runInfinitely() {
+                if (scale > 0) {
+                    filter.querySelector('feDisplacementMap').setAttribute('scale', scale);
+                }
+                setTimeout(runInfinitely, 30);
+            }
+
+            runInfinitely();
+
+            let isHovering = false;
+
+            image.addEventListener('mouseover', function() {
+                isHovering = true;
+            });
+
+            image.addEventListener('mouseout', function() {
+                isHovering = false;
+            });
+
+            setInterval(function() {
+                if (isHovering) {
+                    if (scale >= 0) {
+                        scale--;
+                    }
+                } else {
+                    if (scale <= 20) {
+                        scale++;
+                    }
+                }
+            }, 30);
+        });
+    });
+
+</script>
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const sections = gsap.utils.toArray('.sections-horizontal-scroll-element');
+        const container = document.querySelector('.horizontal-scroll-container');
+
+        let scrollTween = gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                end: "+=2500",
+                scrub: 1,
+                pin: true
+            }
+        });
+
+        sections.forEach(section => {
+            let element = section.querySelectorAll('.anim');
+
+            gsap.from(element, {
+                y: 80,
+                opacity: 0,
+                duration: 2,
+                ease: "elastic",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: section,
+                    containerAnimation: scrollTween,
+                    start: "left center"
+                }
+            })
+        })
+
+        gsap.to('.overlay-horizontal-scroll', {
+            scrollTrigger: {
+                trigger: '.overlay-horizontal-scroll',
+                start: "top top",
+                end: "top -2500",
+                scrub: 1,
+                pin: true,
+            }
+        })
+
+    });
+
+</script>
 </body>
 </html>
 

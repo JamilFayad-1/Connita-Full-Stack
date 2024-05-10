@@ -40,13 +40,13 @@
                         </div>
                         <div class="container-form-element">
                             <label for="descriptionInputPublicationFormulaire">Caption:</label>
-                            <input id="descriptionInputPublicationFormulaire" th:value="${formDescription}"
+                            <input id="descriptionInputPublicationFormulaire"
                                    th:field="*{description}" type="text"
                                    name="description" minlength="5" autocomplete="off" required
                                    placeholder="Enter a caption"/>
                         </div>
                         <div class="container-form-element">
-                            <input id="file-input" th:value="${formFile}" type="file" name="file" style="display: none"
+                            <input id="file-input" type="file" name="file" style="display: none"
                                    required/>
                             <i id="file-icon" class="fa-regular fa-image"></i>
                             <div class="container-form-element-button">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="post-like-button">
                         <h3 id="likeCounter" th:text="${publication.getLikes()}"></h3>
-                        <i id="likeButton" class="fa-regular fa-heart fa-xl"></i>
+                        <i id="likeButton" class="fa-regular fa-heart fa-xl" th:data-idPost="${publication.getId_publication()}"></i>
                     </div>
                 </div>
             </div>
@@ -91,6 +91,21 @@
 
         icon.addEventListener('click', function () {
             fileInput.click();
+        });
+
+        const form = document.querySelector('.fypMakeAPost-container-form');
+
+        form.addEventListener('submit', function(event) {
+            // Delay the reset operation by a short duration (e.g., 100 milliseconds)
+            setTimeout(function() {
+                // Reset description input by clearing the associated model attribute
+                const descriptionField = document.getElementById('descriptionInputPublicationFormulaire');
+                descriptionField.value = '';  // Clear the input field
+
+                // Reset file input (if needed)
+                const fileInput = document.getElementById('file-input');
+                fileInput.value = '';
+            }, 100);
         });
     });
 
@@ -114,11 +129,59 @@
             const post = button.closest('.post-like-button');
             const likeCounter = post.querySelector('#likeCounter');
             let likeNumberCount = parseInt(likeCounter.textContent);
-            likeNumberCount++;
-            likeCounter.textContent = likeNumberCount.toString();
-            button.classList.remove('fa-regular');
-            button.classList.add('fa-solid');
-            button.style.color = "red";
+            if(button.classList.contains('fa-regular')){
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/likePost?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount++;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-regular');
+                            button.classList.add('fa-solid');
+                            button.style.color = "red";
+                            likeCounter.style.color = 'red';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }else {
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/removeLike?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount--;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-solid');
+                            button.classList.add('fa-regular');
+                            button.style.color = "#2d2d2d";
+                            likeCounter.style.color = '#2d2d2d';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }
         });
     });
 

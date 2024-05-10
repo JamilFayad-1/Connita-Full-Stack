@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Languages</title>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<div th:replace="authForm.html :: authForm"></div>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:if="${session.loggedInUser != null}"
+         th:include="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+
+<script src="/javascript/script.js"></script>
+</body>
+</html>

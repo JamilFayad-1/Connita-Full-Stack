@@ -15,7 +15,7 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section" style="overflow-y: hidden; display: flex;">
+    <div id="middle-section" style="overflow-y: hidden; display: flex; box-shadow: 0 -4px 37px 11px rgba(221,228,240,1);">
         <div class="middle-section-friend-inbox-container">
             <div class="middle-section-friend-inbox-title">
                 <h1 class="inbox-title">Inbox</h1>
@@ -28,6 +28,7 @@
                         </div>
                         <div class="friend-element-name-last-message">
                             <h2 th:text="${ami.getPrenom()}"></h2>
+                            <h3 th:text=" '@' + ${ami.getUsername()}"></h3>
                         </div>
                     </div>
                 </div>
@@ -111,21 +112,21 @@
 
                             $.each(data, function (index, message) {
                                 if(!listMessages.some(msg => msg.id_message === message.id_message) || listMessages.length == 0){
-                                listMessages.push(message);
-                                const messageP = document.createElement('p');
-                                if (message.membre.idMembre == id_membre) {
-                                    $(messageP).addClass('chat-right');
-                                    prenomUtilisateur = message.ami.prenom;
-                                    pfpUtilisateur = message.ami.photoProfilPath;
+                                    listMessages.push(message);
+                                    const messageP = document.createElement('p');
+                                    if (message.membre.idMembre == id_membre) {
+                                        $(messageP).addClass('chat-right');
+                                        prenomUtilisateur = message.ami.prenom;
+                                        pfpUtilisateur = message.ami.photoProfilPath;
 
-                                } else {
-                                    $(messageP).addClass('chat-left');
+                                    } else {
+                                        $(messageP).addClass('chat-left');
 
+                                    }
+                                    container.appendChild(messageP);
+                                    messageP.innerHTML = message.message;
+                                    scrollToBottom();
                                 }
-                                container.appendChild(messageP);
-                                messageP.innerHTML = message.message;
-                                scrollToBottom();
-                            }
                             });
                             const pfpImg = document.createElement('img');
                             pfpImg.src = pfpUtilisateur;
@@ -136,6 +137,7 @@
                             prenomUtilisateurDiv.appendChild(prenomUtilisateurH2);
 
                         });
+
                 }
                 pullConversation();
                 function pullNewMessages(){

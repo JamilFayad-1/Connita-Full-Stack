@@ -5,6 +5,7 @@ import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.services.ChallengesJouerService;
 import com.jfayad.projetweb2_springboot.services.ChallengesService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -38,6 +41,8 @@ public class AuthController {
 
     @Autowired
     private ChallengesJouerService challengesJouerService;
+    @Autowired
+    private HttpSession httpSession;
 
     @PostMapping("/membre/connexion")
     public String login(@RequestParam("email") String email,
@@ -61,6 +66,9 @@ public class AuthController {
 
             session.setAttribute("isFirstSetComplete", false);
             session.setAttribute("isSecondSetComplete", false);
+
+
+            setLanguagesSpokenSessionAttributes(membre.getLangue(), session);
 
             session.setAttribute("loggedInUser", membre);
             redirectAttributes.addFlashAttribute("messageConnReussite", "Successful login!");
@@ -215,6 +223,72 @@ public class AuthController {
         }
         return "redirect:/pageUtilisateurReglage";
 
+    }
+
+    @PostMapping("/updateLanguages")
+    public String updateLanguages(@RequestParam("password") String password,
+                                 @RequestParam("email") String email,
+                                  @RequestParam("languages") List<String> languages,
+                                 HttpSession session,
+                                 RedirectAttributes redirectAttributes){
+
+        boolean success = false;
+
+        Membre membre = new Membre();
+        membre.setEmail(email);
+        membre.setPassword(password);
+
+        String languagesSpoken = String.join(",", languages);
+        success = membreService.updateLanguages(membre, languagesSpoken);
+        setLanguagesSpokenSessionAttributes(languagesSpoken, session);
+
+        if (success) {
+            Membre membre2 = membreService.connexionMembre(membre.getEmail(), membre.getPassword());
+            session.setAttribute("loggedInUser", membre2);
+            redirectAttributes.addFlashAttribute("messageModifieLanguagesReussite", "Languages spoken modified with success!");
+        } else {
+            redirectAttributes.addFlashAttribute("messageModifieLanguagesEchoue", "Failed to modify languages spoken. Try again later..");
+        }
+        return "redirect:/pageUtilisateurReglage";
+
+    }
+
+    public void setLanguagesSpokenSessionAttributes(String languagesSpoken,
+                                                    HttpSession session){
+
+        session.setAttribute("japaneseSpoken", false);
+        session.setAttribute("indianSpoken", false);
+        session.setAttribute("frenchSpoken", false);
+        session.setAttribute("russianSpoken", false);
+        session.setAttribute("italianSpoken", false);
+        session.setAttribute("spanishSpoken", false);
+
+        String[] languageArray = languagesSpoken.split(",");
+
+        for(String language : languageArray){
+            switch(language){
+                case "Japanese":
+                    session.setAttribute("japaneseSpoken", true);
+                    break;
+                case "Indian":
+                    session.setAttribute("indianSpoken", true);
+                    break;
+                case "French":
+                    session.setAttribute("frenchSpoken", true);
+                    break;
+                case "Russian":
+                    session.setAttribute("russianSpoken", true);
+                    break;
+                case "Italian":
+                    session.setAttribute("italianSpoken", true);
+                    break;
+                case "Spanish":
+                    session.setAttribute("spanishSpoken", true);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
 }

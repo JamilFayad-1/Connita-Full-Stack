@@ -1,0 +1,19 @@
+{
+  "name": "projetweb2springboot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.dti.crosemont.quebec/mmalo/projetweb2.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@splinetool/runtime": "^1.2.6",
+    "@studio-freight/lenis": "^1.0.42",
+    "lenis": "^1.0.45"
+  }
+}
