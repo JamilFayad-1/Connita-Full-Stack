@@ -1014,7 +1014,7 @@ svg {
     border-radius: 1rem;
     transform: rotate(10deg);
     margin-left: -10%;
-    margin-right: 5%;
+    margin-right: 10%;
     box-shadow: -5px 10px 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -1031,11 +1031,82 @@ svg {
 .sixth-section-home-page {
     box-sizing: border-box;
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    top: 840vh;
+    top: 800vh;
     display: block;
     object-fit: contain;
+    text-align: center;
+    overflow-y: hidden;
+}
+
+.sixth-section-home-page h1{
+    position: relative;
+    margin: 10vh 0 0 0;
+    padding: 1vh;
+    font-family: 'CustomFont1', sans-serif;
+    font-size: 5rem;
+}
+
+.choose-language-playground {
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+
+.choose-language-playground h3{
+    font-family: "montreal", sans-serif;
+    font-size: 1.4rem;
+    margin: 2vh 0 0 0;
+}
+
+.choose-language-playground ul{
+    position: relative;
+    width: 20% !important;
+    height: 10%;
+    display: flex;
+    list-style-type: none;
+    margin: 0 auto 2vh;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.choose-language-playground li img{
+    position: relative;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+    padding: 10%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.choose-language-playground li img:hover {
+    cursor: pointer;
+    background-color: #ececec;
+}
+
+.challenge-Wrapper-playground {
+    position: relative;
+    width: 40%;
+    height: 55%;
+    margin: 0 auto;
+    background: #e5e5e5;
+    border: 1px solid #ff5e62;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.challenge-Wrapper-playground h1 {
+    font-size: 3rem !important;
+    margin: 0;
+    padding: 0;
+}
+
+#animation-container {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(25vh);
+    pointer-events: none;
 }
 
 /* ----------------------------------------------------------- */
@@ -1899,6 +1970,7 @@ main.sign-up-mode .carousel {
     color: #223;
     font-family: 'montreal', sans-serif;
     width: 100%;
+    min-height: 40px;
     border: 1px solid #222;
     padding: 10px;
     margin: 10px 0;
