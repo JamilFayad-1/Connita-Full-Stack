@@ -4,6 +4,7 @@ import com.jfayad.projetweb2_springboot.entities.Challenges;
 import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.services.ChallengesJouerService;
 import com.jfayad.projetweb2_springboot.services.ChallengesService;
+import com.jfayad.projetweb2_springboot.services.CleinOeilService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,8 +42,12 @@ public class AuthController {
 
     @Autowired
     private ChallengesJouerService challengesJouerService;
+
     @Autowired
     private HttpSession httpSession;
+
+    @Autowired
+    private CleinOeilService cleinOeilService;
 
     @PostMapping("/membre/connexion")
     public String login(@RequestParam("email") String email,
@@ -55,8 +60,8 @@ public class AuthController {
 
         Membre membre = membreService.connexionMembre(email, password);
 
-        if(membre != null){
-            if(membre.getPhotoProfilPath() == null || membre.getPhotoProfilPath().isEmpty()){
+        if (membre != null) {
+            if (membre.getPhotoProfilPath() == null || membre.getPhotoProfilPath().isEmpty()) {
                 logger.info("THIS SHOULD BE DISPLAYED IF ZERO PHOTO: {}", membre.getPhotoProfilPath());
                 membre.setPhotoProfilPath("imageUtilisateur/Default-profile-pic.png");
             }
@@ -70,11 +75,13 @@ public class AuthController {
 
             setLanguagesSpokenSessionAttributes(membre.getLangue(), session);
 
+            ArrayList<Membre> listeCleinOeil = cleinOeilService.getCleinOeil(membre);
+            redirectAttributes.addFlashAttribute("listeCleinOeil", listeCleinOeil);
+
             session.setAttribute("loggedInUser", membre);
             redirectAttributes.addFlashAttribute("messageConnReussite", "Successful login!");
             return "redirect:/pageAccueilUtilisateur";
-        }
-        else {
+        } else {
             redirectAttributes.addFlashAttribute("messageConnEchoue", "Connexion failed. Check your credentials");
             return "redirect:/index";
         }
@@ -82,11 +89,11 @@ public class AuthController {
 
     @PostMapping("/membre/inscription")
     public String register(@RequestParam("firstName") String firstName,
-                        @RequestParam("lastName") String lastName,
-                        @RequestParam("email") String email,
-                        @RequestParam("password") String password,
-                        HttpSession session,
-                        RedirectAttributes redirectAttributes) {
+                           @RequestParam("lastName") String lastName,
+                           @RequestParam("email") String email,
+                           @RequestParam("password") String password,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes) {
         boolean validation = false;
         // Process login form
         //logger.info("Attempting to sign up with first name: {}", firstName);
@@ -97,7 +104,7 @@ public class AuthController {
         Membre membre = membreService.inscriptionMembre(firstName, lastName, email, password);
 
         List<Challenges> listeAllChallenges = challengesService.findAllChallenges();
-        for(Challenges challenge : listeAllChallenges){
+        for (Challenges challenge : listeAllChallenges) {
             challengesJouerService.createChallengeRow(membre.getIdMembre(), challenge.getChallengeName());
             session.setAttribute("isFirstSetComplete", false);
             session.setAttribute("isSecondSetComplete", false);
@@ -201,7 +208,7 @@ public class AuthController {
                                  @RequestParam("passwordNew") String newPassword,
                                  @RequestParam("email") String email,
                                  HttpSession session,
-                                 RedirectAttributes redirectAttributes){
+                                 RedirectAttributes redirectAttributes) {
 
         Membre membre = new Membre();
         membre.setEmail(email);
@@ -227,10 +234,10 @@ public class AuthController {
 
     @PostMapping("/updateLanguages")
     public String updateLanguages(@RequestParam("password") String password,
-                                 @RequestParam("email") String email,
+                                  @RequestParam("email") String email,
                                   @RequestParam("languages") List<String> languages,
-                                 HttpSession session,
-                                 RedirectAttributes redirectAttributes){
+                                  HttpSession session,
+                                  RedirectAttributes redirectAttributes) {
 
         boolean success = false;
 
@@ -254,7 +261,7 @@ public class AuthController {
     }
 
     public void setLanguagesSpokenSessionAttributes(String languagesSpoken,
-                                                    HttpSession session){
+                                                    HttpSession session) {
 
         session.setAttribute("japaneseSpoken", false);
         session.setAttribute("indianSpoken", false);
@@ -263,30 +270,32 @@ public class AuthController {
         session.setAttribute("italianSpoken", false);
         session.setAttribute("spanishSpoken", false);
 
-        String[] languageArray = languagesSpoken.split(",");
+        if (languagesSpoken != null) {
+            String[] languageArray = languagesSpoken.split(",");
 
-        for(String language : languageArray){
-            switch(language){
-                case "Japanese":
-                    session.setAttribute("japaneseSpoken", true);
-                    break;
-                case "Indian":
-                    session.setAttribute("indianSpoken", true);
-                    break;
-                case "French":
-                    session.setAttribute("frenchSpoken", true);
-                    break;
-                case "Russian":
-                    session.setAttribute("russianSpoken", true);
-                    break;
-                case "Italian":
-                    session.setAttribute("italianSpoken", true);
-                    break;
-                case "Spanish":
-                    session.setAttribute("spanishSpoken", true);
-                    break;
-                default:
-                    break;
+            for (String language : languageArray) {
+                switch (language) {
+                    case "Japanese":
+                        session.setAttribute("japaneseSpoken", true);
+                        break;
+                    case "Indian":
+                        session.setAttribute("indianSpoken", true);
+                        break;
+                    case "French":
+                        session.setAttribute("frenchSpoken", true);
+                        break;
+                    case "Russian":
+                        session.setAttribute("russianSpoken", true);
+                        break;
+                    case "Italian":
+                        session.setAttribute("italianSpoken", true);
+                        break;
+                    case "Spanish":
+                        session.setAttribute("spanishSpoken", true);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

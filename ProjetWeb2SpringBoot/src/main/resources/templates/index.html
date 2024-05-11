@@ -327,10 +327,12 @@
 
         gsap.from(animation, {
             opacity: 0,
-            y: 100,
+            delay: 1.5,
+            y: 300,
+            ease: "power2.in",
+            lazy: false,
             scrollTrigger: {
                 trigger: animation,
-                start: "top center"
             }
         });
 
@@ -339,6 +341,7 @@
             opacity: 0,
             duration: 0.8,
             ease: "elastic",
+            lazy: false,
             scrollTrigger: {
                 trigger: playgroundTitle,
                 start: "top center"
@@ -350,6 +353,7 @@
             opacity: 0,
             duration: 0.8,
             ease: "elastic",
+            lazy: false,
             scrollTrigger: {
                 trigger: playgroundChooseLanguage,
                 start: "top center"
@@ -361,6 +365,7 @@
             opacity: 0,
             duration: 0.8,
             ease: "elastic",
+            lazy: false,
             scrollTrigger: {
                 trigger: playgroundLanguageOptions,
                 start: "top center"
@@ -372,6 +377,7 @@
             opacity: 0,
             delay: 1,
             duration: 1.2,
+            lazy: false,
             ease: "elastic",
             scrollTrigger: {
                 trigger: challengeContainer,
@@ -385,7 +391,7 @@
             scrollTrigger: {
                 trigger: container,
                 start: "top top",
-                end: "+=2500",
+                end: "+=3000",
                 scrub: 1,
                 pin: true
             }
@@ -400,10 +406,11 @@
                 duration: 2,
                 ease: "elastic",
                 stagger: 0.1,
+                lazy: false,
                 scrollTrigger: {
                     trigger: section,
                     containerAnimation: scrollTween,
-                    start: "left center"
+                    start: "left 40%",
                 }
             })
         })
@@ -412,7 +419,7 @@
             scrollTrigger: {
                 trigger: '.overlay-horizontal-scroll',
                 start: "top top",
-                end: "top -2500",
+                end: "top -3000",
                 scrub: 1,
                 pin: true,
             }

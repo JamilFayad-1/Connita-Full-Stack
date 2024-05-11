@@ -860,7 +860,7 @@ hr {
     position: absolute;
     width: 100%;
     height: 100vh;
-    top: 196vh;
+    top: 195vh;
     padding: 5vh;
     display: block;
     object-fit: contain;
@@ -953,6 +953,7 @@ svg {
 
 .horizontal-scroll-container-sections {
     height: 100vh;
+    max-width: 300vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1033,7 +1034,7 @@ svg {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    top: 800vh;
+    top: 920vh;
     display: block;
     object-fit: contain;
     text-align: center;
@@ -1465,6 +1466,33 @@ main.sign-up-mode .carousel {
     animation: SlideInSlideOut 6s 1;
     opacity: 0;
     z-index: 15;
+}
+
+.FriendHey {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+}
+
+#friend-hey-element {
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    background-color: rgb(240, 240, 240);
+    border-radius: 2rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    text-align: center;
+    z-index: 100;
+    color: #5c99dd;
+    opacity: 0;
+}
+
+.friendHeyDisplayed {
+    animation: SlideInSlideOut 6s ease-in-out forwards;
 }
 
 @keyframes SlideInSlideOut {
