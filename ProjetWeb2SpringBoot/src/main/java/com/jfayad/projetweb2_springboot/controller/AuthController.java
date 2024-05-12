@@ -24,6 +24,8 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,7 +55,8 @@ public class AuthController {
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
                         HttpSession session,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,
+                        Model model) {
         // Process login form
         //        logger.info("Attempting to log in with email: {}", email);
         //        logger.info("Attempting to log in with password: {}", password);
@@ -76,7 +79,28 @@ public class AuthController {
             setLanguagesSpokenSessionAttributes(membre.getLangue(), session);
 
             ArrayList<Membre> listeCleinOeil = cleinOeilService.getCleinOeil(membre);
-            redirectAttributes.addFlashAttribute("listeCleinOeil", listeCleinOeil);
+            session.setAttribute("listeCleinOeil", listeCleinOeil);
+
+            ArrayList<LocalDateTime> listeTempsCleinOeil = cleinOeilService.getTempsCleinOeil(membre);
+            ArrayList<String> listeTempsReel = new ArrayList<>();
+
+            for(LocalDateTime temp : listeTempsCleinOeil) {
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                Duration duration = Duration.between(temp, currentDateTime);
+
+                long hours = duration.toHours();
+                long minutes = duration.toMinutes() % 60;
+
+                if (hours > 0) {
+                    listeTempsReel.add(hours + "h ago");
+                } else if (minutes <= 1) {
+                    listeTempsReel.add("just now");
+                } else {
+                    listeTempsReel.add(minutes + "m ago");
+                }
+            }
+
+            session.setAttribute("listeTempsCleinOeil", listeTempsReel);
 
             session.setAttribute("loggedInUser", membre);
             redirectAttributes.addFlashAttribute("messageConnReussite", "Successful login!");

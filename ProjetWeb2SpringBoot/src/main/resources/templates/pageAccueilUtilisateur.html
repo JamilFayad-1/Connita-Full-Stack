@@ -14,9 +14,6 @@
 <div class="messagePopUps" id="messageNotification">
     <p th:if="${messageConnReussite != null}" class="messageTextReussie" th:text="${messageConnReussite}"></p>
 </div>
-<div class="FriendHey">
-    <p id="friend-hey-element"></p>
-</div>
 
 <main>
     <!-- Left section -->
@@ -63,22 +60,6 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-    const hiMembers = /*[[${listeCleinOeil}]]*/ [];
-
-    function deleteCleinOeilFromDatabase(membreEnvoyantRecu) {
-        $.ajax({
-            url: '/deleteCleinOeil',
-            method: 'POST',
-            data: {membreEnvoyant: membreEnvoyantRecu},
-            success: function (response) {
-                console.log('Message deleted successfully:', response);
-            },
-            error: function (xhr, status, error) {
-                console.error('Error deleting message:', xhr.responseText);
-            }
-        });
-    }
-
     const friendsListElements = document.querySelectorAll('.friends-list-element');
 
     friendsListElements.forEach(function (friendsListElement) {
@@ -86,7 +67,7 @@
         const textDisplayed = friendsListElement.querySelector('h3');
         friendsListElement.addEventListener('mouseover', function () {
             textDisplayed.style.transition = "all 0.2s ease-in";
-            textDisplayed.textContent = "Send a hi!";
+            textDisplayed.textContent = "Poke him!";
         });
 
         friendsListElement.addEventListener('mouseout', function () {

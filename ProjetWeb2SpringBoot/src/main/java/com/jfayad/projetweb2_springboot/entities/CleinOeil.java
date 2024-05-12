@@ -2,6 +2,8 @@ package com.jfayad.projetweb2_springboot.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class CleinOeil {
 
@@ -17,6 +19,14 @@ public class CleinOeil {
     @ManyToOne
     @JoinColumn(name = "id_recevant")
     private Membre idRecevant;
+
+    @Column(name = "date_heure_envoyer")
+    private LocalDateTime sentDateTime;
+
+    @PrePersist
+    public void prePersist() {
+        sentDateTime = LocalDateTime.now();
+    }
 
     public CleinOeil() {
     }
@@ -48,6 +58,14 @@ public class CleinOeil {
 
     public void setIdRecevant(Membre idRecevant) {
         this.idRecevant = idRecevant;
+    }
+
+    public LocalDateTime getSentDateTime() {
+        return sentDateTime;
+    }
+
+    public void setSentDateTime(LocalDateTime sentDateTime) {
+        this.sentDateTime = sentDateTime;
     }
 
     @Override

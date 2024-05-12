@@ -119,7 +119,9 @@ header {
     border-radius: 0.3rem;
 }
 
-#horizontal-nav li:nth-child(2) {
+#horizontal-nav li:nth-child(2),
+#horizontal-nav li:nth-child(3)
+{
     border-radius: 50%;
 }
 
@@ -144,12 +146,18 @@ header {
     height: 2.4rem;
 }
 
+#horizontal-nav li:nth-of-type(2) a:first-of-type img {
+    width: 24px;
+    height: 24px;
+}
 
 #horizontal-nav li:nth-child(1):hover {
     color: #5c99dd;
 }
 
-#horizontal-nav li:nth-child(2):hover {
+#horizontal-nav li:nth-child(2):hover,
+#horizontal-nav li:nth-child(3):hover
+{
     background-color: #e1e1e1;
     cursor: pointer;
 }
@@ -1468,33 +1476,6 @@ main.sign-up-mode .carousel {
     z-index: 15;
 }
 
-.FriendHey {
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 10vh;
-    justify-content: center;
-    align-items: center;
-    z-index: 15;
-}
-
-#friend-hey-element {
-    font-family: 'montreal', sans-serif;
-    font-size: 1rem;
-    background-color: rgb(240, 240, 240);
-    border-radius: 2rem;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    text-align: center;
-    z-index: 100;
-    color: #5c99dd;
-    opacity: 0;
-}
-
-.friendHeyDisplayed {
-    animation: SlideInSlideOut 6s ease-in-out forwards;
-}
-
 @keyframes SlideInSlideOut {
     0% {
         opacity: 0;
@@ -1539,7 +1520,89 @@ main.sign-up-mode .carousel {
 /* Dropdown pour l'icon compte
 /* ----------------------------------------------------------- */
 
-.dropdown-menu {
+.dropdown-menu1 {
+    display: none;
+    background-color: white;
+    position: relative;
+    margin-left: -39vh;
+    margin-top: 6.5vh;
+    height: 32vh;
+    width: 24vw;
+    z-index: 10;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: -7px 8px 10px -9px rgba(0, 0, 0, 0.42);
+    justify-content: center;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.dropdown-menu1 h1 {
+    position: relative;
+    width: 100%;
+    height: 6vh;
+    text-align: center;
+    font-family: 'montreal', sans-serif;
+    font-size: 1rem;
+    border-bottom: 2px solid #2d2d2d;
+    margin: 0 0 2vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.dropdown-menu1::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+.notification {
+    position: relative;
+    width: 100%;
+    height: 8vh;
+    padding: 0;
+    display: flex;
+}
+
+.friend-notification-info {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.friend-notification-info img {
+    box-sizing: border-box;
+    position: relative;
+    height: 2rem !important;
+    width: 2rem !important;
+    margin-left: 6%;
+}
+
+.friend-notification-info h3 {
+    font-family: 'montreal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-left: 2%;
+}
+
+.friend-notification-time {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.friend-notification-time p{
+    font-family: 'montreal', sans-serif;
+    font-size: 0.8rem;
+    color: #646464;
+    font-style: italic;
+}
+
+.dropdown-menu2 {
     display: none;
     background-color: white;
     position: relative;
@@ -1554,7 +1617,7 @@ main.sign-up-mode .carousel {
     padding: 0;
 }
 
-#horizontal-nav .dropdown-menu a {
+#horizontal-nav .dropdown-menu2 a {
     width: 6vw;
     height: 33.33%;
     position: relative;
@@ -1573,23 +1636,23 @@ main.sign-up-mode .carousel {
 }
 
 
-#horizontal-nav .dropdown-menu a:nth-child(1) {
+#horizontal-nav .dropdown-menu2 a:nth-child(1) {
     border-top-right-radius: 0.4rem;
     border-top-left-radius: 0.4rem;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(3) {
+#horizontal-nav .dropdown-menu2 a:nth-child(3) {
     border-bottom-right-radius: 0.35rem;
     border-bottom-left-radius: 0.35rem;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(1):hover,
-#horizontal-nav .dropdown-menu a:nth-child(2):hover {
+#horizontal-nav .dropdown-menu2 a:nth-child(1):hover,
+#horizontal-nav .dropdown-menu2 a:nth-child(2):hover {
     color: #5c99dd;
     background-color: #e0e0e0;
 }
 
-#horizontal-nav .dropdown-menu a:nth-child(3):hover {
+#horizontal-nav .dropdown-menu2 a:nth-child(3):hover {
     background-color: rgb(156, 72, 77);
     color: white;
 }
