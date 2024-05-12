@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Friends list</title>
 </head>
-<body>
-<div id="right-section" th:fragment="rightFriendsListFragment">
+<body th:fragment="rightFriendsListFragment">
+<div id="right-section">
     <div id="right-section-friends-list">
         <h2>Friends</h2>
         <ul th:each="amie : ${listeAmitier}" id="friends-list">
@@ -21,5 +21,37 @@
         </ul>
     </div>
 </div>
+<script th:inline="javascript">
+    const friendsListElements = document.querySelectorAll('.friends-list-element');
+
+    friendsListElements.forEach(function (friendsListElement) {
+        const friendName = friendsListElement.querySelector('h3').textContent;
+        const textDisplayed = friendsListElement.querySelector('h3');
+        friendsListElement.addEventListener('mouseover', function () {
+            textDisplayed.style.transition = "all 0.2s ease-in";
+            textDisplayed.textContent = "Poke him!";
+        });
+
+        friendsListElement.addEventListener('mouseout', function () {
+            textDisplayed.textContent = friendName;
+        });
+
+        friendsListElement.addEventListener('click', function () {
+            const friendIdInput = friendsListElement.querySelector('.friend-id');
+            const idRecevant = friendIdInput.value;
+            $.ajax({
+                url: '/envoyerCLeinOeil',
+                method: 'POST',
+                data: {idRecevant: idRecevant},
+                success: function (response) {
+                    console.log('Success:', response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

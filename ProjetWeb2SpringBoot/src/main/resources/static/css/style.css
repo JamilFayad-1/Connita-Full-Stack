@@ -146,9 +146,14 @@ header {
     height: 2.4rem;
 }
 
+#horizontal-nav li:nth-of-type(2) a:first-of-type {
+    width: 24px !important;
+    height: 24px !important;
+}
+
 #horizontal-nav li:nth-of-type(2) a:first-of-type img {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
 }
 
 #horizontal-nav li:nth-child(1):hover {
@@ -1564,6 +1569,21 @@ main.sign-up-mode .carousel {
     height: 8vh;
     padding: 0;
     display: flex;
+}
+
+.empty-notification {
+    position: relative;
+    width: 100%;
+    height: 3vh;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'montreal', sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+    color: #4d4d4d;
+    font-style: italic;
 }
 
 .friend-notification-info {

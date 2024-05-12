@@ -18,6 +18,9 @@
                     alt="appointment-reminders"/></a>
             <div class="dropdown-menu1" id="dropdownMenu1">
                 <h1>Updates</h1>
+                <div th:if="${session.listeCleinOeil.empty}" class="empty-notification">
+                    <p>No notifications yet</p>
+                </div>
                 <div th:each="membre, index : ${session.listeCleinOeil}" class="notification">
                     <div class="friend-notification-info">
                         <img th:src="@{${membre.photoProfilPath}}" alt="profile pic">
@@ -26,8 +29,6 @@
                     <div class="friend-notification-time">
                         <p th:text="${session.listeTempsCleinOeil[__${index.index}__]}"></p>
                     </div>
-                </div>
-                <div class="notification">
                 </div>
             </div>
         </li>
