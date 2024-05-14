@@ -93,9 +93,8 @@ public class AuthController {
 
                 if(hours >= 24){
                     int nbrOfDays = (int) (hours / 24);
-                    listeTempsReel.add(nbrOfDays + "7d");
-                }
-                else if (hours > 0) {
+                    listeTempsReel.add(nbrOfDays + "d");
+                } else if (hours > 0) {
                     listeTempsReel.add(hours + "h");
                 } else if (minutes <= 1) {
                     listeTempsReel.add("just now");

@@ -16,7 +16,14 @@
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
     <div id="middle-section">
+        <div class="middle-section-exercises-wrapper">
+            <h1>Exercises</h1>
+            <div class="exercises-list-container">
+                <div class="exercises-element">
 
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"
