@@ -91,12 +91,16 @@ public class AuthController {
                 long hours = duration.toHours();
                 long minutes = duration.toMinutes() % 60;
 
-                if (hours > 0) {
-                    listeTempsReel.add(hours + "h ago");
+                if(hours >= 24){
+                    int nbrOfDays = (int) (hours / 24);
+                    listeTempsReel.add(nbrOfDays + "7d");
+                }
+                else if (hours > 0) {
+                    listeTempsReel.add(hours + "h");
                 } else if (minutes <= 1) {
                     listeTempsReel.add("just now");
                 } else {
-                    listeTempsReel.add(minutes + "m ago");
+                    listeTempsReel.add(minutes + "min");
                 }
             }
 
