@@ -2,9 +2,12 @@ package com.connita.model.dao;
 
 import com.connita.model.entities.Membre;
 import com.connita.model.singleton.ConnexionDB;
+<<<<<<< HEAD
 import static com.mysql.cj.conf.PropertyKey.logger;
 import com.mysql.cj.xdevapi.Result;
 import java.io.InputStream;
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,12 +17,19 @@ import java.util.logging.Logger;
 
 
 public class MembreImplDao implements MembreDao {
+
     // Requêtes SQL
+<<<<<<< HEAD
     private static final String SQL_AJOUTER_MEMBRE = "INSERT INTO membre (nom, prenom, email, password) VALUES (?, ?, ?, ?)";
     private static final String SQL_CONNEXION_PAR_EMAIL_AND_PASSWORD = "SELECT idMembre, photoProfilPath, nom, prenom, username, bio, region FROM membre WHERE email = ? AND password = ?";
     private static final String SQL_VERIFIER_MOT_DE_PASSE = "SELECT password FROM membre WHERE email = ? AND password = ?";
     private static final String SQL_CHANGER_MOT_DE_PASSE = "UPDATE membre SET password = ? WHERE email = ? AND password = ?";
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
     
+    private static final String SQL_AJOUTER_MEMBRE = "INSERT INTO membre (nom, prenom, email, password) VALUES (?, ?, ?, ?)";
+    private static final String SQL_CONNEXION_PAR_EMAIL_AND_PASSWORD = "SELECT nom, prenom FROM membre WHERE email = ? AND password = ?";
+
     @Override
     public boolean ajouterMembre(Membre membre) {
         boolean validation = false;
@@ -74,9 +84,6 @@ public class MembreImplDao implements MembreDao {
                 membre.setPhotoProfil(result.getString("photoProfilPath"));
                 membre.setPrenom(result.getString("prenom"));
                 membre.setNom(result.getString("nom"));
-                membre.setUsername(result.getString("username"));
-                membre.setBio(result.getString("bio"));
-                membre.setRegion(result.getString("region"));
             }
             
         } catch (SQLException e) {
@@ -94,6 +101,7 @@ public class MembreImplDao implements MembreDao {
         return membre;
     }
     
+<<<<<<< HEAD
     @Override
     public boolean updateProfile(Membre membre) {
         
@@ -241,4 +249,6 @@ public class MembreImplDao implements MembreDao {
         return changementValider;
     }
     
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
 }

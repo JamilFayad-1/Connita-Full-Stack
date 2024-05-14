@@ -30,8 +30,8 @@ public class InscriptionController extends HttpServlet {
         String password = request.getParameter("password");
 
         Membre membre = new Membre();
-        membre.setNom(lastName);
-        membre.setPrenom(firstName);
+        membre.setNom(firstName);
+        membre.setPrenom(lastName);
         membre.setEmail(email);
         membre.setPassword(password);
         boolean valider = membreDao.ajouterMembre(membre);

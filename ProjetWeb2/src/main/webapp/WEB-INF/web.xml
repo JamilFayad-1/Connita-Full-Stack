@@ -17,6 +17,7 @@
         <servlet-name>DeconnexionController</servlet-name>
         <url-pattern>/DeconnexionController</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     <servlet-mapping>
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <url-pattern>/ModifierUtilisateurController</url-pattern>
@@ -33,6 +34,8 @@
         <servlet-name>CreateChallengeRowController</servlet-name>
         <url-pattern>/CreateChallengeRowController</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -48,6 +51,7 @@
         <servlet-name>DeconnexionController</servlet-name>
         <servlet-class>com.connita.controller.DeconnexionController</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>ModifierUtilisateurController</servlet-name>
         <servlet-class>com.connita.controller.ModifierUtilisateurController</servlet-class>
@@ -64,4 +68,6 @@
         <servlet-name>CreateChallengeRowController</servlet-name>
         <servlet-class>com.connita.controller.CreateChallengeRowController</servlet-class>
     </servlet>
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
 </web-app>
