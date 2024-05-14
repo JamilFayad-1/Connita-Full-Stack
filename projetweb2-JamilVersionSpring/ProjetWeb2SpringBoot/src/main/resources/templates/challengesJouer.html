@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>Challenge games</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<header th:include="menu :: menuFragment"></header>
+
+            <div class="challenge-set-nav-wrapper">
+                <div class="challenge-set-nav-container">
+                    <ul id="challenge-set-nav-list">
+                        <button class="btnSet" th:data-index="1" th:value="${session.isFirstSetComplete}"></button>
+                        <button class="btnSet" th:data-index="2" th:if="${session.isFirstSetComplete}"></button>
+                        <button class="btnSet" th:data-index="2" th:if="${not session.isFirstSetComplete}" disabled="disabled"></button>
+                        <button class="btnSet" th:data-index="3" th:if="${session.isSecondSetComplete}"></button>
+                        <button class="btnSet" th:data-index="3" th:if="${not session.isSecondSetComplete}" disabled="disabled"></button>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="challenge-Wrapper">
+                <div class="challenge-container">
+                    <h1>Simple Quiz</h1>
+                    <div class="quiz">
+                        <h2 id="question">Question goes here</h2>
+                        <div id="answer-buttons">
+                            <button class="btnAnswer">Answer 1</button>
+                            <button class="btnAnswer">Answer 2</button>
+                            <button class="btnAnswer">Answer 3</button>
+                            <button class="btnAnswer">Answer 4</button>
+                        </div>
+                        <button id="btnNext">Next</button>
+                    </div>
+                </div>
+            </div>
+
+<script src="/javascript/javascriptChallenges.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var buttons = document.querySelectorAll('.btnSet');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var index = this.getAttribute('data-index');
+                var challengeName = getParameterByName('challengeName')+index;
+                handleButtonClick(challengeName, index);
+            });
+        });
+
+        // Function to get URL parameters by name
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+
+        var buttons = document.querySelectorAll('.btnSet');
+        buttons.forEach(function(button, index) {
+            if (index === 0) {
+                button.textContent = getParameterByName('challengeName')+' 1';
+            } else if (index === 1) {
+                button.textContent = getParameterByName('challengeName')+' 2';
+            } else if (index === 2) {
+                button.textContent = getParameterByName('challengeName')+' 3';
+            }
+        });
+
+        if (!localStorage.getItem("pageReloaded")) {
+            localStorage.setItem("pageReloaded", "true");
+            window.location.reload();
+        } else {
+            localStorage.removeItem("pageReloaded");
+        }
+        document.querySelector('.btnSet[data-index="1"]').click();
+
+    });
+
+    function handleButtonClick(challengeName, index) {
+        let questions;
+        console.log("THE LANGUAGE RN: " + challengeName);
+        switch (challengeName) {
+            case "Italian1":
+                questions = Italian1;
+                break;
+            case "Italian2":
+                questions = Italian2;
+                break;
+            case "Italian3":
+                questions = Italian3;
+                break;
+            case "French1":
+                questions = French1;
+                break;
+            case "French2":
+                questions = French2;
+                break;
+            case "French3":
+                questions = French3;
+                break;
+            case "Spanish1":
+                questions = Spanish1;
+                break;
+            case "Spanish2":
+                questions = Spanish2;
+                break;
+            case "Spanish3":
+                questions = Spanish3;
+                break;
+            case "German1":
+                questions = German1;
+                break;
+            case "German2":
+                questions = German2;
+                break;
+            case "German3":
+                questions = German3;
+                break;
+            default:
+                console.error("Invalid challenge name:", challengeName);
+                return;
+        }
+        loadChallengeSet(questions);
+        setTableNameIndex(index);
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

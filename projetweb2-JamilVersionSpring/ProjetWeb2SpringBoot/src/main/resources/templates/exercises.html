@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>Exercices</title>
+</head>
+<body>
+
+<!-- Include menu -->
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:if="${session.loggedInUser != null}"
+         th:replace="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="/javascript/script.js"></script>
+<script th:inline="javascript">
+
+</script>
+</body>
+</html>

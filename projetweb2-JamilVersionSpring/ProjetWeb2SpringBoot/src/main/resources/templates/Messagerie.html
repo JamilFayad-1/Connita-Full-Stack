@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'accueil utilisateur</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<main th:attr="data-logged-in-user-id=${session.loggedInUser.getIdMembre()}" id="mainInbox">
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section" style="overflow-y: hidden; display: flex; box-shadow: 0 -4px 37px 11px rgba(221,228,240,1);">
+        <div class="middle-section-friend-inbox-container">
+            <div class="middle-section-friend-inbox-title">
+                <h1 class="inbox-title">Inbox</h1>
+            </div>
+            <div class="middle-section-friend-inbox-wrapper">
+                <div th:each="ami:${listeAmitier}">
+                    <div class="friend-inbox-element" th:attr="data-ami-id=${ami.getIdMembre()}">
+                        <div class="friend-element-profile-pic">
+                            <img th:src="${ami.photoProfilPath}" alt="User-Profile-Pic" style="border-radius:50px">
+                        </div>
+                        <div class="friend-element-name-last-message">
+                            <h2 th:text="${ami.getPrenom()}"></h2>
+                            <h3 th:text=" '@' + ${ami.getUsername()}"></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="middle-section-friend-inbox-overlay"></div>
+        </div>
+        <div class="middle-section-messagerie">
+            <div class="middle-section-messagerie-header-background">
+                <div class="middle-section-messagerie-header">
+                    <div class="messagerie-header-profile-pic" id="messagerie-header-profile-pic">
+                    </div>
+                    <div class="messagerie-header-name" id="messagerie-header-name">
+                        <h2 id="prenomUtilisateur"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-section-messagerie-container" id="messagerie-container">
+
+            </div>
+            <div class="middle-section-messagerie-input-container" id="middle-section-messagerie-hidden" style="display:none;">
+                <div class="chat-type-area">
+                    <input type="text" id="message-typed" class="message-input" placeholder="Type your message...">
+
+
+                </div>
+                <div class="chat-send-button">
+                    <button id="send-button" class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    document.addEventListener("DOMContentLoaded", function(){
+        let currentAmiId = null;
+        const main = document.getElementById("mainInbox");
+        const id_membre = main.getAttribute("data-logged-in-user-id");
+        const amis = document.querySelectorAll('.friend-inbox-element');
+
+        amis.forEach(ami =>{
+            ami.addEventListener('click', function(e){
+                e.preventDefault();
+                const id_ami = this.getAttribute('data-ami-id');
+                if (currentAmiId === id_ami) return;
+                currentAmiId = id_ami;
+                const container = document.getElementById('messagerie-container');
+                container.setAttribute('data-ami-id', id_ami);
+                container.innerHTML = '';
+                document.getElementById("middle-section-messagerie-hidden").style.display = "";
+                let listMessages = [];
+                function scrollToBottom() {
+                    const container = document.querySelector('.middle-section-messagerie-container');
+                    container.scrollTop = container.scrollHeight;
+                }
+                function pullConversation() {
+                    listMessages = [];
+                    let prenomUtilisateur = "";
+                    let pfpUtilisateur = "";
+                    const prenomUtilisateurDiv = document.getElementById('messagerie-header-name');
+                    const pfpDiv = document.getElementById('messagerie-header-profile-pic');
+                    prenomUtilisateurDiv.innerHTML = '';
+                    pfpDiv.innerHTML = '';
+                    fetch(`/conversation/${id_ami}`,
+                        {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return [];
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+
+                            $.each(data, function (index, message) {
+                                if(!listMessages.some(msg => msg.id_message === message.id_message) || listMessages.length == 0){
+                                    listMessages.push(message);
+                                    const messageP = document.createElement('p');
+                                    if (message.membre.idMembre == id_membre) {
+                                        $(messageP).addClass('chat-right');
+                                        prenomUtilisateur = message.ami.prenom;
+                                        pfpUtilisateur = message.ami.photoProfilPath;
+
+                                    } else {
+                                        $(messageP).addClass('chat-left');
+
+                                    }
+                                    container.appendChild(messageP);
+                                    messageP.innerHTML = message.message;
+                                    scrollToBottom();
+                                }
+                            });
+                            const pfpImg = document.createElement('img');
+                            pfpImg.src = pfpUtilisateur;
+                            pfpImg.style.borderRadius = '50px';
+                            const prenomUtilisateurH2 = document.createElement('h2');
+                            pfpDiv.appendChild(pfpImg);
+                            prenomUtilisateurH2.innerHTML = prenomUtilisateur;
+                            prenomUtilisateurDiv.appendChild(prenomUtilisateurH2);
+
+                        });
+
+                }
+                pullConversation();
+                function pullNewMessages(){
+                    const messageP = document.createElement('p');
+                    fetch(`/conversation/${id_ami}`,
+                        {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return [];
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            $.each(data, function (index, message2) {
+                                if(!listMessages.some(msg => msg.id_message === message2.id_message) || listMessages.length == 0){
+                                    listMessages.push(message2);
+                                    if (message2.membre.idMembre == id_membre) {
+                                        $(messageP).addClass('chat-right');
+
+                                    } else {
+                                        $(messageP).addClass('chat-left');
+
+                                    }
+                                    console.log("Appending message...");
+                                    messageP.innerHTML = message2.message;
+                                    container.appendChild(messageP);
+                                    scrollToBottom();
+                                }
+                            });
+
+                        }).finally(() => {
+                        setTimeout(pullNewMessages, 300);
+                    });
+
+                }
+                pullNewMessages();
+
+
+            });
+        });
+    });
+    const inputBox = document.getElementById('message-typed');
+    const sendButton = document.getElementById('send-button');
+    const messagerieContainer = document.getElementById('messagerie-container')
+
+    //function pour lire le bouton 'Send' et afficher le message utilisateur
+    function sendMessage(){
+        //Je lis ce que l'utilisateur a écrit
+        let textRead = inputBox.value;
+        if (textRead.trim() === ''){
+            alert('Le message ne peut etre vide');
+            return;
+        }
+        //Je créer ensuite un nouveaux élément <p>
+        const newChat = document.createElement('p');
+
+        //J'assigne le contenue lue à une nouvelle variable et je la donne le style d'un chat personel
+        newChat.textContent = textRead;
+        newChat.classList.add('chat-right')
+        //J'insére le nouveaux chat comme le premier enfant du conteneur.
+        // messagerieContainer.append(newChat);
+        const id_ami = messagerieContainer.getAttribute('data-ami-id');
+        fetch(`/conversation/${id_ami}/send`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: textRead })
+        })
+        //Je réinitialise le input element
+        inputBox.value = "";
+    }
+
+    // Event listener pour le clique sur le bouton 'Send'
+    sendButton.addEventListener("click", sendMessage);
+
+    // Event listener pour la touche enter
+    inputBox.addEventListener("keypress", function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+
+
+    /*]]>*/
+</script>
+</body>
+</html>

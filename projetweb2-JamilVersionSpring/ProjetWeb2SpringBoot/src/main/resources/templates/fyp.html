@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>For you</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+<body>
+<header th:include="menu :: menuFragment"></header>
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section">
+        <div class="choicesFyp-container">
+            <div class="choicesFyp">
+                <a th:href="@{/fyp}"><h3>For you</h3></a>
+                <a th:href="@{/yourContent}"><h3>Your work</h3></a>
+            </div>
+        </div>
+        <div class="fypMakeAPost">
+            <div class="fypMakeAPost-container" id="postElementContainer">
+                <h2 style="font-family: 'montreal', sans-serif" id="shareThoughts">Share your thoughts</h2>
+                <div class="fypMakeAPost-container-image" id="form-part-1">
+                    <img th:src="${session.loggedInUser.photoProfilPath}" alt="You"/>
+                </div>
+                <div class="fypMakeAPost-container-form-container" id="form-part-2">
+                    <form class="fypMakeAPost-container-form" th:action="@{/publier}" th:object="${publication}"
+                          method="post" enctype="multipart/form-data">
+                        <div class="container-form-element" style="display: none">
+                            <label for="titreInputPublicationFormulaire">Title:</label>
+                            <input id="titreInputPublicationFormulaire" value="" th:field="*{titre}" type="text"
+                                   name="titre"
+                                   minlength="5" autocomplete="off" placeholder="Enter your title"/>
+                        </div>
+                        <div class="container-form-element">
+                            <label for="descriptionInputPublicationFormulaire">Caption:</label>
+                            <input id="descriptionInputPublicationFormulaire"
+                                   th:field="*{description}" type="text"
+                                   name="description" minlength="5" autocomplete="off" required
+                                   placeholder="Enter a caption"/>
+                        </div>
+                        <div class="container-form-element">
+                            <input id="file-input" type="file" name="file" style="display: none"
+                                   required/>
+                            <i id="file-icon" class="fa-regular fa-image"></i>
+                            <div class="container-form-element-button">
+                                <button type="submit" id="publishButton">Publish</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="post-wrapper">
+            <div th:each="publication : ${publications}" class="post-element">
+                <div class="post-image">
+                    <img id="imagePosted" th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user image">
+                </div>
+                <div class="post-credentials">
+                    <div class="post-profile-pic">
+                        <img th:src="@{${publication.getMembre().getPhotoProfilPath()}}" alt="profile pic">
+                    </div>
+                    <div class="post-name-and-handle">
+                        <h3>
+                            <span class="username" th:text="${'@' + publication.getMembre().getUsername()}"></span>
+                            <span class="description" th:text="${publication.getDescription()}"></span>
+                        </h3>
+                    </div>
+                    <div class="post-like-button">
+                        <h3 id="likeCounter" th:text="${publication.getLikes()}"></h3>
+                        <i id="likeButton" class="fa-regular fa-heart fa-xl" th:data-idPost="${publication.getId_publication()}"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script th:inline="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('file-input');
+        const icon = document.getElementById('file-icon');
+
+        icon.addEventListener('click', function () {
+            fileInput.click();
+        });
+
+        const form = document.querySelector('.fypMakeAPost-container-form');
+
+        form.addEventListener('submit', function(event) {
+            // Delay the reset operation by a short duration (e.g., 100 milliseconds)
+            setTimeout(function() {
+                // Reset description input by clearing the associated model attribute
+                const descriptionField = document.getElementById('descriptionInputPublicationFormulaire');
+                descriptionField.value = '';  // Clear the input field
+
+                // Reset file input (if needed)
+                const fileInput = document.getElementById('file-input');
+                fileInput.value = '';
+            }, 100);
+        });
+    });
+
+    const inputContainer = document.getElementById('postElementContainer');
+    const formButton = document.getElementById('publishButton');
+
+    formButton.addEventListener('mouseover', function () {
+        inputContainer.style.border = "2px solid rgba(92, 153, 221, 0.8)";
+        inputContainer.style.boxShadow = "rgba(92, 153, 221, 0.4) 0 10px 32px 0";
+    });
+
+    formButton.addEventListener('mouseout', function () {
+        inputContainer.style.border = "";
+        inputContainer.style.boxShadow = "";
+    })
+
+    const likeButtons = document.querySelectorAll('.post-like-button #likeButton');
+
+    likeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const post = button.closest('.post-like-button');
+            const likeCounter = post.querySelector('#likeCounter');
+            let likeNumberCount = parseInt(likeCounter.textContent);
+            if(button.classList.contains('fa-regular')){
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/likePost?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount++;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-regular');
+                            button.classList.add('fa-solid');
+                            button.style.color = "red";
+                            likeCounter.style.color = 'red';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }else {
+                const idPost = this.getAttribute('data-idPost');
+
+                console.log("IDPOST RECU: " + idPost);
+
+                const url = "/removeLike?idPost=" + idPost;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            likeNumberCount--;
+                            likeCounter.textContent = likeNumberCount.toString();
+                            button.classList.remove('fa-solid');
+                            button.classList.add('fa-regular');
+                            button.style.color = "#2d2d2d";
+                            likeCounter.style.color = '#2d2d2d';
+                            console.log("Friend request sent successfully!");
+                        } else {
+                            console.error("Error sending friend request:", xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send();
+            }
+        });
+    });
+
+    // fix for the image container in the posts
+    const containers = document.querySelectorAll('.post-image');
+
+    containers.forEach(function (container) {
+        const image = container.querySelector('img');
+
+        image.addEventListener('load', function () {
+            const newHeight = image.offsetHeight + 2;
+            container.style.height = newHeight + 'px';
+        });
+    });
+
+    const shareButton = document.getElementById('shareThoughts');
+    const part1 = document.getElementById('form-part-1');
+    const part2 = document.getElementById('form-part-2');
+
+
+    shareButton.style.width = '100%';
+    shareButton.style.textAlign = 'center';
+    shareButton.style.margin = '0';
+    shareButton.style.alignContent = 'center';
+    shareButton.style.fontSize = '1rem';
+    shareButton.style.padding = '1rem';
+    shareButton.style.color = '#4d4d4d';
+    part1.style.display = 'none';
+    part2.style.display = 'none';
+    part1.style.pointerEvents = 'none';
+    part2.style.pointerEvents = 'none';
+    inputContainer.style.width = 'auto';
+    inputContainer.style.height = 'auto';
+    inputContainer.style.pointerEvents = 'auto';
+    inputContainer.style.backgroundColor = 'rgb(245, 245, 245)';
+
+
+    let formEnabeled = false;
+
+    shareButton.addEventListener('mouseover', function () {
+        shareButton.style.cursor = 'pointer';
+        inputContainer.style.boxShadow = 'rgba(92, 153, 221, 0.5) 0px 10px 30px';
+        inputContainer.style.backgroundColor = 'white';
+    });
+
+    shareButton.addEventListener('mouseout', function () {
+        shareButton.style.cursor = 'default';
+        inputContainer.style.boxShadow = '';
+        inputContainer.style.backgroundColor = 'rgb(245, 245, 245)';
+    });
+
+    inputContainer.addEventListener('click', function () {
+        if (formEnabeled === false) {
+            formEnabeled = true;
+            shareButton.classList.add('animateShareThoughts');
+            setTimeout(() => {
+                inputContainer.classList.add('animateInputContainer');
+            }, 200)
+            setTimeout(() => {
+                shareButton.style.display = 'none';
+                part1.style.display = 'flex';
+                part2.style.display = 'block';
+                part1.style.pointerEvents = 'auto';
+                part2.style.pointerEvents = 'auto';
+            }, 2000)
+        }
+    });
+
+
+</script>
+</body>
+</html>
