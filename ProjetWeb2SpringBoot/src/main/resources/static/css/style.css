@@ -1050,7 +1050,7 @@ svg {
     display: block;
     object-fit: contain;
     text-align: center;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .sixth-section-home-page h1{
@@ -1138,6 +1138,7 @@ svg {
     bottom: 0;
     pointer-events: none;
     z-index: -2;
+    overflow: hidden;
 }
 
 /* ----------------------------------------------------------- */

@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -84,6 +85,7 @@ public class AuthController {
             ArrayList<LocalDateTime> listeTempsCleinOeil = cleinOeilService.getTempsCleinOeil(membre);
             ArrayList<String> listeTempsReel = new ArrayList<>();
 
+            listeTempsCleinOeil.sort(Comparator.reverseOrder());
             for(LocalDateTime temp : listeTempsCleinOeil) {
                 LocalDateTime currentDateTime = LocalDateTime.now();
                 Duration duration = Duration.between(temp, currentDateTime);
