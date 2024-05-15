@@ -1,8 +1,10 @@
 package com.jfayad.projetweb2_springboot.controller;
 
 import com.jfayad.projetweb2_springboot.entities.Amitier;
+import com.jfayad.projetweb2_springboot.entities.Likes;
 import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.services.AmitierService;
+import com.jfayad.projetweb2_springboot.services.LikesService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
 import com.jfayad.projetweb2_springboot.services.PublicationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,6 +34,8 @@ public class PublController {
     private AmitierService amitierService;
     @Autowired
     private PublicationService publicationService;
+    @Autowired
+    private LikesService likesService;
 
     @PostMapping("/publier")
     public String publier(Model model, HttpServletRequest request, Publication publication, @RequestParam("file") MultipartFile file) {
@@ -72,6 +76,8 @@ public class PublController {
                     listeAmitier.add(membre);
                 }
             }
+            List<Likes> listeLikes = likesService.getAllLikes();
+            model.addAttribute("listeLikes", listeLikes);
             model.addAttribute("listeAmitier", listeAmitier);
             List<Publication> publications = publicationService.findAllByMembre(MembreTrouver);
             model.addAttribute("publications", publications);
