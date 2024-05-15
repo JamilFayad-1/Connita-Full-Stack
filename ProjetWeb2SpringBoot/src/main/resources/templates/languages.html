@@ -49,7 +49,7 @@
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"
-         th:include="rightFriendsList :: rightFriendsListFragment"></div>
+         th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 
 <script src="/javascript/script.js"></script>

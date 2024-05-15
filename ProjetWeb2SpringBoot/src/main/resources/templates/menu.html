@@ -5,27 +5,46 @@
     <title>Menu</title>
 </head>
 <body th:fragment="menuFragment">
-    <div id="logo-container">
-        <a th:href="${session.loggedInUser != null ? '/pageAccueilUtilisateur' : '/index'}">
-            <img src="images/My first design.png" alt="Company logo"/>
-        </a>
-    </div>
-    <nav id="horizontal-nav">
-        <ul th:if="${session.loggedInUser != null}">
-            <li><a th:href="@{/pageAjoutUtilisateur}">New friends</a></li>
-            <li id="dropdown-toggle">
-                <a><img id="profilePicMenu" th:src="${session.loggedInUser.photoProfilPath}" alt="test-account"/></a>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a th:href="@{/pageMessagerie}" class="dropdown-link">Messages</a>
-                    <a th:href="@{/pageUtilisateurReglage}" class="dropdown-link">Settings</a>
-                    <a th:href="@{/logout}" class="dropdown-link">Sign out</a>
+<div id="logo-container">
+    <a th:href="${session.loggedInUser != null ? '/pageAccueilUtilisateur' : '/index'}">
+        <img src="images/My first design.png" alt="Company logo"/>
+    </a>
+</div>
+<nav id="horizontal-nav">
+    <ul th:if="${session.loggedInUser != null}">
+        <li><a th:href="@{/pageAjoutUtilisateur}">New friends</a></li>
+        <li id="dropdown-toggle1">
+            <a><img src="https://img.icons8.com/material-rounded/24/appointment-reminders.png"
+                    alt="appointment-reminders"/></a>
+            <div class="dropdown-menu1" id="dropdownMenu1">
+                <h1>Updates</h1>
+                <div th:if="${session.listeCleinOeil.empty}" class="empty-notification">
+                    <p>No notifications yet</p>
                 </div>
-            </li>
-        </ul>
-        <div th:unless="${session.loggedInUser != null}">
-            <button class="btnSignup" type="button" style="background-color: white">Start learning</button>
-        </div>
-    </nav>
+                <div th:each="membre, index : ${session.listeCleinOeil}" class="notification">
+                    <div class="friend-notification-info">
+                        <img th:src="@{${membre.photoProfilPath}}" alt="profile pic">
+                        <h3 th:text="${'@' + membre.username + ' poked you!'}"></h3>
+                    </div>
+                    <div class="friend-notification-time">
+                        <p th:text="${session.listeTempsCleinOeil[__${index.index}__]}"></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li id="dropdown-toggle2">
+            <a><img id="profilePicMenu" th:src="${session.loggedInUser.photoProfilPath}" alt="test-account"/></a>
+            <div class="dropdown-menu2" id="dropdownMenu2">
+                <a th:href="@{/pageMessagerie}" class="dropdown-link">Messages</a>
+                <a th:href="@{/pageUtilisateurReglage}" class="dropdown-link">Settings</a>
+                <a th:href="@{/logout}" class="dropdown-link">Sign out</a>
+            </div>
+        </li>
+    </ul>
+    <div th:unless="${session.loggedInUser != null}">
+        <button class="btnSignup" type="button" style="background-color: white">Start learning</button>
+    </div>
+</nav>
 
 <script src="/javascript/menuScript.js"></script>
 </body>

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface MembreRepository extends JpaRepository<Membre,Integer> {
 
     @Query("SELECT u FROM Membre u WHERE u.email=:email and u.password=:password")
-    public Membre findMembreByEmailAndPassword(@Param("email") String email, @Param("password") String password);
+    Membre findMembreByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
     Optional<Membre> findByEmail(String email);
 

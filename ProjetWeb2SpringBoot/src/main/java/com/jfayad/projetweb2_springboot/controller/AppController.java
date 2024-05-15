@@ -44,15 +44,15 @@ public class AppController {
             if (amitier.getMembre().getIdMembre() == idMembretrouver) {
                 AmieActuelle.add(amitier.getAmie().getIdMembre());
             }
-            if(amitier.getAmie().getIdMembre() == idMembretrouver){
+            if (amitier.getAmie().getIdMembre() == idMembretrouver) {
                 AmieActuelle.add(amitier.getMembre().getIdMembre());
             }
         }
 
         List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
         List<Membre> listeAmitier = new ArrayList<>();
-        for(Membre membre : listeUtilisateur){
-            if(AmieActuelle.contains(membre.getIdMembre())){
+        for (Membre membre : listeUtilisateur) {
+            if (AmieActuelle.contains(membre.getIdMembre())) {
                 listeAmitier.add(membre);
             }
         }
@@ -63,21 +63,125 @@ public class AppController {
     }
 
     @GetMapping("/pageUtilisateurReglage")
-    public String getPageUtilisateurReglage() { return "pageUtilisateurReglage"; }
+    public String getPageUtilisateurReglage() {
+        return "pageUtilisateurReglage";
+    }
 
     @GetMapping("/challengesJouer")
-    public String getPageChallengesJouer() {  return "challengesJouer"; }
+    public String getPageChallengesJouer() {
+        return "challengesJouer";
+    }
 
     @GetMapping("/pageCountries")
-    public String getPageCountries() { return "countries"; }
+    public String getPageCountries(Model model,
+                                   HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Membre MembreTrouver = (Membre) session.getAttribute("loggedInUser");
+        int idMembretrouver = MembreTrouver.getIdMembre();
+
+        List<Amitier> listeIdAmitier = amitierService.getAllAmitiers();
+
+        List<Integer> AmieActuelle = new ArrayList<>();
+
+        for (Amitier amitier : listeIdAmitier) {
+            if (amitier.getMembre().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getAmie().getIdMembre());
+            }
+            if (amitier.getAmie().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getMembre().getIdMembre());
+            }
+        }
+
+        List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
+        List<Membre> listeAmitier = new ArrayList<>();
+        for (Membre membre : listeUtilisateur) {
+            if (AmieActuelle.contains(membre.getIdMembre())) {
+                listeAmitier.add(membre);
+            }
+        }
+
+        model.addAttribute("listeAmitier", listeAmitier);
+
+        return "countries";
+    }
 
     @GetMapping("/countryInfo")
-    public String getPageCountryInfo() { return "countryInfo"; }
+    public String getPageCountryInfo() {
+        return "countryInfo";
+    }
 
     @GetMapping("/pageLanguages")
-    public String getPageLanguages() { return "languages"; }
+    public String getPageLanguages() {
+        return "languages";
+    }
 
     @GetMapping("/pageTravel")
-    public String getPageTravel() { return "travel"; }
+    public String getPageTravel(Model model,
+                                HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Membre MembreTrouver = (Membre) session.getAttribute("loggedInUser");
+        int idMembretrouver = MembreTrouver.getIdMembre();
+
+        List<Amitier> listeIdAmitier = amitierService.getAllAmitiers();
+
+        List<Integer> AmieActuelle = new ArrayList<>();
+
+        for (Amitier amitier : listeIdAmitier) {
+            if (amitier.getMembre().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getAmie().getIdMembre());
+            }
+            if (amitier.getAmie().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getMembre().getIdMembre());
+            }
+        }
+
+        List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
+        List<Membre> listeAmitier = new ArrayList<>();
+        for (Membre membre : listeUtilisateur) {
+            if (AmieActuelle.contains(membre.getIdMembre())) {
+                listeAmitier.add(membre);
+            }
+        }
+
+        model.addAttribute("listeAmitier", listeAmitier);
+
+        return "travel";
+    }
+
+    @GetMapping("/pageExercises")
+    public String getPageExercises(Model model,
+                                   HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Membre MembreTrouver = (Membre) session.getAttribute("loggedInUser");
+        int idMembretrouver = MembreTrouver.getIdMembre();
+
+        List<Amitier> listeIdAmitier = amitierService.getAllAmitiers();
+
+        List<Integer> AmieActuelle = new ArrayList<>();
+
+        for (Amitier amitier : listeIdAmitier) {
+            if (amitier.getMembre().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getAmie().getIdMembre());
+            }
+            if (amitier.getAmie().getIdMembre() == idMembretrouver) {
+                AmieActuelle.add(amitier.getMembre().getIdMembre());
+            }
+        }
+
+        List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
+        List<Membre> listeAmitier = new ArrayList<>();
+        for (Membre membre : listeUtilisateur) {
+            if (AmieActuelle.contains(membre.getIdMembre())) {
+                listeAmitier.add(membre);
+            }
+        }
+
+        model.addAttribute("listeAmitier", listeAmitier);
+
+        return "exercises";
+    }
 
 }
