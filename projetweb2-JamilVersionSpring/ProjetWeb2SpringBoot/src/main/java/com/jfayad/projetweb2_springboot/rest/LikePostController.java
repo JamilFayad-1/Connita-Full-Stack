@@ -9,9 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class LikePostController {
@@ -42,6 +45,13 @@ public class LikePostController {
         Likes like = likesService.findByMembreAndPublication(membre, publication);
         likesService.delete(like);
         return "Post unliked";
+    }
+    @GetMapping("/pullLikes")
+        public List<Likes> pullLikes(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Membre membre = (Membre) session.getAttribute("loggedInUser");
+        List<Likes> likes = likesService.findByMembre(membre);
+        return likes;
     }
 
 }

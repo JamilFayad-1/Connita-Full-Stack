@@ -31,4 +31,7 @@ public class LikesService {
     public Likes findByMembreAndPublication(Membre membre, Publication publication){
         return repo.findByMembreAndPublication(membre, publication);
     }
+    public List<Likes> findByMembre(Membre membre){
+        return repo.findByMembre(membre);
+    }
 }

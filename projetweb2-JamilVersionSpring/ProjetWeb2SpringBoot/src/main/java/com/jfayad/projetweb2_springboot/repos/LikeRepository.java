@@ -17,5 +17,7 @@ import java.util.List;
         List<Likes> findAllByPublication(Publication publication);
         @Query("Select l from Likes l where l.membre = :membre AND l.publication = :publication ")
         Likes findByMembreAndPublication(Membre membre, Publication publication);
+        @Query("Select l from Likes l where l.membre = :membre")
+        List<Likes> findByMembre(Membre membre);
 
     }

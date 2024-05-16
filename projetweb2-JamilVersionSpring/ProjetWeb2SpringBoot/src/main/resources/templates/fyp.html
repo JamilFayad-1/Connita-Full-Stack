@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="post-wrapper">
-            <div th:each="publication : ${publications}" class="post-element">
+            <div th:each="publication : ${publications}" class="post-element" th:attr="data-publication-id=${publication.getId()}">
                 <div class="post-image">
                     <img id="imagePosted" th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user image">
                 </div>
@@ -84,6 +84,40 @@
     <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 <script th:inline="javascript">
+    function pullLikes(){
+        let publications = document.querySelectorAll('.post-element');
+        let likeButtons = document.querySelectorAll('#likeButton');
+        fetch("/pullLikes")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                $.each(data, function (index, like) {
+                    publications.forEach(publication =>{
+                        let publication_id = publication.getAttribute("data-publication-id");
+                        if(publication_id == like.publication.id_publication){
+                            console.log(publication_id);
+                            likeButtons.forEach(button =>{
+                                if(button.getAttribute("data-idPost") === publication_id){
+                                    button.classList.remove('fa-regular');
+                                    button.classList.add('fa-solid');
+                                    button.style.color = "red";
+                                    //likeCounter.style.color = 'red';
+                                }
+                            });
+                        }
+
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
+    }
+    pullLikes();
 
     document.addEventListener('DOMContentLoaded', function () {
         const fileInput = document.getElementById('file-input');
@@ -253,4 +287,3 @@
 
 </script>
 </body>
-</html>
