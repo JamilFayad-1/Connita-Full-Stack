@@ -55,4 +55,7 @@ public class PublicationService {
             repo.save(publication);
         }
     }
+    public Publication findById(int id) {
+        return repo.findById(id).get();
+    }
 }

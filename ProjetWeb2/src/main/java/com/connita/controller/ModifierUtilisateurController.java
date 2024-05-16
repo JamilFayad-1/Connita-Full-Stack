@@ -4,6 +4,7 @@
  */
 package com.connita.controller;
 
+<<<<<<< HEAD
 import com.connita.model.dao.MembreDao;
 import com.connita.model.dao.MembreImplDao;
 import com.connita.model.entities.Membre;
@@ -20,11 +21,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
 
 /**
  *
  * @author Gwuliano
  */
+<<<<<<< HEAD
 @MultipartConfig
 public class ModifierUtilisateurController extends HttpServlet{
     private MembreDao membreDao;
@@ -150,5 +154,9 @@ public class ModifierUtilisateurController extends HttpServlet{
         }
         return "";
     }
+=======
+public class ModifierUtilisateurController {
+    
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
 }
 

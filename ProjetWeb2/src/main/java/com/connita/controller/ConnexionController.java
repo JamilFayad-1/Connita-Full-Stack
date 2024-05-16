@@ -52,6 +52,7 @@ public class ConnexionController extends HttpServlet {
             Map<String, Map<String, Boolean>> challengeCompletionStatus = challengeDao.getStatus(membre.getIdMembre());
             session.setAttribute("userId", membre.getIdMembre());
             session.setAttribute("user", email);
+<<<<<<< HEAD
             if ("".equals(membre.getPhotoProfil())){
                 session.setAttribute("photoProfil", "Default-profile-pic.png");
             }else {
@@ -64,6 +65,8 @@ public class ConnexionController extends HttpServlet {
             session.setAttribute("region", membre.getRegion());
             
             request.setAttribute("challengeCompletionStatus", challengeCompletionStatus);
+=======
+>>>>>>> ca74659b1a1103595166f83dd29633474ac0ec57
             response.sendRedirect("pageAccueilUtilisateur.jsp");
         } else {
             message = "Password or email are invalid..";

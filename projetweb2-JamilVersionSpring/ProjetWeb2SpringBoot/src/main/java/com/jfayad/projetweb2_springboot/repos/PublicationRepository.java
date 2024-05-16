@@ -13,4 +13,7 @@ public interface PublicationRepository extends JpaRepository<Publication, Intege
     List<Publication> findAllByMembre(Membre membre);
     @Query("SELECT p FROM Publication p WHERE p.id_publication=:id_publication")
     List<Publication> findAllByIdPublication(int id);
+    @Query("SELECT p FROM Publication p WHERE p.id_publication=:id_publication")
+    Publication findByIdPublication(int id);
+
 }
