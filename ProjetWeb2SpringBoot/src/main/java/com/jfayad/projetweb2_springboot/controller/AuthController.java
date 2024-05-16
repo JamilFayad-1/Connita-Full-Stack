@@ -2,10 +2,8 @@ package com.jfayad.projetweb2_springboot.controller;
 
 import com.jfayad.projetweb2_springboot.entities.Challenges;
 import com.jfayad.projetweb2_springboot.entities.Membre;
-import com.jfayad.projetweb2_springboot.services.ChallengesJouerService;
-import com.jfayad.projetweb2_springboot.services.ChallengesService;
-import com.jfayad.projetweb2_springboot.services.CleinOeilService;
-import com.jfayad.projetweb2_springboot.services.MembreService;
+import com.jfayad.projetweb2_springboot.entities.Publication;
+import com.jfayad.projetweb2_springboot.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -51,6 +49,9 @@ public class AuthController {
 
     @Autowired
     private CleinOeilService cleinOeilService;
+
+    @Autowired
+    private PublicationService publicationService;
 
     @PostMapping("/membre/connexion")
     public String login(@RequestParam("email") String email,
@@ -104,8 +105,10 @@ public class AuthController {
                     listeTempsReel.add(minutes + "min");
                 }
             }
-
             session.setAttribute("listeTempsCleinOeil", listeTempsReel);
+
+            List<Publication> publications = publicationService.findAllByMembre(membre);
+            session.setAttribute("publications", publications);
 
             session.setAttribute("loggedInUser", membre);
             redirectAttributes.addFlashAttribute("messageConnReussite", "Successful login!");

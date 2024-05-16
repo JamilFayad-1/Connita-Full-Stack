@@ -34,31 +34,29 @@
         </div>
 
         <div id="middle-section-recent-posts">
-            <h1>Recent posts</h1>
-            <div id="recent-post-container">
-                <div>
-
+            <div class="post-headers">
+                <h1 style="padding-top: 5%">Recent posts</h1>
+                <div class="posts-controller">
+                    <span id="posts-controller-left"></span>
+                    <span id="posts-controller-right"></span>
                 </div>
             </div>
-        </div>
-
-        <div id="middle-section-achievements">
-            <h1>Achievement badges</h1>
-            <div id="achievements-container">
-                <ul>
-                    <li><img src="https://img.icons8.com/dusk/64/army-star.png" alt="army-star"/></li>
-                    <li><img src="https://img.icons8.com/dusk/64/world-map.png" alt="world-map"/></li>
-                    <li><img src="https://img.icons8.com/dusk/64/saving-book.png" alt="saving-book"/></li>
-                </ul>
+            <div id="recent-post-container">
+                <div th:each="publication : ${session.publications}" class="post-element">
+                    <img th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user post image">
+                </div>
             </div>
+            <div class="overlayPostContainer"></div>
         </div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 <script src="/javascript/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
+
 
     const friendsListElements = document.querySelectorAll('.friends-list-element');
 
