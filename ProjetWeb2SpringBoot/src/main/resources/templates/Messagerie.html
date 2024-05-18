@@ -65,6 +65,10 @@
     <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 <script th:inline="javascript">
+    function scrollToBottom() {
+        const container = document.querySelector('.middle-section-messagerie-container');
+        container.scrollTop = container.scrollHeight;
+    }
     /*<![CDATA[*/
     document.addEventListener("DOMContentLoaded", function(){
         let currentAmiId = null;
@@ -83,10 +87,7 @@
                 container.innerHTML = '';
                 document.getElementById("middle-section-messagerie-hidden").style.display = "";
                 let listMessages = [];
-                function scrollToBottom() {
-                    const container = document.querySelector('.middle-section-messagerie-container');
-                    container.scrollTop = container.scrollHeight;
-                }
+
                 function pullConversation() {
                     listMessages = [];
                     let prenomUtilisateur = "";
@@ -158,18 +159,20 @@
                         .then(data => {
                             $.each(data, function (index, message2) {
                                 if(!listMessages.some(msg => msg.id_message === message2.id_message) || listMessages.length == 0){
+                                    console.log(message2.id_message)
                                     listMessages.push(message2);
                                     if (message2.membre.idMembre == id_membre) {
-                                        $(messageP).addClass('chat-right');
+                                        return;
+                                        //$(messageP).addClass('chat-right');
 
                                     } else {
                                         $(messageP).addClass('chat-left');
+                                        messageP.innerHTML = message2.message;
+                                        container.appendChild(messageP);
 
                                     }
-                                    console.log("Appending message...");
-                                    messageP.innerHTML = message2.message;
-                                    container.appendChild(messageP);
                                     scrollToBottom();
+                                    console.log("Appending message...");
                                 }
                             });
 
@@ -203,7 +206,8 @@
         newChat.textContent = textRead;
         newChat.classList.add('chat-right')
         //J'insére le nouveaux chat comme le premier enfant du conteneur.
-        // messagerieContainer.append(newChat);
+        messagerieContainer.append(newChat);
+        scrollToBottom();
         const id_ami = messagerieContainer.getAttribute('data-ami-id');
         fetch(`/conversation/${id_ami}/send`, {
             method: 'POST',
@@ -215,7 +219,6 @@
         //Je réinitialise le input element
         inputBox.value = "";
     }
-
     // Event listener pour le clique sur le bouton 'Send'
     sendButton.addEventListener("click", sendMessage);
 
@@ -225,6 +228,7 @@
             event.preventDefault();
             sendMessage();
         }
+
     });
 
 

@@ -11,9 +11,6 @@
             <li th:if="${session.loggedInUser != null}">
                 <a th:href="@{/pageAccueilUtilisateur}">Feed</a>
             </li>
-            <li th:unless="${session.loggedInUser != null}">
-                <a th:href="@{/index}">Home page</a>
-            </li>
             <li th:if="${session.loggedInUser != null}">
                 <a th:href="@{/pageMessagerie}">Messages</a>
             </li>

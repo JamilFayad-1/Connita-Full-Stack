@@ -18,7 +18,7 @@
                     alt="appointment-reminders"/></a>
             <div class="dropdown-menu1" id="dropdownMenu1">
                 <h1>Updates</h1>
-                <div th:if="${session.listeCleinOeil.empty}" class="empty-notification">
+                <div th:if="${session.listeCleinOeil.isEmpty()}" class="empty-notification">
                     <p>No notifications yet</p>
                 </div>
                 <div th:each="membre, index : ${session.listeCleinOeil}" class="notification">

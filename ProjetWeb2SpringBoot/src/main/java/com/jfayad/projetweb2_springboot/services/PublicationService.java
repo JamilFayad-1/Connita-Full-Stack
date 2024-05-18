@@ -20,6 +20,11 @@ public class PublicationService {
         return publications;
     }
 
+    public Publication findById(int id) {
+        Publication publication = repo.findById(id).orElse(null);
+        return publication;
+    }
+
     public List<Publication> findAllByMembre(Membre membre) {
         List<Publication> publications = repo.findAllByMembre(membre);
         return publications;
