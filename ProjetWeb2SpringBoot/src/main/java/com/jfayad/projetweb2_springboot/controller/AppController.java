@@ -2,8 +2,10 @@ package com.jfayad.projetweb2_springboot.controller;
 
 import com.jfayad.projetweb2_springboot.entities.Amitier;
 import com.jfayad.projetweb2_springboot.entities.Membre;
+import com.jfayad.projetweb2_springboot.entities.Publication;
 import com.jfayad.projetweb2_springboot.services.AmitierService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
+import com.jfayad.projetweb2_springboot.services.PublicationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class AppController {
 
     @Autowired
     private AmitierService amitierService;
+
+    @Autowired
+    private PublicationService publicationService;
 
     @GetMapping("/index")
     public String getIndex() {
@@ -56,6 +61,9 @@ public class AppController {
                 listeAmitier.add(membre);
             }
         }
+
+        List<Publication> publications = publicationService.findAllByMembre(MembreTrouver);
+        session.setAttribute("publications", publications);
 
         model.addAttribute("listeAmitier", listeAmitier);
 

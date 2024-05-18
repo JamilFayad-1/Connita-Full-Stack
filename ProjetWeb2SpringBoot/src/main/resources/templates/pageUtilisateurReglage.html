@@ -384,15 +384,10 @@
                 var tempImage = new Image();
 
                 tempImage.onload = function() {
-                    if (tempImage.width === tempImage.height) {
-                        image.forEach(img => {
-                            img.src = reader.result;
-                            stretchImage(img.parentNode);
-                        });
-                    } else {
-                        alert('Please select a square image.\nA minimum of 150px by 150px is recommended');
-                        event.target.value = '';
-                    }
+                    image.forEach(img => {
+                        img.src = reader.result;
+                        stretchImage(img.parentNode);
+                    });
                 };
 
                 tempImage.src = reader.result;
