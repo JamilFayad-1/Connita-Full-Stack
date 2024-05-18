@@ -7,6 +7,8 @@ import com.jfayad.projetweb2_springboot.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -174,31 +176,45 @@ public class AuthController {
         if (!file.isEmpty()) {
             try {
                 // Obtain the file name
-                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                String fileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
                 logger.info("THE FILE NAME: {}", fileName);
+
                 String saveDirectory = "imageUtilisateur/";
                 Path directory = Paths.get(saveDirectory);
+
+                // Create the directory if it doesn't exist
                 if (!Files.exists(directory)) {
                     Files.createDirectories(directory);
                 }
-                // Save the file
-                Path filePath = directory.resolve(fileName);
-                if (Files.exists(filePath)) {
-                    logger.error("File already exists in the directory: {}", fileName);
-                    membre.setPhotoProfilPath("imageUtilisateur/" + fileName);
+
+                // Resolve the full path for the new file
+                String baseName = FilenameUtils.getBaseName(fileName);
+                String newFileName = "compressed-" + baseName + ".jpg";
+                Path newFilePath = directory.resolve(newFileName);
+
+                // Check if the file already exists
+                if (Files.exists(newFilePath)) {
+                    logger.error("File already exists in the directory: {}", newFileName);
+                    membre.setPhotoProfilPath("imageUtilisateur/" + newFileName);
                 } else {
                     try {
-                        // Save the file
-                        Files.copy(file.getInputStream(), filePath);
-                        System.out.println("File copied successfully.");
-                        membre.setPhotoProfilPath("imageUtilisateur/" + fileName);
+                        // Compress, rotate, and save the image
+                        Thumbnails.of(file.getInputStream())
+                                .size(300, 300)
+                                .outputFormat("jpg")
+                                .outputQuality(0.7)
+                                .toFile(newFilePath.toFile());
+
+                        logger.info("File compressed and saved as: {}", newFileName);
+                        membre.setPhotoProfilPath("imageUtilisateur/" + newFileName);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        logger.error("Error processing the image file", e);
+                        throw new RuntimeException("Error processing the image file", e);
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
+                logger.error("Error handling the file upload", e);
+                throw new RuntimeException("Error handling the file upload", e);
             }
         }
 

@@ -8,6 +8,9 @@
 <div id="right-section">
     <div id="right-section-friends-list">
         <h2>Friends</h2>
+        <ul th:if="${listeAmitier == null} or ${#lists.isEmpty(listeAmitier)}">
+            <p>No friends found yet</p>
+        </ul>
         <ul th:each="amie : ${listeAmitier}" id="friends-list">
             <li class="friends-list-element">
                 <input type="hidden" class="friend-id" th:value="${amie.idMembre}" />
@@ -22,6 +25,8 @@
     </div>
 </div>
 <script th:inline="javascript">
+
+    const friendsListElements = document.querySelectorAll('.friends-list-element');
 
     friendsListElements.forEach(function (friendsListElement) {
         const friendName = friendsListElement.querySelector('h3').textContent;

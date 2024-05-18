@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -35,15 +38,21 @@
 
         <div id="middle-section-recent-posts">
             <div class="post-headers">
-                <h1 style="padding-top: 5%">Recent posts</h1>
+                <div class="post-header-title">
+                    <h1>Recent posts</h1>
+                </div>
                 <div class="posts-controller">
-                    <span id="posts-controller-left"></span>
-                    <span id="posts-controller-right"></span>
+                    <i class="fa-solid fa-arrow-left posts-controller-icon" id="controller-left"></i>
+                    <i class="fa-solid fa-arrow-right posts-controller-icon" id="controller-right"></i>
                 </div>
             </div>
             <div id="recent-post-container">
+                <div th:if="${session.publications.isEmpty()}" class="empty-post-list-element">
+                    <h2>It's empty around here</h2>
+                    <h3>Share your first thought to get it going.</h3>
+                </div>
                 <div th:each="publication : ${session.publications}" class="post-element">
-                    <img th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user post image">
+                    <img th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user post image" loading="lazy">
                 </div>
             </div>
             <div class="overlayPostContainer"></div>
@@ -57,8 +66,6 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-
-    const friendsListElements = document.querySelectorAll('.friends-list-element');
 
     friendsListElements.forEach(function (friendsListElement) {
         const friendName = friendsListElement.querySelector('h3').textContent;
@@ -89,6 +96,11 @@
         });
     });
 
+    const shareFirstThought = document.querySelector('.empty-post-list-element');
+    shareFirstThought.addEventListener('click', function() {
+        window.location.href = "fyp";
+    })
+
     document.addEventListener('DOMContentLoaded', function () {
         var challengeElements = document.querySelectorAll('#recent-work-elements');
 
@@ -101,6 +113,64 @@
                 window.location.href = url;
             });
         });
+
+        const controllerRight = document.getElementById('controller-right');
+        const controllerLeft = document.getElementById('controller-left');
+        const postContainer = document.getElementById('recent-post-container');
+        const postElements = document.querySelectorAll('.post-element');
+
+        controllerLeft.addEventListener('mouseover', function() {
+            controllerLeft.style.color = "#5c99dd";
+        })
+
+        controllerLeft.addEventListener('mouseout', function() {
+            controllerLeft.style.color = "black";
+        })
+
+        controllerRight.addEventListener('mouseover', function() {
+            controllerRight.style.color = "#5c99dd";
+        })
+
+        controllerRight.addEventListener('mouseout', function() {
+            controllerRight.style.color = "black";
+        })
+
+        const firstPostElement = document.querySelector('.post-element');
+        const middleSectionContainer = document.getElementById('middle-section-recent-posts');
+        const firstPostRect = firstPostElement.getBoundingClientRect();
+        const middleSectionRect = middleSectionContainer.getBoundingClientRect();
+        const widthBetween = middleSectionRect.right - firstPostRect.left;
+        const nbrPages = Math.ceil(postElements.length / 3);
+        let currentPage = 1;
+        let isClickable = true;
+
+        controllerRight.addEventListener('click', function() {
+            if(isClickable && (currentPage < nbrPages)){
+                gsap.to(postContainer, {
+                    x: ('-=') + widthBetween,
+                    duration: 0.5,
+                })
+                currentPage++;
+                isClickable = false;
+                setTimeout(() => {
+                    isClickable = true;
+                }, 600);
+            }
+        })
+
+        controllerLeft.addEventListener('click', function() {
+            if(isClickable && (currentPage > 1)){
+                gsap.to(postContainer, {
+                    x: ('+=') + widthBetween,
+                    duration: 0.5,
+                })
+                currentPage--;
+                isClickable = false;
+                setTimeout(() => {
+                    isClickable = true;
+                }, 600);
+            }
+        })
     });
 
     function createTableRow(memberId, challengeName) {
