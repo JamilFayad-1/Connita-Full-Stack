@@ -1360,8 +1360,28 @@ form.sign-up-form {
     border-bottom: 1px solid #bbb;
     padding: 0;
     font-size: 0.95rem;
-    color: #151111;
+    color: #3e3e3e;
     transition: 0.4s;
+    font-family: 'montreal', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.input-field-valid{
+    color: #287700 !important;
+    border-bottom: 1px solid #287700 !important;
+}
+
+.input-field-error{
+    color: #970202 !important;
+    border-bottom: 1px solid #970202 !important;
+}
+
+.label-valid{
+    color: #287700 !important;
+}
+
+.label-error{
+    color: #970202 !important;
 }
 
 label {
@@ -3339,4 +3359,50 @@ main.sign-up-mode .carousel {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+.exercises-list-container {
+    box-sizing: border-box;
+    position: relative;
+    width: clamp(100px, 40vw, 700px);
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 65px 10px rgba(45, 45, 45, 0.65), 5px 10px 15px 5px rgba(96, 96, 96, 0.2);
+    margin: 0 auto;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.exercises-list-container:hover{
+    box-shadow: inset 0 0 65px 10px rgba(96, 96, 96, 0.45), 0 0 35px 5px rgba(99, 139, 205, 0.5);
+}
+
+.exercises-list-container a{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    font-size: clamp(0.2em, 2.5vh, 1.5em);
+    font-weight: 500;
+    font-family: 'CustomFont1', sans-serif;
+    color: #2d2d2d;
+    text-decoration: none;
+    transform: translateY(5%);
+    z-index: 2;
+}
+
+.exercises-list-container span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    box-shadow: inset 0 0 50px 10px rgba(99, 139, 205, 0.66);
+    border-radius: 15px;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
 }

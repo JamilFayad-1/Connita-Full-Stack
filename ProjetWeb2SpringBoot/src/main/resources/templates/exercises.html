@@ -18,11 +18,13 @@
     <div id="middle-section">
         <div class="middle-section-exercises-wrapper">
             <h1>Exercises</h1>
-            <div class="exercises-list-container">
-                <div class="exercises-element">
-
-                </div>
-            </div>
+            <nav class="exercises-list-container">
+                <a href="#" class="languageElement">Italian</a>
+                <a href="#" class="languageElement">French</a>
+                <a href="#" class="languageElement">Spanish</a>
+                <a href="#" class="languageElement">German</a>
+                <span id="navSpan"></span>
+            </nav>
         </div>
     </div>
     <!-- Right section -->
@@ -31,7 +33,55 @@
 </main>
 <script src="/javascript/script.js"></script>
 <script th:inline="javascript">
+    const navSpan = document.getElementById('navSpan');
+    const languageElements = document.querySelectorAll('.languageElement');
+    let currentElementClicked;
+    let currentOpacity = 0;
 
+    languageElements.forEach(function(element, index) {
+        element.addEventListener('click', function(event) {
+            if(index === 0){
+                currentElementClicked = "0%";
+                currentOpacity = "1";
+            }
+            else if(index === 1){
+                currentElementClicked = "25%";
+                currentOpacity = "1";
+            }
+            else if(index === 2){
+                currentElementClicked = "50%";
+                currentOpacity = "1";
+            }
+            else if(index === 3){
+                currentElementClicked = "75%";
+                currentOpacity = "1";
+            }
+        })
+        navSpan.style.left = currentElementClicked;
+        navSpan.style.opacity = currentOpacity;
+        element.addEventListener('mouseover', function(event) {
+            if(index === 0){
+                navSpan.style.left = "0%";
+                navSpan.style.opacity = "1";
+            }
+            else if(index === 1){
+                navSpan.style.left = "25%";
+                navSpan.style.opacity = "1";
+            }
+            else if(index === 2){
+                navSpan.style.left = "50%";
+                navSpan.style.opacity = "1";
+            }
+            else if(index === 3){
+                navSpan.style.left = "75%";
+                navSpan.style.opacity = "1";
+            }
+        })
+        element.addEventListener('mouseout', function(event) {
+            navSpan.style.left = currentElementClicked;
+            navSpan.style.opacity = currentOpacity;
+        })
+    })
 </script>
 </body>
 </html>
