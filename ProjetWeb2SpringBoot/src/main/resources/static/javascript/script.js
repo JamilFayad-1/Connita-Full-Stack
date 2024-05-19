@@ -97,4 +97,44 @@ document.addEventListener("DOMContentLoaded", () => {
     handleBulletClick();
     startSliderAutoChange();
 
+    //Validation du formulaire d'inscription
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    password.addEventListener('blur', () => {
+        validatePassword(password);
+    });
+
+    password.addEventListener('focus', () => {
+        clearValidation(password);
+    });
 });
+
+function validatePassword(input) {
+    const password = input.value;
+
+    const hasNumber = /\d/;
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/;
+
+    const isValid = password.length >= 8 && hasNumber.test(password) && hasSymbol.test(password);
+
+    if (isValid) {
+        input.classList.remove('input-field-error');
+        input.classList.add('input-field-valid');
+    } else {
+        input.classList.remove('input-field-valid');
+        input.classList.add('input-field-error');
+    }
+}
+
+function clearValidation(input) {
+    input.classList.remove('input-field-valid');
+    input.classList.remove('input-field-error');
+}
+
+// The password validation works now. Need to add the effect to the label too and the info that says that you need 8 letters a number and a symbol. The rest of the inputs are not done.
+
+
+
