@@ -363,7 +363,7 @@ main {
     height: 40%;
     border: 1px solid #ddd;
     border-radius: 0.5rem;
-    box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 30px 60px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 30px 60px 0, inset #333 0 0 0 2px, inset white 0 0 0 6px;
     background-color: white;
     margin: 2% 1% 2% 1%;
     transition: box-shadow 0.5s ease;
@@ -1231,7 +1231,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 998;
     transition: opacity 0.3s ease;
 }
 
@@ -1341,6 +1341,7 @@ form.sign-up-form {
     position: relative;
     height: 37px;
     margin-bottom: 1.5rem;
+    display: flex;
 }
 
 .input-wrap input:-webkit-autofill,
@@ -1366,22 +1367,46 @@ form.sign-up-form {
     letter-spacing: 0.5px;
 }
 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none !important;
+}
+
+.input-wrap i {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translateY(20%);
+    display: flex;
+    padding: 3px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+}
+
+.input-wrap i:hover {
+    background-color: rgba(250, 203, 143, 0.78);
+    cursor: pointer;
+}
+
 .input-field-valid{
-    color: #287700 !important;
-    border-bottom: 1px solid #287700 !important;
+    color: #47ce03 !important;
+    border-bottom: 1px solid #47ce03 !important;
 }
 
 .input-field-error{
-    color: #970202 !important;
-    border-bottom: 1px solid #970202 !important;
+    color: #e50101 !important;
+    border-bottom: 1px solid #e50101 !important;
 }
 
 .label-valid{
-    color: #287700 !important;
+    color: #47ce03 !important;
 }
 
 .label-error{
-    color: #970202 !important;
+    color: #e50101 !important;
 }
 
 label {
@@ -1402,6 +1427,19 @@ label {
 .input-field.active + label {
     font-size: 0.75rem;
     top: 2px;
+}
+
+.password-requirements {
+    display: none;
+    width: 100%;
+    height: 45px;
+}
+
+.password-requirements p{
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.3rem, 2.5vh, 0.7rem);
+    margin: 0;
+    color: #d0cece;
 }
 
 .sign-btn {
@@ -3172,6 +3210,7 @@ main.sign-up-mode .carousel {
     align-items: center;
     justify-content: end;
     padding-right: 1rem;
+    margin-left: 0.8rem;
 }
 
 .post-comment-button i:hover{
@@ -3275,7 +3314,7 @@ main.sign-up-mode .carousel {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5vh;
+    margin: 2vh 0 5vh 0;
     pointer-events: none;
 }
 
@@ -3339,6 +3378,33 @@ main.sign-up-mode .carousel {
     100% {
         transform: translateY(-20px);
         color: transparent;
+    }
+}
+
+.go-up-arrow {
+    position: fixed;
+    right: 15%;
+    bottom: 0;
+    width: clamp(20px, 6vh, 40px);
+    height: clamp(20px, 6vh, 40px);
+    border-radius: 50%;
+    background-color: rgba(144, 197, 232, 0.8);
+    margin: clamp(5px, 5vh, 15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: hoverArrowUp 4s ease-in-out infinite;
+    transition: all 0.2s ease-in-out;
+}
+
+.go-up-arrow:hover {
+    cursor: pointer;
+    background-color: rgba(114, 168, 203, 0.8);
+}
+
+@keyframes hoverArrowUp {
+    50%{
+        transform: translateY(-40%);
     }
 }
 

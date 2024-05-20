@@ -97,9 +97,11 @@
     });
 
     const shareFirstThought = document.querySelector('.empty-post-list-element');
-    shareFirstThought.addEventListener('click', function() {
-        window.location.href = "fyp";
-    })
+    if(shareFirstThought){
+        shareFirstThought.addEventListener('click', function() {
+            window.location.href = "fyp";
+        })
+    }
 
     document.addEventListener('DOMContentLoaded', function () {
         var challengeElements = document.querySelectorAll('#recent-work-elements');
