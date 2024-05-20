@@ -98,6 +98,9 @@
                 </div>
             </div>
         </div>
+        <div class="go-up-arrow" id="goUpBtn">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
@@ -322,6 +325,18 @@
     });
 
 
+</script>
+<script th:inline="javascript">
+    const goUpBtn = document.getElementById('goUpBtn');
+    const postContainer = document.getElementById('middle-section');
+
+    goUpBtn.addEventListener('click', function(){
+        gsap.to(postContainer, {
+            scrollTop: 0,
+            duration: 0.5,
+            ease: "power2.out"
+        })
+    })
 </script>
 </body>
 </html>
