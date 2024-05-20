@@ -44,11 +44,12 @@
                                     type="password"
                                     name="password"
                                     minlength="4"
-                                    class="input-field"
+                                    class="input-field input-password"
                                     autocomplete="off"
                                     required
                             />
                             <label>Password</label>
+                            <i class="fa-regular fa-eye-slash password-toggle"></i>
                         </div>
 
                         <input type="submit" value="Sign In" class="sign-btn" />
@@ -60,7 +61,7 @@
                     </div>
                 </form>
 
-                <form th:action="@{/membre/inscription}" method="post" class="sign-up-form">
+                <form th:action="@{/membre/inscription}" method="post" class="sign-up-form" id="registrationForm">
                     <div class="logo">
                         <img src="images/My first design.png" alt="Connita" />
                         <h4>Connita</h4>
@@ -77,26 +78,24 @@
                             <input
                                     type="text"
                                     name="firstName"
-                                    minlength="4"
                                     class="input-field"
                                     autocomplete="off"
                                     id="firstName"
                                     required
                             />
-                            <label>First name</label>
+                            <label id="firstNameLabel">First name</label>
                         </div>
 
                         <div class="input-wrap">
                             <input
                                     type="text"
                                     name="lastName"
-                                    minlength="4"
                                     class="input-field"
                                     autocomplete="off"
                                     id="lastName"
                                     required
                             />
-                            <label>Last name</label>
+                            <label id="lastNameLabel">Last name</label>
                         </div>
 
                         <div class="input-wrap">
@@ -108,20 +107,25 @@
                                     id="email"
                                     required
                             />
-                            <label>Email</label>
+                            <label id="emailLabel">Email</label>
                         </div>
 
-                        <div class="input-wrap">
+                        <div class="input-wrap" id="lastInputWrap">
                             <input
                                     type="password"
                                     name="password"
-                                    minlength="4"
-                                    class="input-field"
+                                    class="input-field input-password"
                                     autocomplete="off"
                                     id="password"
                                     required
                             />
-                            <label>Password</label>
+                            <label id="passwordLabel">Password</label>
+                            <i class="fa-regular fa-eye-slash password-toggle"></i>
+                        </div>
+                        <div class="password-requirements" id="passwordRequirements">
+                            <p id="firstRequirement">- 8 characters minimum</p>
+                            <p id="secondRequirement">- at least 1 number</p>
+                            <p id="thirdRequirement">- at least 1 symbol</p>
                         </div>
 
                         <input type="submit" value="Sign Up" class="sign-btn" />
