@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Exercices</title>
 </head>
 <body>
-
+<input type="number" id="memberId" name="memberId" th:value="${session.loggedInUser.idMembre}" style="display: none">
 <!-- Include menu -->
 <header th:include="menu :: menuFragment"></header>
 
@@ -15,7 +16,7 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section" style="position: relative">
+    <div id="middle-section" style="position: relative; overflow: hidden">
         <div class="middle-section-exercises-wrapper">
             <h1 style="z-index: 3">Exercises</h1>
             <nav class="exercises-list-container">
@@ -25,41 +26,133 @@
                 <a href="#" class="languageElement" data-language="german">German</a>
                 <span id="navSpan"></span>
             </nav>
+            <nav class="exercises-completion-list-container">
+                <div class="completion-list-checkmark" id="animContainerCheckmark1" ></div>
+                <div class="completion-list-checkmark" id="animContainerCheckmark2"></div>
+                <div class="completion-list-checkmark" id="animContainerCheckmark3"></div>
+                <div class="completion-list-checkmark" id="animContainerCheckmark4"></div>
+            </nav>
         </div>
         <div class="exercises-element-container"></div>
+        <div class="animation-container-exercise" id="animationContainer"></div>
+        <div class="confettie-container-exercise" id="confettieContainer"></div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"
          th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
 <script src="/javascript/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script th:inline="javascript">
+    const animationIdle = bodymovin.loadAnimation({
+        container: document.getElementById('animationContainer'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'gif/StudyingAnim.json'
+    });
+
+    const confettieAnim = bodymovin.loadAnimation({
+        container: document.getElementById('confettieContainer'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/ConfettieAnim.json'
+    });
+    confettieAnim.goToAndStop(300, true);
+
+    const checkmark1 = bodymovin.loadAnimation({
+        container: document.getElementById('animContainerCheckmark1'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/CheckmarkAnim.json'
+    });
+
+
+    const checkmark2 = bodymovin.loadAnimation({
+        container: document.getElementById('animContainerCheckmark2'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/CheckmarkAnim.json'
+    });
+
+
+    const checkmark3 = bodymovin.loadAnimation({
+        container: document.getElementById('animContainerCheckmark3'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/CheckmarkAnim.json'
+    });
+
+
+    const checkmark4 = bodymovin.loadAnimation({
+        container: document.getElementById('animContainerCheckmark4'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/CheckmarkAnim.json'
+    });
+
+    const listeExerciceCompletion = /*[[${listeExercices}]]*/ [];
+
+    listeExerciceCompletion.forEach(function(exercice, index){
+        console.log(exercice);
+        if(exercice.completeStatus === true){
+            let animName = "checkmark" + (index + 1);
+            console.log("CHECKMARK NAME: ", animName);
+            switch(animName){
+                case "checkmark1":
+                    checkmark1.goToAndStop(121, true);
+                    break;
+                case "checkmark2":
+                    checkmark2.goToAndStop(121, true);
+                    break;
+                case "checkmark3":
+                    checkmark3.goToAndStop(121, true);
+                    break;
+                case "checkmark4":
+                    checkmark4.goToAndStop(121, true);
+                    break;
+            }
+        }
+    })
+
     const navSpan = document.getElementById('navSpan');
     const languageElements = document.querySelectorAll('.languageElement');
     const questionsContainer = document.querySelector('.exercises-element-container');
     let currentElementClicked;
     let currentOpacity = 0;
+    let currentLanguage;
 
     //Les effet du hover et click sur le nav de language
     languageElements.forEach(function (element, index) {
         element.addEventListener('click', function (event) {
+            const animationContainer = document.getElementById('animationContainer');
+            animationContainer.style.display = "none";
             if (index === 0) {
                 currentElementClicked = "0%";
                 currentOpacity = "1";
                 loadLanguage(italian);
+                currentLanguage = "italian";
             } else if (index === 1) {
                 currentElementClicked = "25%";
                 currentOpacity = "1";
                 loadLanguage(french);
+                currentLanguage = "french";
             } else if (index === 2) {
                 currentElementClicked = "50%";
                 currentOpacity = "1";
                 loadLanguage(spanish);
+                currentLanguage = "spanish";
             } else if (index === 3) {
                 currentElementClicked = "75%";
                 currentOpacity = "1";
                 loadLanguage(german);
+                currentLanguage = "german";
             }
             gsap.to(questionsContainer, {
                 scrollTop: 0,
@@ -383,7 +476,32 @@
         const submitButton = document.createElement('button');
         submitButton.id = 'submit-button';
         submitButton.textContent = 'Submit';
-        submitButton.addEventListener('click', verifyAnswers);
+        submitButton.addEventListener('click', function(event) {
+            const questionContainers = document.querySelectorAll('.exercise-element-question-container');
+            let emptyAnswers = 0;
+
+            questionContainers.forEach(questionContainer => {
+                const answerButtons = questionContainer.querySelectorAll('.exercise-answer-button');
+                let isAnySelected = false;
+
+                answerButtons.forEach(button => {
+                    if (button.classList.contains('selected')) {
+                        isAnySelected = true;
+                    }
+                });
+
+                if (!isAnySelected) {
+                    emptyAnswers++;
+                }
+            });
+
+            if (emptyAnswers >= 1) {
+                event.preventDefault();
+                alert('Please answer all questions before submitting.');
+            } else {
+                verifyAnswers();
+            }
+        });
 
         const scoreSpan = document.createElement('span');
         scoreSpan.id = 'score-span';
@@ -427,6 +545,38 @@
                     scoreDisplay.style.color = '#a0fda0';
                     scoreDisplay.style.opacity = "1";
                     boxShadowSetting = "0 0 30px 2px rgba(160, 253, 160, 0.4)";
+                    confettieAnim.playSegments([1, 300], true);
+                    switch(currentLanguage){
+                        case "italian":
+                            checkmark1.playSegments([1, 121], true);
+                            break;
+                        case "french":
+                            checkmark2.playSegments([1, 121], true);
+                            break;
+                        case "spanish":
+                            checkmark3.playSegments([1, 121], true);
+                            break;
+                        case "german":
+                            checkmark4.playSegments([1, 121], true);
+                            break;
+                    }
+                    const memberId = $('#memberId').val();
+                    console.log("ID : ", memberId);
+                    console.log("LANGUAGE NAME : ", currentLanguage);
+                    $.ajax({
+                        url: '/api/exercices/update',
+                        type: 'GET',
+                        contentType: 'application/json',
+                        data: {
+                            memberId: memberId,
+                            exerciceName: currentLanguage
+                        },
+                        success: function(response) {
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            alert('Error occurred while updating the exercice: ' + errorThrown);
+                        }
+                    });
                 } else {
                     scoreDisplay.style.color = '#fc9494';
                     scoreDisplay.style.opacity = "1";
@@ -454,7 +604,7 @@
             gsap.to(questionsContainer, {
                 scrollTop: 0,
                 duration: 0.3,
-                scrub: 1
+                scrub: true
             });
 
             questionContainers.forEach(questionContainer => {
@@ -467,8 +617,6 @@
             });
         }
     }
-
-    submitButton.addEventListener('click', verifyAnswers);
 </script>
 </body>
 </html>

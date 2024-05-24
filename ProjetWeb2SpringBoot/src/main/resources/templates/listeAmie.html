@@ -9,7 +9,9 @@
     <div th:each="utilisateur : ${listeUtilisateur}" class="middle-section-friends-list-element" id="userElementDisplayed">
         <div class="friends-list-element-picture">
             <div class="idElementFriend" th:text="${utilisateur.idMembre}" style="display: none"></div>
-            <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
+            <div class="friends-list-picture-wrapper">
+                <img th:src="${utilisateur.photoProfilPath}" alt="User-Profile-Pic">
+            </div>
         </div>
         <div class="friends-list-element-name-region">
             <h2 th:text="${utilisateur.prenom + ' ' + utilisateur.nom}"></h2>

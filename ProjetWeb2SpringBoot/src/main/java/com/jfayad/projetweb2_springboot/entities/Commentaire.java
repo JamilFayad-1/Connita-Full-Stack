@@ -2,7 +2,10 @@ package com.jfayad.projetweb2_springboot.entities;
 
 import jakarta.persistence.*;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Entity
 public class Commentaire {
@@ -23,16 +26,21 @@ public class Commentaire {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date date;
+    private LocalDateTime date;
+
+    @PrePersist
+    public void prePersist() {
+        date = LocalDateTime.now();
+    }
 
     public Commentaire() {
     }
 
-    public Commentaire(Membre membre, Publication publication, String commentaire, Date date) {
+    public Commentaire(Membre membre, Publication publication, String commentaire) {
+        this();
         this.membre = membre;
         this.publication = publication;
         this.commentaire = commentaire;
-        this.date = date;
     }
 
     public Long getId() {
@@ -67,11 +75,11 @@ public class Commentaire {
         this.commentaire = commentaire;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }
