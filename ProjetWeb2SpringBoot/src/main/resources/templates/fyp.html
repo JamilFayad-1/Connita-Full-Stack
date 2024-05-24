@@ -58,13 +58,16 @@
             </div>
         </div>
         <div class="post-wrapper">
-            <div th:each="publication : ${publications}" class="post-element" th:attr="data-publication-id=${publication.getId()}">
+            <div th:each="publication : ${publications}" class="post-element"
+                 th:attr="data-publication-id=${publication.getId()}">
                 <div class="post-image">
                     <img id="imagePosted" th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user image">
                 </div>
                 <div class="post-credentials">
                     <div class="post-profile-pic">
-                        <img th:src="@{${publication.getMembre().getPhotoProfilPath()}}" alt="profile pic">
+                        <div class="post-profile-pic-wrapper">
+                            <img th:src="@{${publication.getMembre().getPhotoProfilPath()}}" alt="profile pic">
+                        </div>
                     </div>
                     <div class="post-name-and-handle">
                         <h3>
@@ -74,26 +77,21 @@
                     </div>
                     <div class="post-like-button">
                         <h3 id="likeCounter" th:text="${publication.getLikes()}"></h3>
-                        <i id="likeButton" class="fa-regular fa-heart fa-xl" th:data-idPost="${publication.getId_publication()}"></i>
+                        <i id="likeButton" class="fa-regular fa-heart fa-xl"
+                           th:data-idPost="${publication.getId_publication()}"></i>
                     </div>
                     <div class="post-comment-button">
-                        <i id="commentButton" class="fa-regular fa-comment fa-xl"></i>
+                        <i class="fa-regular fa-comment fa-xl"
+                           th:attr="data-publication-id=${publication.getId_publication()}"></i>
                     </div>
                 </div>
                 <div class="post-comments">
                     <div class="comments-wrapper">
-                        <div class="comment-element">
-                            <div class="comment-profile-pic">
-                                <img src="images/Default-profile-pic.png" alt="image utilisateur">
-                            </div>
-                            <div class="comment-name-comment-container">
-                                <h3 class="username-comment">@gwuliano </h3>
-                                <h3 class="comment-text">fire pic man! I think we should do something next week that was too funnnn! next time we should try that new place next to the old port it smelled so good</h3>
-                            </div>
-                        </div>
+                        <!-- Commentaires seront afficher ici -->
                     </div>
                     <div class="user-comment-section">
-                        <input type="text" id="comment-typed" class="comment-input" placeholder="Write a meaningful comment...">
+                        <input type="text" id="comment-typed" class="comment-input"
+                               placeholder="Write a meaningful comment...">
                     </div>
                 </div>
             </div>
@@ -108,7 +106,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 <script th:inline="javascript">
-    function pullLikes(){
+    function pullLikes() {
         let publications = document.querySelectorAll('.post-element');
         let likeButtons = document.querySelectorAll('#likeButton');
         fetch("/pullLikes")
@@ -120,12 +118,12 @@
             })
             .then(data => {
                 $.each(data, function (index, like) {
-                    publications.forEach(publication =>{
+                    publications.forEach(publication => {
                         let publication_id = publication.getAttribute("data-publication-id");
-                        if(publication_id == like.publication.id_publication){
+                        if (publication_id == like.publication.id_publication) {
                             console.log(publication_id);
-                            likeButtons.forEach(button =>{
-                                if(button.getAttribute("data-idPost") === publication_id){
+                            likeButtons.forEach(button => {
+                                if (button.getAttribute("data-idPost") === publication_id) {
                                     button.classList.remove('fa-regular');
                                     button.classList.add('fa-solid');
                                     button.style.color = "red";
@@ -141,7 +139,127 @@
                 console.error('There was a problem with your fetch operation:', error);
             });
     }
+
     pullLikes();
+
+    function timeSince(date) {
+        const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+        let interval = Math.floor(seconds / 31536000);
+
+        if (interval >= 1) {
+            return interval + "y";
+        }
+        interval = Math.floor(seconds / 2592000);
+        if (interval >= 1) {
+            return interval + "month";
+        }
+        interval = Math.floor(seconds / 86400);
+        if (interval >= 1) {
+            return interval + "d";
+        }
+        interval = Math.floor(seconds / 3600);
+        if (interval >= 1) {
+            return interval + "h";
+        }
+        interval = Math.floor(seconds / 60);
+        if (interval >= 1) {
+            return interval + "m";
+        }
+        return "just now";
+    }
+
+    const postCommentButton = document.querySelectorAll('.post-comment-button');
+    $(document).ready(function () {
+        postCommentButton.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const publicationId = $(this).find('i').attr('data-publication-id');
+                const commentsWrapper = $(this).closest('.post-element').find('.comments-wrapper');
+
+                $.ajax({
+                    url: '/commmentaires/pullCommentaires',
+                    type: 'GET',
+                    data: {publicationId: publicationId},
+                    success: function (comments) {
+                        commentsWrapper.empty();
+
+                        $.each(comments, function (index, comment) {
+                            const commentElement = '<div class="comment-element">' +
+                                '<div class="comment-time-sent">' + timeSince(comment.date) + '</div>' +
+                                '<div class="comment-profile-pic">' +
+                                '<div class="comment-profile-pic-wrapper">' +
+                                '<img src="' + comment.membre.photoProfilPath + '" alt="image utilisateur">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="comment-name-comment-container">' +
+                                '<h3 class="username-comment">' + '@' + comment.membre.username + '</h3>' +
+                                '<h3 class="comment-text">' + comment.commentaire + '</h3>' +
+                                '</div>' +
+                                '</div>';
+                            commentsWrapper.append(commentElement);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching comments:', error);
+                    }
+                });
+                const postElement = $(this).closest('.post-element');
+                const postImage = postElement.find('.post-image');
+                const postCredentials = postElement.find('.post-credentials');
+                const postComments = postElement.find('.post-comments');
+                gsap.to(postElement, {
+                    height: "85vh",
+                    scrub: true,
+                    duration: 1
+                });
+                gsap.to(postImage, {
+                    height: "60%",
+                    scrub: true,
+                    duration: 1
+                });
+                gsap.to(postCredentials, {
+                    height: "10%",
+                    scrub: true,
+                    duration: 1
+                });
+                gsap.to(postComments, {
+                    height: "30%",
+                    scrub: true,
+                    opacity: 1,
+                    duration: 1.2
+                });
+            });
+        });
+    });
+
+    const commentInput = document.querySelectorAll('.comment-input');
+    commentInput.forEach(function (input) {
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+
+                const publicationId = $(this).closest('.post-element').find('.post-comment-button i').attr('data-publication-id');
+                const commentText = this.value;
+                const commentButton = $(this).closest('.post-element').find('.post-comment-button');
+
+                $.ajax({
+                    url: '/commmentaires/sendCommentaire',
+                    type: 'GET',
+                    data: {
+                        publicationId: publicationId,
+                        commentaire: commentText
+                    },
+                    success: function (response) {
+                        commentButton.click();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error sending comment:', error);
+                    }
+                });
+
+                this.value = "";
+            }
+        });
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
         const fileInput = document.getElementById('file-input');
@@ -153,9 +271,9 @@
 
         const form = document.querySelector('.fypMakeAPost-container-form');
 
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
 
-            setTimeout(function() {
+            setTimeout(function () {
 
                 const descriptionField = document.getElementById('descriptionInputPublicationFormulaire');
                 descriptionField.value = '';
@@ -187,7 +305,7 @@
             const post = button.closest('.post-like-button');
             const likeCounter = post.querySelector('#likeCounter');
             let likeNumberCount = parseInt(likeCounter.textContent);
-            if(button.classList.contains('fa-regular')){
+            if (button.classList.contains('fa-regular')) {
                 const idPost = this.getAttribute('data-idPost');
 
                 console.log("IDPOST RECU: " + idPost);
@@ -213,7 +331,7 @@
                     }
                 };
                 xhr.send();
-            }else {
+            } else {
                 const idPost = this.getAttribute('data-idPost');
 
                 console.log("IDPOST RECU: " + idPost);
@@ -312,12 +430,12 @@
 
     const commentButton = document.querySelectorAll('.post-comment-button #commentButton');
 
-    commentButton.forEach(function(button) {
-        button.addEventListener('click', function(){
-            if(button.classList.contains('fa-regular')){
+    commentButton.forEach(function (button) {
+        button.addEventListener('click', function () {
+            if (button.classList.contains('fa-regular')) {
                 button.classList.remove('fa-regular');
                 button.classList.add('fa-solid');
-            }else {
+            } else {
                 button.classList.remove('fa-solid');
                 button.classList.add('fa-regular');
             }
@@ -330,7 +448,7 @@
     const goUpBtn = document.getElementById('goUpBtn');
     const postContainer = document.getElementById('middle-section');
 
-    goUpBtn.addEventListener('click', function(){
+    goUpBtn.addEventListener('click', function () {
         gsap.to(postContainer, {
             scrollTop: 0,
             duration: 0.5,

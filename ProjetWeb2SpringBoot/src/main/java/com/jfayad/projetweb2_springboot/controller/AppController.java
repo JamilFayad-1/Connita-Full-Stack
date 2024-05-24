@@ -1,9 +1,11 @@
 package com.jfayad.projetweb2_springboot.controller;
 
 import com.jfayad.projetweb2_springboot.entities.Amitier;
+import com.jfayad.projetweb2_springboot.entities.Exercices;
 import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.entities.Publication;
 import com.jfayad.projetweb2_springboot.services.AmitierService;
+import com.jfayad.projetweb2_springboot.services.ExercicesService;
 import com.jfayad.projetweb2_springboot.services.MembreService;
 import com.jfayad.projetweb2_springboot.services.PublicationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,6 +29,9 @@ public class AppController {
 
     @Autowired
     private PublicationService publicationService;
+
+    @Autowired
+    private ExercicesService exercicesService;
 
     @GetMapping("/index")
     public String getIndex() {
@@ -187,6 +192,9 @@ public class AppController {
             }
         }
 
+        List<Exercices> listeExercices = exercicesService.getAllExercices(idMembretrouver);
+
+        model.addAttribute("listeExercices", listeExercices);
         model.addAttribute("listeAmitier", listeAmitier);
 
         return "exercises";

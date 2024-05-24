@@ -23,7 +23,8 @@
 
             <div class="challenge-Wrapper">
                 <div class="challenge-container">
-                    <h1>Simple Quiz</h1>
+                    <h3 class="back-to-challenges">back to challenges</h3>
+                    <h1 id="quiz-name">Simple Quiz</h1>
                     <div class="quiz">
                         <h2 id="question">Question goes here</h2>
                         <div id="answer-buttons">
@@ -42,12 +43,19 @@
     /*<![CDATA[*/
 
     document.addEventListener('DOMContentLoaded', function() {
+        const quizName = document.getElementById('quiz-name');
 
-        var buttons = document.querySelectorAll('.btnSet');
+        const returnChallengesMenu = document.querySelector('.back-to-challenges');
+        returnChallengesMenu.addEventListener('click', ()=> {
+            window.location.href = "challenges";
+        })
+
+        let buttons = document.querySelectorAll('.btnSet');
         buttons.forEach(function(button) {
             button.addEventListener('click', function() {
                 var index = this.getAttribute('data-index');
                 var challengeName = getParameterByName('challengeName')+index;
+                quizName.textContent = getParameterByName('challengeName') + ' ' + index;
                 handleButtonClick(challengeName, index);
             });
         });
@@ -64,14 +72,15 @@
         }
 
 
-        var buttons = document.querySelectorAll('.btnSet');
+        buttons = document.querySelectorAll('.btnSet');
+        const challengeName = getParameterByName('challengeName');
         buttons.forEach(function(button, index) {
             if (index === 0) {
-                button.textContent = getParameterByName('challengeName')+' 1';
+                button.textContent = challengeName +' 1';
             } else if (index === 1) {
-                button.textContent = getParameterByName('challengeName')+' 2';
+                button.textContent = challengeName +' 2';
             } else if (index === 2) {
-                button.textContent = getParameterByName('challengeName')+' 3';
+                button.textContent = challengeName +' 3';
             }
         });
 
