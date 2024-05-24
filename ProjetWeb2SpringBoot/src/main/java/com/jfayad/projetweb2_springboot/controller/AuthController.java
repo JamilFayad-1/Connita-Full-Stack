@@ -55,6 +55,9 @@ public class AuthController {
     @Autowired
     private PublicationService publicationService;
 
+    @Autowired
+    private ExercicesService exercicesService;
+
     @PostMapping("/membre/connexion")
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
@@ -89,14 +92,14 @@ public class AuthController {
             ArrayList<String> listeTempsReel = new ArrayList<>();
 
             listeTempsCleinOeil.sort(Comparator.reverseOrder());
-            for(LocalDateTime temp : listeTempsCleinOeil) {
+            for (LocalDateTime temp : listeTempsCleinOeil) {
                 LocalDateTime currentDateTime = LocalDateTime.now();
                 Duration duration = Duration.between(temp, currentDateTime);
 
                 long hours = duration.toHours();
                 long minutes = duration.toMinutes() % 60;
 
-                if(hours >= 24){
+                if (hours >= 24) {
                     int nbrOfDays = (int) (hours / 24);
                     listeTempsReel.add(nbrOfDays + "d");
                 } else if (hours > 0) {
@@ -136,15 +139,21 @@ public class AuthController {
         //logger.info("Attempting to sign up with password: {}", password);
 
         Membre membre = membreService.inscriptionMembre(firstName, lastName, email, password);
-
-        List<Challenges> listeAllChallenges = challengesService.findAllChallenges();
-        for (Challenges challenge : listeAllChallenges) {
-            challengesJouerService.createChallengeRow(membre.getIdMembre(), challenge.getChallengeName());
-            session.setAttribute("isFirstSetComplete", false);
-            session.setAttribute("isSecondSetComplete", false);
-        }
-
         if (membre != null) {
+
+            List<Challenges> listeAllChallenges = challengesService.findAllChallenges();
+            for (Challenges challenge : listeAllChallenges) {
+                challengesJouerService.createChallengeRow(membre.getIdMembre(), challenge.getChallengeName());
+                session.setAttribute("isFirstSetComplete", false);
+                session.setAttribute("isSecondSetComplete", false);
+            }
+
+            exercicesService.createExerciceRow(membre.getIdMembre(), "italian");
+            exercicesService.createExerciceRow(membre.getIdMembre(), "french");
+            exercicesService.createExerciceRow(membre.getIdMembre(), "spanish");
+            exercicesService.createExerciceRow(membre.getIdMembre(), "german");
+
+
             validation = true;
             session.setAttribute("validation", validation);
             redirectAttributes.addFlashAttribute("messageInscrReussite", "Successful registration");

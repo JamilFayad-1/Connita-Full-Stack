@@ -16,7 +16,8 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section">
+    <div id="middle-section" style="position: relative">
+        <div class="back-to-countries">Go back</div>
         <div class="country-bg">
             <img src="" id="country-bg">
         </div>
@@ -84,6 +85,11 @@
         countryImage.src = country[0].img.toString();
         countryHeader.innerText = country[0].countryName.toString();
         countryInfo.innerText = country[0].info.toString();
+
+        const goBackButton = document.querySelector('.back-to-countries');
+        goBackButton.addEventListener('click', ()=>{
+            window.location.href = "pageCountries";
+        })
     });
 
     const Italy = [

@@ -2212,6 +2212,37 @@ main.sign-up-mode .carousel {
     padding: 30px;
 }
 
+.back-to-challenges{
+    position: relative;
+    font-family: 'montreal', sans-serif;
+    color: #4d4d4d;
+    font-size: clamp(0.6rem, 2.5vh, 1.2rem);
+    width: 28%;
+}
+
+.back-to-challenges:hover{
+    cursor: pointer;
+}
+
+.back-to-challenges:after{
+    content: '';
+    position: relative;
+    left: 0;
+    height: 0.5rem;
+    display: flex;
+    width: 100%;
+    border-bottom: 3px solid #e27c44;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    transform: scale(0,1);
+}
+
+.back-to-challenges:hover:after{
+    opacity: 1;
+    transform: scale(1);
+}
+
 .challenge-container h1 {
     font-family: 'montreal', sans-serif;
     color: #2d2d2d;
@@ -2351,15 +2382,25 @@ main.sign-up-mode .carousel {
 
 .friends-list-element-picture {
     width: 20%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 10px 0 10px;
+}
+
+.friends-list-picture-wrapper{
+    position: relative;
+    min-width: 0.6rem;
+    min-height: 0.6rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 .friends-list-element-picture img {
-    padding: 10px;
-    width: 3vw;
-    height: 3vw;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
 }
 
@@ -2749,20 +2790,21 @@ main.sign-up-mode .carousel {
 
 .messagerie-header-profile-pic {
     width: 5%;
-    padding: 1rem;
-    align-content: center;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .messagerie-header-profile-pic img {
     background-color: #dddddd;
-    width: 3.5rem;
+    width: 2.5rem;
 }
 
 .messagerie-header-name {
     width: 95%;
     height: 80%;
     display: flex;
-    align-content: center;
+    align-items: center;
 }
 
 .messagerie-header-name h2 {
@@ -2773,6 +2815,7 @@ main.sign-up-mode .carousel {
     font-size: 2rem;
     color: #dddddd;
     padding: 5px 0 0 0.6rem;
+    transform: translateY(-5%);
 }
 
 .middle-section-messagerie-container {
@@ -2874,6 +2917,30 @@ main.sign-up-mode .carousel {
 
 /*Page des info d'un pays*/
 
+.back-to-countries{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 10%;
+    height: 6%;
+    border-radius: 1rem;
+    background-color: rgba(239, 239, 239, 0.82);
+    filter: blur(1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'montreal', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.8rem, 3vh, 1.2rem);
+    z-index: 10;
+    transition: all 0.1s ease-in-out;
+}
+
+.back-to-countries:hover{
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
 .country-bg {
     position: relative;
     width: 100%;
@@ -2893,9 +2960,9 @@ main.sign-up-mode .carousel {
     position: relative;
     display: flex;
     width: 100%;
-    height: 15%;
-    margin-top: -2rem;
+    height: auto;
     z-index: 10;
+    transform: translateY(-30%);
     justify-content: center;
 }
 
@@ -2903,12 +2970,10 @@ main.sign-up-mode .carousel {
     text-align: center;
     font-size: 3rem !important;
     margin: 0;
-    padding: 0 1rem !important;
-    width: auto;
-    height: 4rem;
-    line-height: 4rem;
+    padding: 0 1.2rem !important;
+    height: auto;
     border-radius: 6rem;
-    background-color: #FAFAFA;
+    background-color: #efefef;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -3104,7 +3169,7 @@ main.sign-up-mode .carousel {
     position: relative;
     display: inline-block;
     width: 40vw;
-    height: 85vh;
+    height: 55vh;
     border-radius: 0.8rem;
     border: 2px solid #2d2d2d;
     background-color: #fdfffc;
@@ -3113,10 +3178,44 @@ main.sign-up-mode .carousel {
     box-shadow: inset 0 0 50px 5px rgba(161, 161, 161, 0.2), 0 5px 25px 10px rgba(144, 197, 232, 0.4);
 }
 
+.hover-down-like-number {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2d2d2d;
+    color: white;
+    width: 40%;
+    height: 15%;
+    border-top-right-radius: 40%;
+    border-top-left-radius: 40%;
+    text-align: center;
+    line-height: 30px;
+    transition: bottom 0.3s ease;
+    z-index: 1;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hover-down-like-number p{
+    font-family: 'montreal', sans-serif;
+}
+
+.hover-down-like-number p span{
+    padding-right: 5px;
+}
+
+.post-element:hover .hover-down-like-number{
+    bottom: 0;
+    visibility: visible;
+}
+
 .post-image {
     position: relative;
     width: 100%;
-    height: 60%;
+    height: 86%;
     background-color: black;
     border-top-left-radius: 0.6rem;
     border-top-right-radius: 0.6rem;
@@ -3134,22 +3233,33 @@ main.sign-up-mode .carousel {
 .post-credentials {
     position: relative;
     width: 100%;
-    height: 10%;
+    height: 14%;
     display: flex;
     flex-direction: row;
+    border-top: 1px solid #2a2a2a;
 }
 
 .post-profile-pic {
     flex-basis: 15%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.post-profile-pic img {
-    border-radius: 50%;
-    width: 2.5rem;
+.post-profile-pic-wrapper{
+    width: 3em;
     height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
     padding: 0.2rem;
     border: 1px solid #3e3e3e;
 }
@@ -3158,7 +3268,6 @@ main.sign-up-mode .carousel {
     box-sizing: border-box;
     text-align: start;
     flex-grow: 1;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -3222,7 +3331,8 @@ main.sign-up-mode .carousel {
 .post-comments {
     position: relative;
     width: 100%;
-    height: 30%;
+    height: 0;
+    opacity: 0;
     display: flex;
     flex-direction: column;
 }
@@ -3243,9 +3353,18 @@ main.sign-up-mode .carousel {
     max-width: 70%;
     min-height: 20%;
     max-height: 40%;
-    margin: 2% auto;
+    margin: 3% auto;
     align-items: start;
     justify-content: start;
+}
+
+.comment-time-sent{
+    position: absolute;
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.4rem, 2.2vh, 0.8rem);
+    color: #4d4d4d;
+    left: 0;
+    transform: translateX(-100%);
 }
 
 .comment-profile-pic {
@@ -3258,11 +3377,17 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.comment-profile-pic img{
-    width: clamp(1rem, 3.5vh, 3rem);
-    height: clamp(1rem, 3.5vh, 3rem);
-    border-radius: 50%;
+.comment-profile-pic-wrapper{
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+}
 
+.comment-profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .comment-name-comment-container {
@@ -3276,7 +3401,7 @@ main.sign-up-mode .carousel {
 
 .username-comment {
     font-family: 'montreal', sans-serif;
-    font-size: clamp(0.6rem, 2.5vh, 1.1rem);
+    font-size: clamp(0.6rem, 2vh, 1rem);
     font-weight: 600;
     margin: 0 1% 0 0;
     color: #373737;
@@ -3289,6 +3414,9 @@ main.sign-up-mode .carousel {
     color: #3e3e3e;
     margin: 0;
     text-align: start !important;
+    display: flex;
+    align-items: start;
+    transform: translateY(10%);
 }
 
 .user-comment-section {
@@ -3431,22 +3559,41 @@ main.sign-up-mode .carousel {
     z-index: 3;
     overflow: hidden;
     box-shadow: 0 5px 50px 2px rgba(45, 45, 45, 0.4), inset 0 0 80px 2px rgba(144, 197, 232, 0.2);
+    cursor: url('../images/pencilCursor.png'), auto;
 }
 
+.exercises-completion-list-container,
 .exercises-list-container {
     box-sizing: border-box;
     position: relative;
     width: clamp(100px, 40vw, 700px);
     height: clamp(70px, 8vh, 100px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 65px 10px rgba(45, 45, 45, 0.65), 5px 10px 15px 5px rgba(96, 96, 96, 0.2);
     border-radius: 15px;
     margin: 0 auto;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     z-index: 3;
+}
+
+.exercises-completion-list-container{
+    transform: translateY(-100%);
+    pointer-events: none;
+    align-items: center;
+}
+
+.completion-list-checkmark{
+    position: relative;
+    width: 90%;
+    height: 40%;
+    transform: translateX(32%) translateY(5%);
+    filter: blur(0.6px);
+}
+
+.exercises-list-container{
+    box-shadow: inset 0 0 65px 10px rgba(45, 45, 45, 0.65), 5px 10px 15px 5px rgba(96, 96, 96, 0.2);
+    align-items: center;
+    justify-content: center;
 }
 
 .exercises-list-container:hover{
@@ -3467,6 +3614,7 @@ main.sign-up-mode .carousel {
     text-decoration: none;
     transform: translateY(5%);
     z-index: 3;
+    cursor: url('../images/pencilCursor.png'), auto;
 }
 
 .exercises-list-container span{
@@ -3481,6 +3629,28 @@ main.sign-up-mode .carousel {
     opacity: 0;
 }
 
+.animation-container-exercise{
+    position: relative;
+    width: 100%;
+    height: 70%;
+    transform: translateY(-100%);
+    z-index: 1;
+    cursor: url('../images/pencilCursor.png'), auto;
+}
+
+.confettie-container-exercise{
+    position: sticky;
+    bottom: 0;
+    transform: translateX(100%);
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 50%;
+    height: 70%;
+    z-index: 999;
+    pointer-events: none;
+}
+
 .exercises-element-container{
     box-sizing: border-box;
     position: relative;
@@ -3491,6 +3661,8 @@ main.sign-up-mode .carousel {
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 3rem;
+    background-color: white;
+    cursor: url('../images/pencilCursor.png'), auto;
 }
 
 .exercises-element-container::-webkit-scrollbar{
@@ -3530,7 +3702,7 @@ main.sign-up-mode .carousel {
 .exercise-answer-inputs-grid{
     box-sizing: border-box;
     padding-left: 2rem;
-    width: 30%;
+    width: 40%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 15px;
@@ -3552,7 +3724,7 @@ main.sign-up-mode .carousel {
 }
 
 .exercise-answer-button:hover{
-    cursor: pointer;
+    cursor: url('../images/pencilCursor.png'), auto;
     background-color: rgba(92, 153, 221, 0.3);
 }
 
@@ -3576,7 +3748,7 @@ main.sign-up-mode .carousel {
 }
 
 .submit-and-score-container button:hover{
-    cursor: pointer;
+    cursor: url('../images/pencilCursor.png'), auto;
     box-shadow: inset 0 0 40px 5px rgba(99, 139, 205, 0.66), 0 0 20px 2px rgba(32, 66, 136, 0.3);
 }
 

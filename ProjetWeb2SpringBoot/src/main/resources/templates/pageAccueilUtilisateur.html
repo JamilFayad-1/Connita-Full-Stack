@@ -53,6 +53,12 @@
                 </div>
                 <div th:each="publication : ${session.publications}" class="post-element">
                     <img th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user post image" loading="lazy">
+                    <section class="hover-down-like-number">
+                        <p>
+                            <span th:text="${publication.getLikes()}"></span>
+                            <i class="fas fa-heart"></i>
+                        </p>
+                    </section>
                 </div>
             </div>
             <div class="overlayPostContainer"></div>
