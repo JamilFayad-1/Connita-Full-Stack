@@ -64,6 +64,7 @@ public class fypController {
         model.addAttribute("publication", publicationNvll);
         model.addAttribute("publications", publications);
         model.addAttribute("listeAmitier", listeAmitier);
+        model.addAttribute("CurrentPage", "fyp");
         return "fyp";
     }
 
@@ -97,6 +98,7 @@ public class fypController {
         List<Publication> publications = publicationService.findAllByMembre(MembreTrouver);
         model.addAttribute("publications", publications);
         model.addAttribute("listeAmitier", listeAmitier);
+        model.addAttribute("CurrentPage", "work");
         return "fyp";
     }
 }

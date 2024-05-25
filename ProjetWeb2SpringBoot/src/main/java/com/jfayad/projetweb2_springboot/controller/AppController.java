@@ -129,8 +129,8 @@ public class AppController {
         return "languages";
     }
 
-    @GetMapping("/pageTravel")
-    public String getPageTravel(Model model,
+    @GetMapping("/pageForum")
+    public String getPageForum(Model model,
                                 HttpServletRequest request) {
 
         HttpSession session = request.getSession();
@@ -160,7 +160,7 @@ public class AppController {
 
         model.addAttribute("listeAmitier", listeAmitier);
 
-        return "travel";
+        return "forum";
     }
 
     @GetMapping("/pageExercises")

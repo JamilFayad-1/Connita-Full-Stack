@@ -120,8 +120,7 @@ header {
 }
 
 #horizontal-nav li:nth-child(2),
-#horizontal-nav li:nth-child(3)
-{
+#horizontal-nav li:nth-child(3) {
     border-radius: 50%;
 }
 
@@ -163,8 +162,7 @@ header {
 }
 
 #horizontal-nav li:nth-child(2):hover,
-#horizontal-nav li:nth-child(3):hover
-{
+#horizontal-nav li:nth-child(3):hover {
     background-color: #e1e1e1;
     cursor: pointer;
 }
@@ -291,7 +289,7 @@ main {
     height: 100%
 }
 
-.post-header-title h1{
+.post-header-title h1 {
     margin: 2rem 0 0 0;
 }
 
@@ -337,14 +335,14 @@ main {
     box-shadow: rgba(92, 153, 221, 0.25) 0 0 40px 5px, white 0 0 0 1px !important;
 }
 
-.empty-post-list-element h2{
+.empty-post-list-element h2 {
     font-family: "CustomFont1", sans-serif;
     font-size: clamp(0.8rem, 2.5vh, 1.5rem);
     color: #2a2a2a;
     margin: 0 !important;
 }
 
-.empty-post-list-element h3{
+.empty-post-list-element h3 {
     font-family: "montreal", sans-serif;
     font-size: clamp(0.8rem, 2vh, 1rem);
     color: #5a5a5a;
@@ -463,7 +461,7 @@ hr {
     padding-left: 20px;
 }
 
-#right-section-friends-list ul p{
+#right-section-friends-list ul p {
     padding-left: 20px;
     font-family: 'montreal', sans-serif;
     font-size: clamp(0.8rem, 2vh, 1rem);
@@ -867,7 +865,7 @@ hr {
     mix-blend-mode: difference;
 }
 
-.animated-company-name h1{
+.animated-company-name h1 {
     font-size: 24vw;
     line-height: 22vw;
     margin: 0 0 5vh 0;
@@ -909,8 +907,7 @@ hr {
 }
 
 .first-section-home-page img,
-.second-section-home-page img
-{
+.second-section-home-page img {
     position: relative;
     width: 100%;
     height: auto;
@@ -1001,7 +998,7 @@ svg {
 
 .one,
 .four,
-.seven{
+.seven {
     position: relative;
     width: 30%;
     height: auto;
@@ -1009,14 +1006,14 @@ svg {
 
 .two,
 .five,
-.eight{
+.eight {
     position: relative;
     width: 40%;
     height: auto;
 }
 
 .three,
-.six{
+.six {
     position: relative;
     width: 20%;
     height: auto;
@@ -1073,19 +1070,19 @@ svg {
     align-items: center;
 }
 
-.animated-section h1{
+.animated-section h1 {
     font-family: 'CustomFont1', sans-serif;
     font-size: 3rem;
     margin-bottom: 8%;
 }
 
-.animated-section p{
+.animated-section p {
     font-family: 'CustomFont1', sans-serif;
     font-size: 1.5rem;
     margin-left: -30%;
 }
 
-.animated-section img{
+.animated-section img {
     width: 30%;
     height: auto;
 }
@@ -1129,7 +1126,7 @@ svg {
     overflow: hidden;
 }
 
-.sixth-section-home-page h1{
+.sixth-section-home-page h1 {
     position: relative;
     margin: 6vh 0 0 0;
     padding: 1vh;
@@ -1143,13 +1140,13 @@ svg {
     height: 90%;
 }
 
-.choose-language-playground h3{
+.choose-language-playground h3 {
     font-family: "montreal", sans-serif;
     font-size: 1.4rem;
     margin: 1vh 0 0 0;
 }
 
-.choose-language-playground ul{
+.choose-language-playground ul {
     position: relative;
     width: 20% !important;
     height: 10%;
@@ -1160,7 +1157,7 @@ svg {
     justify-content: space-between;
 }
 
-.choose-language-playground li img{
+.choose-language-playground li img {
     position: relative;
     width: 5vh;
     height: 5vh;
@@ -1349,7 +1346,7 @@ form.sign-up-form {
 .input-wrap input:-webkit-autofill,
 .input-wrap input:-webkit-autofill:hover,
 .input-wrap input:-webkit-autofill:focus,
-.input-wrap input:-webkit-autofill:active{
+.input-wrap input:-webkit-autofill:active {
     -webkit-box-shadow: transparent !important;
 }
 
@@ -1393,21 +1390,21 @@ input[type="password"]::-ms-clear {
     cursor: pointer;
 }
 
-.input-field-valid{
+.input-field-valid {
     color: #47ce03 !important;
     border-bottom: 1px solid #47ce03 !important;
 }
 
-.input-field-error{
+.input-field-error {
     color: #e50101 !important;
     border-bottom: 1px solid #e50101 !important;
 }
 
-.label-valid{
+.label-valid {
     color: #47ce03 !important;
 }
 
-.label-error{
+.label-error {
     color: #e50101 !important;
 }
 
@@ -1437,7 +1434,7 @@ label {
     height: 45px;
 }
 
-.password-requirements p{
+.password-requirements p {
     font-family: 'montreal', sans-serif;
     font-size: clamp(0.3rem, 2.5vh, 0.7rem);
     margin: 0;
@@ -1707,10 +1704,10 @@ main.sign-up-mode .carousel {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.dropdown-menu1::-webkit-scrollbar{
+.dropdown-menu1::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
@@ -1768,7 +1765,7 @@ main.sign-up-mode .carousel {
     justify-content: end;
 }
 
-.friend-notification-time p{
+.friend-notification-time p {
     font-family: 'montreal', sans-serif;
     font-size: 0.8rem;
     color: #646464;
@@ -1991,7 +1988,7 @@ main.sign-up-mode .carousel {
     transition: 0.2s ease;
 }
 
-.reglage-form-row select:hover{
+.reglage-form-row select:hover {
     cursor: pointer;
 }
 
@@ -2212,7 +2209,7 @@ main.sign-up-mode .carousel {
     padding: 30px;
 }
 
-.back-to-challenges{
+.back-to-challenges {
     position: relative;
     font-family: 'montreal', sans-serif;
     color: #4d4d4d;
@@ -2220,11 +2217,11 @@ main.sign-up-mode .carousel {
     width: 28%;
 }
 
-.back-to-challenges:hover{
+.back-to-challenges:hover {
     cursor: pointer;
 }
 
-.back-to-challenges:after{
+.back-to-challenges:after {
     content: '';
     position: relative;
     left: 0;
@@ -2235,10 +2232,10 @@ main.sign-up-mode .carousel {
     opacity: 0;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
-    transform: scale(0,1);
+    transform: scale(0, 1);
 }
 
-.back-to-challenges:hover:after{
+.back-to-challenges:hover:after {
     opacity: 1;
     transform: scale(1);
 }
@@ -2349,12 +2346,12 @@ main.sign-up-mode .carousel {
     height: 80%;
 }
 
-#middle-section-friends-list-container::-webkit-scrollbar{
+#middle-section-friends-list-container::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
 
-#middle-section-friends-list-container::-webkit-scrollbar-track{
+#middle-section-friends-list-container::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
@@ -2389,7 +2386,7 @@ main.sign-up-mode .carousel {
     padding: 0 10px 0 10px;
 }
 
-.friends-list-picture-wrapper{
+.friends-list-picture-wrapper {
     position: relative;
     min-width: 0.6rem;
     min-height: 0.6rem;
@@ -2917,7 +2914,7 @@ main.sign-up-mode .carousel {
 
 /*Page des info d'un pays*/
 
-.back-to-countries{
+.back-to-countries {
     position: absolute;
     top: 5%;
     left: 5%;
@@ -2936,7 +2933,7 @@ main.sign-up-mode .carousel {
     transition: all 0.1s ease-in-out;
 }
 
-.back-to-countries:hover{
+.back-to-countries:hover {
     background-color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
 }
@@ -3050,10 +3047,17 @@ main.sign-up-mode .carousel {
     }
 }
 
-.fypMakeAPost-container-image img {
+.fypMakeAPost-container-image-wrapper {
+    position: relative;
     width: 4rem;
     height: 4rem;
+}
+
+.fypMakeAPost-container-image img {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
+    object-fit: cover;
     border: 1px solid black;
 }
 
@@ -3165,6 +3169,51 @@ main.sign-up-mode .carousel {
     transition: all 0.5s ease-in-out;
 }
 
+.post-element-empty-idle {
+    position: relative;
+    width: 80%;
+    height: 35vh;
+    border: 3px solid #2d2d2d;
+    border-radius: 0.8rem;
+    margin: 0 auto;
+    background-color: #f1f1f1;
+}
+
+.post-element-empty-text{
+    position: relative;
+    width: 65%;
+    height: auto;
+    text-align: end;
+}
+
+.post-element-empty-text h3 {
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 2.2rem);
+}
+
+.post-element-empty-text h3 span {
+    color: rgba(92, 153, 221, 0.8);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.post-element-empty-text p {
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.8rem, 1.1vw, 1.2rem);
+}
+
+.feed-empty-animation-container,
+.work-empty-animation-container{
+    position: relative;
+    width: 40%;
+    height: 100%;
+    transform: translateX(140%) translateY(-45%);
+}
+
+.work-empty-animation-container{
+    transform: translateX(155%) translateY(-55%);
+}
+
 .post-element {
     position: relative;
     display: inline-block;
@@ -3199,15 +3248,15 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.hover-down-like-number p{
+.hover-down-like-number p {
     font-family: 'montreal', sans-serif;
 }
 
-.hover-down-like-number p span{
+.hover-down-like-number p span {
     padding-right: 5px;
 }
 
-.post-element:hover .hover-down-like-number{
+.post-element:hover .hover-down-like-number {
     bottom: 0;
     visibility: visible;
 }
@@ -3247,7 +3296,7 @@ main.sign-up-mode .carousel {
     align-items: center;
 }
 
-.post-profile-pic-wrapper{
+.post-profile-pic-wrapper {
     width: 3em;
     height: 2.5rem;
     display: flex;
@@ -3316,7 +3365,7 @@ main.sign-up-mode .carousel {
 
 .post-comment-button {
     box-sizing: border-box;
-    width:7%;
+    width: 7%;
     display: flex;
     align-items: center;
     justify-content: end;
@@ -3324,7 +3373,7 @@ main.sign-up-mode .carousel {
     margin-left: 0.8rem;
 }
 
-.post-comment-button i:hover{
+.post-comment-button i:hover {
     cursor: pointer;
 }
 
@@ -3346,7 +3395,7 @@ main.sign-up-mode .carousel {
     overflow-y: scroll;
 }
 
-.comment-element{
+.comment-element {
     position: relative;
     display: flex;
     width: 70%;
@@ -3358,7 +3407,7 @@ main.sign-up-mode .carousel {
     justify-content: start;
 }
 
-.comment-time-sent{
+.comment-time-sent {
     position: absolute;
     font-family: 'montreal', sans-serif;
     font-size: clamp(0.4rem, 2.2vh, 0.8rem);
@@ -3377,13 +3426,13 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.comment-profile-pic-wrapper{
+.comment-profile-pic-wrapper {
     position: relative;
     width: 2rem;
     height: 2rem;
 }
 
-.comment-profile-pic img{
+.comment-profile-pic img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -3428,7 +3477,7 @@ main.sign-up-mode .carousel {
     justify-content: center;
 }
 
-.user-comment-section input{
+.user-comment-section input {
     width: 60%;
     height: 50%;
     border-radius: 1rem;
@@ -3436,6 +3485,15 @@ main.sign-up-mode .carousel {
     font-family: 'montreal', sans-serif;
     font-size: clamp(0.6rem, 2vh, 1rem);
     padding-left: 1rem;
+}
+
+#btnCloseComments {
+    margin-left: 2%;
+}
+
+#btnCloseComments:hover {
+    color: #5c99dd;
+    cursor: pointer;
 }
 
 .fypMakeAPost {
@@ -3533,14 +3591,14 @@ main.sign-up-mode .carousel {
 }
 
 @keyframes hoverArrowUp {
-    50%{
+    50% {
         transform: translateY(-40%);
     }
 }
 
 /* Page ajout d'utilisateur ---- carte 3d */
 
-.middle-section-user-card-container{
+.middle-section-user-card-container {
     position: relative;
     height: 100%;
     flex-grow: 1;
@@ -3576,13 +3634,13 @@ main.sign-up-mode .carousel {
     z-index: 3;
 }
 
-.exercises-completion-list-container{
+.exercises-completion-list-container {
     transform: translateY(-100%);
     pointer-events: none;
     align-items: center;
 }
 
-.completion-list-checkmark{
+.completion-list-checkmark {
     position: relative;
     width: 90%;
     height: 40%;
@@ -3590,17 +3648,17 @@ main.sign-up-mode .carousel {
     filter: blur(0.6px);
 }
 
-.exercises-list-container{
+.exercises-list-container {
     box-shadow: inset 0 0 65px 10px rgba(45, 45, 45, 0.65), 5px 10px 15px 5px rgba(96, 96, 96, 0.2);
     align-items: center;
     justify-content: center;
 }
 
-.exercises-list-container:hover{
+.exercises-list-container:hover {
     box-shadow: inset 0 0 65px 10px rgba(96, 96, 96, 0.45), 0 0 35px 5px rgba(99, 139, 205, 0.5);
 }
 
-.exercises-list-container a{
+.exercises-list-container a {
     position: relative;
     display: flex;
     align-items: center;
@@ -3617,7 +3675,7 @@ main.sign-up-mode .carousel {
     cursor: url('../images/pencilCursor.png'), auto;
 }
 
-.exercises-list-container span{
+.exercises-list-container span {
     position: absolute;
     top: 0;
     left: 0;
@@ -3629,7 +3687,7 @@ main.sign-up-mode .carousel {
     opacity: 0;
 }
 
-.animation-container-exercise{
+.animation-container-exercise {
     position: relative;
     width: 100%;
     height: 70%;
@@ -3638,7 +3696,7 @@ main.sign-up-mode .carousel {
     cursor: url('../images/pencilCursor.png'), auto;
 }
 
-.confettie-container-exercise{
+.confettie-container-exercise {
     position: sticky;
     bottom: 0;
     transform: translateX(100%);
@@ -3651,7 +3709,7 @@ main.sign-up-mode .carousel {
     pointer-events: none;
 }
 
-.exercises-element-container{
+.exercises-element-container {
     box-sizing: border-box;
     position: relative;
     display: block;
@@ -3665,19 +3723,19 @@ main.sign-up-mode .carousel {
     cursor: url('../images/pencilCursor.png'), auto;
 }
 
-.exercises-element-container::-webkit-scrollbar{
+.exercises-element-container::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
 
-.exercise-element-question-container{
+.exercise-element-question-container {
     position: relative;
     width: 100%;
     height: clamp(250px, 35%, 350px);
     display: block;
 }
 
-.exercise-header-and-question{
+.exercise-header-and-question {
     position: relative;
     display: flex;
     align-items: center;
@@ -3685,21 +3743,21 @@ main.sign-up-mode .carousel {
     height: 25%;
 }
 
-.exercise-header-and-question span{
+.exercise-header-and-question span {
     font-family: 'CustomFont1', sans-serif;
     font-size: clamp(0.8rem, 4vh, 2rem);
     margin-right: 10px;
     color: #4d4d4d;
 }
 
-.exercise-header-and-question h3{
+.exercise-header-and-question h3 {
     font-family: 'CustomFont1', sans-serif;
     font-size: clamp(0.8rem, 3vh, 1.8rem);
     margin-right: 10px;
     color: #4d4d4d;
 }
 
-.exercise-answer-inputs-grid{
+.exercise-answer-inputs-grid {
     box-sizing: border-box;
     padding-left: 2rem;
     width: 40%;
@@ -3709,7 +3767,7 @@ main.sign-up-mode .carousel {
     grid-auto-rows: minmax(100%, auto);
 }
 
-.exercise-answer-button{
+.exercise-answer-button {
     width: 85%;
     height: 100%;
     background-color: #dedede;
@@ -3723,12 +3781,12 @@ main.sign-up-mode .carousel {
     transition: background-color 0.2s ease-in-out;
 }
 
-.exercise-answer-button:hover{
+.exercise-answer-button:hover {
     cursor: url('../images/pencilCursor.png'), auto;
     background-color: rgba(92, 153, 221, 0.3);
 }
 
-.submit-and-score-container{
+.submit-and-score-container {
     padding-left: 2rem;
     display: flex;
     align-items: center;
@@ -3736,7 +3794,7 @@ main.sign-up-mode .carousel {
     height: 50px;
 }
 
-.submit-and-score-container button{
+.submit-and-score-container button {
     font-family: 'montreal', sans-serif;
     font-size: clamp(1rem, 2.5vh, 1.5rem);
     color: #4d4d4d;
@@ -3747,12 +3805,12 @@ main.sign-up-mode .carousel {
     transition: all 0.3s ease-in-out;
 }
 
-.submit-and-score-container button:hover{
+.submit-and-score-container button:hover {
     cursor: url('../images/pencilCursor.png'), auto;
     box-shadow: inset 0 0 40px 5px rgba(99, 139, 205, 0.66), 0 0 20px 2px rgba(32, 66, 136, 0.3);
 }
 
-.submit-and-score-container span{
+.submit-and-score-container span {
     box-sizing: border-box;
     position: relative;
     width: 15%;
