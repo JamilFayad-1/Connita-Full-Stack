@@ -9,19 +9,19 @@
     <div id="left-section-nav-bar">
         <ul>
             <li th:if="${session.loggedInUser != null}">
-                <a th:href="@{/pageAccueilUtilisateur}">Feed</a>
+                <a th:href="@{/pageAccueilUtilisateur}">Home panel</a>
             </li>
             <li th:if="${session.loggedInUser != null}">
                 <a th:href="@{/pageMessagerie}">Messages</a>
             </li>
             <li th:if="${session.loggedInUser != null}">
-                <a th:href="@{/fyp}">For you</a>
+                <a th:href="@{/yourContent}">Feed</a>
             </li>
             <li th:unless="${session.loggedInUser != null}" style="cursor: pointer" id="shakeyList">
                 <a class="btnSignup">For you</a>
             </li>
             <li><a th:href="@{/pageCountries}">Countries</a></li>
-            <li><a th:href="@{/pageTravel}">Travel</a></li>
+            <li><a th:href="@{/pageForum}">Forum</a></li>
             <li><a th:href="@{/pageExercises}">Exercises</a></li>
             <li><a th:href="@{/challenges}">Challenges</a></li>
         </ul>

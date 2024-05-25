@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 
@@ -15,7 +18,8 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section" style="overflow-y: hidden; display: flex; box-shadow: 0 -4px 37px 11px rgba(221,228,240,1);">
+    <div id="middle-section"
+         style="overflow-y: hidden; display: flex; box-shadow: 0 -4px 37px 11px rgba(221,228,240,1);">
         <div class="middle-section-friend-inbox-container">
             <div class="middle-section-friend-inbox-title">
                 <h1 class="inbox-title">Inbox</h1>
@@ -32,7 +36,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="add-more-friends-inbox-button" id="addMoreFriendsBtn">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
             </div>
             <div class="middle-section-friend-inbox-overlay"></div>
         </div>
@@ -47,9 +53,12 @@
                 </div>
             </div>
             <div class="middle-section-messagerie-container" id="messagerie-container">
-
+                <div class="middle-section-messagerie-idle">
+                    <div id="messagerieIdleAnim"></div>
+                </div>
             </div>
-            <div class="middle-section-messagerie-input-container" id="middle-section-messagerie-hidden" style="display:none;">
+            <div class="middle-section-messagerie-input-container" id="middle-section-messagerie-hidden"
+                 style="display:none;">
                 <div class="chat-type-area">
                     <input type="text" id="message-typed" class="message-input" placeholder="Type your message...">
 
@@ -64,20 +73,22 @@
     <!-- Right section -->
     <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
 <script th:inline="javascript">
     function scrollToBottom() {
         const container = document.querySelector('.middle-section-messagerie-container');
         container.scrollTop = container.scrollHeight;
     }
+
     /*<![CDATA[*/
-    document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function () {
         let currentAmiId = null;
         const main = document.getElementById("mainInbox");
         const id_membre = main.getAttribute("data-logged-in-user-id");
         const amis = document.querySelectorAll('.friend-inbox-element');
 
-        amis.forEach(ami =>{
-            ami.addEventListener('click', function(e){
+        amis.forEach(ami => {
+            ami.addEventListener('click', function (e) {
                 e.preventDefault();
                 const id_ami = this.getAttribute('data-ami-id');
                 if (currentAmiId === id_ami) return;
@@ -112,7 +123,7 @@
                         .then(data => {
 
                             $.each(data, function (index, message) {
-                                if(!listMessages.some(msg => msg.id_message === message.id_message) || listMessages.length == 0){
+                                if (!listMessages.some(msg => msg.id_message === message.id_message) || listMessages.length == 0) {
                                     listMessages.push(message);
                                     const messageP = document.createElement('p');
                                     if (message.membre.idMembre == id_membre) {
@@ -140,8 +151,10 @@
                         });
 
                 }
+
                 pullConversation();
-                function pullNewMessages(){
+
+                function pullNewMessages() {
                     const messageP = document.createElement('p');
                     fetch(`/conversation/${id_ami}`,
                         {
@@ -158,7 +171,7 @@
                         })
                         .then(data => {
                             $.each(data, function (index, message2) {
-                                if(!listMessages.some(msg => msg.id_message === message2.id_message) || listMessages.length == 0){
+                                if (!listMessages.some(msg => msg.id_message === message2.id_message) || listMessages.length == 0) {
                                     console.log(message2.id_message)
                                     listMessages.push(message2);
                                     if (message2.membre.idMembre == id_membre) {
@@ -181,6 +194,7 @@
                     });
 
                 }
+
                 pullNewMessages();
 
 
@@ -192,10 +206,10 @@
     const messagerieContainer = document.getElementById('messagerie-container')
 
     //function pour lire le bouton 'Send' et afficher le message utilisateur
-    function sendMessage(){
+    function sendMessage() {
         //Je lis ce que l'utilisateur a écrit
         let textRead = inputBox.value;
-        if (textRead.trim() === ''){
+        if (textRead.trim() === '') {
             alert('Le message ne peut etre vide');
             return;
         }
@@ -214,16 +228,17 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: textRead })
+            body: JSON.stringify({message: textRead})
         })
         //Je réinitialise le input element
         inputBox.value = "";
     }
+
     // Event listener pour le clique sur le bouton 'Send'
     sendButton.addEventListener("click", sendMessage);
 
     // Event listener pour la touche enter
-    inputBox.addEventListener("keypress", function(event) {
+    inputBox.addEventListener("keypress", function (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             sendMessage();
@@ -231,7 +246,18 @@
 
     });
 
+    const animationIdleMessagerie = bodymovin.loadAnimation({
+        container: document.getElementById('messagerieIdleAnim'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'gif/messagerieIdleAnim.json'
+    });
 
+    const addMoreBtn = document.getElementById('addMoreFriendsBtn');
+    addMoreBtn.addEventListener('click', function(event){
+        window.location.href = "pageAjoutUtilisateur";
+    })
 
     /*]]>*/
 </script>
