@@ -75,7 +75,7 @@ header {
     width: 15%;
     min-width: 60px;
     margin-top: 4vh;
-    margin-left: 12vh;
+    margin-left: 4vw;
     height: auto;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
@@ -2753,6 +2753,32 @@ main.sign-up-mode .carousel {
     text-overflow: ellipsis;
 }
 
+.add-more-friends-inbox-button{
+    width: 60%;
+    height: 6%;
+    border-radius: 0.8rem;
+    margin: 4% auto;
+    background-color: #dddddd;
+    box-shadow: inset 0 0 5px rgba(30, 30, 30, 0.5), 0 5px 10px 2px rgba(45, 45, 45, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+}
+
+.add-more-friends-inbox-button:hover{
+    background-color: #f6f6f6;
+    cursor: pointer;
+}
+
+.add-more-friends-inbox-button i{
+    transform: scale(1.3);
+}
+
+.add-more-friends-inbox-button:hover i{
+    color: #5c99dd;
+}
+
 .middle-section-messagerie {
     position: relative;
     display: block;
@@ -2827,6 +2853,13 @@ main.sign-up-mode .carousel {
     flex-direction: column;
     padding: 1rem;
     overflow-y: scroll;
+}
+
+.middle-section-messagerie-idle{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .middle-section-messagerie-container p {
@@ -3177,6 +3210,7 @@ main.sign-up-mode .carousel {
     border-radius: 0.8rem;
     margin: 0 auto;
     background-color: #f1f1f1;
+    box-shadow: 0 35px 40px 2px rgba(45, 45, 45, 0.4);
 }
 
 .post-element-empty-text{
@@ -3207,7 +3241,7 @@ main.sign-up-mode .carousel {
     position: relative;
     width: 40%;
     height: 100%;
-    transform: translateX(140%) translateY(-45%);
+    transform: translateX(155%) translateY(-55%);
 }
 
 .work-empty-animation-container{
