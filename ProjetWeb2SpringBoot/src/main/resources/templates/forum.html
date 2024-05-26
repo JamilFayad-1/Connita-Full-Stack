@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Languages</title>
 </head>
 <body>
@@ -18,7 +20,32 @@
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
     <div id="middle-section">
+        <div class="post-forum-overlay-wrapper" style="display: none">
 
+        </div>
+        <div class="middle-section-forum-header-wrapper">
+            <div class="search-forum-wrapper">
+                <h1>Community</h1>
+                <form>
+                    <input type="text" id="search-input-forum" name="search" placeholder="Search for Cultural or Language Topics..">
+                    <button type="button" class="search-button" >
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="forum-info-wrapper">
+            <div class="forum-info-element">
+                <div class="forum-info-element-text">
+                    <h2>CONNITA</h2>
+                    <h4>Engage in Cultural and Linguistic Discussions</h4>
+                    <button type="button" onclick="">Post a topic</button>
+                </div>
+                <div class="forum-info-element-image">
+                    <img src="images/forumInspireImage.png">
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"

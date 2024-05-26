@@ -3863,3 +3863,155 @@ main.sign-up-mode .carousel {
     background-color: white;
     opacity: 0;
 }
+
+/* Page Forum */
+
+.middle-section-forum-header-wrapper {
+    position: relative;
+    width: 100%;
+    height: 26%;
+    padding-top: 3%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.search-forum-wrapper{
+    display: block;
+    width: 80%;
+    height: 100%;
+}
+
+.search-forum-wrapper h1{
+    font-family: 'CustomFont1', sans-serif;
+    font-size: clamp(2rem, 5vw, 5rem) !important;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.search-forum-wrapper form{
+    width: 80% !important;
+    max-width: 100% !important;
+    height: clamp(0.6rem, 5vh, 2rem);
+    border-radius: 1rem;
+    font-family: 'montreal', sans-serif;
+    border: 2px solid #2a2a2a;
+    padding: 0 15px;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start !important;
+}
+
+.search-forum-wrapper input{
+    position: relative;
+    width: 95%;
+    border: none;
+    background-color: transparent;
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.6rem, 1vw, 1rem);
+}
+
+.search-forum-wrapper input:focus{
+    outline: none;
+}
+
+.search-forum-wrapper button{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+}
+
+.search-forum-wrapper button:hover{
+    color: #5c99dd;
+    cursor: pointer
+}
+
+.forum-info-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forum-info-element{
+    box-sizing: border-box;
+    width: 80%;
+    height: 65%;
+    border-radius: 0.8rem;
+    border: 3px solid #4d4d4d;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+    padding: 0 2vw;
+}
+
+.forum-info-element-text {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    display: block;
+}
+
+.forum-info-element-text h2 {
+    font-family: 'CustomFont1', sans-serif;
+    font-size: clamp(1rem, 3vw, 2.4rem);
+    color: #2d2d2d;
+    margin-top: 3%;
+    margin-bottom: 0;
+}
+
+.forum-info-element-text h4 {
+    font-family: 'CustomFont1', sans-serif;
+    font-size: clamp(0.6rem, 1.8vw, 1.2rem);
+    color: #4d4d4d;
+    margin-top: 0;
+    margin-bottom: 10%;
+}
+
+.forum-info-element-text button {
+    width: 40%;
+    height: 15%;
+    border-radius: 1.2rem;
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.6rem, 1.2vw, 1rem);
+    color: #FAFAFA;
+    background: #2d2d2d;
+    background-size: 200%;
+}
+
+.forum-info-element-text button:hover {
+    cursor: pointer;
+    mask-image: linear-gradient(-75deg, #2d2d2d 30%, rgba(45, 45, 45, 0.7) 50%, #2d2d2d 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 2s infinite;
+}
+
+@-webkit-keyframes shine{
+    from {
+        -webkit-mask-position: 150%;
+    }
+
+    to {
+        -webkit-mask-position: -50%;
+    }
+}
+
+.forum-info-element-image {
+    flex-grow: 1;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.forum-info-element-image img{
+    width: 75%;
+    height: auto;
+}

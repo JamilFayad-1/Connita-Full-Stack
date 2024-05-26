@@ -129,40 +129,6 @@ public class AppController {
         return "languages";
     }
 
-    @GetMapping("/pageForum")
-    public String getPageForum(Model model,
-                                HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        Membre MembreTrouver = (Membre) session.getAttribute("loggedInUser");
-        int idMembretrouver = MembreTrouver.getIdMembre();
-
-        List<Amitier> listeIdAmitier = amitierService.getAllAmitiers();
-
-        List<Integer> AmieActuelle = new ArrayList<>();
-
-        for (Amitier amitier : listeIdAmitier) {
-            if (amitier.getMembre().getIdMembre() == idMembretrouver) {
-                AmieActuelle.add(amitier.getAmie().getIdMembre());
-            }
-            if (amitier.getAmie().getIdMembre() == idMembretrouver) {
-                AmieActuelle.add(amitier.getMembre().getIdMembre());
-            }
-        }
-
-        List<Membre> listeUtilisateur = membreService.getAllUtilisateurs();
-        List<Membre> listeAmitier = new ArrayList<>();
-        for (Membre membre : listeUtilisateur) {
-            if (AmieActuelle.contains(membre.getIdMembre())) {
-                listeAmitier.add(membre);
-            }
-        }
-
-        model.addAttribute("listeAmitier", listeAmitier);
-
-        return "forum";
-    }
-
     @GetMapping("/pageExercises")
     public String getPageExercises(Model model,
                                    HttpServletRequest request) {
