@@ -19,16 +19,33 @@
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
     <!-- Middle section -->
-    <div id="middle-section">
-        <div class="post-forum-overlay-wrapper" style="display: none">
-
+    <div id="middle-section" style="position: relative">
+        <div class="post-forum-overlay-wrapper" id="postTopicOverlay">
+            <div class="post-forum-overlay-card">
+                <div class="post-forum-card-header">
+                    <h1>Topic</h1>
+                </div>
+                <div class="post-forum-form-container">
+                    <div class="form-group-title">
+                        <h3>Title</h3>
+                        <div id="forumTitle" contenteditable="true"></div>
+                    </div>
+                    <div class="form-group-description">
+                        <h3>Description</h3>
+                        <div id="forumContent" contenteditable="true"></div>
+                    </div>
+                </div>
+                <div class="post-forum-animation" id="forumPostAnimation"></div>
+                <button class="forum-submit-btn">Submit</button>
+            </div>
         </div>
         <div class="middle-section-forum-header-wrapper">
             <div class="search-forum-wrapper">
                 <h1>Community</h1>
                 <form>
-                    <input type="text" id="search-input-forum" name="search" placeholder="Search for Cultural or Language Topics..">
-                    <button type="button" class="search-button" >
+                    <input type="text" id="search-input-forum" name="search"
+                           placeholder="Search for Cultural or Language Topics..">
+                    <button type="button" class="search-button">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -39,18 +56,208 @@
                 <div class="forum-info-element-text">
                     <h2>CONNITA</h2>
                     <h4>Engage in Cultural and Linguistic Discussions</h4>
-                    <button type="button" onclick="">Post a topic</button>
+                    <button type="button" onclick="openOverlay()" id="postTopicBtn">Post a topic</button>
                 </div>
                 <div class="forum-info-element-image">
                     <img src="images/forumInspireImage.png">
                 </div>
             </div>
         </div>
+        <div class="forum-elements-container">
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>What are some effective methods for improving my spoken spanish skills? I'm struggling with
+                        pronunciation and fluency</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>In Vietnam, what are some common customs or etiquette rules that I should be aware of when
+                        visiting or interacting with locals?</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>What's your favorite traditional dish from Italy?</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>Can someone explain the meaning and usage of these slang terms or idioms in Montreal? How can I
+                        use them naturally in conversation?</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>What are must-see places in Rome?</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+            <div class="forum-elements">
+                <div class="forum-element-question-container">
+                    <h2>What's the best way to practice speaking spanish?</h2>
+                    <p>By Jamil</p>
+                </div>
+                <div class="forum-element-replies-container">
+                    <p>6 replies</p>
+                </div>
+                <div class="forum-element-credential-date-container">
+                    <h3>@gwuliano</h3>
+                    <p>September 22</p>
+                </div>
+                <div class="forum-element-user-photo-container">
+                    <div class="forum-element-user-photo-wrapper">
+                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="forum-footer">Connita™</div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"
          th:replace="rightFriendsList :: rightFriendsListFragment"></div>
 </main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
+<script th:inline="javascript">
+    const topicAnimation = bodymovin.loadAnimation({
+        container: document.getElementById('forumPostAnimation'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'gif/TopicPostAnim.json'
+    });
 
+    const PostTopicBtn = document.getElementById('postTopicBtn');
+    const PostOverlay = document.getElementById('postTopicOverlay');
+    const postContainer = document.getElementById('middle-section');
+
+    PostTopicBtn.addEventListener('click', function () {
+        gsap.to(postContainer, {
+            scrollTop: 0,
+            duration: 0.5,
+            ease: "power2.out"
+        })
+    })
+
+    function openOverlay() {
+        PostOverlay.style.display = 'flex';
+        postContainer.style.overflowY = "hidden";
+    }
+
+    function closeOverlay() {
+        PostOverlay.style.display = 'none';
+        postContainer.style.overflowY = "scroll";
+    }
+
+    $(document).ready(function() {
+        const maxTitleLength = 100;
+        const maxContentLength = 500;
+
+        function enforceMaxLength(element, maxLength) {
+            element.on('input', function() {
+                if (element.text().length > maxLength) {
+                    element.text(element.text().substring(0, maxLength));
+                    // Move the cursor to the end after trimming
+                    var range = document.createRange();
+                    var sel = window.getSelection();
+                    range.setStart(element[0].childNodes[0], maxLength);
+                    range.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            });
+        }
+
+        enforceMaxLength($("#forumTitle"), maxTitleLength);
+        enforceMaxLength($("#forumContent"), maxContentLength);
+
+        $(".submit-btn").on("click", function() {
+            var forumTitle = $("#forumTitle").text();
+            var forumContent = $("#forumContent").text();
+
+            $.ajax({
+                type: "GET",
+                url: "/saveNewForum",
+                data: {
+                    forumTitle: forumTitle,
+                    forumContent: forumContent
+                },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

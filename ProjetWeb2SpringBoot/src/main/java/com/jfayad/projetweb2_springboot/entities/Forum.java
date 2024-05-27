@@ -26,6 +26,9 @@ public class Forum {
     @Column(name = "forum_content" ,columnDefinition = "LONGTEXT", nullable = false)
     private String forumContent;
 
+    @Column(name = "forum_replies_number", nullable = false)
+    private Integer forumRepliesNumber;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "forum_date" ,nullable = false)
     private LocalDateTime forumDatePosted;
@@ -44,6 +47,7 @@ public class Forum {
         this.membre = membre;
         this.forumTitle = forumTitle;
         this.forumContent = forumContent;
+        this.forumRepliesNumber = 0;
     }
 
     public Membre getMembre() {
