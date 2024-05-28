@@ -7,7 +7,7 @@
 <body th:fragment="menuFragment">
 <div id="logo-container">
     <a th:href="${session.loggedInUser != null ? '/pageAccueilUtilisateur' : '/index'}">
-        <img src="images/My first design.png" alt="Company logo"/>
+        <img src="/images/My first design.png" alt="Company logo"/>
     </a>
 </div>
 <nav id="horizontal-nav">
@@ -33,7 +33,7 @@
             </div>
         </li>
         <li id="dropdown-toggle2">
-            <a><img id="profilePicMenu" th:src="${session.loggedInUser.photoProfilPath}" alt="test-account"/></a>
+            <a><img id="profilePicMenu" th:src="'/' + ${session.loggedInUser.photoProfilPath}" alt="test-account"/></a>
             <div class="dropdown-menu2" id="dropdownMenu2">
                 <a th:href="@{/pageMessagerie}" class="dropdown-link">Messages</a>
                 <a th:href="@{/pageUtilisateurReglage}" class="dropdown-link">Settings</a>

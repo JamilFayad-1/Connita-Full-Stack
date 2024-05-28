@@ -1,12 +1,12 @@
 package com.jfayad.projetweb2_springboot.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "forum")
@@ -14,17 +14,21 @@ public class Forum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("idForum")
     private Integer idForum;
 
     @ManyToOne
     @JoinColumn(name = "membre_id", nullable = false)
     private Membre membre;
 
-    @Column(name = "forum_title", length = 255, nullable = false)
+    @Column(name = "forum_title", length = 150, nullable = false)
     private String forumTitle;
 
     @Column(name = "forum_content" ,columnDefinition = "LONGTEXT", nullable = false)
     private String forumContent;
+
+    @Column(name = "forum_replies_number", nullable = false)
+    private Integer forumRepliesNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "forum_date" ,nullable = false)
@@ -44,6 +48,11 @@ public class Forum {
         this.membre = membre;
         this.forumTitle = forumTitle;
         this.forumContent = forumContent;
+        this.forumRepliesNumber = 0;
+    }
+
+    public Integer getIdForum() {
+        return idForum;
     }
 
     public Membre getMembre() {
@@ -76,6 +85,14 @@ public class Forum {
 
     public void setForumDatePosted(LocalDateTime forumDatePosted) {
         this.forumDatePosted = forumDatePosted;
+    }
+
+    public Integer getForumRepliesNumber() {
+        return forumRepliesNumber;
+    }
+
+    public void setForumRepliesNumber(Integer forumRepliesNumber) {
+        this.forumRepliesNumber = forumRepliesNumber;
     }
 
     @Override
