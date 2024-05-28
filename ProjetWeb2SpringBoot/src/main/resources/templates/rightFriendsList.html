@@ -16,7 +16,7 @@
                 <input type="hidden" class="friend-id" th:value="${amie.idMembre}" />
                 <a href="">
                     <div class="horizontal-tab-container-friends">
-                        <img th:src="${amie.photoProfilPath}" alt="test-account"/>
+                        <img th:src="'/' + ${amie.photoProfilPath}" alt="test-account"/>
                         <h3 th:text="${amie.prenom + ' ' + amie.nom}"></h3>
                     </div>
                 </a>

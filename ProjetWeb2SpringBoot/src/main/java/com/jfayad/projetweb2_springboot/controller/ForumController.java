@@ -9,13 +9,16 @@ import com.jfayad.projetweb2_springboot.services.MembreService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -68,14 +71,16 @@ public class ForumController {
     }
 
     @GetMapping("/getAllForumPosts")
-    public List<Forum> getAllForumPostsMapping(){
+    @ResponseBody
+    public List<Forum> getAllForumPostsMapping() {
         return getAllForumPosts();
     }
 
     @GetMapping("/saveNewForum")
-    public String saveForum(@RequestParam("forumTitle") String forumTitle,
-                            @RequestParam("forumContent") String forumContent,
-                            HttpServletRequest request){
+    @ResponseBody
+    public ResponseEntity<String> saveForum(@RequestParam("forumTitle") String forumTitle,
+                                            @RequestParam("forumContent") String forumContent,
+                                            HttpServletRequest request){
 
         HttpSession session = request.getSession();
         Membre membreTrouver = (Membre) session.getAttribute("loggedInUser");
@@ -83,13 +88,15 @@ public class ForumController {
         if(membreTrouver != null){
             Forum nvxForum = new Forum(membreTrouver, forumTitle, forumContent);
             forumService.saveForum(nvxForum);
-            return "Forum saved succusfully";
+            return ResponseEntity.ok("Forum saved successfully");
         }
-        return "Forum error";
+        return ResponseEntity.status(400).body("Forum error");
     }
 
     public List<Forum> getAllForumPosts(){
-        return forumService.findAllForumPosts();
+        List<Forum> forumList = forumService.findAllForumPosts();
+        forumList.sort(Comparator.comparing(Forum::getForumDatePosted).reversed());
+        return forumList;
     }
 
 }

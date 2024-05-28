@@ -24,4 +24,8 @@ public class ForumService {
     public Forum saveForum(Forum post) {
         return forumRepository.save(post);
     }
+
+    public Forum findForumById(int id) {
+        return forumRepository.findByIdForum(id);
+    }
 }
