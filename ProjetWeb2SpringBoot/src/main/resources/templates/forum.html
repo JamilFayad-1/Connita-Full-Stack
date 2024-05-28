@@ -13,8 +13,6 @@
 
 <header th:include="menu :: menuFragment"></header>
 
-<div th:replace="authForm.html :: authForm"></div>
-
 <main>
     <!-- Left section -->
     <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
@@ -22,6 +20,7 @@
     <div id="middle-section" style="position: relative">
         <div class="post-forum-overlay-wrapper" id="postTopicOverlay">
             <div class="post-forum-overlay-card">
+                <i class="fa-solid fa-xmark" onclick="closeOverlay()"></i>
                 <div class="post-forum-card-header">
                     <h1>Topic</h1>
                 </div>
@@ -36,16 +35,16 @@
                     </div>
                 </div>
                 <div class="post-forum-animation" id="forumPostAnimation"></div>
-                <button class="forum-submit-btn">Submit</button>
+                <div class="forum-submit-btn" id="buttonAnimTopic"></div>
             </div>
         </div>
         <div class="middle-section-forum-header-wrapper">
             <div class="search-forum-wrapper">
                 <h1>Community</h1>
-                <form>
+                <form onsubmit="return false;">
                     <input type="text" id="search-input-forum" name="search"
                            placeholder="Search for Cultural or Language Topics..">
-                    <button type="button" class="search-button">
+                    <button type="button" class="search-button" onclick="searchForumTopicsByName()">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -63,118 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="forum-elements-container">
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>What are some effective methods for improving my spoken spanish skills? I'm struggling with
-                        pronunciation and fluency</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>In Vietnam, what are some common customs or etiquette rules that I should be aware of when
-                        visiting or interacting with locals?</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>What's your favorite traditional dish from Italy?</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>Can someone explain the meaning and usage of these slang terms or idioms in Montreal? How can I
-                        use them naturally in conversation?</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>What are must-see places in Rome?</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
-            <div class="forum-elements">
-                <div class="forum-element-question-container">
-                    <h2>What's the best way to practice speaking spanish?</h2>
-                    <p>By Jamil</p>
-                </div>
-                <div class="forum-element-replies-container">
-                    <p>6 replies</p>
-                </div>
-                <div class="forum-element-credential-date-container">
-                    <h3>@gwuliano</h3>
-                    <p>September 22</p>
-                </div>
-                <div class="forum-element-user-photo-container">
-                    <div class="forum-element-user-photo-wrapper">
-                        <img src="images/DistortedImage5.jpg" alt="user profile picture">
-                    </div>
-                </div>
-            </div>
+        <div class="forum-elements-container" id="forumTopicContainer">
         </div>
         <div class="forum-footer">Connita™</div>
     </div>
@@ -186,12 +74,89 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
 <script th:inline="javascript">
+
+    function formatForumDates() {
+        const dateElements = document.querySelectorAll('.forum-date');
+        const currentYear = new Date().getFullYear();
+
+        dateElements.forEach(element => {
+            const dateString = element.getAttribute('data-date');
+            const date = new Date(dateString);
+            const options = {day: '2-digit', month: 'long'};
+
+            if (date.getFullYear() < currentYear) {
+                options.year = 'numeric';
+            }
+
+            const formattedDate = date.toLocaleDateString('en-US', options);
+
+            element.textContent = formattedDate;
+        });
+    }
+
+    const searchInput = document.getElementById('search-input-forum');
+
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            searchForumTopicsByName();
+        }
+    });
+
+    function searchForumTopicsByName() {
+        const searchInputValue = searchInput.value.trim().toLowerCase();
+
+        $.ajax({
+            type: "GET",
+            url: "/getAllForumPosts",
+            success: function (data) {
+                $("#forumTopicContainer").empty();
+
+                data.forEach(function (forumTopic) {
+                    if (forumTopic.forumTitle.toLowerCase().includes(searchInputValue)) {
+                        const forumElement = '<div class="forum-elements" onclick="viewForumTopic(' + forumTopic.idForum + ')">' +
+                            '<div class="forum-element-question-container">' +
+                            '<h2>' + forumTopic.forumTitle + '</h2>' +
+                            '<p>By ' + forumTopic.membre.prenom + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-replies-container">' +
+                            '<p>' + forumTopic.forumRepliesNumber + (forumTopic.forumRepliesNumber === 1 ? ' reply' : ' replies') + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-credential-date-container">' +
+                            '<h3>@' + forumTopic.membre.username + '</h3>' +
+                            '<p class="forum-date" data-date="' + forumTopic.forumDatePosted + '"></p>' +
+                            '</div>' +
+                            '<div class="forum-element-user-photo-container">' +
+                            '<div class="forum-element-user-photo-wrapper">' +
+                            '<img src="' + forumTopic.membre.photoProfilPath + '" alt="user profile picture">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        $("#forumTopicContainer").append(forumElement);
+                    }
+                });
+                formatForumDates();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error updating forum topics: " + error);
+            }
+        });
+    }
+
     const topicAnimation = bodymovin.loadAnimation({
         container: document.getElementById('forumPostAnimation'),
         renderer: 'svg',
         loop: false,
-        autoplay: true,
+        autoplay: false,
         path: 'gif/TopicPostAnim.json'
+    });
+
+    const submitTopicButtonAnim = bodymovin.loadAnimation({
+        container: document.getElementById('buttonAnimTopic'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/forumTopicPostBtnAnim.json'
     });
 
     const PostTopicBtn = document.getElementById('postTopicBtn');
@@ -201,14 +166,26 @@
     PostTopicBtn.addEventListener('click', function () {
         gsap.to(postContainer, {
             scrollTop: 0,
-            duration: 0.5,
+            duration: 0,
             ease: "power2.out"
         })
     })
 
+    const forumTitleInput = $("#forumTitle");
+    const forumContentInput = $("#forumContent");
+
     function openOverlay() {
-        PostOverlay.style.display = 'flex';
-        postContainer.style.overflowY = "hidden";
+        forumTitleInput.text("");
+        forumContentInput.text("");
+        gsap.to(PostOverlay, {
+            opacity: 1,
+            duration: 1,
+            display: 'flex'
+        })
+        gsap.to(postContainer, {
+            overflowY: 'hidden'
+        })
+        topicAnimation.playSegments([1, 75], true);
     }
 
     function closeOverlay() {
@@ -216,17 +193,21 @@
         postContainer.style.overflowY = "scroll";
     }
 
-    $(document).ready(function() {
-        const maxTitleLength = 100;
-        const maxContentLength = 500;
+    function viewForumTopic(forumId) {
+        window.location.href = "/pageForumActive/" + forumId;
+    }
+
+    $(document).ready(function () {
+        const maxTitleLength = 140;
+        const maxContentLength = 1000;
 
         function enforceMaxLength(element, maxLength) {
-            element.on('input', function() {
+            element.on('input', function () {
                 if (element.text().length > maxLength) {
                     element.text(element.text().substring(0, maxLength));
                     // Move the cursor to the end after trimming
-                    var range = document.createRange();
-                    var sel = window.getSelection();
+                    const range = document.createRange();
+                    const sel = window.getSelection();
                     range.setStart(element[0].childNodes[0], maxLength);
                     range.collapse(true);
                     sel.removeAllRanges();
@@ -238,9 +219,9 @@
         enforceMaxLength($("#forumTitle"), maxTitleLength);
         enforceMaxLength($("#forumContent"), maxContentLength);
 
-        $(".submit-btn").on("click", function() {
-            var forumTitle = $("#forumTitle").text();
-            var forumContent = $("#forumContent").text();
+        $(".forum-submit-btn").on("click", function () {
+            const forumTitle = forumTitleInput.text();
+            const forumContent = forumContentInput.text();
 
             $.ajax({
                 type: "GET",
@@ -249,14 +230,63 @@
                     forumTitle: forumTitle,
                     forumContent: forumContent
                 },
-                success: function(response) {
-                    alert(response);
+                success: function (response) {
+                    submitTopicButtonAnim.playSegments([1, 300], true);
+                    updateForumTopics();
+                    setTimeout(() => {
+                        gsap.to(PostOverlay, {
+                            opacity: 0,
+                            duration: 1,
+                            onComplete: () => {
+                                closeOverlay()
+                            }
+                        });
+                    }, 5000);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     alert("Error: " + error);
                 }
             });
         });
+
+        function updateForumTopics() {
+            $.ajax({
+                type: "GET",
+                url: "/getAllForumPosts",
+                success: function (data) {
+                    $("#forumTopicContainer").empty();
+
+                    data.forEach(function (forumTopic) {
+                        const forumElement = '<div class="forum-elements" onclick="viewForumTopic(' + forumTopic.idForum + ')">' +
+                            '<div class="forum-element-question-container">' +
+                            '<h2>' + forumTopic.forumTitle + '</h2>' +
+                            '<p>By ' + forumTopic.membre.prenom + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-replies-container">' +
+                            '<p>' + forumTopic.forumRepliesNumber + (forumTopic.forumRepliesNumber === 1 ? ' reply' : ' replies') + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-credential-date-container">' +
+                            '<h3>@' + forumTopic.membre.username + '</h3>' +
+                            '<p class="forum-date" data-date="' + forumTopic.forumDatePosted + '"></p>' +
+                            '</div>' +
+                            '<div class="forum-element-user-photo-container">' +
+                            '<div class="forum-element-user-photo-wrapper">' +
+                            '<img src="' + forumTopic.membre.photoProfilPath + '" alt="user profile picture">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        $("#forumTopicContainer").append(forumElement);
+                    });
+                    formatForumDates();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error updating forum topics: " + error);
+                }
+            });
+        }
+
+        updateForumTopics();
     });
 </script>
 </body>
