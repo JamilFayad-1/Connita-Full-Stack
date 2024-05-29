@@ -28,4 +28,9 @@ public class ForumService {
     public Forum findForumById(int id) {
         return forumRepository.findByIdForum(id);
     }
+
+    public void IncreaseReplyCount(int id) {
+        Forum forum = forumRepository.findByIdForum(id);
+        forum.setForumRepliesNumber(forum.getForumRepliesNumber() + 1);
+    }
 }

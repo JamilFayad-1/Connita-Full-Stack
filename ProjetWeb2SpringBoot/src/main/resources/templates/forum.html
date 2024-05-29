@@ -64,6 +64,13 @@
         </div>
         <div class="forum-elements-container" id="forumTopicContainer">
         </div>
+        <div class="forum-nothing-found-anim" id="ForumNothingFoundAnimId">
+            <div class="forum-nothing-found-anim-wrapper" id="NothingFoundAnimContainer">
+                <h3>Sorry, your search didn't return any results.</h3>
+                <p>Be the first to ask!</p>
+            </div>
+            <div class="animation-nothing-found-wrapper" id="NothingFoundAnim"></div>
+        </div>
         <div class="forum-footer">Connita™</div>
     </div>
     <!-- Right section -->
@@ -74,6 +81,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
 <script th:inline="javascript">
+
+    const postContainer = document.getElementById('middle-section');
 
     function formatForumDates() {
         const dateElements = document.querySelectorAll('.forum-date');
@@ -96,11 +105,13 @@
 
     const searchInput = document.getElementById('search-input-forum');
 
-    searchInput.addEventListener('keydown', function(event) {
+    searchInput.addEventListener('keydown', function (event) {
         if (event.key === "Enter") {
             searchForumTopicsByName();
         }
     });
+
+    const forumTopicContainer = $("#forumTopicContainer");
 
     function searchForumTopicsByName() {
         const searchInputValue = searchInput.value.trim().toLowerCase();
@@ -109,7 +120,7 @@
             type: "GET",
             url: "/getAllForumPosts",
             success: function (data) {
-                $("#forumTopicContainer").empty();
+                forumTopicContainer.empty();
 
                 data.forEach(function (forumTopic) {
                     if (forumTopic.forumTitle.toLowerCase().includes(searchInputValue)) {
@@ -132,16 +143,33 @@
                             '</div>' +
                             '</div>';
 
-                        $("#forumTopicContainer").append(forumElement);
+                        forumTopicContainer.append(forumElement);
                     }
                 });
                 formatForumDates();
+
+                const nothingFoundAnimContainer = document.getElementById('ForumNothingFoundAnimId');
+                if (forumTopicContainer.children().length === 0) {
+                    nothingFoundAnimContainer.style.visibility = "visible";
+                    postContainer.style.overflowY = "hidden";
+                } else {
+                    nothingFoundAnimContainer.style.visibility = "hidden";
+                    postContainer.style.overflowY = "scroll";
+                }
             },
             error: function (xhr, status, error) {
                 console.error("Error updating forum topics: " + error);
             }
         });
     }
+
+    const noTopicFoundAnimation = bodymovin.loadAnimation({
+        container: document.getElementById('NothingFoundAnim'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'gif/NoForumTopicsFoundAnim.json'
+    });
 
     const topicAnimation = bodymovin.loadAnimation({
         container: document.getElementById('forumPostAnimation'),
@@ -161,7 +189,6 @@
 
     const PostTopicBtn = document.getElementById('postTopicBtn');
     const PostOverlay = document.getElementById('postTopicOverlay');
-    const postContainer = document.getElementById('middle-section');
 
     PostTopicBtn.addEventListener('click', function () {
         gsap.to(postContainer, {

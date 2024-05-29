@@ -126,6 +126,7 @@ public class ForumReplyController {
 
         if (membreTrouver != null) {
             ForumReply nvxForumReply = new ForumReply(forumTrouver, membreTrouver, forumReply);
+            forumService.IncreaseReplyCount(forumTrouver.getIdForum());
             forumReplyService.saveForumReply(nvxForumReply);
             return ResponseEntity.ok("Forum saved successfully");
         }
