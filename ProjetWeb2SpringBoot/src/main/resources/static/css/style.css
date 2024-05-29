@@ -449,6 +449,12 @@ hr {
     align-items: center;
 }
 
+.horizontal-tab-container-friends-wrapper{
+    position: relative;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
 #right-section-friends-list {
     position: relative;
     top: 5%;
@@ -494,8 +500,9 @@ hr {
 }
 
 #friends-list img {
-    width: 2rem;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     margin-right: 0.5rem;
     border-radius: 50%;
 }
@@ -4025,6 +4032,56 @@ main.sign-up-mode .carousel {
     width: 100%;
     height: auto;
     display: inline-block;
+}
+
+.forum-nothing-found-anim{
+    position: relative;
+    width: 50%;
+    min-height: 50px;
+    height: 10%;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-40%);
+    background-color: #2d2d2d;
+    border-radius: 1rem;
+    margin: 0 auto;
+}
+
+.forum-nothing-found-anim-wrapper{
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    width: 300px;
+}
+
+.forum-nothing-found-anim-wrapper h3{
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.6rem, 1vw, 1rem) !important;
+    color: #FAFAFA !important;
+    padding: 0 !important;
+    margin: 0 5% 0 0;
+    font-weight: 400;
+}
+
+.forum-nothing-found-anim-wrapper p{
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.6rem, 1vw, 1rem) !important;
+    color: #e0e0e0 !important;
+    font-style: italic;
+    padding: 0 !important;
+    margin: 2% 0 0 0;
+}
+
+.animation-nothing-found-wrapper{
+    width: clamp(50px, 10vw, 120px);
+    height: 100%;
+}
+
+.forum-nothing-found-anim img{
+    min-width: 120px;
+    height: auto;
 }
 
 .forum-elements{

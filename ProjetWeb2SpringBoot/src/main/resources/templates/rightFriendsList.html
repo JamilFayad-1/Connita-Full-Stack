@@ -16,7 +16,9 @@
                 <input type="hidden" class="friend-id" th:value="${amie.idMembre}" />
                 <a href="">
                     <div class="horizontal-tab-container-friends">
-                        <img th:src="'/' + ${amie.photoProfilPath}" alt="test-account"/>
+                        <div class="horizontal-tab-container-friends-wrapper">
+                            <img th:src="'/' + ${amie.photoProfilPath}" alt="test-account"/>
+                        </div>
                         <h3 th:text="${amie.prenom + ' ' + amie.nom}"></h3>
                     </div>
                 </a>
@@ -41,6 +43,7 @@
         });
 
         friendsListElement.addEventListener('click', function () {
+            console.log("LOL HELLO");
             const friendIdInput = friendsListElement.querySelector('.friend-id');
             const idRecevant = friendIdInput.value;
             $.ajax({
