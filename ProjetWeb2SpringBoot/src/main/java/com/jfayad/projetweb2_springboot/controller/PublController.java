@@ -36,6 +36,7 @@ public class PublController {
     @PostMapping("/publier")
     public String publier(Model model, HttpServletRequest request, Publication publication, @RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
+            model.addAttribute("CurrentPage", "work");
             return "fyp";
         }
         else{
@@ -75,6 +76,7 @@ public class PublController {
             model.addAttribute("listeAmitier", listeAmitier);
             List<Publication> publications = publicationService.findAllByMembre(MembreTrouver);
             model.addAttribute("publications", publications);
+            model.addAttribute("CurrentPage", "work");
             return "fyp";
         }
     }

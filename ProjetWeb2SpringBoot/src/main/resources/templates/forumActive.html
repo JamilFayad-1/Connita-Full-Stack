@@ -73,7 +73,8 @@
         </div>
         <div class="forum-active-reply-container" id="forumReplyContainer">
         </div>
-        <div class="forum-footer">Connita™</div>
+        <div th:if="${forumReplies.isEmpty()}" style="display: none;" class="forum-footer">Connita™</div>
+        <div th:if="${!forumReplies.isEmpty()}" class="forum-footer">Connita™</div>
     </div>
     <!-- Right section -->
     <div id="right-section" th:if="${session.loggedInUser != null}"
@@ -147,6 +148,7 @@
     $(document).ready(function () {
         const maxReplyLength = 1000;
 
+        //Source: chatgpt :)
         function enforceMaxLength(element, maxLength) {
             element.on('input', function () {
                 if (element.text().length > maxLength) {
