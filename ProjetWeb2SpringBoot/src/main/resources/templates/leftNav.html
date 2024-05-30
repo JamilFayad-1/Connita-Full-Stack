@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nav bar</title>
+</head>
+<body>
+<div id="left-section" th:fragment="leftNavFragment">
+    <div id="left-section-nav-bar">
+        <ul>
+            <li th:if="${session.loggedInUser != null}">
+                <a th:href="@{/pageAccueilUtilisateur}">Home panel</a>
+            </li>
+            <li th:if="${session.loggedInUser != null}">
+                <a th:href="@{/pageMessagerie}">Messages</a>
+            </li>
+            <li th:if="${session.loggedInUser != null}">
+                <a th:href="@{/yourContent}">Feed</a>
+            </li>
+            <li th:unless="${session.loggedInUser != null}" style="cursor: pointer" id="shakeyList">
+                <a class="btnSignup">For you</a>
+            </li>
+            <li><a th:href="@{/pageCountries}">Countries</a></li>
+            <li><a th:href="@{/pageForum}">Forum</a></li>
+            <li><a th:href="@{/pageExercises}">Exercises</a></li>
+            <li><a th:href="@{/challenges}">Challenges</a></li>
+            <li th:if="${session.loggedInUser != null and session.loggedInUser.getPrivilege() == 1}">
+                <a href="http://localhost:4200/publications">Post moderation (Admin)</a>
+            </li>
+            <li th:if="${session.loggedInUser != null and session.loggedInUser.getPrivilege() == 1}">
+                <a href="http://localhost:4200/membres">User moderation (Admin)</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

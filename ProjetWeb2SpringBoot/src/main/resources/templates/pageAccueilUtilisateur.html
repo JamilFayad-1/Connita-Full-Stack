@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<div class="messagePopUps" id="messageNotification">
+    <p th:if="${messageConnReussite != null}" class="messageTextReussie" th:text="${messageConnReussite}"></p>
+</div>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section" style="overflow: hidden">
+        <div id="middle-section-recent-work">
+            <h1>Challenges</h1>
+            <div id="recent-work-container">
+                <div th:each="challenge : ${session.challenges}" id="recent-work-elements">
+                    <section id="recent-work-container-title">
+                        <img th:src="${challenge.challengeImageUrlIndex}" th:alt="${challenge.challengeName}"/>
+                        <h3 th:text="${challenge.challengeName}"></h3>
+                        <h2 th:text="${session.loggedInUser.idMembre}" style="display: none"></h2>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="middle-section-recent-posts">
+            <div class="post-headers">
+                <div class="post-header-title">
+                    <h1>Recent posts</h1>
+                </div>
+                <div class="posts-controller">
+                    <i class="fa-solid fa-arrow-left posts-controller-icon" id="controller-left"></i>
+                    <i class="fa-solid fa-arrow-right posts-controller-icon" id="controller-right"></i>
+                </div>
+            </div>
+            <div id="recent-post-container">
+                <div th:if="${session.publications.isEmpty()}" class="empty-post-list-element">
+                    <h2>It's empty around here</h2>
+                    <h3>Share your first thought to get it going.</h3>
+                </div>
+                <div th:each="publication : ${session.publications}" class="post-element">
+                    <img th:src="@{'/imageUtilisateur/' + ${publication.getImage()}}" alt="user post image" loading="lazy">
+                    <section class="hover-down-like-number">
+                        <p>
+                            <span th:text="${publication.getLikes()}"></span>
+                            <i class="fas fa-heart"></i>
+                        </p>
+                    </section>
+                </div>
+            </div>
+            <div class="overlayPostContainer"></div>
+        </div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:replace="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+
+    friendsListElements.forEach(function (friendsListElement) {
+        const friendName = friendsListElement.querySelector('h3').textContent;
+        const textDisplayed = friendsListElement.querySelector('h3');
+        friendsListElement.addEventListener('mouseover', function () {
+            textDisplayed.style.transition = "all 0.2s ease-in";
+            textDisplayed.textContent = "Poke him!";
+        });
+
+        friendsListElement.addEventListener('mouseout', function () {
+            textDisplayed.textContent = friendName;
+        });
+
+        friendsListElement.addEventListener('click', function () {
+            const friendIdInput = friendsListElement.querySelector('.friend-id');
+            const idRecevant = friendIdInput.value;
+            $.ajax({
+                url: '/envoyerCLeinOeil',
+                method: 'POST',
+                data: {idRecevant: idRecevant},
+                success: function (response) {
+                    console.log('Success:', response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', xhr.responseText);
+                }
+            });
+        });
+    });
+
+    const shareFirstThought = document.querySelector('.empty-post-list-element');
+    if(shareFirstThought){
+        shareFirstThought.addEventListener('click', function() {
+            window.location.href = "fyp";
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var challengeElements = document.querySelectorAll('#recent-work-elements');
+
+        challengeElements.forEach(function (challengeElement) {
+            challengeElement.addEventListener('click', function () {
+                var challengeName = challengeElement.querySelector('h3').textContent;
+                var userId = challengeElement.querySelector('h2').textContent;
+                var url = 'challengesJouer?challengeName=' + encodeURIComponent(challengeName);
+                createTableRow(userId, challengeName);
+                window.location.href = url;
+            });
+        });
+
+        const controllerRight = document.getElementById('controller-right');
+        const controllerLeft = document.getElementById('controller-left');
+        const postContainer = document.getElementById('recent-post-container');
+        const postElements = document.querySelectorAll('.post-element');
+
+        controllerLeft.addEventListener('mouseover', function() {
+            controllerLeft.style.color = "#5c99dd";
+        })
+
+        controllerLeft.addEventListener('mouseout', function() {
+            controllerLeft.style.color = "black";
+        })
+
+        controllerRight.addEventListener('mouseover', function() {
+            controllerRight.style.color = "#5c99dd";
+        })
+
+        controllerRight.addEventListener('mouseout', function() {
+            controllerRight.style.color = "black";
+        })
+
+        const firstPostElement = document.querySelector('.post-element');
+        const middleSectionContainer = document.getElementById('middle-section-recent-posts');
+        const firstPostRect = firstPostElement.getBoundingClientRect();
+        const middleSectionRect = middleSectionContainer.getBoundingClientRect();
+        const widthBetween = middleSectionRect.right - firstPostRect.left;
+        const nbrPages = Math.ceil(postElements.length / 3);
+        let currentPage = 1;
+        let isClickable = true;
+
+        controllerRight.addEventListener('click', function() {
+            if(isClickable && (currentPage < nbrPages)){
+                gsap.to(postContainer, {
+                    x: ('-=') + widthBetween,
+                    duration: 0.5,
+                })
+                currentPage++;
+                isClickable = false;
+                setTimeout(() => {
+                    isClickable = true;
+                }, 600);
+            }
+        })
+
+        controllerLeft.addEventListener('click', function() {
+            if(isClickable && (currentPage > 1)){
+                gsap.to(postContainer, {
+                    x: ('+=') + widthBetween,
+                    duration: 0.5,
+                })
+                currentPage--;
+                isClickable = false;
+                setTimeout(() => {
+                    isClickable = true;
+                }, 600);
+            }
+        })
+    });
+
+    function createTableRow(memberId, challengeName) {
+        $.ajax({
+            url: '/createChallengeRow',
+            method: 'GET',
+            data: {userId: memberId, challengeName: challengeName},
+            success: function (response) {
+                console.log('Row created successfully:', response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error creating row:', xhr.responseText);
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>

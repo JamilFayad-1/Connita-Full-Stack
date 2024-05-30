@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="main-box" th:fragment="authForm">
+    <div class="box">
+        <div class="close-form-join">
+            <div class="close-icon-container"></div>
+        </div>
+        <div class="inner-box">
+            <div class="forms-wrap">
+                <form th:action="@{/membre/connexion}" method="post" class="sign-in-form">
+                    <div class="logo">
+                        <img src="images/My first design.png" alt="connita" />
+                        <h4>Connita</h4>
+                    </div>
+
+                    <div class="heading">
+                        <h2>Welcome Back</h2>
+                        <h6>Not registered yet?</h6>
+                        <a style="font-family: 'montreal', sans-serif" href="#" class="toggle">Sign up</a>
+                    </div>
+
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input
+                                    type="text"
+                                    name="email"
+                                    minlength="4"
+                                    class="input-field"
+                                    autocomplete="off"
+                                    required
+                            />
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    minlength="4"
+                                    class="input-field input-password"
+                                    autocomplete="off"
+                                    required
+                            />
+                            <label>Password</label>
+                            <i class="fa-regular fa-eye-slash password-toggle"></i>
+                        </div>
+
+                        <input type="submit" value="Sign In" class="sign-btn" />
+
+                        <p class="text-form-footer">
+                            Forgotten your password or your login details?
+                            <a href="#">Get help</a> signing in
+                        </p>
+                    </div>
+                </form>
+
+                <form th:action="@{/membre/inscription}" method="post" class="sign-up-form" id="registrationForm">
+                    <div class="logo">
+                        <img src="images/My first design.png" alt="Connita" />
+                        <h4>Connita</h4>
+                    </div>
+
+                    <div class="heading">
+                        <h2>Get Started</h2>
+                        <h6>Already have an account?</h6>
+                        <a style="font-family: 'montreal', sans-serif" href="#" class="toggle">Sign in</a>
+                    </div>
+
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input
+                                    type="text"
+                                    name="firstName"
+                                    class="input-field"
+                                    autocomplete="off"
+                                    id="firstName"
+                                    required
+                            />
+                            <label id="firstNameLabel">First name</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input
+                                    type="text"
+                                    name="lastName"
+                                    class="input-field"
+                                    autocomplete="off"
+                                    id="lastName"
+                                    required
+                            />
+                            <label id="lastNameLabel">Last name</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input
+                                    type="email"
+                                    name="email"
+                                    class="input-field"
+                                    autocomplete="off"
+                                    id="email"
+                                    required
+                            />
+                            <label id="emailLabel">Email</label>
+                        </div>
+
+                        <div class="input-wrap" id="lastInputWrap">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="input-field input-password"
+                                    autocomplete="off"
+                                    id="password"
+                                    required
+                            />
+                            <label id="passwordLabel">Password</label>
+                            <i class="fa-regular fa-eye-slash password-toggle"></i>
+                        </div>
+                        <div class="password-requirements" id="passwordRequirements">
+                            <p id="firstRequirement">- 8 characters minimum</p>
+                            <p id="secondRequirement">- at least 1 number</p>
+                            <p id="thirdRequirement">- at least 1 symbol</p>
+                        </div>
+
+                        <input type="submit" value="Sign Up" class="sign-btn" />
+
+                        <p class="text-form-footer">
+                            By signing up, I agree to the
+                            <a href="#">Terms of Services</a> and
+                            <a href="#">Privacy Policy</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="carousel">
+                <div class="images-wrapper">
+                    <img src="images/image1Carousel.png" class="image img-1 show" alt="" />
+                    <img src="images/image2Carousel.png" class="image img-2" alt="" />
+                    <img src="images/image3Carousel.png" class="image img-3" alt="" />
+                </div>
+
+                <div class="text-slider">
+                    <div class="text-wrap">
+                        <div class="text-group">
+                            <h2>Learning is meant to be fun</h2>
+                            <h2>Discover new languages and cultures!</h2>
+                            <h2>Interact with learners worldwide!</h2>
+                        </div>
+                    </div>
+
+                    <div class="bullets">
+                        <span class="active" data-value="1"></span>
+                        <span data-value="2"></span>
+                        <span data-value="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

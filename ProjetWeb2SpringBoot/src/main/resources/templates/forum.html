@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Languages</title>
+</head>
+<body>
+
+<header th:include="menu :: menuFragment"></header>
+
+<main>
+    <!-- Left section -->
+    <div id="left-section" th:include="leftNav :: leftNavFragment"></div>
+    <!-- Middle section -->
+    <div id="middle-section" style="position: relative">
+        <div class="post-forum-overlay-wrapper" id="postTopicOverlay">
+            <div class="post-forum-overlay-card">
+                <i class="fa-solid fa-xmark" onclick="closeOverlay()"></i>
+                <div class="post-forum-card-header">
+                    <h1>Topic</h1>
+                </div>
+                <div class="post-forum-form-container">
+                    <div class="form-group-title">
+                        <h3>Title</h3>
+                        <div id="forumTitle" contenteditable="true"></div>
+                    </div>
+                    <div class="form-group-description">
+                        <h3>Description</h3>
+                        <div id="forumContent" contenteditable="true"></div>
+                    </div>
+                </div>
+                <div class="post-forum-animation" id="forumPostAnimation"></div>
+                <div class="forum-submit-btn" id="buttonAnimTopic"></div>
+            </div>
+        </div>
+        <div class="middle-section-forum-header-wrapper">
+            <div class="search-forum-wrapper">
+                <h1>Community</h1>
+                <form onsubmit="return false;">
+                    <input type="text" id="search-input-forum" name="search"
+                           placeholder="Search for Cultural or Language Topics..">
+                    <button type="button" class="search-button" onclick="searchForumTopicsByName()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="forum-info-wrapper">
+            <div class="forum-info-element">
+                <div class="forum-info-element-text">
+                    <h2>CONNITA</h2>
+                    <h4>Engage in Cultural and Linguistic Discussions</h4>
+                    <button type="button" onclick="openOverlay()" id="postTopicBtn">Post a topic</button>
+                </div>
+                <div class="forum-info-element-image">
+                    <img src="images/forumInspireImage.png">
+                </div>
+            </div>
+        </div>
+        <div class="forum-elements-container" id="forumTopicContainer">
+        </div>
+        <div class="forum-nothing-found-anim" id="ForumNothingFoundAnimId2">
+            <div class="forum-nothing-found-anim-wrapper" id="NothingFoundAnimContainer2">
+                <h3>Oops, looks empty around here.</h3>
+                <p>Start a conversion!</p>
+            </div>
+            <div class="animation-nothing-found-wrapper" id="NothingFoundAnim2"></div>
+        </div>
+        <div class="forum-nothing-found-anim" id="ForumNothingFoundAnimId">
+            <div class="forum-nothing-found-anim-wrapper" id="NothingFoundAnimContainer">
+                <h3>Sorry, your search didn't return any results.</h3>
+                <p>Be the first to ask!</p>
+            </div>
+            <div class="animation-nothing-found-wrapper" id="NothingFoundAnim"></div>
+        </div>
+        <div class="forum-footer">Connita™</div>
+    </div>
+    <!-- Right section -->
+    <div id="right-section" th:if="${session.loggedInUser != null}"
+         th:replace="rightFriendsList :: rightFriendsListFragment"></div>
+</main>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
+<script th:inline="javascript">
+
+    const postContainer = document.getElementById('middle-section');
+
+    function formatForumDates() {
+        const dateElements = document.querySelectorAll('.forum-date');
+        const currentYear = new Date().getFullYear();
+
+        dateElements.forEach(element => {
+            const dateString = element.getAttribute('data-date');
+            const date = new Date(dateString);
+            const options = {day: '2-digit', month: 'long'};
+
+            if (date.getFullYear() < currentYear) {
+                options.year = 'numeric';
+            }
+
+            const formattedDate = date.toLocaleDateString('en-US', options);
+
+            element.textContent = formattedDate;
+        });
+    }
+
+    const searchInput = document.getElementById('search-input-forum');
+
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === "Enter") {
+            searchForumTopicsByName();
+        }
+    });
+
+    const forumTopicContainer = $("#forumTopicContainer");
+
+    function searchForumTopicsByName() {
+        const searchInputValue = searchInput.value.trim().toLowerCase();
+
+        $.ajax({
+            type: "GET",
+            url: "/getAllForumPosts",
+            success: function (data) {
+                forumTopicContainer.empty();
+
+                data.forEach(function (forumTopic) {
+                    if (forumTopic.forumTitle.toLowerCase().includes(searchInputValue)) {
+                        const forumElement = '<div class="forum-elements" onclick="viewForumTopic(' + forumTopic.idForum + ')">' +
+                            '<div class="forum-element-question-container">' +
+                            '<h2>' + forumTopic.forumTitle + '</h2>' +
+                            '<p>By ' + forumTopic.membre.prenom + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-replies-container">' +
+                            '<p>' + forumTopic.forumRepliesNumber + (forumTopic.forumRepliesNumber === 1 ? ' reply' : ' replies') + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-credential-date-container">' +
+                            '<h3>@' + forumTopic.membre.username + '</h3>' +
+                            '<p class="forum-date" data-date="' + forumTopic.forumDatePosted + '"></p>' +
+                            '</div>' +
+                            '<div class="forum-element-user-photo-container">' +
+                            '<div class="forum-element-user-photo-wrapper">' +
+                            '<img src="' + forumTopic.membre.photoProfilPath + '" alt="user profile picture">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        forumTopicContainer.append(forumElement);
+                    }
+                });
+                formatForumDates();
+
+                const nothingFoundAnimContainer = document.getElementById('ForumNothingFoundAnimId');
+                if (forumTopicContainer.children().length === 0) {
+                    nothingFoundAnimContainer.style.visibility = "visible";
+                    postContainer.style.overflowY = "hidden";
+                } else {
+                    nothingFoundAnimContainer.style.visibility = "hidden";
+                    postContainer.style.overflowY = "scroll";
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error updating forum topics: " + error);
+            }
+        });
+    }
+
+    const noTopicFoundAnimation = bodymovin.loadAnimation({
+        container: document.getElementById('NothingFoundAnim'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'gif/NoForumTopicsFoundAnim.json'
+    });
+
+    const noTopicFoundAnimation2 = bodymovin.loadAnimation({
+        container: document.getElementById('NothingFoundAnim2'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'gif/NoForumTopicsFoundAnim.json'
+    });
+
+    const topicAnimation = bodymovin.loadAnimation({
+        container: document.getElementById('forumPostAnimation'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/TopicPostAnim.json'
+    });
+
+    const submitTopicButtonAnim = bodymovin.loadAnimation({
+        container: document.getElementById('buttonAnimTopic'),
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'gif/forumTopicPostBtnAnim.json'
+    });
+
+    const PostTopicBtn = document.getElementById('postTopicBtn');
+    const PostOverlay = document.getElementById('postTopicOverlay');
+
+    PostTopicBtn.addEventListener('click', function () {
+        gsap.to(postContainer, {
+            scrollTop: 0,
+            duration: 0,
+            ease: "power2.out"
+        })
+    })
+
+    const forumTitleInput = $("#forumTitle");
+    const forumContentInput = $("#forumContent");
+
+    function openOverlay() {
+        forumTitleInput.text("");
+        forumContentInput.text("");
+        gsap.to(PostOverlay, {
+            opacity: 1,
+            duration: 1,
+            display: 'flex'
+        })
+        gsap.to(postContainer, {
+            overflowY: 'hidden'
+        })
+        topicAnimation.playSegments([1, 75], true);
+    }
+
+    function closeOverlay() {
+        PostOverlay.style.display = 'none';
+        postContainer.style.overflowY = "scroll";
+    }
+
+    function viewForumTopic(forumId) {
+        window.location.href = "/pageForumActive/" + forumId;
+    }
+
+    $(document).ready(function () {
+        const maxTitleLength = 140;
+        const maxContentLength = 1000;
+
+        // Source: chatgpt :)
+        function enforceMaxLength(element, maxLength) {
+            element.on('input', function () {
+                if (element.text().length > maxLength) {
+                    element.text(element.text().substring(0, maxLength));
+                    const range = document.createRange();
+                    const selection = window.getSelection();
+                    range.setStart(element[0].childNodes[0], maxLength);
+                    range.collapse(true);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            });
+        }
+
+        enforceMaxLength($("#forumTitle"), maxTitleLength);
+        enforceMaxLength($("#forumContent"), maxContentLength);
+
+        $(".forum-submit-btn").on("click", function () {
+            const forumTitle = forumTitleInput.text();
+            const forumContent = forumContentInput.text();
+
+            $.ajax({
+                type: "GET",
+                url: "/saveNewForum",
+                data: {
+                    forumTitle: forumTitle,
+                    forumContent: forumContent
+                },
+                success: function (response) {
+                    submitTopicButtonAnim.playSegments([1, 300], true);
+                    setTimeout(() => {
+                        gsap.to(PostOverlay, {
+                            opacity: 0,
+                            duration: 1,
+                            onComplete: () => {
+                                closeOverlay();
+                                updateForumTopics();
+                            }
+                        });
+                    }, 5000);
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        });
+
+        const forumTopicContainer = $("#forumTopicContainer");
+        function updateForumTopics() {
+            $.ajax({
+                type: "GET",
+                url: "/getAllForumPosts",
+                success: function (data) {
+                    forumTopicContainer.empty();
+
+                    data.forEach(function (forumTopic) {
+                        const forumElement = '<div class="forum-elements" onclick="viewForumTopic(' + forumTopic.idForum + ')">' +
+                            '<div class="forum-element-question-container">' +
+                            '<h2>' + forumTopic.forumTitle + '</h2>' +
+                            '<p>By ' + forumTopic.membre.prenom + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-replies-container">' +
+                            '<p>' + forumTopic.forumRepliesNumber + (forumTopic.forumRepliesNumber === 1 ? ' reply' : ' replies') + '</p>' +
+                            '</div>' +
+                            '<div class="forum-element-credential-date-container">' +
+                            '<h3>@' + forumTopic.membre.username + '</h3>' +
+                            '<p class="forum-date" data-date="' + forumTopic.forumDatePosted + '"></p>' +
+                            '</div>' +
+                            '<div class="forum-element-user-photo-container">' +
+                            '<div class="forum-element-user-photo-wrapper">' +
+                            '<img src="' + forumTopic.membre.photoProfilPath + '" alt="user profile picture">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        forumTopicContainer.append(forumElement);
+                    });
+                    formatForumDates();
+
+                    const nothingFoundAnimContainer = document.getElementById('ForumNothingFoundAnimId2');
+                    if (forumTopicContainer.children().length === 0) {
+                        nothingFoundAnimContainer.style.visibility = "visible";
+                        postContainer.style.overflowY = "hidden";
+                    } else {
+                        nothingFoundAnimContainer.style.visibility = "hidden";
+                        postContainer.style.overflowY = "scroll";
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error updating forum topics: " + error);
+                }
+            });
+        }
+
+        updateForumTopics();
+    });
+</script>
+</body>
+</html>
