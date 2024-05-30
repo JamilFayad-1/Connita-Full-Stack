@@ -3339,7 +3339,7 @@ main.sign-up-mode .carousel {
 
 .post-profile-pic-wrapper {
     width: 3em;
-    height: 2.5rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4708,4 +4708,8 @@ main.sign-up-mode .carousel {
 .go-back-to-forums:hover i,
 .go-back-to-forums:hover p {
     color: #5c99dd;
+}
+
+.dialogue-angular-container{
+    width: 400px !important;
 }
