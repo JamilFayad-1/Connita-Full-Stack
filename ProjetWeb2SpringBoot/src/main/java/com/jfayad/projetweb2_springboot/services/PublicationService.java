@@ -60,4 +60,8 @@ public class PublicationService {
             repo.save(publication);
         }
     }
+
+    public void delete(int id) {
+        repo.deleteById(id);
+    }
 }

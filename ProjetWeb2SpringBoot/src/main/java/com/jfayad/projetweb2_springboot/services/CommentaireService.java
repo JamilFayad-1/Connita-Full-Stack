@@ -27,7 +27,16 @@ public class CommentaireService {
     public ArrayList<Commentaire> getAllByPublication(Publication publication) {
         return repo.findAllByPublication(publication);
     }
-    public void saveCommentaire (Commentaire commentaire) {
+
+    public void saveCommentaire(Commentaire commentaire) {
         repo.save(commentaire);
+    }
+
+    public void deleteCommentaire(Commentaire commentaire) {
+        repo.delete(commentaire);
+    }
+
+    public void deleteCommentaireByIdPublication(Publication publication) {
+        repo.deleteByPublicationId(publication);
     }
 }
