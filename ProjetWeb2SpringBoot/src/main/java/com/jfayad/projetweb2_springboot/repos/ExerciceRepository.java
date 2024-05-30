@@ -18,4 +18,6 @@ public interface ExerciceRepository extends JpaRepository<Exercices,Integer> {
     int updateExerciceCompleteStatus(int memberId, String exerciceName, boolean completeStatus);
 
     List<Exercices> findByIdExerciceMembre(int memberId);
+
+    void deleteAllByIdExerciceMembre(int memberId);
 }

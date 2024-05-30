@@ -2,6 +2,8 @@ package com.jfayad.projetweb2_springboot.services;
 
 import com.jfayad.projetweb2_springboot.controller.ChallengesController;
 import com.jfayad.projetweb2_springboot.entities.Challenges;
+import com.jfayad.projetweb2_springboot.entities.Membre;
+import com.jfayad.projetweb2_springboot.entities.Publication;
 import com.jfayad.projetweb2_springboot.repos.ChallengesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -33,4 +33,8 @@ public class AmitierService {
         return amitierRepository.findAll();
     }
 
+    public void deleteAmitierByIdMembre(Membre membre) {
+        amitierRepository.deleteAllByAmieOrByMembre(membre);
+    }
+
 }
