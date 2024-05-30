@@ -57,6 +57,9 @@ public class ExercicesService {
         }
     }
 
-
+    @Transactional
+    public void deleteExercicesByIdMembre(int idMembre) {
+        exerciceRepository.deleteAllByIdExerciceMembre(idMembre);
+    }
 
 }

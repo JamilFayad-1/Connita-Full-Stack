@@ -69,4 +69,8 @@ public class ChallengesJouerService {
         return null;
     }
 
+    public void deleteChallengesByIdMembre(int idMembre) {
+        challengesJouerRepository.deleteAllByIdMembre(idMembre);
+    }
+
 }

@@ -4,6 +4,7 @@ import com.jfayad.projetweb2_springboot.entities.Commentaire;
 import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.entities.Publication;
 import com.jfayad.projetweb2_springboot.repos.CommentaireRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ public class CommentaireService {
         repo.delete(commentaire);
     }
 
+    @Transactional
     public void deleteCommentaireByIdPublication(Publication publication) {
         repo.deleteByPublicationId(publication);
     }
