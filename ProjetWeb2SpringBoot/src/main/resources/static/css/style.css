@@ -3452,7 +3452,7 @@ main.sign-up-mode .carousel {
     position: absolute;
     font-family: 'montreal', sans-serif;
     font-size: clamp(0.4rem, 2.2vh, 0.8rem);
-    color: #4d4d4d;
+    color: #a3bfdf;
     left: 0;
     transform: translateX(-100%);
 }
@@ -4114,7 +4114,7 @@ main.sign-up-mode .carousel {
 .forum-footer{
     position: relative;
     width: 100%;
-    height: clamp(50px, 5vw, 80px);
+    height: clamp(50px, 15vh, 80px);
     background: linear-gradient(to bottom, #FAFAFA, #e4e8f6);
     display: flex;
     align-items: center;
