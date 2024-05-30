@@ -1,0 +1,64 @@
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dialogue-angular-container{
+    width: 400px;
+    height: 170px;
+    text-align: center;
+}
+
+.dialogue-angular-container h1{
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.8rem);
+    color: #272727;
+    margin: 5% 0 2% 0;
+}
+
+.dialogue-angular-container h3{
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.6rem, 1vw, 1rem);
+    color: #4b4b4b;
+    margin: 0;
+}
+
+.dialogue-angular-buttons{
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    padding: 0 10% 0 10%;
+    box-sizing: border-box;
+}
+
+.dialogue-angular-buttons button{
+    width: 30%;
+    height: clamp(20px, 5vh, 40px);
+    font-family: 'montreal', sans-serif;
+    font-size: clamp(0.8rem, 1.4vw, 1.2rem);
+    color: #272727;
+    border-radius: 0.4rem;
+    border: 2px solid #272727;
+    transition: all 0.2s ease-in-out;
+}
+
+.dialogue-angular-buttons button:hover{
+    cursor: pointer;
+    background-color: #313131;
+    color: #dfdfdf;
+}
+
+.dialogue-angular-buttons button:last-child:hover{
+    cursor: pointer;
+    background-color: #672929;
+    color: #dfdfdf;
+}
