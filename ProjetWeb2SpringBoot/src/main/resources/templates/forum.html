@@ -64,6 +64,13 @@
         </div>
         <div class="forum-elements-container" id="forumTopicContainer">
         </div>
+        <div class="forum-nothing-found-anim" id="ForumNothingFoundAnimId2">
+            <div class="forum-nothing-found-anim-wrapper" id="NothingFoundAnimContainer2">
+                <h3>Oops, looks empty around here.</h3>
+                <p>Start a conversion!</p>
+            </div>
+            <div class="animation-nothing-found-wrapper" id="NothingFoundAnim2"></div>
+        </div>
         <div class="forum-nothing-found-anim" id="ForumNothingFoundAnimId">
             <div class="forum-nothing-found-anim-wrapper" id="NothingFoundAnimContainer">
                 <h3>Sorry, your search didn't return any results.</h3>
@@ -171,6 +178,14 @@
         path: 'gif/NoForumTopicsFoundAnim.json'
     });
 
+    const noTopicFoundAnimation2 = bodymovin.loadAnimation({
+        container: document.getElementById('NothingFoundAnim2'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'gif/NoForumTopicsFoundAnim.json'
+    });
+
     const topicAnimation = bodymovin.loadAnimation({
         container: document.getElementById('forumPostAnimation'),
         renderer: 'svg',
@@ -228,17 +243,17 @@
         const maxTitleLength = 140;
         const maxContentLength = 1000;
 
+        // Source: chatgpt :)
         function enforceMaxLength(element, maxLength) {
             element.on('input', function () {
                 if (element.text().length > maxLength) {
                     element.text(element.text().substring(0, maxLength));
-                    // Move the cursor to the end after trimming
                     const range = document.createRange();
-                    const sel = window.getSelection();
+                    const selection = window.getSelection();
                     range.setStart(element[0].childNodes[0], maxLength);
                     range.collapse(true);
-                    sel.removeAllRanges();
-                    sel.addRange(range);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
                 }
             });
         }
@@ -259,13 +274,13 @@
                 },
                 success: function (response) {
                     submitTopicButtonAnim.playSegments([1, 300], true);
-                    updateForumTopics();
                     setTimeout(() => {
                         gsap.to(PostOverlay, {
                             opacity: 0,
                             duration: 1,
                             onComplete: () => {
-                                closeOverlay()
+                                closeOverlay();
+                                updateForumTopics();
                             }
                         });
                     }, 5000);
@@ -276,12 +291,13 @@
             });
         });
 
+        const forumTopicContainer = $("#forumTopicContainer");
         function updateForumTopics() {
             $.ajax({
                 type: "GET",
                 url: "/getAllForumPosts",
                 success: function (data) {
-                    $("#forumTopicContainer").empty();
+                    forumTopicContainer.empty();
 
                     data.forEach(function (forumTopic) {
                         const forumElement = '<div class="forum-elements" onclick="viewForumTopic(' + forumTopic.idForum + ')">' +
@@ -303,9 +319,18 @@
                             '</div>' +
                             '</div>';
 
-                        $("#forumTopicContainer").append(forumElement);
+                        forumTopicContainer.append(forumElement);
                     });
                     formatForumDates();
+
+                    const nothingFoundAnimContainer = document.getElementById('ForumNothingFoundAnimId2');
+                    if (forumTopicContainer.children().length === 0) {
+                        nothingFoundAnimContainer.style.visibility = "visible";
+                        postContainer.style.overflowY = "hidden";
+                    } else {
+                        nothingFoundAnimContainer.style.visibility = "hidden";
+                        postContainer.style.overflowY = "scroll";
+                    }
                 },
                 error: function (xhr, status, error) {
                     console.error("Error updating forum topics: " + error);
