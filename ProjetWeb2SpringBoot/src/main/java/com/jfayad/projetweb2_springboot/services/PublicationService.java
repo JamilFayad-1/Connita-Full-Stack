@@ -3,6 +3,7 @@ package com.jfayad.projetweb2_springboot.services;
 import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.entities.Publication;
 import com.jfayad.projetweb2_springboot.repos.PublicationRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +62,7 @@ public class PublicationService {
         }
     }
 
+    @Transactional
     public void delete(int id) {
         repo.deleteById(id);
     }

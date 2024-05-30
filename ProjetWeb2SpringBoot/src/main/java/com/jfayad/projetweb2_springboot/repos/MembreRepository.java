@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,5 +18,9 @@ public interface MembreRepository extends JpaRepository<Membre,Integer> {
     Optional<Membre> findByEmail(String email);
 
     Optional<Membre> findByIdMembre(int idMembre);
+
+    void deleteAllByIdMembre(int idMembre);
+
+    List<Membre> findByUsernameContaining(String username);
 
 }

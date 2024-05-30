@@ -124,4 +124,16 @@ public class MembreService {
         return membreRepository.findById(id).get();
     }
 
+    public List<Membre> findAll(){
+        return membreRepository.findAll();
+    }
+
+    public void deleteMembreById(int id) {
+        membreRepository.deleteById(id);
+    }
+
+    public List<Membre> findMembreByUsername(String username) {
+        return membreRepository.findByUsernameContaining(username);
+    }
+
 }

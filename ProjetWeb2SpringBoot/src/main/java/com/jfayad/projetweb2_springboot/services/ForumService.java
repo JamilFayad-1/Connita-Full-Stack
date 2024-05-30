@@ -1,6 +1,7 @@
 package com.jfayad.projetweb2_springboot.services;
 
 import com.jfayad.projetweb2_springboot.entities.Forum;
+import com.jfayad.projetweb2_springboot.entities.Membre;
 import com.jfayad.projetweb2_springboot.repos.ForumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,9 @@ public class ForumService {
     public void IncreaseReplyCount(int id) {
         Forum forum = forumRepository.findByIdForum(id);
         forum.setForumRepliesNumber(forum.getForumRepliesNumber() + 1);
+    }
+
+    public void deleteAllForumTopicsByMember(Membre membre) {
+        forumRepository.deleteAllByMembre(membre);
     }
 }
