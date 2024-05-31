@@ -45,4 +45,8 @@ public class LikesService {
     public void deleteByPublication(Publication publication) {
         repo.deleteByPublication(publication);
     }
+
+    public void deleteAllByMembre(Membre membre) {
+      repo.deleteAllByMembre(membre);
+    }
 }
