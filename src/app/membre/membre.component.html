@@ -1,0 +1,33 @@
+<main [ngStyle]="{'height': '100%', 'top': '0'}">
+    <div id="middle-section" [ngStyle]="{'background-color': '#2d2d2d'}">
+        <a href="http://localhost:8080/pageAccueilUtilisateur" [ngClass]="{'return-button-admin': true}">Exit admin
+            panel </a>
+
+        <div [ngClass]="{'admin-member-search-bar': true}">
+            <input #searchInput type="text" placeholder="Search for users by usernames">
+            <button (click)="searchForUser(searchInput.value)">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div [ngClass]="{'members-container-admin': true}">
+            <div *ngFor="let membre of membres" id="membre-{{membre.idMembre}}"
+                [ngClass]="{'member-element-admin': true}">
+                <div [ngClass]="{'member-photo-container': true}">
+                    <div [ngClass]="{'member-photo-wrapper': true}">
+                        <img [src]="getPfp(membre.photoProfilPath)" alt="test-account" />
+                    </div>
+                </div>
+                <div [ngClass]="{'member-credentials-container': true}">
+                    <h3>{{membre.prenom}} {{membre.nom}}</h3>
+                    <p>&#64;{{membre.username}}</p>
+                </div>
+                <div [ngClass]="{'delete-member-button-container': true}">
+                    <p *ngIf="membre.privilege == 1">Admin!</p>
+                    <button *ngIf="membre.privilege != 1" (click)="openConfirmDialog(membre.idMembre)">Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

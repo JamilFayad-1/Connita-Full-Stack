@@ -41,4 +41,10 @@ public class CommentaireService {
     public void deleteCommentaireByIdPublication(Publication publication) {
         repo.deleteByPublicationId(publication);
     }
+
+    @Transactional
+    public void deleteAllCommentaireByMembre(Membre membre) {
+      repo.deleteAllByMembre(membre);
+    }
+
 }

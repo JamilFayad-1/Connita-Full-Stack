@@ -14,14 +14,18 @@ import java.util.List;
 
 @Repository
 public interface CommentaireRepository extends JpaRepository<Commentaire, Integer> {
-    @Query("SELECT c FROM Commentaire c WHERE c.membre = :membre")
-    ArrayList<Commentaire> findAllByMembre(Membre membre);
+  @Query("SELECT c FROM Commentaire c WHERE c.membre = :membre")
+  ArrayList<Commentaire> findAllByMembre(Membre membre);
 
-    @Query("SELECT c FROM Commentaire c WHERE c.publication = :publication")
-    ArrayList<Commentaire> findAllByPublication(Publication publication);
+  @Query("SELECT c FROM Commentaire c WHERE c.publication = :publication")
+  ArrayList<Commentaire> findAllByPublication(Publication publication);
 
-    @Transactional
-    @Modifying
-    @Query("DELETE FROM Commentaire c WHERE c.publication = :publication")
-    void deleteByPublicationId(Publication publication);
+  @Transactional
+  @Modifying
+  @Query("DELETE FROM Commentaire c WHERE c.publication = :publication")
+  void deleteByPublicationId(Publication publication);
+
+  @Transactional
+  @Modifying
+  void deleteAllByMembre(Membre membre);
 }

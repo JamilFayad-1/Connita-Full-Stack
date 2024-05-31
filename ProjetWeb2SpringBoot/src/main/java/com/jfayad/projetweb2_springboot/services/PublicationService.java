@@ -66,4 +66,8 @@ public class PublicationService {
     public void delete(int id) {
         repo.deleteById(id);
     }
+
+    public void deleteAllPublicationsByMembre(Membre membre) {
+      repo.deleteAllByMembre(membre);
+    }
 }
