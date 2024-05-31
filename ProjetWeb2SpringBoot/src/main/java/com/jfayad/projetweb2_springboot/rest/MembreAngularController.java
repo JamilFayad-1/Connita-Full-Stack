@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,13 +45,10 @@ public class MembreAngularController {
     }
 
     @DeleteMapping("/deleteMembreAdmin/{idMembre}")
+    @Transactional
     public ResponseEntity<String> deleteMembre(@PathVariable Integer idMembre) {
         challengesJouerService.deleteChallengesByIdMembre(idMembre);
         exercicesService.deleteExercicesByIdMembre(idMembre);
-        messagesService.deleteAllMessagesByMembre(membreService.findById(idMembre));
-        amitierService.deleteAmitierByIdMembre(membreService.findById(idMembre));
-        forumReplyService.deleteAllForumRepliesByMember(membreService.findById(idMembre));
-        forumService.deleteAllForumTopicsByMember(membreService.findById(idMembre));
         membreService.deleteMembreById(idMembre);
         return ResponseEntity.noContent().build();
     }

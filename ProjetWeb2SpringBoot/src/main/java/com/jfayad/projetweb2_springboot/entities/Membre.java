@@ -2,6 +2,8 @@ package com.jfayad.projetweb2_springboot.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "membre")
 public class Membre {
@@ -38,6 +40,46 @@ public class Membre {
 
     @Column(nullable = false)
     private int privilege;
+
+    //Cascading deletes
+    @OneToMany(mappedBy = "idEnvoyant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CleinOeil> sentCleinOeil;
+
+    @OneToMany(mappedBy = "idRecevant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CleinOeil> receivedCleinOeil;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commentaire> commentaires;
+
+    @OneToMany(mappedBy = "envoyant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DemandeAmie> sentDemandeAmie;
+
+    @OneToMany(mappedBy = "recevant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DemandeAmie> receivedDemandeAmie;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Likes> likes;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Messages> sentMessages;
+
+    @OneToMany(mappedBy = "ami", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Messages> ReceivedMessages;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Amitier> sentAmities;
+
+    @OneToMany(mappedBy = "amie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Amitier> ReceivedAmities;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Publication> publications;
+
+    @OneToMany(mappedBy = "membreReply", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ForumReply> forumReplies;
+
+    @OneToMany(mappedBy = "membre", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Forum> forumTopics;
 
     // Getters and Setters
 
